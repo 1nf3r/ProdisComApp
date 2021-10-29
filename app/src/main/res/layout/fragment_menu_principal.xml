@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/queHacer"
+            android:layout_width="219dp"
+            android:layout_height="54dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="20dp"
+            android:text="@string/que_quieres_hacer"
+            android:textAlignment="viewStart"
+            android:textSize="@dimen/dimens_titulo"
+            app:layout_constraintEnd_toStartOf="@+id/imageView2"
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            android:src="@drawable/ic_baseline_perfil"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/todo" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="32dp"
+            android:src="@drawable/ic_baseline_ajustes"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/todo" />
+
+        <Button
+            android:id="@+id/btnToAutorizaciones"
+            android:layout_width="345dp"
+            android:layout_height="@dimen/menuPrin_botonesHeight"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            android:paddingStart="25dp"
+            android:text="@string/autorizaciones"
+            app:icon="@drawable/ic_baseline_autorizaciones"
+            app:iconPadding="-50dp"
+            app:iconSize="60dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/queHacer" />
+
+        <Button
+            android:id="@+id/btnToUsuarios"
+            android:layout_width="@dimen/menuPrin_botonesWidth"
+            android:layout_height="@dimen/menuPrin_botonesHeight"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            android:text="@string/usuarios"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnToAutorizaciones" />
+
+        <Button
+            android:id="@+id/btnToSalir"
+            android:layout_width="@dimen/menuPrin_botonesWidth"
+            android:layout_height="@dimen/menuPrin_botonesHeight"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            android:text="@string/salir_de_la_app"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnToUsuarios" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>
