@@ -19,11 +19,6 @@ class Menu_principal : Fragment() {
         Log.i("Login", "Si entra")
         _binding = FragmentMenuPrincipalBinding.inflate(inflater, container, false)
 
-        /*val binding = DataBindingUtil.inflate<FragmentTitleBinding>(
-            inflater,
-            R.layout.fragment_menu_principal, container, false
-        ) */
-        //return inflater.inflate(R.layout.fragment_menu_principal, container, false)
         return binding.root
     }
 

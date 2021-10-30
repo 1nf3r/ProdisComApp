@@ -1,19 +1,19 @@
 <resources>
     <string name="app_name">ProdisCom</string>
     <!-- Strings related to login -->
-    <string name="prompt_email">Email</string>
-    <string name="prompt_password">Password</string>
-    <string name="action_sign_in">Sign in or register</string>
-    <string name="action_sign_in_short">Sign in</string>
-    <string name="welcome">"Welcome !"</string>
-    <string name="invalid_username">Not a valid username</string>
-    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="prompt_email">DNI</string>
+    <string name="prompt_password">Contrasenya</string>
+    <string name="action_sign_in">Inicia Sessió</string>
+    <string name="action_sign_in_short">Inicia Sessió</string>
+    <string name="welcome">"Benvingut !"</string>
+    <string name="invalid_username">Usuari no valid</string>
+    <string name="invalid_password">Contrasenya ha de tenir minim 4 digits</string>
     <string name="login_failed">"Login failed"</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="que_quieres_hacer">¿Que quieres hacer?</string>
-    <string name="autorizaciones">Autorizaciones</string>
-    <string name="usuarios">Usuarios</string>
-    <string name="salir_de_la_app">Salir de la App</string>
+    <string name="que_quieres_hacer">¿Que vols fer?</string>
+    <string name="autorizaciones">Autortizacions</string>
+    <string name="usuarios">Usuaris</string>
+    <string name="salir_de_la_app">Sortir de la App</string>
     <string name="todo">TODO</string>
 </resources>
