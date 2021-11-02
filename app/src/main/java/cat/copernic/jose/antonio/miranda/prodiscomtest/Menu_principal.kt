@@ -1,12 +1,13 @@
 package cat.copernic.jose.antonio.miranda.prodiscomtest
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import cat.copernic.jose.antonio.miranda.prodiscomtest.databinding.FragmentMenuPrincipalBinding
+
 
 class Menu_principal : Fragment() {
 
@@ -15,9 +16,14 @@ class Menu_principal : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        Log.i("Login", "Si entra")
+    ): View {
         _binding = FragmentMenuPrincipalBinding.inflate(inflater, container, false)
+
+        binding.btnToUsuarios.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.usuarios, null))
+        binding.btnToAutorizaciones.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.autorizacion, null))
+        binding.btnToSalir.setOnClickListener {
+        //Falta poner funcion para hacer log out
+        }
 
         return binding.root
     }

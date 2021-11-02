@@ -12,10 +12,18 @@
         <action
             android:id="@+id/action_menu_principal_to_autorizacion"
             app:destination="@id/autorizacion" />
+        <action
+            android:id="@+id/action_menu_principal_to_usuarios"
+            app:destination="@id/usuarios" />
     </fragment>
     <fragment
         android:id="@+id/autorizacion"
         android:name="cat.copernic.jose.antonio.miranda.prodiscomtest.Autorizacion"
         android:label="fragment_autorizacion"
         tools:layout="@layout/fragment_autorizacion" />
+    <fragment
+        android:id="@+id/usuarios"
+        android:name="cat.copernic.jose.antonio.miranda.prodiscomtest.Usuarios"
+        android:label="fragment_usuarios"
+        tools:layout="@layout/fragment_usuarios" />
 </navigation>
