@@ -65,6 +65,7 @@ class LoginActivity : AppCompatActivity() {
 
             //Complete and destroy login activity once successful
             intent = Intent(applicationContext, MainActivity::class.java)
+            finish()
             startActivity(intent)
         })
 

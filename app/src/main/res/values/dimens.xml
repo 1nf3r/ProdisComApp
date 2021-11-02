@@ -5,4 +5,8 @@
     <dimen name="dimens_titulo">24sp</dimen>
     <dimen name="menuPrin_botonesWidth">340dp</dimen>
     <dimen name="menuPrin_botonesHeight">72dp</dimen>
+    <dimen name="iconPadding_MP">-50dp</dimen>
+    <dimen name="iconSize_MP">60dp</dimen>
+    <dimen name="paddingStart_MP">25dp</dimen>
+    <dimen name="paddingEnd_MP">0dp</dimen>
 </resources>

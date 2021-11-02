@@ -13,10 +13,10 @@
             android:id="@+id/queHacer"
             android:layout_width="219dp"
             android:layout_height="54dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="28dp"
             android:layout_marginEnd="20dp"
             android:text="@string/que_quieres_hacer"
-            android:textAlignment="viewStart"
+            android:textAlignment="center"
             android:textSize="@dimen/dimens_titulo"
             app:layout_constraintEnd_toStartOf="@+id/imageView2"
             app:layout_constraintTop_toBottomOf="@+id/imageView" />
@@ -45,35 +45,28 @@
 
         <Button
             android:id="@+id/btnToAutorizaciones"
-            android:layout_width="345dp"
-            android:layout_height="@dimen/menuPrin_botonesHeight"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="32dp"
-            android:paddingStart="25dp"
+            style="@style/PrimaryColoredButton2"
             android:text="@string/autorizaciones"
             app:icon="@drawable/ic_baseline_autorizaciones"
-            app:iconPadding="-50dp"
-            app:iconSize="60dp"
+            app:iconTint="#8BC34A"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/queHacer" />
 
         <Button
             android:id="@+id/btnToUsuarios"
-            android:layout_width="@dimen/menuPrin_botonesWidth"
-            android:layout_height="@dimen/menuPrin_botonesHeight"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="32dp"
+            style="@style/PrimaryColoredButton2"
             android:text="@string/usuarios"
+            app:icon="@drawable/ic_baseline_usuarios"
+            app:iconTint="#000000"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnToAutorizaciones" />
 
         <Button
             android:id="@+id/btnToSalir"
-            android:layout_width="@dimen/menuPrin_botonesWidth"
-            android:layout_height="@dimen/menuPrin_botonesHeight"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="32dp"
+            style="@style/PrimaryColoredButton2"
             android:text="@string/salir_de_la_app"
+            app:icon="@drawable/ic_baseline_salir"
+            app:iconTint="#000000"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnToUsuarios" />
 
