@@ -15,6 +15,12 @@
         <action
             android:id="@+id/action_menu_principal_to_usuarios"
             app:destination="@id/usuarios" />
+        <action
+            android:id="@+id/action_menu_principal_to_perfil"
+            app:destination="@id/perfil" />
+        <action
+            android:id="@+id/action_menu_principal_to_ajustes"
+            app:destination="@id/ajustes" />
     </fragment>
     <fragment
         android:id="@+id/autorizacion"
@@ -25,5 +31,56 @@
         android:id="@+id/usuarios"
         android:name="cat.copernic.jose.antonio.miranda.prodiscomtest.Usuarios"
         android:label="fragment_usuarios"
-        tools:layout="@layout/fragment_usuarios" />
+        tools:layout="@layout/fragment_usuarios" >
+        <action
+            android:id="@+id/action_usuarios_to_addUsuario"
+            app:destination="@id/addUsuario" />
+        <action
+            android:id="@+id/action_usuarios_to_delUser"
+            app:destination="@id/delUser" />
+        <action
+            android:id="@+id/action_usuarios_to_modUser"
+            app:destination="@id/modUser" />
+        <action
+            android:id="@+id/action_usuarios_to_valUser"
+            app:destination="@id/valUser" />
+        <action
+            android:id="@+id/action_usuarios_to_bloqUser"
+            app:destination="@id/bloqUser" />
+    </fragment>
+    <fragment
+        android:id="@+id/perfil"
+        android:name="cat.copernic.jose.antonio.miranda.prodiscomtest.perfil"
+        android:label="fragment_perfil"
+        tools:layout="@layout/fragment_perfil" />
+    <fragment
+        android:id="@+id/ajustes"
+        android:name="cat.copernic.jose.antonio.miranda.prodiscomtest.ajustes"
+        android:label="fragment_ajustes"
+        tools:layout="@layout/fragment_ajustes" />
+    <fragment
+        android:id="@+id/addUsuario"
+        android:name="cat.copernic.jose.antonio.miranda.prodiscomtest.addUser"
+        android:label="fragment_add_usuario"
+        tools:layout="@layout/fragment_add_usuario" />
+    <fragment
+        android:id="@+id/delUser"
+        android:name="cat.copernic.jose.antonio.miranda.prodiscomtest.delUser"
+        android:label="fragment_del_user"
+        tools:layout="@layout/fragment_del_user" />
+    <fragment
+        android:id="@+id/modUser"
+        android:name="cat.copernic.jose.antonio.miranda.prodiscomtest.modUser"
+        android:label="fragment_mod_user"
+        tools:layout="@layout/fragment_mod_user" />
+    <fragment
+        android:id="@+id/valUser"
+        android:name="cat.copernic.jose.antonio.miranda.prodiscomtest.valUser"
+        android:label="fragment_val_user"
+        tools:layout="@layout/fragment_val_user" />
+    <fragment
+        android:id="@+id/bloqUser"
+        android:name="cat.copernic.jose.antonio.miranda.prodiscomtest.bloqUser"
+        android:label="fragment_bloq_user"
+        tools:layout="@layout/fragment_bloq_user" />
 </navigation>

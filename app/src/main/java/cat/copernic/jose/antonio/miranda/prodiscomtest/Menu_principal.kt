@@ -18,11 +18,12 @@ class Menu_principal : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentMenuPrincipalBinding.inflate(inflater, container, false)
-
+        binding.btnToPerfil.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.perfil, null))
+        binding.btnToAjustes.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.ajustes, null))
         binding.btnToUsuarios.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.usuarios, null))
         binding.btnToAutorizaciones.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.autorizacion, null))
         binding.btnToSalir.setOnClickListener {
-        //Falta poner funcion para hacer log out
+        //TODO Poner funcion para hacer log out
         }
 
         return binding.root

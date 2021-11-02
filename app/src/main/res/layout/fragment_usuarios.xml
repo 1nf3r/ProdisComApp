@@ -1,14 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Usuarios">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/action_sign_in_short" />
+        android:layout_height="match_parent">
 
-</FrameLayout>
+        <ImageView
+            android:id="@+id/btnReturnUser"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:src="@drawable/ic_baseline_salir"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:outlineProvider="none"
+            android:text="@string/usuarios"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="38sp"
+            app:layout_constraintEnd_toStartOf="@+id/btnUserToHome"
+            app:layout_constraintStart_toEndOf="@+id/btnReturnUser"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/btnUserToHome"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/ic_baseline_inicio"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btnAddUser"
+            style="@style/botonesUsuarios"
+            android:text="Button"
+            app:icon="@drawable/ic_baseline_adduser"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+        <Button
+            android:id="@+id/btnBloqUser"
+            style="@style/botonesUsuarios"
+            android:text="Button"
+            app:icon="@drawable/ic_baseline_bloqueadouser"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnValUser" />
+
+        <Button
+            android:id="@+id/btnDelUser"
+            style="@style/botonesUsuarios"
+            android:text="Button"
+            app:icon="@drawable/ic_baseline_deluser"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnAddUser" />
+
+        <Button
+            android:id="@+id/btnValUser"
+            style="@style/botonesUsuarios"
+            android:text="Button"
+            app:icon="@drawable/ic_baseline_validaruser"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnModUser" />
+
+        <Button
+            android:id="@+id/btnModUser"
+            style="@style/botonesUsuarios"
+            android:text="Button"
+            app:icon="@drawable/ic_baseline_editaruser"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnDelUser" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</RelativeLayout>
