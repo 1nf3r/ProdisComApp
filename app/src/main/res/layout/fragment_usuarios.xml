@@ -47,7 +47,7 @@
         <Button
             android:id="@+id/btnAddUser"
             style="@style/botonesUsuarios"
-            android:text="Button"
+            android:text="@string/afegir_usuari"
             app:icon="@drawable/ic_baseline_adduser"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView4" />
@@ -55,7 +55,7 @@
         <Button
             android:id="@+id/btnBloqUser"
             style="@style/botonesUsuarios"
-            android:text="Button"
+            android:text="@string/usuaris_bloquejats"
             app:icon="@drawable/ic_baseline_bloqueadouser"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnValUser" />
@@ -63,7 +63,7 @@
         <Button
             android:id="@+id/btnDelUser"
             style="@style/botonesUsuarios"
-            android:text="Button"
+            android:text="@string/eliminar_usuari"
             app:icon="@drawable/ic_baseline_deluser"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnAddUser" />
@@ -71,7 +71,7 @@
         <Button
             android:id="@+id/btnValUser"
             style="@style/botonesUsuarios"
-            android:text="Button"
+            android:text="@string/validar_usuari"
             app:icon="@drawable/ic_baseline_validaruser"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnModUser" />
@@ -79,7 +79,7 @@
         <Button
             android:id="@+id/btnModUser"
             style="@style/botonesUsuarios"
-            android:text="Button"
+            android:text="@string/modificar_usuari"
             app:icon="@drawable/ic_baseline_editaruser"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnDelUser" />
