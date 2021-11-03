@@ -13,3 +13,5 @@
 .externalNativeBuild
 .cxx
 local.properties
+.ide/render.experimental.xml
+.idea/misc.xml
