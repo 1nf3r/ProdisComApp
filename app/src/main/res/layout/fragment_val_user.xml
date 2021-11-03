@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".valUser">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/txtValUser"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="46dp"
+            android:text="@string/validar_usuari"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/btnReturnValUser"
+            android:layout_width="78dp"
+            android:layout_height="86dp"
+            android:layout_marginStart="28dp"
+            android:contentDescription="TODO"
+            android:src="@drawable/ic_baseline_salir"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtValUser" />
+
+        <ImageView
+            android:id="@+id/btnValUserToHome"
+            android:layout_width="108dp"
+            android:layout_height="68dp"
+            android:src="@drawable/ic_baseline_inicio"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtValUser" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

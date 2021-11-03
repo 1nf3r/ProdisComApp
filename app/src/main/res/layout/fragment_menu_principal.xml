@@ -18,34 +18,34 @@
             android:text="@string/que_quieres_hacer"
             android:textAlignment="center"
             android:textSize="@dimen/dimens_titulo"
-            app:layout_constraintEnd_toStartOf="@+id/imageView2"
-            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+            app:layout_constraintEnd_toStartOf="@+id/btnToAjustes"
+            app:layout_constraintTop_toBottomOf="@+id/btnToPerfil" />
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/btnToPerfil"
             android:layout_width="44dp"
             android:layout_height="44dp"
             android:layout_marginStart="32dp"
             android:layout_marginTop="32dp"
+            android:contentDescription="@string/todo"
             android:src="@drawable/ic_baseline_perfil"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:contentDescription="@string/todo" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/btnToAjustes"
             android:layout_width="44dp"
             android:layout_height="44dp"
             android:layout_marginTop="32dp"
             android:layout_marginEnd="32dp"
+            android:contentDescription="@string/todo"
             android:src="@drawable/ic_baseline_ajustes"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:contentDescription="@string/todo" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/btnToAutorizaciones"
-            style="@style/PrimaryColoredButton2"
+            style="@style/botonesMP"
             android:text="@string/autorizaciones"
             app:icon="@drawable/ic_baseline_autorizaciones"
             app:iconTint="#8BC34A"
@@ -54,7 +54,7 @@
 
         <Button
             android:id="@+id/btnToUsuarios"
-            style="@style/PrimaryColoredButton2"
+            style="@style/botonesMP"
             android:text="@string/usuarios"
             app:icon="@drawable/ic_baseline_usuarios"
             app:iconTint="#000000"
@@ -63,7 +63,7 @@
 
         <Button
             android:id="@+id/btnToSalir"
-            style="@style/PrimaryColoredButton2"
+            style="@style/botonesMP"
             android:text="@string/salir_de_la_app"
             app:icon="@drawable/ic_baseline_salir"
             app:iconTint="#000000"

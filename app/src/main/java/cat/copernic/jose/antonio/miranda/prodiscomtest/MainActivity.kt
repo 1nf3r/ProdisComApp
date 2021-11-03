@@ -19,16 +19,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         @Suppress("UNUSED_VARIABLE")
         val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
-
         drawerLayout = binding.drawerLayout
-
         val navController = this.findNavController(R.id.visualizarFragment)
-
         NavigationUI.setupActionBarWithNavController(this,navController, drawerLayout)
-
         NavigationUI.setupWithNavController(binding.vistaNavegacion, navController)
-
-
     }
-
 }

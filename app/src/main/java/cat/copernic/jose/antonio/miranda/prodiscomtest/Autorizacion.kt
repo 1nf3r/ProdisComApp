@@ -19,8 +19,10 @@ class Autorizacion : Fragment() {
     ): View {
         _binding = FragmentAutorizacionBinding.inflate(inflater, container, false)
 
-        //binding.btnToUsuarios.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.usuarios, null))
+        binding.btnToNuevaAutorizacion.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.nuevaAutorizacion, null))
+        binding.btnToResultadosAutorizaciones.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.resultadosAutorizaciones, null))
 
+        binding.btnReturnAutorizaciones.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.menu_principal, null))
 
 
 
