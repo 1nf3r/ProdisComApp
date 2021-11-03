@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".perfil">
+    tools:context=".resultadosAutorizaciones">
 
     <!-- TODO: Update blank fragment layout -->
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -12,35 +12,35 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/textView5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="61dp"
-            android:text="@string/perfil"
+            android:layout_marginTop="38dp"
+            android:text="@string/resultats"
             android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/btnToEditPerfil"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="154dp"
-            android:layout_marginEnd="63dp"
-            android:text="@string/editar_perfil"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
-
         <ImageView
-            android:id="@+id/btnReturnPerfil"
-            android:layout_width="96dp"
+            android:id="@+id/btnReturnResultadosAutorizacion"
+            android:layout_width="78dp"
             android:layout_height="86dp"
-            android:layout_marginStart="29dp"
-            android:layout_marginTop="26dp"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="100dp"
+            android:contentDescription="TODO"
             android:src="@drawable/ic_baseline_salir"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
+            app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
+        <ImageView
+            android:id="@+id/btnResultadosAutorizacionToHome"
+            android:layout_width="108dp"
+            android:layout_height="68dp"
+            android:layout_marginTop="148dp"
+            android:layout_marginEnd="52dp"
+            android:src="@drawable/ic_baseline_inicio"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView5" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
