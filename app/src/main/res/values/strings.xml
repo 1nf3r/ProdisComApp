@@ -23,4 +23,9 @@
     <string name="resultats">Resultats</string>
     <string name="configuraci">Configuració</string>
     <string name="condicions_i_privacitat">Condicions i privacitat</string>
+    <string name="afegir_usuari">Afegir usuari</string>
+    <string name="eliminar_usuari">Eliminar usuari</string>
+    <string name="modificar_usuari">Modificar usuari</string>
+    <string name="validar_usuari">Validar usuari</string>
+    <string name="usuaris_bloquejats">Usuaris Bloquejats</string>
 </resources>
