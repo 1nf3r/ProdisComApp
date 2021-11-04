@@ -1,4 +1,4 @@
-package cat.copernic.jose.antonio.miranda.prodiscomtest
+package cat.copernic.jose.antonio.miranda.prodiscomtest.logged.ajustes
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,8 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
+import cat.copernic.jose.antonio.miranda.prodiscomtest.R
 import cat.copernic.jose.antonio.miranda.prodiscomtest.databinding.FragmentAjustesBinding
-import cat.copernic.jose.antonio.miranda.prodiscomtest.databinding.FragmentAutorizacionBinding
 
 class ajustes : Fragment() {
     private var _binding: FragmentAjustesBinding? = null
