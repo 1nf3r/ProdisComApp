@@ -11,13 +11,12 @@ import cat.copernic.jose.antonio.miranda.prodiscomtest.databinding.FragmentAutor
 
 class Autorizacion : Fragment() {
 
-    private var _binding: FragmentAutorizacionBinding? = null
-    private val binding get() = _binding!!
+    private lateinit var binding: FragmentAutorizacionBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentAutorizacionBinding.inflate(inflater, container, false)
+        binding = FragmentAutorizacionBinding.inflate(inflater, container, false)
 
         binding.btnToNuevaAutorizacion.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.nuevaAutorizacion, null))
         binding.btnToResultadosAutorizaciones.setOnClickListener(Navigation.createNavigateOnClickListener(
