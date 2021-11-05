@@ -12,7 +12,8 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="que_quieres_hacer">¿Que vols fer?</string>
-    <string name="autorizaciones">Autortizacions</string>
+    <string name="autoritzacions">Autoritzacions</string>
+    <string name="autorizaciones">Autoritzacions</string>
     <string name="usuarios">Usuaris</string>
     <string name="salir_de_la_app">Sortir de la App</string>
     <string name="todo">TODO</string>
