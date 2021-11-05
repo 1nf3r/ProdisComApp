@@ -29,4 +29,11 @@
     <string name="modificar_usuari">Modificar usuari</string>
     <string name="validar_usuari">Validar usuari</string>
     <string name="usuaris_bloquejats">Usuaris Bloquejats</string>
+    <string name="necessites_ajuda">Necessites ajuda?</string>
+    <string name="contrasenya">Contrasenya</string>
+    <string name="usuari">Usuari</string>
+    <string name="introdueixi_un_usuari_i_contrasenya_per_entrar">Introdueixi un usuari i contrasenya per entrar!</string>
+    <string name="iniciar_sesi">Iniciar sesió</string>
+    <string name="comunicaci_amb_les_fam_lies">Comunicació amb les famílies</string>
+    <string name="prodiscom">ProdisCom</string>
 </resources>

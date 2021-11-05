@@ -69,4 +69,9 @@
         <item name="android:layout_marginEnd">0dp</item>
         <item name="android:textSize">18sp</item>
     </style>
+
+    <!--Estilo splashScreen-->
+    <style name="splashTeme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash_screen</item>
+    </style>
 </resources>

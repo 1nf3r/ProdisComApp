@@ -25,7 +25,7 @@ class Menu_principal : Fragment() {
         binding.btnToUsuarios.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.usuarios, null))
         binding.btnToAutorizaciones.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.autorizacion, null))
         binding.btnToSalir.setOnClickListener {
-        //TODO Poner funcion para hacer log out
+
         }
 
         return binding.root
