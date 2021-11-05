@@ -13,9 +13,19 @@
         android:layout_height="match_parent">
 
         <TextView
+            android:id="@+id/textView4"
+            style="@style/backgroundTitulos"
+            android:background="@color/autorizacionBG"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
             android:id="@+id/textView3"
             style="@style/titulos"
             android:text="@string/autoritzacions"
+            android:textColor="#FFFFFF"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/btnReturnAutorizaciones"
             app:layout_constraintTop_toTopOf="parent" />
@@ -49,14 +59,21 @@
 
         <EditText
             android:id="@+id/editTextTextPersonName"
-            android:layout_width="214dp"
-            android:layout_height="55dp"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/rounded_edittext"
             android:drawableStart="@drawable/ic_baseline_search"
             android:ems="10"
+            android:hint="Cercar"
             android:inputType="textPersonName"
-            android:text="Cercar"
-            tools:layout_editor_absoluteX="101dp"
-            tools:layout_editor_absoluteY="115dp" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView4"
+            app:layout_constraintVertical_bias="0.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

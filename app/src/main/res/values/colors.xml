@@ -10,5 +10,6 @@
     <color name="myGray">#FFDCD3D3</color>
     <color name="myRed">#FF000000</color>
     <color name="prodis">#00af93</color>
+    <color name="autorizacionBG">#276033</color>
 
 </resources>

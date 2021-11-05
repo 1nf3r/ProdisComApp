@@ -12,7 +12,7 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/txtCrearAutoritzacio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="38dp"
@@ -30,7 +30,7 @@
             android:contentDescription="TODO"
             android:src="@drawable/ic_baseline_salir"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView5" />
+            app:layout_constraintTop_toBottomOf="@+id/txtCrearAutoritzacio" />
 
         <ImageView
             android:id="@+id/btnResultadosAutorizacionToHome"
@@ -40,7 +40,7 @@
             android:layout_marginEnd="52dp"
             android:src="@drawable/ic_baseline_inicio"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView5" />
+            app:layout_constraintTop_toBottomOf="@+id/txtCrearAutoritzacio" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
