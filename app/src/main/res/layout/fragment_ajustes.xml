@@ -12,34 +12,100 @@
         android:layout_height="match_parent">
 
         <TextView
+            android:id="@+id/titleBGConfiguracion"
+            style="@style/backgroundTitulos"
+            android:layout_width="0dp"
+            android:background="@color/perfilBG"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
             android:id="@+id/textView6"
+            style="@style/titulos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="88dp"
             android:text="@string/configuraci"
             android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/btnReturnAjustes"
-            android:layout_width="90dp"
-            android:layout_height="84dp"
-            android:layout_marginStart="35dp"
-            android:layout_marginTop="51dp"
+            style="@style/return_home"
             android:src="@drawable/ic_baseline_salir"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView6" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/btnToCondiciones"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="76dp"
-            android:layout_marginTop="260dp"
             android:text="@string/condicions_i_privacitat"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnReturnAjustes" />
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+            app:layout_constraintVertical_bias="0.78" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="wrap_content"
+            android:layout_height="91dp"
+            android:layout_marginTop="140dp"
+            android:background="@color/perfilBG"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titleBGConfiguracion">
+
+            <TextView
+                android:id="@+id/txtNotificacionsAutoritzacio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Notificacions de autoritzacions"
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp" />
+
+            <RadioGroup
+                android:id="@+id/radioGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkedButton="@id/radioButton"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/radioButton"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="Sí"
+                    android:textAlignment="center"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20sp" />
+
+                <RadioButton
+                    android:id="@+id/radioButton2"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="No"
+                    android:textAlignment="center"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20sp" />
+
+                <RadioButton
+                    android:id="@+id/radioButton3"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:text="No molestar"
+                    android:textAlignment="center"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20sp" />
+
+            </RadioGroup>
+        </LinearLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

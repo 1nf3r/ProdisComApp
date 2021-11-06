@@ -12,34 +12,167 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/textView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="61dp"
+            android:id="@+id/titleBGPerfil"
+            style="@style/backgroundTitulos"
+            android:background="@color/perfilBG"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/titlePerfil"
+            style="@style/titulos"
+            android:layout_width="wrap_content"
             android:text="@string/perfil"
             android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.339"
+            app:layout_constraintStart_toEndOf="@+id/btnReturnPerfil"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/btnToEditPerfil"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="154dp"
-            android:layout_marginEnd="63dp"
             android:text="@string/editar_perfil"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
+            app:layout_constraintHorizontal_bias="0.55"
+            app:layout_constraintStart_toEndOf="@+id/imgDisplayFoto"
+            app:layout_constraintTop_toBottomOf="@+id/titleBGPerfil"
+            app:layout_constraintVertical_bias="0.14" />
 
         <ImageView
             android:id="@+id/btnReturnPerfil"
-            android:layout_width="96dp"
-            android:layout_height="86dp"
-            android:layout_marginStart="29dp"
-            android:layout_marginTop="26dp"
+            style="@style/return_home"
             android:src="@drawable/ic_baseline_salir"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="150dp"
+            android:layout_marginEnd="32dp"
+            android:background="@color/perfilBG"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.14"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titleBGPerfil"
+            app:layout_constraintVertical_bias="0.16000003">
+
+            <Space
+                android:layout_width="10dp"
+                android:layout_height="match_parent" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp" />
+
+                <TextView
+                    android:id="@+id/txtNom"
+                    style="@style/txtDisplayPerfil"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nom:"
+                    android:textAlignment="textStart" />
+
+                <TextView
+                    android:id="@+id/txtCorreu"
+                    style="@style/txtDisplayPerfil"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Correu:"
+                    android:textAlignment="center" />
+
+                <TextView
+                    android:id="@+id/txtTelefon"
+                    style="@style/txtDisplayPerfil"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Teléfon:"
+                    android:textAlignment="center" />
+
+                <TextView
+                    android:id="@+id/txtNaixement"
+                    style="@style/txtDisplayPerfil"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Naixement:   "
+                    android:textAlignment="center" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp" />
+
+                <TextView
+                    android:id="@+id/txtDisplayNombre"
+                    style="@style/txtDisplayPerfil"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="Juan" />
+
+                <TextView
+                    android:id="@+id/txtDisplayCorreo"
+                    style="@style/txtDisplayPerfil"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="juanillo@gmail.com" />
+
+                <TextView
+                    android:id="@+id/txtDisplayTelefono"
+                    style="@style/txtDisplayPerfil"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="615849218" />
+
+                <TextView
+                    android:id="@+id/txtDisplayNacimiento"
+                    style="@style/txtDisplayPerfil"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="20/04/1969" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp" />
+            </LinearLayout>
+
+            <Space
+                android:layout_width="10dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/imgDisplayFoto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.17"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titleBGPerfil"
+            app:layout_constraintVertical_bias="0.07999998"
+            tools:src="@tools:sample/avatars" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

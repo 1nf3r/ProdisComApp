@@ -10,6 +10,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <TextView
+            android:id="@+id/titleBGUsuarios"
+            style="@style/backgroundTitulos"
+            android:background="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <ImageView
             android:id="@+id/btnReturnUser"
             android:src="@drawable/ic_baseline_salir"
@@ -20,9 +28,10 @@
         <TextView
             android:id="@+id/txtUsuaris"
             style="@style/titulos"
+            android:layout_marginTop="32dp"
             android:text="@string/usuarios"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/btnReturnUser"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
@@ -30,14 +39,16 @@
             style="@style/botonesUsuarios"
             android:text="@string/afegir_usuari"
             app:icon="@drawable/ic_baseline_adduser"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtUsuaris" />
+            app:layout_constraintTop_toBottomOf="@+id/titleBGUsuarios" />
 
         <Button
             android:id="@+id/btnBloqUser"
             style="@style/botonesUsuarios"
             android:text="@string/usuaris_bloquejats"
             app:icon="@drawable/ic_baseline_bloqueadouser"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnValUser" />
 
@@ -46,6 +57,7 @@
             style="@style/botonesUsuarios"
             android:text="@string/eliminar_usuari"
             app:icon="@drawable/ic_baseline_deluser"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnAddUser" />
 
@@ -54,6 +66,7 @@
             style="@style/botonesUsuarios"
             android:text="@string/validar_usuari"
             app:icon="@drawable/ic_baseline_validaruser"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnModUser" />
 
@@ -62,6 +75,7 @@
             style="@style/botonesUsuarios"
             android:text="@string/modificar_usuari"
             app:icon="@drawable/ic_baseline_editaruser"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnDelUser" />
 

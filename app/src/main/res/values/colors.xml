@@ -11,5 +11,6 @@
     <color name="myRed">#FF000000</color>
     <color name="prodis">#00af93</color>
     <color name="autorizacionBG">#276033</color>
+    <color name="perfilBG">#CC6E25</color>
 
 </resources>
