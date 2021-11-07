@@ -23,34 +23,28 @@
         <TextView
             android:id="@+id/textView2"
             style="@style/titulos"
-            android:layout_height="wrap_content"
             android:text="@string/editar_perfil"
             android:textAlignment="center"
-            app:layout_constraintEnd_toStartOf="@+id/btnEditePerfilToHome"
-            app:layout_constraintStart_toEndOf="@+id/btnReturnEditPerfil"
-            app:layout_constraintTop_toTopOf="parent" />
+            tools:layout_editor_absoluteX="90dp"
+            tools:layout_editor_absoluteY="32dp" />
 
         <Button
             android:id="@+id/btnGuardarPerfil"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/btnAccion"
             android:text="Desar perfil"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView2"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+            tools:layout_editor_absoluteX="32dp" />
 
         <ImageView
             android:id="@+id/btnReturnEditPerfil"
-            style="@style/return_home"
+            style="@style/btn_return"
             android:src="@drawable/ic_baseline_salir"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/btnEditePerfilToHome"
-            style="@style/return_home"
+            style="@style/btn_home"
             android:src="@drawable/ic_baseline_inicio"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

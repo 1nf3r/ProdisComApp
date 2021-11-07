@@ -14,29 +14,21 @@
         <TextView
             android:id="@+id/titleBGConfiguracion"
             style="@style/backgroundTitulos"
-            android:layout_width="0dp"
-            android:background="@color/perfilBG"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:background="@color/perfilBG" />
 
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/txtTitleConfiguracio"
             style="@style/titulos"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:text="@string/configuraci"
-            android:textAlignment="center"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            tools:layout_editor_absoluteX="115dp"
+            tools:layout_editor_absoluteY="32dp" />
 
         <ImageView
             android:id="@+id/btnReturnAjustes"
-            style="@style/return_home"
+            style="@style/btn_return"
             android:src="@drawable/ic_baseline_salir"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="32dp" />
 
         <Button
             android:id="@+id/btnToCondiciones"
@@ -46,62 +38,44 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayoutNotificacionsAutoritzacions"
             app:layout_constraintVertical_bias="0.78" />
 
         <LinearLayout
-            android:id="@+id/linearLayout2"
-            android:layout_width="wrap_content"
-            android:layout_height="91dp"
-            android:layout_marginTop="140dp"
-            android:background="@color/perfilBG"
-            android:orientation="vertical"
+            android:id="@+id/linearLayoutNotificacionsAutoritzacions"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/titleBGConfiguracion">
+            app:layout_constraintTop_toBottomOf="@+id/titleBGConfiguracion"
+            style="@style/layoutHotizontalNotificaciones">
 
             <TextView
                 android:id="@+id/txtNotificacionsAutoritzacio"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Notificacions de autoritzacions"
-                android:textAlignment="center"
-                android:textColor="#FFFFFF"
-                android:textSize="20sp" />
+                style="@style/txtNotificaciones"
+                android:text="Notificacions de autoritzacions" />
 
             <RadioGroup
                 android:id="@+id/radioGroup"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:checkedButton="@id/radioButton"
+                android:checkedButton="@id/rbNotificacionesAutorizacionesSi"
                 android:orientation="horizontal">
 
                 <RadioButton
-                    android:id="@+id/radioButton"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:text="Sí"
-                    android:textAlignment="center"
-                    android:textColor="#FFFFFF"
-                    android:textSize="20sp" />
+                    android:id="@+id/rbNotificacionesAutorizacionesSi"
+                    style="@style/radioButtonNotificaciones"
+                    android:text="Sí" />
 
                 <RadioButton
-                    android:id="@+id/radioButton2"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:text="No"
-                    android:textAlignment="center"
-                    android:textColor="#FFFFFF"
-                    android:textSize="20sp" />
+                    android:id="@+id/rbNotificacionesAutorizacionesNo"
+                    style="@style/radioButtonNotificaciones"
+                    android:text="No" />
 
                 <RadioButton
-                    android:id="@+id/radioButton3"
+                    android:id="@+id/rbNotificacionesAutorizacionesNoMolestar"
+                    style="@style/radioButtonNotificaciones"
                     android:layout_width="150dp"
-                    android:layout_height="wrap_content"
                     android:text="No molestar"
-                    android:textAlignment="center"
-                    android:textColor="#FFFFFF"
-                    android:textSize="20sp" />
+                    android:textAlignment="textStart" />
 
             </RadioGroup>
         </LinearLayout>

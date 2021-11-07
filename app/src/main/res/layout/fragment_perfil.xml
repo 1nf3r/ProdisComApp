@@ -22,13 +22,16 @@
         <TextView
             android:id="@+id/titlePerfil"
             style="@style/titulos"
-            android:layout_width="wrap_content"
             android:text="@string/perfil"
-            android:textAlignment="center"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.339"
-            app:layout_constraintStart_toEndOf="@+id/btnReturnPerfil"
-            app:layout_constraintTop_toTopOf="parent" />
+            tools:layout_editor_absoluteX="169dp"
+            tools:layout_editor_absoluteY="32dp" />
+
+        <ImageView
+            android:id="@+id/btnReturnPerfil"
+            style="@style/btn_return"
+            android:src="@drawable/ic_baseline_salir"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="32dp" />
 
         <Button
             android:id="@+id/btnToEditPerfil"
@@ -41,13 +44,6 @@
             app:layout_constraintStart_toEndOf="@+id/imgDisplayFoto"
             app:layout_constraintTop_toBottomOf="@+id/titleBGPerfil"
             app:layout_constraintVertical_bias="0.14" />
-
-        <ImageView
-            android:id="@+id/btnReturnPerfil"
-            style="@style/return_home"
-            android:src="@drawable/ic_baseline_salir"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
         <LinearLayout
             android:layout_width="0dp"

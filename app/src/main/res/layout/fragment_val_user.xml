@@ -11,31 +11,32 @@
         android:layout_height="match_parent">
 
         <TextView
+            android:id="@+id/titleBGValidarUsuario"
+            style="@style/backgroundTitulos"
+            android:background="@color/usuariosBG"
+            tools:layout_editor_absoluteX="126dp"
+            tools:layout_editor_absoluteY="205dp" />
+
+        <TextView
             android:id="@+id/txtValUser"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="46dp"
+            style="@style/titulos"
             android:text="@string/validar_usuari"
-            android:textAlignment="center"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            tools:layout_editor_absoluteX="68dp"
+            tools:layout_editor_absoluteY="32dp" />
 
         <ImageView
             android:id="@+id/btnReturnValUser"
-            android:layout_width="78dp"
-            android:layout_height="86dp"
-            android:layout_marginStart="28dp"
-            android:contentDescription="TODO"
+            style="@style/btn_return"
             android:src="@drawable/ic_baseline_salir"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtValUser" />
+            tools:layout_editor_absoluteX="28dp"
+            tools:layout_editor_absoluteY="66dp" />
 
         <ImageView
             android:id="@+id/btnValUserToHome"
-            android:layout_width="108dp"
-            android:layout_height="68dp"
+            style="@style/btn_home"
             android:src="@drawable/ic_baseline_inicio"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtValUser" />
+            tools:layout_editor_absoluteX="411dp"
+            tools:layout_editor_absoluteY="66dp" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

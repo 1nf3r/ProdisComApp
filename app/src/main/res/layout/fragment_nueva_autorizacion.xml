@@ -24,29 +24,29 @@
         <TextView
             android:id="@+id/txtCrearAutoritzacio"
             style="@style/titulos"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:text="@string/crear_autorizaci"
-            android:textAlignment="center"
-            android:textColor="#FFFFFF"
-            app:layout_constraintEnd_toStartOf="@+id/btnNuevaAutorizacionToHome"
-            app:layout_constraintHorizontal_bias="0.51"
-            app:layout_constraintStart_toEndOf="@+id/btnReturnNuevaAutorizacion"
-            app:layout_constraintTop_toTopOf="parent" />
+            tools:layout_editor_absoluteX="83dp"
+            tools:layout_editor_absoluteY="32dp" />
+
+        <ImageView
+            android:id="@+id/btnReturnNuevaAutorizacion"
+            style="@style/btn_return"
+            android:src="@drawable/ic_baseline_salir" />
+
+        <ImageView
+            android:id="@+id/btnNuevaAutorizacionToHome"
+            style="@style/btn_home"
+            android:src="@drawable/ic_baseline_inicio"
+            tools:layout_editor_absoluteX="343dp"
+            tools:layout_editor_absoluteY="32dp" />
 
         <Button
             android:id="@+id/btnEnviarNuevaAutorizacion"
-            android:layout_width="0dp"
-            android:layout_height="54dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
+            style="@style/btnAccion"
             android:backgroundTint="@color/autorizacionBG"
             android:text="@string/enviar"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtCrearAutoritzacio"
-            app:layout_constraintVertical_bias="0.85" />
+            app:layout_constraintTop_toBottomOf="@+id/button"
+            tools:layout_editor_absoluteX="32dp" />
 
         <Button
             android:id="@+id/button2"
@@ -59,22 +59,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/switch1"
             app:layout_constraintVertical_bias="0.05" />
-
-        <ImageView
-            android:id="@+id/btnReturnNuevaAutorizacion"
-            style="@style/return_home"
-            android:contentDescription="TODO"
-            android:src="@drawable/ic_baseline_salir"
-            android:tint="#DFDFDF"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/btnNuevaAutorizacionToHome"
-            style="@style/return_home"
-            android:src="@drawable/ic_baseline_inicio"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
             android:id="@+id/etxtTitolCrearAutoritzacio"

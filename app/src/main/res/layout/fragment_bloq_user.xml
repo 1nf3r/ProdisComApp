@@ -11,31 +11,29 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/txtBloqUser"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="46dp"
+            android:id="@+id/titleBGBloqUser"
+            style="@style/backgroundTitulos"
+            android:background="@color/usuariosBG" />
+
+        <TextView
+            android:id="@+id/txtTitleBloqUser"
+            style="@style/titulos"
             android:text="@string/usuaris_bloquejats"
-            android:textAlignment="center"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            tools:layout_editor_absoluteX="411dp"
+            tools:layout_editor_absoluteY="46dp" />
 
         <ImageView
             android:id="@+id/btnReturnBloqUser"
-            android:layout_width="78dp"
-            android:layout_height="86dp"
-            android:layout_marginStart="28dp"
-            android:contentDescription="TODO"
+            style="@style/btn_return"
             android:src="@drawable/ic_baseline_salir"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtBloqUser" />
+            tools:layout_editor_absoluteX="28dp"
+            tools:layout_editor_absoluteY="344dp" />
 
         <ImageView
             android:id="@+id/btnBloqUserToHome"
-            android:layout_width="108dp"
-            android:layout_height="68dp"
+            style="@style/btn_home"
             android:src="@drawable/ic_baseline_inicio"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtBloqUser" />
+            tools:layout_editor_absoluteX="411dp"
+            tools:layout_editor_absoluteY="344dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

@@ -12,35 +12,33 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/txtCrearAutoritzacio"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="38dp"
+            android:id="@+id/titleBGResultadosAutorizaciones"
+            style="@style/backgroundTitulos"
+            android:background="@color/autorizacionBG"
+            tools:layout_editor_absoluteX="60dp"
+            tools:layout_editor_absoluteY="74dp" />
+
+        <TextView
+            android:id="@+id/txtResultatsAutoritzacio"
+            style="@style/titulos"
             android:text="@string/resultats"
-            android:textAlignment="center"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            tools:layout_editor_absoluteX="353dp"
+            tools:layout_editor_absoluteY="38dp" />
 
         <ImageView
             android:id="@+id/btnReturnResultadosAutorizacion"
-            android:layout_width="78dp"
-            android:layout_height="86dp"
-            android:layout_marginStart="48dp"
-            android:layout_marginTop="100dp"
-            android:contentDescription="TODO"
+            style="@style/btn_return"
             android:src="@drawable/ic_baseline_salir"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtCrearAutoritzacio" />
+            tools:layout_editor_absoluteX="48dp"
+            tools:layout_editor_absoluteY="288dp" />
 
         <ImageView
             android:id="@+id/btnResultadosAutorizacionToHome"
-            android:layout_width="108dp"
-            android:layout_height="68dp"
-            android:layout_marginTop="148dp"
-            android:layout_marginEnd="52dp"
+            style="@style/btn_home"
             android:src="@drawable/ic_baseline_inicio"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtCrearAutoritzacio" />
+            tools:layout_editor_absoluteX="359dp"
+            tools:layout_editor_absoluteY="336dp" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
