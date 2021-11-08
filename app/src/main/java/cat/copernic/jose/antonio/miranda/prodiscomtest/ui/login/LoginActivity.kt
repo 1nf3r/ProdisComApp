@@ -14,7 +14,7 @@ import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import android.widget.Toast
 import androidx.navigation.Navigation
-import cat.copernic.jose.antonio.miranda.prodiscomtest.logged.MainActivity
+import cat.copernic.jose.antonio.miranda.prodiscomtest.ui.login.logged.MainActivity
 import cat.copernic.jose.antonio.miranda.prodiscomtest.databinding.ActivityLoginBinding
 
 import cat.copernic.jose.antonio.miranda.prodiscomtest.R

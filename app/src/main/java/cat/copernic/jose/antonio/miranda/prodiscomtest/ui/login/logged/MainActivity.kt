@@ -1,4 +1,4 @@
-package cat.copernic.jose.antonio.miranda.prodiscomtest.logged
+package cat.copernic.jose.antonio.miranda.prodiscomtest.ui.login.logged
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

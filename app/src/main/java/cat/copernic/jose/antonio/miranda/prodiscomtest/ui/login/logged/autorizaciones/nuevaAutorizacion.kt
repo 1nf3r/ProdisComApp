@@ -1,4 +1,4 @@
-package cat.copernic.jose.antonio.miranda.prodiscomtest.logged.autorizaciones
+package cat.copernic.jose.antonio.miranda.prodiscomtest.ui.login.logged.autorizaciones
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
