@@ -11,31 +11,31 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/txtModUser"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="46dp"
-            android:text="@string/modificar_usuari"
-            android:textAlignment="center"
+            android:id="@+id/titleBGModUser"
+            style="@style/backgroundTitulos"
+            android:background="@color/usuariosBG"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtModUser"
+            style="@style/titulos"
+            android:text="@string/modificar_usuari"
+            tools:layout_editor_absoluteX="91dp"
+            tools:layout_editor_absoluteY="32dp" />
 
         <ImageView
             android:id="@+id/btnReturnModUser"
-            android:layout_width="78dp"
-            android:layout_height="86dp"
-            android:layout_marginStart="28dp"
-            android:contentDescription="TODO"
-            android:src="@drawable/ic_baseline_salir"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtModUser" />
+            style="@style/btn_return"
+            android:src="@drawable/ic_baseline_salir" />
 
         <ImageView
             android:id="@+id/btnModUserToHome"
-            android:layout_width="108dp"
-            android:layout_height="68dp"
+            style="@style/btn_home"
             android:src="@drawable/ic_baseline_inicio"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtModUser" />
+            tools:layout_editor_absoluteX="343dp"
+            tools:layout_editor_absoluteY="32dp" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
