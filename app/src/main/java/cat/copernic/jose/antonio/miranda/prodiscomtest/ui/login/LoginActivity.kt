@@ -40,7 +40,8 @@ class LoginActivity : AppCompatActivity() {
         val login = binding.login
         val loading = binding.loading
 
-        binding.btnToRegistrarse?.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.registrarse, null))
+        binding.btnToRegistrarse?.setOnClickListener(Navigation.createNavigateOnClickListener
+            (R.id.registrarse, null))
 
         loginViewModel = ViewModelProvider(this, LoginViewModelFactory())
             .get(LoginViewModel::class.java)
