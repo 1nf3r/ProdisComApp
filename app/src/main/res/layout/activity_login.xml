@@ -38,6 +38,7 @@
         android:background="@drawable/custom_login"
         android:drawableStart="@drawable/custom_key_icon"
         android:drawableEnd="@drawable/ic_baseline_eye"
+        android:longClickable="false"
         android:drawablePadding="12dp"
         android:hint="@string/prompt_password"
         android:imeActionLabel="@string/action_sign_in_short"
@@ -159,10 +160,11 @@
         app:layout_constraintVertical_bias="0.15" />
 
     <TextView
-        android:id="@+id/textView14"
+        android:id="@+id/txtVOlCont"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/has_oblidat_la_contrasenya"
+        android:textSize="@dimen/dimens_login_bot"
         app:layout_constraintBottom_toBottomOf="parent"
         android:textColor="@color/lila_prodis"
         app:layout_constraintEnd_toEndOf="parent"
@@ -172,10 +174,11 @@
         app:layout_constraintVertical_bias="0.50" />
 
     <TextView
-        android:id="@+id/btnToRegistrarse"
+        android:id="@+id/txtVRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/registrar_se"
+        android:textSize="@dimen/dimens_login_bot"
         android:textColor="@color/lila_prodis"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
