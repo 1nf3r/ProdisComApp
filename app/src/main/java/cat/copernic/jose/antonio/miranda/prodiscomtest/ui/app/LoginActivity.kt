@@ -5,7 +5,9 @@ import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
+import android.text.InputType
 import android.text.TextWatcher
+import android.text.method.HideReturnsTransformationMethod
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.EditText
@@ -42,13 +44,25 @@ class LoginActivity : AppCompatActivity() {
         val loading = binding.loading
 
 
+        //Funcion para mostrar o ocultar la contrasenya en el login
+        binding.btnShow?.setOnClickListener {
+            if (binding.password.inputType == 1) {
+                binding.password.inputType =
+                    InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+            } else {
+                binding.password.inputType = 1
+            }
+
+        }
 
         //Al clicar en necesitas ayuda te sale un alert indicando el mensaje.
         val builder = AlertDialog.Builder(this)
         binding.txtVAjuda?.setOnClickListener {
             builder.setTitle("Ajuda")
-            builder.setMessage("Hauras d'introduir el DNI i la contrasenya de 4 digits, si no tens" +
-                    " un usuari clica en el text Registrar-se.")
+            builder.setMessage(
+                "Hauras d'introduir el DNI i la contrasenya de 4 digits, si no tens" +
+                        " un usuari clica en el text Registrar-se."
+            )
             builder.setPositiveButton("Aceptar", null)
             builder.show()
         }
