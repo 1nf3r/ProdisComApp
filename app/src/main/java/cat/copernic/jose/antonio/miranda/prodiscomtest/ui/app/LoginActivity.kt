@@ -1,23 +1,23 @@
-package cat.copernic.jose.antonio.miranda.prodiscomtest.ui.login
+package cat.copernic.jose.antonio.miranda.prodiscomtest.ui.app
 
 import android.app.Activity
 import android.content.Intent
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.annotation.StringRes
-import androidx.appcompat.app.AppCompatActivity
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import android.widget.Toast
-import androidx.navigation.Navigation
-import cat.copernic.jose.antonio.miranda.prodiscomtest.ui.login.logged.MainActivity
-import cat.copernic.jose.antonio.miranda.prodiscomtest.databinding.ActivityLoginBinding
-
+import androidx.annotation.StringRes
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import cat.copernic.jose.antonio.miranda.prodiscomtest.R
+import cat.copernic.jose.antonio.miranda.prodiscomtest.databinding.ActivityLoginBinding
+import cat.copernic.jose.antonio.miranda.prodiscomtest.ui.app.logged.MainActivity
+import cat.copernic.jose.antonio.miranda.prodiscomtest.ui.app.register.Register
+
 
 class LoginActivity : AppCompatActivity() {
 
@@ -40,8 +40,11 @@ class LoginActivity : AppCompatActivity() {
         val login = binding.login
         val loading = binding.loading
 
-        binding.btnToRegistrarse?.setOnClickListener(Navigation.createNavigateOnClickListener
-            (R.id.registrarse, null))
+
+        binding.btnToRegistrarse?.setOnClickListener {
+            startActivity(Intent(this, Register::class.java))
+        }
+
 
         loginViewModel = ViewModelProvider(this, LoginViewModelFactory())
             .get(LoginViewModel::class.java)
@@ -74,7 +77,6 @@ class LoginActivity : AppCompatActivity() {
 
             //Complete and destroy login activity once successful
             intent = Intent(applicationContext, MainActivity::class.java)
-            finish()
             startActivity(intent)
         })
 
