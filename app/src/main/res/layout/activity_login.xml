@@ -84,7 +84,7 @@
         app:layout_constraintVertical_bias="0.3" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/iVLogo"
         android:layout_width="137dp"
         android:layout_height="112dp"
         android:layout_marginTop="16dp"
@@ -104,7 +104,7 @@
         app:layout_constraintBottom_toTopOf="@+id/login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/iVLogo"
         app:layout_constraintVertical_bias="0.01" />
 
     <TextView
@@ -145,11 +145,12 @@
         app:layout_constraintTop_toBottomOf="@+id/txtIniciarSesio" />
 
     <TextView
-        android:id="@+id/textView13"
+        android:id="@+id/txtVAjuda"
         style="@style/textoLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/necessites_ajuda"
+        android:textColor="@color/lila_prodis"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.50"
@@ -161,24 +162,26 @@
         android:id="@+id/textView14"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Has oblidat la contrasenya?"
+        android:text="@string/has_oblidat_la_contrasenya"
         app:layout_constraintBottom_toBottomOf="parent"
+        android:textColor="@color/lila_prodis"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.15"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView13"
+        app:layout_constraintTop_toBottomOf="@+id/txtVAjuda"
         app:layout_constraintVertical_bias="0.50" />
 
     <TextView
         android:id="@+id/btnToRegistrarse"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Registrar-se"
+        android:text="@string/registrar_se"
+        android:textColor="@color/lila_prodis"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.85"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView13" />
+        app:layout_constraintTop_toBottomOf="@+id/txtVAjuda" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
     <!--<?xml version="1.0" encoding="utf-8"?>

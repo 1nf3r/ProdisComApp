@@ -37,4 +37,6 @@
     <string name="comunicaci_amb_les_fam_lies">Comunicació amb les famílies</string>
     <string name="prodiscom">ProdisCom</string>
     <string name="condicions">Condicions</string>
+    <string name="has_oblidat_la_contrasenya">Has oblidat la contrasenya?</string>
+    <string name="registrar_se">Registrar-se</string>
 </resources>
