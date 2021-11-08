@@ -9,5 +9,9 @@
     <color name="white">#FFFFFFFF</color>
     <color name="myGray">#FFDCD3D3</color>
     <color name="myRed">#FF000000</color>
-    <color name="prodis">#2A7A47</color>
+    <color name="prodis">#00af93</color>
+    <color name="autorizacionBG">#276033</color>
+    <color name="perfilBG">#CC6E25</color>
+    <color name="usuariosBG">#000000</color>
+
 </resources>

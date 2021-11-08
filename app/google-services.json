@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "756075440437",
+    "project_id": "prodiscom-ij",
+    "storage_bucket": "prodiscom-ij.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:756075440437:android:42b07b15648dfe20fbc47c",
+        "android_client_info": {
+          "package_name": "cat.copernic.jose.antonio.miranda.prodiscomtest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "756075440437-nt8k07v38t32a3l0aoqqlcranj94906t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB3jdPgf_wwG7nArjcRjNe_yIEFHkbQ0V0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "756075440437-nt8k07v38t32a3l0aoqqlcranj94906t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

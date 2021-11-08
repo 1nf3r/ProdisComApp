@@ -12,34 +12,74 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/textView6"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="88dp"
+            android:id="@+id/titleBGConfiguracion"
+            style="@style/backgroundTitulos"
+            android:background="@color/perfilBG" />
+
+        <TextView
+            android:id="@+id/txtTitleConfiguracio"
+            style="@style/titulos"
             android:text="@string/configuraci"
-            android:textAlignment="center"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            tools:layout_editor_absoluteX="115dp"
+            tools:layout_editor_absoluteY="32dp" />
 
         <ImageView
             android:id="@+id/btnReturnAjustes"
-            android:layout_width="90dp"
-            android:layout_height="84dp"
-            android:layout_marginStart="35dp"
-            android:layout_marginTop="51dp"
+            style="@style/btn_return"
             android:src="@drawable/ic_baseline_salir"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView6" />
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="32dp" />
 
         <Button
             android:id="@+id/btnToCondiciones"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="76dp"
-            android:layout_marginTop="260dp"
             android:text="@string/condicions_i_privacitat"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnReturnAjustes" />
+            app:layout_constraintTop_toBottomOf="@+id/linearLayoutNotificacionsAutoritzacions"
+            app:layout_constraintVertical_bias="0.78" />
+
+        <LinearLayout
+            android:id="@+id/linearLayoutNotificacionsAutoritzacions"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titleBGConfiguracion"
+            style="@style/layoutHotizontalNotificaciones">
+
+            <TextView
+                android:id="@+id/txtNotificacionsAutoritzacio"
+                style="@style/txtNotificaciones"
+                android:text="Notificacions de autoritzacions" />
+
+            <RadioGroup
+                android:id="@+id/radioGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkedButton="@id/rbNotificacionesAutorizacionesSi"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/rbNotificacionesAutorizacionesSi"
+                    style="@style/radioButtonNotificaciones"
+                    android:text="Sí" />
+
+                <RadioButton
+                    android:id="@+id/rbNotificacionesAutorizacionesNo"
+                    style="@style/radioButtonNotificaciones"
+                    android:text="No" />
+
+                <RadioButton
+                    android:id="@+id/rbNotificacionesAutorizacionesNoMolestar"
+                    style="@style/radioButtonNotificaciones"
+                    android:layout_width="150dp"
+                    android:text="No molestar"
+                    android:textAlignment="textStart" />
+
+            </RadioGroup>
+        </LinearLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

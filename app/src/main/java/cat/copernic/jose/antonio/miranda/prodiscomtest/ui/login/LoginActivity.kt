@@ -26,7 +26,11 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var usuario : String
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        Thread.sleep(1000)
+        setTheme(R.style.Theme_ProdisComTest)
         super.onCreate(savedInstanceState)
+
+
 
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -36,7 +40,8 @@ class LoginActivity : AppCompatActivity() {
         val login = binding.login
         val loading = binding.loading
 
-        binding.btnToRegistrarse?.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.registrarse, null))
+        binding.btnToRegistrarse?.setOnClickListener(Navigation.createNavigateOnClickListener
+            (R.id.registrarse, null))
 
         loginViewModel = ViewModelProvider(this, LoginViewModelFactory())
             .get(LoginViewModel::class.java)

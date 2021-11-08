@@ -8,33 +8,12 @@
         <item name="fontFamily">sans-serif</item>
         <item name="android:textSize">18sp</item>
         <item name="android:layout_marginStart">40dp</item>
+        <item name="android:layout_marginEnd">40dp</item>
         <item name="android:layout_marginTop">32dp</item>
-
+        <item name="android:background"> @drawable/boton_main_menu</item>
         <item name="android:layout_width">352dp</item>
         <item name="android:layout_height">72dp</item>
 
-        <item name="iconSize">52dp</item>
-        <item name="iconPadding">-50dp</item>
-        <item name="paddingStart">25dp</item>
-        <item name="paddingEnd">0dp</item>
-        <!--<item name="strokeWidth">2dp</item>
-        <item name="strokeColor">#7C7B7B</item>-->
-    </style>
-
-    <!--Estilo para los botones del menú de usuarios-->
-    <style name="botonesUsuarios" parent="Base.Widget.AppCompat.Button.Colored">
-        <item name="backgroundTint">@color/myGray</item>
-        <item name="colorControlHighlight">@color/myRed</item>
-        <item name="android:textColor">@color/black</item>
-        <item name="fontFamily">sans-serif</item>
-        <item name="android:textSize">18sp</item>
-        <item name="android:layout_marginStart">40dp</item>
-        <item name="android:layout_marginTop">32dp</item>
-
-        <item name="android:layout_width">352dp</item>
-        <item name="android:layout_height">72dp</item>
-
-        <item name="iconTint">@color/black</item>
         <item name="iconSize">52dp</item>
         <item name="iconPadding">-50dp</item>
         <item name="paddingStart">25dp</item>
@@ -49,17 +28,52 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginTop">32dp</item>
         <item name="android:textAlignment">center</item>
-        <item name="android:textColor">#000000</item>
-        <item name="android:textSize">38sp</item>
-        <item name="layout_constraintHorizontal_bias">0.339</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textSize">32sp</item>
+        <item name="layout_constraintHorizontal_bias">0.5</item>
+
+        <item name="layout_constraintStart_toStartOf">parent</item>
+        <item name="layout_constraintTop_toTopOf">parent</item>
+        <item name="layout_constraintEnd_toEndOf">parent</item>
     </style>
 
     <!--Estilo para los botones de atrás y casa-->
-    <style name="return_home">
+    <style name="btn_return">
         <item name="android:layout_width">52dp</item>
         <item name="android:layout_height">52dp</item>
         <item name="android:layout_marginStart">16dp</item>
+        <item name="android:layout_marginEnd">16dp</item>
         <item name="android:layout_marginTop">32dp</item>
+        <item name="tint">#FFFFFF</item>
+        <item name="layout_constraintTop_toTopOf">parent</item>
+        <item name="layout_constraintStart_toStartOf">parent</item>
+    </style>
+
+    <style name="btn_home">
+        <item name="android:layout_width">52dp</item>
+        <item name="android:layout_height">52dp</item>
+        <item name="android:layout_marginStart">16dp</item>
+        <item name="android:layout_marginEnd">16dp</item>
+        <item name="android:layout_marginTop">32dp</item>
+        <item name="tint">#FFFFFF</item>
+        <item name="layout_constraintTop_toTopOf">parent</item>
+        <item name="layout_constraintEnd_toEndOf">parent</item>
+    </style>
+
+    <!--Estilo general para los botones de accion
+    (Enviar, Añadir, elimanar, etc...) -->
+    <style name="btnAccion">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">32dp</item>
+        <item name="android:layout_marginEnd">32dp</item>
+        <item name="background">@drawable/botonaccion_forma</item>
+        <item name="layout_constraintVertical_bias">0.70</item>
+        <item name="android:textSize">14sp</item>
+
+        <item name="layout_constraintStart_toStartOf">parent</item>
+        <item name="layout_constraintEnd_toEndOf">parent</item>
+        <item name="layout_constraintBottom_toBottomOf">parent</item>
     </style>
 
     <!--Estilo para nozeque en el login-->
@@ -69,4 +83,148 @@
         <item name="android:layout_marginEnd">0dp</item>
         <item name="android:textSize">18sp</item>
     </style>
+
+    <!--Estilo splashScreen-->
+    <style name="splashTeme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash_screen</item>
+    </style>
+
+    <!--Estilo para el fondo de los títulos-->
+    <style name="backgroundTitulos">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">100dp</item>
+        <item name="layout_constraintTop_toTopOf">parent</item>
+        <item name="layout_constraintBottom_toBottomOf">parent</item>
+        <item name="layout_constraintStart_toStartOf">parent</item>
+        <item name="layout_constraintEnd_toEndOf">parent</item>
+        <item name="layout_constraintVertical_bias">0.0</item>
+    </style>
+
+
+    <!--Perfil-->
+    <!--Estilo para los Text View de la información-->
+    <style name="txtDisplayPerfil">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+    <style name="etxtPerfil">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:ems">10</item>
+        <item name="android:background">@drawable/perfil_edittext</item>
+    </style>
+
+    <!--Ajustes-->
+
+    <style name="layoutHotizontalNotificaciones">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">92dp</item>
+        <item name="android:layout_marginTop">140dp</item>
+        <item name="android:background">@color/perfilBG</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="txtNotificaciones">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="radioButtonNotificaciones">
+        <item name="android:layout_width">100dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <!--Autorizaciones-->
+    <!--Estilos para crear autorización-->
+    <style name="editTextTitulo_Descripcion">
+        <item name="android:background">@drawable/autorizacion_edittext</item>
+        <item name="android:ems">10</item>
+
+        <item name="layout_constraintHorizontal_bias">0.09</item>
+    </style>
+
+    <style name="radioButtonCrearAutorizacion">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:layout_marginStart">16dp</item>
+        <item name="android:background">@drawable/autorizacion_edittext</item>
+        <item name="android:paddingEnd">4dp</item>
+        <item name="layout_constraintVertical_bias">0.05</item>
+        <item name="layout_constraintHorizontal_bias">0.01</item>
+    </style>
+
+    <style name="etxtOpcionCrearAutorizacion">
+        <item name="android:layout_width">64dp</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:layout_marginStart">8dp</item>
+        <item name="android:background">@drawable/autorizacion_edittext</item>
+        <item name="android:ems">10</item>
+        <item name="android:inputType">textPersonName</item>
+        <item name="layout_constraintVertical_bias">0.05</item>
+    </style>
+
+    <style name="basuraCrearAutorizacion">
+        <item name="android:layout_width">40dp</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:layout_marginStart">8dp</item>
+        <item name="layout_constraintVertical_bias">0.05</item>
+    </style>
+
+    <!--Usuarios-->
+    <!--Estilo para los botones del menú de usuarios-->
+    <style name="botonesUsuarios" parent="Base.Widget.AppCompat.Button.Colored">
+        <item name="backgroundTint">@color/myGray</item>
+        <item name="colorControlHighlight">@color/myRed</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="fontFamily">sans-serif</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:layout_marginStart">4dp</item>
+        <item name="android:layout_marginTop">32dp</item>
+
+        <item name="android:layout_width">352dp</item>
+        <item name="android:layout_height">72dp</item>
+        <item name="android:background"> @drawable/boton_main_menu</item>
+
+        <item name="iconTint">@color/black</item>
+        <item name="iconSize">52dp</item>
+        <item name="iconPadding">-50dp</item>
+        <item name="paddingStart">25dp</item>
+        <item name="paddingEnd">0dp</item>
+        <!--<item name="strokeWidth">2dp</item>
+        <item name="strokeColor">#7C7B7B</item>-->
+    </style>
+
+
+    <!--Estilo para los textView y editText de usuarios-->
+    <style name="textViewUsuarios">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">8dp</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:textColor">#000000</item>
+        <item name="android:textSize">24sp</item>
+        <item name="layout_constraintHorizontal_bias">0.05</item>
+        <item name="layout_constraintVertical_bias">0.05</item>
+    </style>
+
+    <style name="editTextUsuarios">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:background">@drawable/adduser_edittext</item>
+        <item name="android:ems">10</item>
+        <item name="android:inputType">textPersonName</item>
+        <item name="android:textSize">22sp</item>
+        <item name="layout_constraintHorizontal_bias">0.00</item>
+    </style>
+
+
+
+
 </resources>
