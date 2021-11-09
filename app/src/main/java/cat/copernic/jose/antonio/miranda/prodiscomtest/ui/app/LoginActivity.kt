@@ -101,9 +101,11 @@ class LoginActivity : AppCompatActivity() {
             }
             setResult(Activity.RESULT_OK)
 
-            //Complete and destroy login activity once successful
+            //Pasa a MainActivity
             intent = Intent(applicationContext, MainActivity::class.java)
             startActivity(intent)
+            //Complete and destroy login activity once successful
+            finish()
         })
 
         username.afterTextChanged {

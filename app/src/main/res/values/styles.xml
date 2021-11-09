@@ -37,7 +37,7 @@
         <item name="layout_constraintEnd_toEndOf">parent</item>
     </style>
 
-    Estilo para los botones de atrás y casa-->
+    <!--Estilo para los botones de atrás y casa-->
     <style name="btn_return">
         <item name="android:layout_width">52dp</item>
         <item name="android:layout_height">52dp</item>
@@ -202,6 +202,15 @@
         <item name="paddingEnd">0dp</item>
         <!--<item name="strokeWidth">2dp</item>
         <item name="strokeColor">#7C7B7B</item>-->
+    </style>
+
+    <!--Estilo para botones autorizacion -->
+    <style name="botonesAut">
+        <item name="android:background">@drawable/boton_autorizaciones</item>
+        <item name="backgroundTint">@color/autorizacionBG</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="fontFamily">sans-serif</item>
+        <item name="android:textSize">18sp</item>
     </style>
 
 
