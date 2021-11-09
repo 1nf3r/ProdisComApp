@@ -32,12 +32,12 @@
 
     <EditText
         android:id="@+id/password"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="317dp"
+        android:layout_height="45dp"
         android:layout_marginTop="20dp"
+        android:layout_marginEnd="32dp"
         android:background="@drawable/custom_login"
         android:drawableStart="@drawable/custom_key_icon"
-        android:drawableEnd="@drawable/ic_baseline_eye"
         android:drawablePadding="12dp"
         android:hint="@string/prompt_password"
         android:imeActionLabel="@string/action_sign_in_short"
@@ -188,12 +188,11 @@
 
     <TextView
         android:id="@+id/btnShow"
-        android:layout_width="33dp"
-        android:layout_height="32dp"
-        android:layout_marginStart="336dp"
+        android:layout_width="39dp"
+        android:layout_height="45dp"
         android:layout_marginTop="20dp"
         android:drawableEnd="@drawable/ic_baseline_eye"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password" />
+        app:layout_constraintStart_toEndOf="@+id/password"
+        app:layout_constraintTop_toBottomOf="@+id/username" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
