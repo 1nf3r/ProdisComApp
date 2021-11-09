@@ -3,8 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Apuntes/DAM/M07/app-prodis/app/src/main/res/drawable/custom_login.xml" value="0.1" />
+        <entry key="..\:/Apuntes/DAM/M07/app-prodis/app/src/main/res/drawable/eye_text_view.xml" value="0.12361111111111112" />
         <entry key="..\:/Apuntes/DAM/M07/app-prodis/app/src/main/res/drawable/ic_baseline_salir.xml" value="0.1" />
-        <entry key="..\:/Apuntes/DAM/M07/app-prodis/app/src/main/res/layout/activity_login.xml" value="0.38697916666666665" />
+        <entry key="..\:/Apuntes/DAM/M07/app-prodis/app/src/main/res/layout/activity_login.xml" value="0.29994308480364257" />
+        <entry key="..\:/Apuntes/DAM/M07/app-prodis/app/src/main/res/layout/activity_main.xml" value="0.205859375" />
+        <entry key="..\:/Apuntes/DAM/M07/app-prodis/app/src/main/res/layout/fragment_activity__login.xml" value="0.205859375" />
         <entry key="..\:/Apuntes/DAM/M07/app-prodis/app/src/main/res/layout/fragment_add_usuario.xml" value="0.27447916666666666" />
         <entry key="..\:/Apuntes/DAM/M07/app-prodis/app/src/main/res/layout/fragment_ajustes.xml" value="0.38697916666666665" />
         <entry key="..\:/Apuntes/DAM/M07/app-prodis/app/src/main/res/layout/fragment_autorizacion.xml" value="0.38697916666666665" />
@@ -20,15 +24,11 @@
         <entry key="..\:/Apuntes/DAM/M07/app-prodis/app/src/main/res/layout/fragment_usuarios.xml" value="0.27447916666666666" />
         <entry key="..\:/Apuntes/DAM/M07/app-prodis/app/src/main/res/layout/fragment_val_user.xml" value="0.27447916666666666" />
         <entry key="app/src/main/res/drawable/boton_main_menu.xml" value="0.31851851851851853" />
-        <entry key="app/src/main/res/drawable/custom_login.xml" value="0.2824074074074074" />
         <entry key="app/src/main/res/drawable/ic_logo_app_prodis_v1.xml" value="0.31851851851851853" />
         <entry key="app/src/main/res/drawable/splash_screen.xml" value="0.31851851851851853" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.346875" />
-        <entry key="app/src/main/res/layout/fragment_autorizacion.xml" value="0.346875" />
         <entry key="app/src/main/res/layout/fragment_menu_principal.xml" value="0.346875" />
-        <entry key="app/src/main/res/layout/fragment_resultados_autorizaciones.xml" value="0.346875" />
-        <entry key="app/src/main/res/layout/fragment_usuarios.xml" value="0.346875" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.31851851851851853" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.31851851851851853" />
       </map>

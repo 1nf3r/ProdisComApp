@@ -42,6 +42,7 @@ class LoginActivity : AppCompatActivity() {
         val password = binding.password
         val login = binding.login
         val loading = binding.loading
+        val btnshow = binding.btnShow
 
 
         //Funcion para mostrar o ocultar la contrasenya en el login
@@ -49,8 +50,10 @@ class LoginActivity : AppCompatActivity() {
             if (binding.password.inputType == 1) {
                 binding.password.inputType =
                     InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+                btnshow?.setImageResource(R.drawable.ic_baseline_eye)
             } else {
                 binding.password.inputType = 1
+                btnshow?.setImageResource(R.drawable.ic_baseline_noeyexd)
             }
 
         }
@@ -104,6 +107,7 @@ class LoginActivity : AppCompatActivity() {
             //Complete and destroy login activity once successful
             intent = Intent(applicationContext, MainActivity::class.java)
             startActivity(intent)
+            finish()
         })
 
         username.afterTextChanged {

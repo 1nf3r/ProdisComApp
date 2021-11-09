@@ -55,7 +55,7 @@
             android:layout_width="0dp"
             android:text="@string/autorizaciones"
             app:icon="@drawable/ic_baseline_autorizaciones"
-            app:iconTint="#8BC34A"
+            app:iconTint="@color/autorizacionBG"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
