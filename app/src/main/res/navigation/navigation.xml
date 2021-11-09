@@ -21,6 +21,9 @@
         <action
             android:id="@+id/action_menu_principal_to_ajustes"
             app:destination="@id/ajustes" />
+        <action
+            android:id="@+id/action_menu_principal_to_grup"
+            app:destination="@id/grup" />
     </fragment>
     <fragment
         android:id="@+id/autorizacion"
@@ -118,4 +121,9 @@
         android:name="cat.copernic.jose.antonio.miranda.prodiscomtest.ui.app.logged.autorizaciones.resultadosAutorizaciones"
         android:label="fragment_resultados_autorizaciones"
         tools:layout="@layout/fragment_resultados_autorizaciones" />
+    <fragment
+        android:id="@+id/grup"
+        android:name="cat.copernic.jose.antonio.miranda.prodiscomtest.ui.app.logged.grup.Grup"
+        android:label="fragment_grup"
+        tools:layout="@layout/fragment_grup" />
 </navigation>

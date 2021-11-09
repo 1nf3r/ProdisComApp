@@ -1,4 +1,5 @@
-package cat.copernic.jose.antonio.miranda.prodiscomtest.data
+package cat.copernic.jose.antonio.miranda.prodiscomtest.data        // TODO: revoke authentication
+
 
 import cat.copernic.jose.antonio.miranda.prodiscomtest.data.model.LoggedInUser
 import java.io.IOException
