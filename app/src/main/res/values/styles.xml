@@ -24,11 +24,11 @@
 
     <!--Estilo para los títulos principales-->
     <style name="titulos">
+        <item name="android:textColor">#FFFFFF</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginTop">32dp</item>
         <item name="android:textAlignment">center</item>
-        <item name="android:textColor">#FFFFFF</item>
         <item name="android:textSize">32sp</item>
         <item name="layout_constraintHorizontal_bias">0.5</item>
 
@@ -37,16 +37,18 @@
         <item name="layout_constraintEnd_toEndOf">parent</item>
     </style>
 
-    <!--Estilo para los botones de atrás y casa-->
+    Estilo para los botones de atrás y casa-->
     <style name="btn_return">
         <item name="android:layout_width">52dp</item>
         <item name="android:layout_height">52dp</item>
         <item name="android:layout_marginStart">16dp</item>
         <item name="android:layout_marginEnd">16dp</item>
         <item name="android:layout_marginTop">32dp</item>
-        <item name="tint">#FFFFFF</item>
         <item name="layout_constraintTop_toTopOf">parent</item>
         <item name="layout_constraintStart_toStartOf">parent</item>
+
+
+        <item name="tint">#FFFFFF</item>
     </style>
 
     <style name="btn_home">
@@ -55,9 +57,11 @@
         <item name="android:layout_marginStart">16dp</item>
         <item name="android:layout_marginEnd">16dp</item>
         <item name="android:layout_marginTop">32dp</item>
-        <item name="tint">#FFFFFF</item>
         <item name="layout_constraintTop_toTopOf">parent</item>
         <item name="layout_constraintEnd_toEndOf">parent</item>
+
+
+        <item name="tint">#FFFFFF</item>
     </style>
 
     <!--Estilo general para los botones de accion
