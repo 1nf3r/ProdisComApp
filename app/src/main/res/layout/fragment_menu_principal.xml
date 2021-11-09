@@ -55,7 +55,7 @@
             android:layout_width="0dp"
             android:text="@string/autorizaciones"
             app:icon="@drawable/ic_baseline_autorizaciones"
-            app:iconTint="#8BC34A"
+            app:iconTint="@color/autorizacionBG"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -68,12 +68,13 @@
             android:layout_width="0dp"
             android:text="@string/usuarios"
             app:icon="@drawable/ic_baseline_usuarios"
-            app:iconTint="#000000"
+            app:iconTint="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnToAutorizaciones"
             app:layout_constraintVertical_bias="0.0" />
+
 
         <Button
             android:id="@+id/btnToSalir"
@@ -82,6 +83,21 @@
             android:text="@string/salir_de_la_app"
             app:icon="@drawable/ic_baseline_salir"
             app:iconTint="#000000"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.612"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button3"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <Button
+            android:id="@+id/button3"
+            style="@style/botonesMP"
+            android:layout_width="0dp"
+            android:text="@string/grups"
+
+            app:icon="@drawable/ic_baseline_grups"
+            app:iconTint="@color/azul_grup"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
