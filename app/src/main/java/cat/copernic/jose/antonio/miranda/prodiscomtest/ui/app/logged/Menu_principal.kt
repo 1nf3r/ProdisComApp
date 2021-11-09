@@ -1,4 +1,4 @@
-package cat.copernic.jose.antonio.miranda.prodiscomtest.logged
+package cat.copernic.jose.antonio.miranda.prodiscomtest.ui.app.logged
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.navigation.Navigation
 import cat.copernic.jose.antonio.miranda.prodiscomtest.R
 import cat.copernic.jose.antonio.miranda.prodiscomtest.databinding.FragmentMenuPrincipalBinding
-import android.app.Activity
 
 
 class Menu_principal : Fragment() {

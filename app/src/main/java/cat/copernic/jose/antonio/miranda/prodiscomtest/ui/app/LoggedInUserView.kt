@@ -1,4 +1,4 @@
-package cat.copernic.jose.antonio.miranda.prodiscomtest.ui.login
+package cat.copernic.jose.antonio.miranda.prodiscomtest.ui.app
 
 /**
  * User details post authentication that is exposed to the UI

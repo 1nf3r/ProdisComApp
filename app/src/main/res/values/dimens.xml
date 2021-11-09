@@ -9,4 +9,5 @@
     <dimen name="iconSize_MP">60dp</dimen>
     <dimen name="paddingStart_MP">25dp</dimen>
     <dimen name="paddingEnd_MP">0dp</dimen>
+    <dimen name="dimens_login_bot">18sp</dimen>
 </resources>

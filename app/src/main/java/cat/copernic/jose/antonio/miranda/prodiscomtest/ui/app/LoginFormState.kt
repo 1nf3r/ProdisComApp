@@ -1,4 +1,4 @@
-package cat.copernic.jose.antonio.miranda.prodiscomtest.ui.login
+package cat.copernic.jose.antonio.miranda.prodiscomtest.ui.app
 
 /**
  * Data validation state of the login form.

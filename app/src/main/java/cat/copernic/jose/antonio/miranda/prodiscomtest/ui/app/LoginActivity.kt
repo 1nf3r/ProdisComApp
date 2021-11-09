@@ -1,29 +1,32 @@
-package cat.copernic.jose.antonio.miranda.prodiscomtest.ui.login
+package cat.copernic.jose.antonio.miranda.prodiscomtest.ui.app
 
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.Intent
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.annotation.StringRes
-import androidx.appcompat.app.AppCompatActivity
 import android.text.Editable
+import android.text.InputType
 import android.text.TextWatcher
+import android.text.method.HideReturnsTransformationMethod
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import android.widget.Toast
-import androidx.navigation.Navigation
-import cat.copernic.jose.antonio.miranda.prodiscomtest.logged.MainActivity
-import cat.copernic.jose.antonio.miranda.prodiscomtest.databinding.ActivityLoginBinding
-
+import androidx.annotation.StringRes
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import cat.copernic.jose.antonio.miranda.prodiscomtest.R
+import cat.copernic.jose.antonio.miranda.prodiscomtest.databinding.ActivityLoginBinding
+import cat.copernic.jose.antonio.miranda.prodiscomtest.ui.app.logged.MainActivity
+import cat.copernic.jose.antonio.miranda.prodiscomtest.ui.app.register.Register
+
 
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var loginViewModel: LoginViewModel
     private lateinit var binding: ActivityLoginBinding
-    private lateinit var usuario : String
+    private lateinit var usuario: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         Thread.sleep(1000)
@@ -40,8 +43,34 @@ class LoginActivity : AppCompatActivity() {
         val login = binding.login
         val loading = binding.loading
 
-        binding.btnToRegistrarse?.setOnClickListener(Navigation.createNavigateOnClickListener
-            (R.id.registrarse, null))
+
+        //Funcion para mostrar o ocultar la contrasenya en el login
+        binding.btnShow?.setOnClickListener {
+            if (binding.password.inputType == 1) {
+                binding.password.inputType =
+                    InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+            } else {
+                binding.password.inputType = 1
+            }
+
+        }
+
+        //Al clicar en necesitas ayuda te sale un alert indicando el mensaje.
+        val builder = AlertDialog.Builder(this)
+        binding.txtVAjuda?.setOnClickListener {
+            builder.setTitle("Ajuda")
+            builder.setMessage(
+                "Hauras d'introduir el DNI i la contrasenya de 4 digits, si no tens" +
+                        " un usuari clica en el text Registrar-se."
+            )
+            builder.setPositiveButton("Aceptar", null)
+            builder.show()
+        }
+
+        //Al clicar en Registrarse te lleva al activity Register.
+        binding.txtVRegister?.setOnClickListener {
+            startActivity(Intent(this, Register::class.java))
+        }
 
         loginViewModel = ViewModelProvider(this, LoginViewModelFactory())
             .get(LoginViewModel::class.java)
@@ -74,7 +103,6 @@ class LoginActivity : AppCompatActivity() {
 
             //Complete and destroy login activity once successful
             intent = Intent(applicationContext, MainActivity::class.java)
-            finish()
             startActivity(intent)
         })
 

@@ -1,4 +1,4 @@
-package cat.copernic.jose.antonio.miranda.prodiscomtest.ui.login
+package cat.copernic.jose.antonio.miranda.prodiscomtest.ui.app
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
