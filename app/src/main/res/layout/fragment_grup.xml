@@ -1,13 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.app.logged.grup.Grup">
+    tools:context=".ui.app.logged.autorizaciones.Autorizacion">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/text_margin"
-        android:text="Text Blank" />
-</androidx.core.widget.NestedScrollView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/titleBGGrup"
+            style="@style/backgroundTitulos"
+            android:background="@color/azul_grup"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtTitleGrup"
+            style="@style/titulos"
+            android:text="@string/grup"
+            tools:layout_editor_absoluteX="103dp"
+            tools:layout_editor_absoluteY="32dp" />
+
+        <ImageView
+            android:id="@+id/btnReturnGrup"
+            style="@style/btn_return"
+            android:src="@drawable/ic_baseline_salir" />
+
+        <Button
+            android:id="@+id/btnCreaGrup"
+            style="@style/botonesGrup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="180dp"
+            android:text="Crear Grup"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titleBGGrup" />
+
+        <Button
+            android:id="@+id/btnModGrup"
+            style="@style/botonesGrup"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Modificar Grup"
+            app:layout_constraintEnd_toEndOf="@+id/btnCreaGrup"
+            app:layout_constraintStart_toStartOf="@+id/btnCreaGrup"
+            app:layout_constraintTop_toBottomOf="@+id/btnCreaGrup" />
+
+        <Button
+            android:id="@+id/btnElGrup"
+            style="@style/botonesGrup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Eliminar Grup"
+            app:layout_constraintEnd_toEndOf="@+id/btnModGrup"
+            app:layout_constraintStart_toStartOf="@+id/btnModGrup"
+            app:layout_constraintTop_toBottomOf="@+id/btnModGrup" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

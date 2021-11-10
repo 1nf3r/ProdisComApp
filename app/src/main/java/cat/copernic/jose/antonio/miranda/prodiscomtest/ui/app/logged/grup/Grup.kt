@@ -18,6 +18,14 @@ class Grup : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentGrupBinding.inflate(inflater, container, false)
+
+        binding.btnReturnGrup.setOnClickListener(
+            Navigation.createNavigateOnClickListener(
+                R.id.menu_principal,
+                null
+            )
+        )
+
         return binding.root
     }
 
