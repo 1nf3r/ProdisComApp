@@ -1,15 +1,230 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.app.register.Register">
 
-    <TextView
-        android:id="@+id/alo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        tools:ignore="MissingConstraints" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="731dp">
+
+                <TextView
+                    android:id="@+id/txtVAjuda2"
+                    style="@style/textoLogin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:text="@string/necessites_ajuda"
+                    android:textColor="@color/lila_prodis"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.498"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/button3" />
+
+                <TextView
+                    android:id="@+id/titleRegistrar_se"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="Registrar-se"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <TextView
+                    android:id="@+id/txtRegistrarseNom"
+                    style="@style/txtRegistrarse"
+                    android:text="Nom"
+                    app:layout_constraintEnd_toEndOf="@+id/titleRegistrar_se"
+                    app:layout_constraintStart_toStartOf="@+id/titleRegistrar_se"
+                    app:layout_constraintTop_toBottomOf="@+id/titleRegistrar_se" />
+
+                <TextView
+                    android:id="@+id/txtRegistrarseDNI"
+                    style="@style/txtRegistrarse"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="DNI"
+                    app:layout_constraintEnd_toEndOf="@+id/titleRegistrar_se"
+                    app:layout_constraintStart_toStartOf="@+id/titleRegistrar_se"
+                    app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName3" />
+
+                <TextView
+                    android:id="@+id/txtRegistrarseEmail"
+                    style="@style/txtRegistrarse"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Email"
+                    app:layout_constraintEnd_toEndOf="@+id/titleRegistrar_se"
+                    app:layout_constraintStart_toStartOf="@+id/titleRegistrar_se"
+                    app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName4" />
+
+                <TextView
+                    android:id="@+id/txtRegistrarseContrasenya"
+                    style="@style/txtRegistrarse"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Contrasenya"
+                    app:layout_constraintEnd_toEndOf="@+id/titleRegistrar_se"
+                    app:layout_constraintStart_toStartOf="@+id/titleRegistrar_se"
+                    app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress" />
+
+                <TextView
+                    android:id="@+id/txtRegistrarseFamiliar"
+                    style="@style/txtRegistrarse"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Informació del familiar"
+                    app:layout_constraintEnd_toEndOf="@+id/titleRegistrar_se"
+                    app:layout_constraintStart_toStartOf="@+id/titleRegistrar_se"
+                    app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword3" />
+
+                <EditText
+                    android:id="@+id/editTextTextPersonName3"
+                    style="@style/etxtRegistarse"
+                    android:hint="Escriu el teu nom"
+                    android:inputType="textPersonName"
+                    app:layout_constraintEnd_toEndOf="@+id/txtRegistrarseNom"
+                    app:layout_constraintStart_toStartOf="@+id/txtRegistrarseNom"
+                    app:layout_constraintTop_toBottomOf="@+id/txtRegistrarseNom" />
+
+                <EditText
+                    android:id="@+id/editTextTextPersonName4"
+                    style="@style/etxtRegistarse"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="Indica el teu DNI"
+                    android:inputType="textPersonName"
+                    app:layout_constraintEnd_toEndOf="@+id/txtRegistrarseDNI"
+                    app:layout_constraintStart_toStartOf="@+id/txtRegistrarseDNI"
+                    app:layout_constraintTop_toBottomOf="@+id/txtRegistrarseDNI" />
+
+                <EditText
+                    android:id="@+id/editTextTextEmailAddress"
+                    style="@style/etxtRegistarse"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="Escriu el teu correu electronic"
+                    android:inputType="textEmailAddress"
+                    app:layout_constraintEnd_toEndOf="@+id/txtRegistrarseEmail"
+                    app:layout_constraintStart_toStartOf="@+id/txtRegistrarseEmail"
+                    app:layout_constraintTop_toBottomOf="@+id/txtRegistrarseEmail" />
+
+                <EditText
+                    android:id="@+id/editTextTextPassword2"
+                    style="@style/etxtRegistarse"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="Introdueix una contrasenya"
+                    android:inputType="textPassword"
+                    app:layout_constraintEnd_toEndOf="@+id/txtRegistrarseContrasenya"
+                    app:layout_constraintStart_toStartOf="@+id/txtRegistrarseContrasenya"
+                    app:layout_constraintTop_toBottomOf="@+id/txtRegistrarseContrasenya" />
+
+                <EditText
+                    android:id="@+id/editTextTextPersonName5"
+                    style="@style/etxtRegistarse"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="No c del familiar"
+                    android:inputType="textPersonName"
+                    app:layout_constraintEnd_toEndOf="@+id/txtRegistrarseFamiliar"
+                    app:layout_constraintStart_toStartOf="@+id/txtRegistrarseFamiliar"
+                    app:layout_constraintTop_toBottomOf="@+id/txtRegistrarseFamiliar" />
+
+                <TextView
+                    android:id="@+id/txtRegistrarseConfirmarContrasenya"
+                    style="@style/txtRegistrarse"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Confirmar Contrasenya"
+                    app:layout_constraintEnd_toEndOf="@+id/titleRegistrar_se"
+                    app:layout_constraintStart_toStartOf="@+id/titleRegistrar_se"
+                    app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword2" />
+
+                <EditText
+                    android:id="@+id/editTextTextPassword3"
+                    style="@style/etxtRegistarse"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="Confirma la contrasenya"
+                    android:inputType="textPassword"
+                    app:layout_constraintEnd_toEndOf="@+id/txtRegistrarseConfirmarContrasenya"
+                    app:layout_constraintStart_toStartOf="@+id/txtRegistrarseConfirmarContrasenya"
+                    app:layout_constraintTop_toBottomOf="@+id/txtRegistrarseConfirmarContrasenya" />
+
+                <CheckBox
+                    android:id="@+id/checkBox"
+                    android:layout_width="32dp"
+                    android:layout_height="42dp"
+                    android:layout_marginTop="24dp"
+                    app:layout_constraintEnd_toEndOf="@+id/titleRegistrar_se"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/titleRegistrar_se"
+                    app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName5" />
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="0dp"
+                    android:layout_height="41dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="32dp"
+                    android:text="Estic d'acord amb les condicions de servei i les polítiques de privacitat"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/lila_prodis"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/checkBox"
+                    app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName5" />
+
+                <Button
+                    android:id="@+id/button3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="32dp"
+                    android:backgroundTint="@color/prodis"
+                    android:text="@string/registrar_se"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView3"
+                    app:strokeColor="#193A18"
+                    app:strokeWidth="1dp" />
+                    <!--android:layout_width="350dp"
+                    android:layout_height="44dp"-->
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Ya tens compte? Inicia sessió"
+                    android:textColor="@color/lila_prodis"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtVAjuda2" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</FrameLayout>

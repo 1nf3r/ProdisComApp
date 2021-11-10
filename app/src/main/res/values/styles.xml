@@ -237,7 +237,29 @@
         <item name="layout_constraintHorizontal_bias">0.00</item>
     </style>
 
+    <!--Registro-->
 
+    <!--Estilo para los textView y editText del registro-->
+    <style name="txtRegistrarse">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">16dp</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:textColor">@color/prodis</item>
+        <item name="android:textSize">18sp</item>
+        <item name="layout_constraintHorizontal_bias">0.0</item>
+    </style>
+
+    <style name="etxtRegistarse">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">4dp</item>
+        <item name="android:background">@drawable/custom_login</item>
+        <!--<item name="android:ems">10</item>-->
+        <item name="android:maxEms">12</item>
+        <item name="android:minEms">7</item>
+        <item name="layout_constraintHorizontal_bias">0.0</item>
+    </style>
 
 
 </resources>

@@ -6,7 +6,6 @@ import androidx.drawerlayout.widget.DrawerLayout
 import cat.copernic.jose.antonio.miranda.prodiscomtest.databinding.ActivityRegisterBinding
 
 class Register : AppCompatActivity() {
-    private lateinit var drawerLayout: DrawerLayout
     private lateinit var binding: ActivityRegisterBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.drawerlayout.widget.DrawerLayout
+    <FrameLayout
         android:id="@+id/drawerLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -19,14 +19,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:defaultNavHost="true"
-                app:navGraph="@navigation/navigation"
-                />
+                app:navGraph="@navigation/navigation" />
         </LinearLayout>
 
-        <com.google.android.material.navigation.NavigationView
+        <!--<com.google.android.material.navigation.NavigationView
             android:id="@+id/vistaNavegacion"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_gravity="start" />
-    </androidx.drawerlayout.widget.DrawerLayout>
+            android:layout_gravity="start" />-->
+    </FrameLayout>
 </layout>

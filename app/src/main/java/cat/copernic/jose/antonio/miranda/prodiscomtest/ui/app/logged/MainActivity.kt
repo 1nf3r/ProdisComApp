@@ -11,7 +11,7 @@ import cat.copernic.jose.antonio.miranda.prodiscomtest.databinding.ActivityMainB
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var drawerLayout: DrawerLayout
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
 
@@ -21,8 +21,8 @@ class MainActivity : AppCompatActivity() {
             R.layout.activity_main
         )
         //drawerLayout = binding.drawerLayout
-        val navController = this.findNavController(R.id.visualizarFragment)
+        //val navController = this.findNavController(R.id.visualizarFragment)
         //NavigationUI.setupActionBarWithNavController(this,navController, drawerLayout)
-        NavigationUI.setupWithNavController(binding.vistaNavegacion, navController)
+        //NavigationUI.setupWithNavController(binding.vistaNavegacion, navController)
     }
 }
