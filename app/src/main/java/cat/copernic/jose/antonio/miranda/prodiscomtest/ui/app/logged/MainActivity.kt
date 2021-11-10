@@ -24,5 +24,7 @@ class MainActivity : AppCompatActivity() {
         //val navController = this.findNavController(R.id.visualizarFragment)
         //NavigationUI.setupActionBarWithNavController(this,navController, drawerLayout)
         //NavigationUI.setupWithNavController(binding.vistaNavegacion, navController)
+
+
     }
 }

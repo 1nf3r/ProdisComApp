@@ -30,7 +30,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.498"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/button3" />
+                    app:layout_constraintTop_toBottomOf="@+id/btnRegistro" />
 
                 <TextView
                     android:id="@+id/titleRegistrar_se"
@@ -196,7 +196,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName5" />
 
                 <Button
-                    android:id="@+id/button3"
+                    android:id="@+id/btnRegistro"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
@@ -213,7 +213,7 @@
                     android:layout_height="44dp"-->
 
                 <TextView
-                    android:id="@+id/textView4"
+                    android:id="@+id/txtVInicia"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"

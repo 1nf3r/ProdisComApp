@@ -25,11 +25,9 @@ class Menu_principal : Fragment() {
         binding.btnToAutorizaciones.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.autorizacion, null))
         binding.btnToGrup.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.grup, null))
         binding.btnToSalir.setOnClickListener {
-            getActivity()?.onBackPressed();
+            activity?.finish()
         }
 
         return binding.root
     }
-
-
 }

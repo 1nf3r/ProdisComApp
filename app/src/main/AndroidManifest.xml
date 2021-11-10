@@ -9,7 +9,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ProdisComTest">
-
+        <activity
+            android:name=".ConRegistro"
+            android:exported="false" />
+        <activity
+            android:name=".ConfRegsitro"
+            android:exported="false"
+            android:label="@string/title_activity_conf_regsitro"
+            android:theme="@style/Theme.ProdisComTest.NoActionBar" />
         <activity
             android:name=".ui.app.register.Register"
             android:exported="false" />
