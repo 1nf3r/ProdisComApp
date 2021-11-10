@@ -4,8 +4,6 @@ import android.app.AlertDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.drawerlayout.widget.DrawerLayout
-import cat.copernic.jose.antonio.miranda.prodiscomtest.ConRegistro
 import cat.copernic.jose.antonio.miranda.prodiscomtest.databinding.ActivityRegisterBinding
 import cat.copernic.jose.antonio.miranda.prodiscomtest.ui.app.LoginActivity
 
