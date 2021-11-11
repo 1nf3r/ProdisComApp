@@ -32,6 +32,28 @@
             style="@style/btn_return"
             android:src="@drawable/ic_baseline_salir" />
 
+        <Button
+            android:id="@+id/btnToMensajeGrup"
+            style="@style/botonesAut"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="176dp"
+            android:text="Missatge a grup"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titleBGMensajes" />
+
+        <Button
+            android:id="@+id/btnToMensajePers"
+            style="@style/botonesAut"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Missatge a persona"
+            app:layout_constraintEnd_toEndOf="@+id/btnToMensajeGrup"
+            app:layout_constraintHorizontal_bias="0.478"
+            app:layout_constraintStart_toStartOf="@+id/btnToMensajeGrup"
+            app:layout_constraintTop_toBottomOf="@+id/btnToMensajeGrup" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
