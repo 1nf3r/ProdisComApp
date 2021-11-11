@@ -50,12 +50,12 @@
             app:layout_constraintVertical_bias="0.050000012" />
 
         <Button
-            android:id="@+id/btnToAutorizaciones"
+            android:id="@+id/btnToMensajes"
             style="@style/botonesMP"
             android:layout_width="0dp"
-            android:text="@string/autorizaciones"
-            app:icon="@drawable/ic_baseline_autorizaciones"
-            app:iconTint="@color/autorizacionBG"
+            android:text="@string/missatges"
+            app:icon="@drawable/ic_baseline_mensaje"
+            app:iconTint="@color/mensajesBG"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -72,7 +72,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnToAutorizaciones"
+            app:layout_constraintTop_toBottomOf="@+id/btnToMensajes"
             app:layout_constraintVertical_bias="0.0" />
 
 

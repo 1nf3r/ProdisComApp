@@ -22,7 +22,7 @@ class Menu_principal : Fragment() {
         binding.btnToPerfil.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.perfil, null))
         binding.btnToAjustes.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.ajustes, null))
         binding.btnToUsuarios.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.usuarios, null))
-        binding.btnToAutorizaciones.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.autorizacion, null))
+        binding.btnToMensajes.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.mensajes, null))
         binding.btnToGrup.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.grup, null))
         binding.btnToSalir.setOnClickListener {
             activity?.finish()

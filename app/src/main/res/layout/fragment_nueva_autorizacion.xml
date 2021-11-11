@@ -19,7 +19,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/autorizacionBG">
+                android:background="@color/mensajesBG">
 
                 <TextView
                     android:id="@+id/txtCrearAutoritzacio"
@@ -84,7 +84,7 @@
                 <Button
                     android:id="@+id/btnEnviarNuevaAutorizacion"
                     style="@style/btnAccion"
-                    android:backgroundTint="@color/autorizacionBG"
+                    android:backgroundTint="@color/mensajesBG"
                     android:text="@string/enviar"
                     app:layout_constraintTop_toBottomOf="@+id/button"
                     tools:layout_editor_absoluteX="32dp"
