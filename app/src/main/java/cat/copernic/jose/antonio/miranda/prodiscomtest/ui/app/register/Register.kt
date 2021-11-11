@@ -53,16 +53,16 @@ class Register : AppCompatActivity() {
         binding.btnRegistro.setOnClickListener {
 
             //Si s'han introduit el correu i contrasenya
-            if (binding.txtRegistrarseEmail.text.isNotEmpty() && binding.txtRegistrarseContrasenya.text.isNotEmpty()) { //Creem el registre amb email i contrasenya...
+            if (binding.editTextTextEmailAddress.text.isNotEmpty() && binding.editTextTextPassword2.text.isNotEmpty()) { //Creem el registre amb email i contrasenya...
 
                 //Registrem a l'usuari i amb el mètode addOnCompleteListener, ens notificarà si el registre a estat un èxit o no.
                 FirebaseAuth.getInstance().createUserWithEmailAndPassword(
-                    binding.txtRegistrarseEmail.toString(),
-                    binding.txtRegistrarseContrasenya.toString()
+                    binding.editTextTextEmailAddress.toString(),
+                    binding.editTextTextPassword2.toString()
                 ).addOnCompleteListener {
 
                     if (it.isSuccessful) { //Si el registre ha estat un èxit...
-                        showHome(it.result?.user?.email ?: "", tipusProveidor.BASIC)
+                        showSucces(it.result?.user?.email ?: "", tipusProveidor.BASIC)
                     } else { //Si el registre no ha estat un èxit...
                         showAlert()
                     }
@@ -98,7 +98,7 @@ class Register : AppCompatActivity() {
     }
 
     //Funcio que mostra el resultat del registre si ha tingut exit, mitjançant la pantalla Home
-    private fun showHome(email: String, proveidor: tipusProveidor) {
+    private fun showSucces(email: String, proveidor: tipusProveidor) {
 
         //Creem un objecte Intent passant-li com a paràmetre el context de l'Activitat acual i el nom de la pantalla a la que volem navegar, és a dir, HomeActivity
         val homeIntent: Intent = Intent(this, ConRegistro::class.java).apply {
