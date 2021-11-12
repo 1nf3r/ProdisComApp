@@ -204,10 +204,10 @@
         <item name="strokeColor">#7C7B7B</item>-->
     </style>
 
-    <!--Estilo para botones autorizacion -->
+    <!--Estilo para botones mensajes -->
     <style name="botonesAut">
         <item name="android:background">@drawable/boton_autorizaciones</item>
-        <item name="backgroundTint">@color/autorizacionBG</item>
+        <item name="backgroundTint">@color/mensajesBG</item>
         <item name="android:textColor">@color/white</item>
         <item name="fontFamily">sans-serif</item>
         <item name="android:textSize">18sp</item>

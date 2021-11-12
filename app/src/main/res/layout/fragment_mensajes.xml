@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.app.logged.autorizaciones.Autorizacion">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/titleBGMensajes"
+            style="@style/backgroundTitulos"
+            android:background="@color/mensajesBG"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtTitleMensajes"
+            style="@style/titulos"
+            android:text="@string/missatges"
+            tools:layout_editor_absoluteX="103dp"
+            tools:layout_editor_absoluteY="32dp" />
+
+        <ImageView
+            android:id="@+id/btnReturnMensajes"
+            style="@style/btn_return"
+            android:src="@drawable/ic_baseline_salir" />
+
+        <Button
+            android:id="@+id/btnToMensajeGrup"
+            style="@style/botonesAut"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="176dp"
+            android:text="Missatge a grup"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titleBGMensajes" />
+
+        <Button
+            android:id="@+id/btnToMensajePers"
+            style="@style/botonesAut"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Missatge a persona"
+            app:layout_constraintEnd_toEndOf="@+id/btnToMensajeGrup"
+            app:layout_constraintHorizontal_bias="0.478"
+            app:layout_constraintStart_toStartOf="@+id/btnToMensajeGrup"
+            app:layout_constraintTop_toBottomOf="@+id/btnToMensajeGrup" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>
