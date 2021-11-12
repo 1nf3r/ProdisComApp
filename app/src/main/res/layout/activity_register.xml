@@ -66,7 +66,7 @@
                     android:text="DNI"
                     app:layout_constraintEnd_toEndOf="@+id/titleRegistrar_se"
                     app:layout_constraintStart_toStartOf="@+id/titleRegistrar_se"
-                    app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName3" />
+                    app:layout_constraintTop_toBottomOf="@+id/txtRegNom" />
 
                 <TextView
                     android:id="@+id/txtRegistrarseEmail"
@@ -76,7 +76,7 @@
                     android:text="Email"
                     app:layout_constraintEnd_toEndOf="@+id/titleRegistrar_se"
                     app:layout_constraintStart_toStartOf="@+id/titleRegistrar_se"
-                    app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName4" />
+                    app:layout_constraintTop_toBottomOf="@+id/txtRegDni" />
 
                 <TextView
                     android:id="@+id/txtRegistrarseContrasenya"
@@ -86,7 +86,7 @@
                     android:text="Contrasenya"
                     app:layout_constraintEnd_toEndOf="@+id/titleRegistrar_se"
                     app:layout_constraintStart_toStartOf="@+id/titleRegistrar_se"
-                    app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress" />
+                    app:layout_constraintTop_toBottomOf="@+id/txtRegMail" />
 
                 <TextView
                     android:id="@+id/txtRegistrarseFamiliar"
@@ -96,10 +96,10 @@
                     android:text="Informació del familiar"
                     app:layout_constraintEnd_toEndOf="@+id/titleRegistrar_se"
                     app:layout_constraintStart_toStartOf="@+id/titleRegistrar_se"
-                    app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword3" />
+                    app:layout_constraintTop_toBottomOf="@+id/txtRegConfPass" />
 
                 <EditText
-                    android:id="@+id/editTextTextPersonName3"
+                    android:id="@+id/txtRegNom"
                     style="@style/etxtRegistarse"
                     android:hint="Escriu el teu nom"
                     android:inputType="textPersonName"
@@ -108,7 +108,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/txtRegistrarseNom" />
 
                 <EditText
-                    android:id="@+id/editTextTextPersonName4"
+                    android:id="@+id/txtRegDni"
                     style="@style/etxtRegistarse"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -119,7 +119,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/txtRegistrarseDNI" />
 
                 <EditText
-                    android:id="@+id/editTextTextEmailAddress"
+                    android:id="@+id/txtRegMail"
                     style="@style/etxtRegistarse"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -130,7 +130,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/txtRegistrarseEmail" />
 
                 <EditText
-                    android:id="@+id/editTextTextPassword2"
+                    android:id="@+id/txtRegCont"
                     style="@style/etxtRegistarse"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -159,10 +159,10 @@
                     android:text="Confirmar Contrasenya"
                     app:layout_constraintEnd_toEndOf="@+id/titleRegistrar_se"
                     app:layout_constraintStart_toStartOf="@+id/titleRegistrar_se"
-                    app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword2" />
+                    app:layout_constraintTop_toBottomOf="@+id/txtRegCont" />
 
                 <EditText
-                    android:id="@+id/editTextTextPassword3"
+                    android:id="@+id/txtRegConfPass"
                     style="@style/etxtRegistarse"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
