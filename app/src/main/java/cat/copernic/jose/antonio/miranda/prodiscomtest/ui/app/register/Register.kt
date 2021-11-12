@@ -39,12 +39,14 @@ class Register : AppCompatActivity() {
             finish()
         }
 
+
+
         setup()
     }
 
     private fun comprobar() {
-        if (!comprobarMail(binding.editTextTextEmailAddress.text.toString())) {
-            binding.editTextTextEmailAddress.error =
+        if (!comprobarMail(binding.txtRegMail.text.toString())) {
+            binding.txtRegMail.error =
                 "Mail no valid" //Muesta el error dentro del input text con el icono rojo
             //binding.btnRegistro.isEnabled = false //desactiva el boton de registro
         }
@@ -53,29 +55,35 @@ class Register : AppCompatActivity() {
     }
 
     private fun setup() {
+        val nom = binding.txtRegNom.text.toString()
+        val dni = binding.txtRegDni.text.toString()
+        val email = binding.txtRegMail.text.toString()
+        val password = binding.txtRegCont.text.toString()
+        val confirmPass = binding.txtRegConfPass.text.toString()
+
         binding.btnRegistro.setOnClickListener {
-            if (binding.editTextTextEmailAddress.text.isNotEmpty() && binding.editTextTextPassword2.text.isNotEmpty()) {
-                FirebaseAuth.getInstance().createUserWithEmailAndPassword(
-                    binding.editTextTextEmailAddress.text.toString(),
-                    binding.editTextTextPassword2.text.toString()
-                ).addOnCompleteListener {
+            if (binding.txtRegMail.text.isNotEmpty() && binding.txtRegCont.text.isNotEmpty()) {
+                FirebaseAuth.getInstance().createUserWithEmailAndPassword(binding.txtRegMail.text.toString(),
+                    binding.txtRegCont.text.toString())
+                    .addOnCompleteListener {
+                        if (it.isSuccessful) { //Si el registre ha estat un èxit...
+                            showSucces(it.result?.user?.email ?: "", tipusProveidor.BASIC)
+                            db.collection("usuaris")
+                                .document(email)
+                                .set(hashMapOf("DNI" to dni, "Nom" to nom))
+                            finish()
+                        } else { //Si el registre no ha estat un èxit...
+                            showAlert()
+                        }
 
-                    if (it.isSuccessful) { //Si el registre ha estat un èxit...
-                        showSucces(it.result?.user?.email ?: "", tipusProveidor.BASIC)
-                        finish()
-                    } else { //Si el registre no ha estat un èxit...
-                        showAlert()
                     }
-
-                }
 
             }
         }
     }
 
 
-    //Funció que crea l'alert de tipus AlertDialog que es mostrarà si el registre no ha estat un èxit
-    private fun showAlert() {
+    private fun showAlert() {                   //Alert Error Registre
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Error")
         builder.setMessage(
@@ -85,9 +93,15 @@ class Register : AppCompatActivity() {
         builder.show()
     }
 
-    private fun showSucces(email: String, proveidor: tipusProveidor) {
-        val homeIntent: Intent = Intent(this, ConRegistro::class.java)
-        startActivity(homeIntent)
+
+    private fun showSucces(email: String, proveidor: tipusProveidor) { //Registre amb exit
+        val homeIntent: Intent = Intent(this, ConRegistro::class.java).apply {
+            putExtra("email", email) //Correu a mostrar
+            putExtra(
+                "proveidor",
+                proveidor.name
+            ) //proveidor a mostra. En el nostre cas de moment, només BASIC
+        }
     }
 
     private fun comprobarMail(email: String): Boolean {

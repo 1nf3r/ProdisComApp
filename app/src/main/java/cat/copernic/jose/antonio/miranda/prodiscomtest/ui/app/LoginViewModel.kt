@@ -11,8 +11,8 @@ import cat.copernic.jose.antonio.miranda.prodiscomtest.R
 
 class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel() {
 
-    private val _loginForm = MutableLiveData<RegisterFormState>()
-    val registerFormState: LiveData<RegisterFormState> = _loginForm
+    private val _loginForm = MutableLiveData<LoginFormState>()
+    val loginFormState: LiveData<LoginFormState> = _loginForm
 
     private val _loginResult = MutableLiveData<LoginResult>()
     val loginResult: LiveData<LoginResult> = _loginResult
@@ -31,11 +31,11 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
 
     fun loginDataChanged(username: String, password: String) {
         if (!isUserNameValid(username)) {
-            _loginForm.value = RegisterFormState(usernameError = R.string.invalid_username)
+            _loginForm.value = LoginFormState(usernameError = R.string.invalid_username)
         } else if (!isPasswordValid(password)) {
-            _loginForm.value = RegisterFormState(passwordError = R.string.invalid_password)
+            _loginForm.value = LoginFormState(passwordError = R.string.invalid_password)
         } else {
-            _loginForm.value = RegisterFormState(isDataValid = true)
+            _loginForm.value = LoginFormState(isDataValid = true)
         }
     }
 
