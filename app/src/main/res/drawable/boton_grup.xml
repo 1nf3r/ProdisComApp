@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
-    <solid android:color="@color/mensajesBG" />
+    <solid android:color="@color/azul_grup" />
     <corners android:radius="20dp" />
     <padding android:padding="20dp" />
 

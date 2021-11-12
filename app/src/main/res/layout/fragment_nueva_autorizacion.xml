@@ -19,7 +19,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/autorizacionBG">
+                android:background="@color/mensajesBG">
 
                 <TextView
                     android:id="@+id/txtCrearAutoritzacio"
@@ -84,10 +84,11 @@
                 <Button
                     android:id="@+id/btnEnviarNuevaAutorizacion"
                     style="@style/btnAccion"
-                    android:backgroundTint="@color/autorizacionBG"
+                    android:backgroundTint="@color/mensajesBG"
                     android:text="@string/enviar"
                     app:layout_constraintTop_toBottomOf="@+id/button"
-                    tools:layout_editor_absoluteX="32dp" />
+                    tools:layout_editor_absoluteX="32dp"
+                    tools:ignore="MissingConstraints" />
 
                 <Button
                     android:id="@+id/button2"
@@ -117,7 +118,6 @@
                     app:layout_constraintEnd_toStartOf="@+id/switch1"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/titleBG"
                     app:layout_constraintVertical_bias="0.98" />
 
                 <EditText
@@ -191,7 +191,6 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/titleBG"
                     app:layout_constraintVertical_bias="0.0"
                     tools:checked="true" />
 

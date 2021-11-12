@@ -13,4 +13,22 @@
         android:text="Registro Finalizado"
         tools:layout_editor_absoluteX="137dp"
         tools:layout_editor_absoluteY="76dp" />
+
+    <TextView
+        android:id="@+id/txtMail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="128dp"
+        android:text="txtMail"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        tools:layout_editor_absoluteX="175dp" />
+
+    <TextView
+        android:id="@+id/txtProvedor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="92dp"
+        android:text="txtProvedor"
+        app:layout_constraintTop_toBottomOf="@+id/txtMail"
+        tools:layout_editor_absoluteX="160dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -24,6 +24,9 @@
         <action
             android:id="@+id/action_menu_principal_to_grup"
             app:destination="@id/grup" />
+        <action
+            android:id="@+id/action_menu_principal_to_mensajes"
+            app:destination="@id/mensajes" />
     </fragment>
     <fragment
         android:id="@+id/autorizacion"
@@ -126,4 +129,9 @@
         android:name="cat.copernic.jose.antonio.miranda.prodiscomtest.ui.app.logged.grup.Grup"
         android:label="fragment_grup"
         tools:layout="@layout/fragment_grup" />
+    <fragment
+        android:id="@+id/mensajes"
+        android:name="cat.copernic.jose.antonio.miranda.prodiscomtest.ui.app.logged.mensajes.Mensajes"
+        android:label="fragment_mensajes"
+        tools:layout="@layout/fragment_mensajes" />
 </navigation>

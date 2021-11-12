@@ -13,7 +13,7 @@
         <TextView
             android:id="@+id/titleBGResultadosAutorizaciones"
             style="@style/backgroundTitulos"
-            android:background="@color/autorizacionBG"
+            android:background="@color/mensajesBG"
             tools:layout_editor_absoluteX="60dp"
             tools:layout_editor_absoluteY="74dp" />
 
