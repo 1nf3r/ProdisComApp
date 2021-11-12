@@ -36,10 +36,10 @@ class Register : AppCompatActivity() {
         }
 
         //Al clicar te lleva a la pantalla de confirmacion de registro
-        binding.btnRegistro.setOnClickListener {
+        /*binding.btnRegistro.setOnClickListener {
             startActivity(Intent(this, ConRegistro::class.java))
             finish()
-        }
+        }*/
         //Setup
         setup()
 
@@ -96,6 +96,7 @@ class Register : AppCompatActivity() {
         alertDialog.show()
 
     }
+
 
     //Funcio que mostra el resultat del registre si ha tingut exit, mitjançant la pantalla Home
     private fun showSucces(email: String, proveidor: tipusProveidor) {
