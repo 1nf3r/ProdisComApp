@@ -39,15 +39,7 @@ class Register : AppCompatActivity() {
             finish()
         }
 
-        //Al clicar te lleva a la pantalla de confirmacion de registro
-        /*binding.btnRegistro.setOnClickListener {
-            startActivity(Intent(this, ConRegistro::class.java))
-            finish()
-        }*/
-        //Setup
         setup()
-        comprobar()
-
     }
 
     private fun comprobar() {
@@ -61,16 +53,8 @@ class Register : AppCompatActivity() {
     }
 
     private fun setup() {
-
-        //title="Autenticació" //Nom pantalla
-
-        //Accedim al botó de registrar-se i escoltem l'esdevniment
         binding.btnRegistro.setOnClickListener {
-
-            //Si s'han introduit el correu i contrasenya
-            if (binding.editTextTextEmailAddress.text.isNotEmpty() && binding.editTextTextPassword2.text.isNotEmpty()) { //Creem el registre amb email i contrasenya...
-
-                //Registrem a l'usuari i amb el mètode addOnCompleteListener, ens notificarà si el registre a estat un èxit o no.
+            if (binding.editTextTextEmailAddress.text.isNotEmpty() && binding.editTextTextPassword2.text.isNotEmpty()) {
                 FirebaseAuth.getInstance().createUserWithEmailAndPassword(
                     binding.editTextTextEmailAddress.text.toString(),
                     binding.editTextTextPassword2.text.toString()
@@ -101,28 +85,10 @@ class Register : AppCompatActivity() {
         builder.show()
     }
 
-
-    //Funcio que mostra el resultat del registre si ha tingut exit, mitjançant la pantalla Home
     private fun showSucces(email: String, proveidor: tipusProveidor) {
-        //Creem un objecte Intent passant-li com a paràmetre el context de l'Activitat acual i el nom de la pantalla a la que volem navegar, és a dir, HomeActivity
-        val homeIntent: Intent = Intent(this, ConRegistro::class.java).apply {
-            putExtra("email", email) //Correu a mostrar
-            putExtra(
-                "proveidor",
-                proveidor.name
-            ) //proveidor a mostra. En el nostre cas de moment, només BASIC
-        }
-
+        val homeIntent: Intent = Intent(this, ConRegistro::class.java)
         startActivity(homeIntent)
-
     }
-
-    /* private fun checkAll() : Boolean{
-         if(binding.editTextTextEmailAddress.text.isNotEmpty() && binding.editTextTextPassword2.text.isNotEmpty()){
-
-         }
-         return false
-     }*/
 
     private fun comprobarMail(email: String): Boolean {
         return email.contains("@")
