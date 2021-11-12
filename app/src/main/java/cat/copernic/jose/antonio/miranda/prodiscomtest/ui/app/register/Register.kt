@@ -4,6 +4,8 @@ import android.app.AlertDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
+import androidx.annotation.StringRes
 import cat.copernic.jose.antonio.miranda.prodiscomtest.databinding.ActivityRegisterBinding
 import cat.copernic.jose.antonio.miranda.prodiscomtest.ui.app.LoginActivity
 import com.google.firebase.auth.FirebaseAuth
@@ -44,6 +46,17 @@ class Register : AppCompatActivity() {
         }*/
         //Setup
         setup()
+        comprobar()
+
+    }
+
+    private fun comprobar() {
+        if (!comprobarMail(binding.editTextTextEmailAddress.text.toString())) {
+            binding.editTextTextEmailAddress.error =
+                "Mail no valid" //Muesta el error dentro del input text con el icono rojo
+            //binding.btnRegistro.isEnabled = false //desactiva el boton de registro
+        }
+
 
     }
 
@@ -55,7 +68,7 @@ class Register : AppCompatActivity() {
         binding.btnRegistro.setOnClickListener {
 
             //Si s'han introduit el correu i contrasenya
-            if (binding.editTextTextEmailAddress.text.isNotEmpty() && binding.editTextTextPassword2.text.isNotEmpty() ) { //Creem el registre amb email i contrasenya...
+            if (binding.editTextTextEmailAddress.text.isNotEmpty() && binding.editTextTextPassword2.text.isNotEmpty()) { //Creem el registre amb email i contrasenya...
 
                 //Registrem a l'usuari i amb el mètode addOnCompleteListener, ens notificarà si el registre a estat un èxit o no.
                 FirebaseAuth.getInstance().createUserWithEmailAndPassword(
@@ -86,13 +99,6 @@ class Register : AppCompatActivity() {
         )
         builder.setPositiveButton("Aceptar", null)
         builder.show()
-        /*val objectAlerDialog = androidx.appcompat.app.AlertDialog.Builder(this)
-        objectAlerDialog.setTitle("ERROR")
-        objectAlerDialog.setMessage("No s'ha pogut crear el registre")
-        objectAlerDialog.setPositiveButton("Acceptar", null)
-        var alertDialog: androidx.appcompat.app.AlertDialog = objectAlerDialog.create()
-        alertDialog.show()*/
-
     }
 
 
@@ -111,10 +117,16 @@ class Register : AppCompatActivity() {
 
     }
 
-   /* private fun checkAll() : Boolean{
-        if(binding.editTextTextEmailAddress.text.isNotEmpty() && binding.editTextTextPassword2.text.isNotEmpty()){
+    /* private fun checkAll() : Boolean{
+         if(binding.editTextTextEmailAddress.text.isNotEmpty() && binding.editTextTextPassword2.text.isNotEmpty()){
 
-        }
-        return false
-    }*/
+         }
+         return false
+     }*/
+
+    private fun comprobarMail(email: String): Boolean {
+        return email.contains("@")
+    }
+
+
 }
