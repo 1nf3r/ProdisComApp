@@ -7,10 +7,11 @@ import android.os.Bundle
 import cat.copernic.jose.antonio.miranda.prodiscomtest.databinding.ActivityRegisterBinding
 import cat.copernic.jose.antonio.miranda.prodiscomtest.ui.app.LoginActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 class Register : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding
-    
+    private val db = FirebaseFirestore.getInstance()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -54,7 +55,7 @@ class Register : AppCompatActivity() {
         binding.btnRegistro.setOnClickListener {
 
             //Si s'han introduit el correu i contrasenya
-            if (binding.editTextTextEmailAddress.text.isNotEmpty() && binding.editTextTextPassword2.text.isNotEmpty()) { //Creem el registre amb email i contrasenya...
+            if (binding.editTextTextEmailAddress.text.isNotEmpty() && binding.editTextTextPassword2.text.isNotEmpty() ) { //Creem el registre amb email i contrasenya...
 
                 //Registrem a l'usuari i amb el mètode addOnCompleteListener, ens notificarà si el registre a estat un èxit o no.
                 FirebaseAuth.getInstance().createUserWithEmailAndPassword(
@@ -78,24 +79,19 @@ class Register : AppCompatActivity() {
 
     //Funció que crea l'alert de tipus AlertDialog que es mostrarà si el registre no ha estat un èxit
     private fun showAlert() {
-
-        //Creem l'objecte de tipus AlertDialog passant-li com a paràmetre el context de l'Activity actual
-        val objectAlerDialog = androidx.appcompat.app.AlertDialog.Builder(this)
-
-        /* Un AlertDialog Pot mostrar un títol, contingut i com a molt, tres botons.*/
-
-        //Afegim el títol de l'alert
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Error")
+        builder.setMessage(
+            "No s'ha pogut completar el registre."
+        )
+        builder.setPositiveButton("Aceptar", null)
+        builder.show()
+        /*val objectAlerDialog = androidx.appcompat.app.AlertDialog.Builder(this)
         objectAlerDialog.setTitle("ERROR")
-        //Afegim el missatge a mostrar
         objectAlerDialog.setMessage("No s'ha pogut crear el registre")
-        //Afegim el botó positiu per acceptar i tancar l'alert.
         objectAlerDialog.setPositiveButton("Acceptar", null)
-
-        //Creem l'AlertDialog amb totes les seves propietats
         var alertDialog: androidx.appcompat.app.AlertDialog = objectAlerDialog.create()
-
-        //Mostrem l'AlertDialog creat
-        alertDialog.show()
+        alertDialog.show()*/
 
     }
 
@@ -114,4 +110,11 @@ class Register : AppCompatActivity() {
         startActivity(homeIntent)
 
     }
+
+   /* private fun checkAll() : Boolean{
+        if(binding.editTextTextEmailAddress.text.isNotEmpty() && binding.editTextTextPassword2.text.isNotEmpty()){
+
+        }
+        return false
+    }*/
 }
