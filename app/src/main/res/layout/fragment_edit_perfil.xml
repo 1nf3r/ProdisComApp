@@ -157,7 +157,7 @@
                     style="@style/etxtPerfil"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    tools:text="615849218" />
+                    tools:text="123456789" />
 
                 <EditText
                     android:id="@+id/etxtNaixement"
