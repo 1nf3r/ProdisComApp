@@ -58,7 +58,9 @@ class Register : AppCompatActivity() {
         binding.btnRegistro.setOnClickListener {
 
             //Si s'han introduit el correu i contrasenya
-            if (binding.etxtRegMail.text.isNotEmpty() && binding.etxtRegCont.text.isNotEmpty() ) { //Creem el registre amb email i contrasenya...
+            if (binding.etxtRegMail.text.isNotEmpty()
+                && binding.etxtRegCont.text.isNotEmpty()
+                && binding.etxtRegDni.length() == 9) { //Creem el registre amb email i contrasenya...
 
                 //Registrem a l'usuari i amb el mètode addOnCompleteListener, ens notificarà si el registre a estat un èxit o no.
                 FirebaseAuth.getInstance().createUserWithEmailAndPassword(
@@ -75,7 +77,8 @@ class Register : AppCompatActivity() {
 
                 }
 
-            }
+            } else
+                showAlert()
         }
     }
 
@@ -115,7 +118,7 @@ class Register : AppCompatActivity() {
             binding.etxtRegNom.text.toString(),
             binding.etxtRegDni.text.toString(),
             binding.etxtRegMail.text.toString(),
-            binding.etxtRegCont.text.toString(),
+           // binding.etxtRegCont.text.toString(),
             binding.editTextTextPersonName5.text.toString()
         )
         startActivity(homeIntent)

@@ -25,6 +25,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.getField
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking
 
 
@@ -36,6 +37,7 @@ class LoginActivity : AppCompatActivity() {
     private val db = FirebaseFirestore.getInstance()
     private val auth:FirebaseAuth = Firebase.auth
     private var loginComplete = "Error"
+   // private var displayName = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         Thread.sleep(1000)
@@ -110,10 +112,13 @@ class LoginActivity : AppCompatActivity() {
             checkUser(binding.username.text.toString())
 
             if (loginResult.error != null && loginComplete.equals("Error")) {
+                Log.d("TAG","No Entras")
                 showLoginFailed(loginResult.error!!)
             }else if (loginResult.success != null && loginComplete.equals("Hecho")) {
+                Log.d("TAG","Entras")
                 updateUiWithUser(loginResult.success!!)
             }
+            Log.d("TAG","XD Entras")
 
             setResult(Activity.RESULT_OK)
 
@@ -156,14 +161,16 @@ class LoginActivity : AppCompatActivity() {
 
 
     private fun updateUiWithUser(model: LoggedInUserView) {
+
+        getName()
+        /*val displayName =getName()
         val welcome = getString(R.string.welcome)
-        val displayName = usuario
         // TODO : initiate successful logged in experience
         Toast.makeText(
             applicationContext,
             "$welcome $displayName",
             Toast.LENGTH_LONG
-        ).show()
+        ).show()*/
 
         //Complete and destroy login activity once successful
         intent = Intent(applicationContext, MainActivity::class.java)
@@ -176,12 +183,12 @@ class LoginActivity : AppCompatActivity() {
         Toast.makeText(applicationContext, errorString, Toast.LENGTH_SHORT).show()
     }
 
-    fun checkUser(dni:String) {
+    fun checkUser(dni:String)  = runBlocking<Unit> {
         val getUserInfo = db.collection("users").document(dni)
         getUserInfo.get()
             .addOnSuccessListener { document ->
                 if (document != null && document.getField<String>("email") != null) {
-                    Log.d("TAG", "Email: ${document.id} => ${document.data}")
+                    //Log.d("TAG", "Email: ${document.id} => ${document.data}")
                     login(document.getField<String>("email")!!)
                 } else {
                     Log.d("TAG", "No such document")
@@ -191,18 +198,16 @@ class LoginActivity : AppCompatActivity() {
             .addOnFailureListener { exception ->
                 Log.w("TAG", "Error getting documents: ", exception)
             }
-        //delay(5000)
     }
 
     private fun login(email:String){
-        val currentUser = auth.currentUser
         auth.signInWithEmailAndPassword(email, binding.password.text.toString())
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
-                    Log.d("TAG", "signInWithEmail:success")
-                    val user = auth.currentUser
+                   // Log.d("TAG", "signInWithEmail:success")
                     loginComplete = "Hecho"
+
                     //updateUI(user)
                 } else {
                     // If sign in fails, display a message to the user.
@@ -212,8 +217,37 @@ class LoginActivity : AppCompatActivity() {
                     loginComplete = "Error"
                     //updateUI(null)
                 }
+
             }
+
     }
+
+    private fun getName(){
+        val currentUser = auth.currentUser?.email
+        //displayName = "F"
+        val getUserInfo = db.collection("users").whereEqualTo("email",currentUser)
+        getUserInfo.get()
+            .addOnSuccessListener { documents ->
+                for (document in documents) {
+                    //Log.d("TAG", "Nombre: ${document.id} => ${document.data}")
+                    val displayName = document.getField<String>("Nombre")!!
+                    val welcome = getString(R.string.welcome)
+                    Toast.makeText(
+                        applicationContext,
+                        "$welcome $displayName",
+                        Toast.LENGTH_LONG
+                    ).show()
+                //return@addOnSuccessListener
+                }
+            }
+            .addOnFailureListener { exception ->
+                Log.w("TAG", "Error getting documents: ", exception)
+            }
+
+        //delay(5000)
+        //return "F"
+    }
+
 }
 
 /**

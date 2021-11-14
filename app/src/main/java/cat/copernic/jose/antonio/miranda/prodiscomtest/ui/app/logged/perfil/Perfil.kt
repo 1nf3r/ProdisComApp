@@ -50,7 +50,7 @@ class Perfil : Fragment() {
 
     }
 
-    fun getInfo() = runBlocking<Unit>{
+    private fun getInfo() = runBlocking<Unit>{
         //Log.d("TAG",viewModel.dni.value!!)
         /*val getUserInfo = db.collection("users").document("12345678A")
         getUserInfo.get()
@@ -73,13 +73,11 @@ class Perfil : Fragment() {
                 Log.w("TAG", "Error getting documents: ", exception)
             }*/
         val currentUser = auth.currentUser?.email
-
-
         val getUserInfo = db.collection("users").whereEqualTo("email",currentUser)
         getUserInfo.get()
             .addOnSuccessListener { documents ->
                 for (document in documents) {
-                    Log.d("TAG", "Nombre: ${document.id} => ${document.data}")
+                    //Log.d("TAG", "Nombre: ${document.id} => ${document.data}")
                     binding.txtDisplayNombre.setText(document.getField<String>("Nombre"))
                     binding.txtDisplayCorreo.setText(document.getField<String>("email"))
                     binding.txtDisplayNacimiento.setText(document.getField<String>("informacion"))
@@ -88,7 +86,7 @@ class Perfil : Fragment() {
             .addOnFailureListener { exception ->
                 Log.w("TAG", "Error getting documents: ", exception)
             }
-        //delay(5000)
+        delay(500)
     }
 
 
