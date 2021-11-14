@@ -48,7 +48,7 @@ class Perfil : Fragment() {
 
     fun getInfo() = runBlocking<Unit>{
         //Log.d("TAG",viewModel.dni.value!!)
-        val getUserInfo = db.collection("users").document(viewModel.dni.value!!)
+        val getUserInfo = db.collection("users").document("12345678A")
         getUserInfo.get()
             .addOnSuccessListener { document ->
                 if (document != null) {
