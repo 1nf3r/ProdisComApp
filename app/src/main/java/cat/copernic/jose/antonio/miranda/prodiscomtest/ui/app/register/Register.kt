@@ -4,17 +4,20 @@ import android.app.AlertDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import androidx.lifecycle.ViewModelProvider
 import cat.copernic.jose.antonio.miranda.prodiscomtest.databinding.ActivityRegisterBinding
 import cat.copernic.jose.antonio.miranda.prodiscomtest.ui.app.LoginActivity
+import cat.copernic.jose.antonio.miranda.prodiscomtest.ui.app.logged.perfil.PerfilViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
 class Register : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding
-    private val db = FirebaseFirestore.getInstance()
+    private lateinit var viewModel: RegisterViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        viewModel = ViewModelProvider(this).get(RegisterViewModel::class.java)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -55,12 +58,12 @@ class Register : AppCompatActivity() {
         binding.btnRegistro.setOnClickListener {
 
             //Si s'han introduit el correu i contrasenya
-            if (binding.txtRegMail.text.isNotEmpty() && binding.txtRegCont.text.isNotEmpty() ) { //Creem el registre amb email i contrasenya...
+            if (binding.etxtRegMail.text.isNotEmpty() && binding.etxtRegCont.text.isNotEmpty() ) { //Creem el registre amb email i contrasenya...
 
                 //Registrem a l'usuari i amb el mètode addOnCompleteListener, ens notificarà si el registre a estat un èxit o no.
                 FirebaseAuth.getInstance().createUserWithEmailAndPassword(
-                    binding.txtRegMail.text.toString(),
-                    binding.txtRegCont.text.toString()
+                    binding.etxtRegMail.text.toString(),
+                    binding.etxtRegCont.text.toString()
                 ).addOnCompleteListener {
 
                     if (it.isSuccessful) { //Si el registre ha estat un èxit...
@@ -107,6 +110,14 @@ class Register : AppCompatActivity() {
             ) //proveidor a mostra. En el nostre cas de moment, només BASIC
         }
 
+        // Create a new user with a first and last name
+        viewModel.saveDB(
+            binding.etxtRegNom.text.toString(),
+            binding.etxtRegDni.text.toString(),
+            binding.etxtRegMail.text.toString(),
+            binding.etxtRegCont.text.toString(),
+            binding.editTextTextPersonName5.text.toString()
+        )
         startActivity(homeIntent)
 
     }

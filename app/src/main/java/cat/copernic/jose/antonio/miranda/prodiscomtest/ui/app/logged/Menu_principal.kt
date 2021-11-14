@@ -6,14 +6,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import cat.copernic.jose.antonio.miranda.prodiscomtest.R
 import cat.copernic.jose.antonio.miranda.prodiscomtest.databinding.FragmentMenuPrincipalBinding
 import cat.copernic.jose.antonio.miranda.prodiscomtest.ui.app.LoginActivity
+import cat.copernic.jose.antonio.miranda.prodiscomtest.ui.app.logged.perfil.PerfilViewModel
 import cat.copernic.jose.antonio.miranda.prodiscomtest.ui.app.register.Register
 import com.google.firebase.auth.FirebaseAuth
 
-
+private lateinit var viewModel: PerfilViewModel
 class Menu_principal : Fragment() {
 
     private var _binding: FragmentMenuPrincipalBinding? = null
@@ -22,6 +24,7 @@ class Menu_principal : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        viewModel = ViewModelProvider(this).get(PerfilViewModel::class.java)
         _binding = FragmentMenuPrincipalBinding.inflate(inflater, container, false)
         binding.btnToPerfil.setOnClickListener(
             Navigation.createNavigateOnClickListener(

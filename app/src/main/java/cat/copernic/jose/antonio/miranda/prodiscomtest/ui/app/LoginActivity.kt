@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.InputType
 import android.text.TextWatcher
+import android.util.Log
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.EditText
@@ -19,6 +20,12 @@ import cat.copernic.jose.antonio.miranda.prodiscomtest.R
 import cat.copernic.jose.antonio.miranda.prodiscomtest.databinding.ActivityLoginBinding
 import cat.copernic.jose.antonio.miranda.prodiscomtest.ui.app.logged.MainActivity
 import cat.copernic.jose.antonio.miranda.prodiscomtest.ui.app.register.Register
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.getField
+import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.runBlocking
 
 
 class LoginActivity : AppCompatActivity() {
@@ -26,6 +33,8 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var loginViewModel: LoginViewModel
     private lateinit var binding: ActivityLoginBinding
     private lateinit var usuario: String
+    private val db = FirebaseFirestore.getInstance()
+    private val auth:FirebaseAuth = Firebase.auth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         Thread.sleep(1000)
@@ -96,18 +105,17 @@ class LoginActivity : AppCompatActivity() {
             val loginResult = it ?: return@Observer
             usuario = username.text.toString()
             loading.visibility = View.GONE
+
+            //checkUser(binding.username.text.toString())
             if (loginResult.error != null) {
                 showLoginFailed(loginResult.error)
-            }
-            if (loginResult.success != null) {
+            }else if (loginResult.success != null) {
                 updateUiWithUser(loginResult.success)
             }
+
             setResult(Activity.RESULT_OK)
 
-            //Complete and destroy login activity once successful
-            intent = Intent(applicationContext, MainActivity::class.java)
-            startActivity(intent)
-            finish()
+
         })
 
         username.afterTextChanged {
@@ -143,6 +151,23 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+    fun checkUser(dni:String) {
+        val getUserInfo = db.collection("users").document(dni)
+        getUserInfo.get()
+            .addOnSuccessListener { document ->
+                if (document != null) {
+                    Log.d("TAG", "Email: ${document.id} => ${document.data}")
+                    document.getField<String>("email")
+                } else {
+                    Log.d("TAG", "No such document")
+                }
+            }
+            .addOnFailureListener { exception ->
+                Log.w("TAG", "Error getting documents: ", exception)
+            }
+        //delay(5000)
+    }
+
     private fun updateUiWithUser(model: LoggedInUserView) {
         val welcome = getString(R.string.welcome)
         val displayName = usuario
@@ -152,6 +177,12 @@ class LoginActivity : AppCompatActivity() {
             "$welcome $displayName",
             Toast.LENGTH_LONG
         ).show()
+
+        //Complete and destroy login activity once successful
+        intent = Intent(applicationContext, MainActivity::class.java)
+        //intent.putExtra("DNI",username.text.toString())
+        startActivity(intent)
+        finish()
     }
 
     private fun showLoginFailed(@StringRes errorString: Int) {

@@ -1,6 +1,7 @@
 package cat.copernic.jose.antonio.miranda.prodiscomtest.ui.app.logged.perfil
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -9,12 +10,16 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import cat.copernic.jose.antonio.miranda.prodiscomtest.R
 import cat.copernic.jose.antonio.miranda.prodiscomtest.databinding.FragmentEditPerfilBinding
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.getField
+import kotlinx.coroutines.runBlocking
 
 private lateinit var viewModel: PerfilViewModel
 class editPerfil : Fragment() {
     private var _binding: FragmentEditPerfilBinding? = null
     private val binding get() = _binding!!
     private val per = Perfil()
+    private val db = FirebaseFirestore.getInstance()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -28,18 +33,40 @@ class editPerfil : Fragment() {
         binding.btnEditePerfilToHome.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.menu_principal, null))
 
         displayInfo()
-        viewModel.setInfo("","",0,"")
+        //viewModel.setInfo("","",0,"")
         return binding.root
     }
 
     private fun displayInfo(){
-        binding.etxtNom.setText(viewModel.nombre.value)
-        binding.etxtCorreu.setText(viewModel.correo.value)
-        binding.etxtTelefon.setText(viewModel.telefono.value.toString())
-        binding.etxtNaixement.setText(viewModel.nacimiento.value)
+        getInfo()
+        //binding.txtDisplayNombre.setText(viewModel.nombre.value)
+        //binding.txtDisplayCorreo.setText(viewModel.correo.value)
+        //binding.txtDisplayTelefono.setText(viewModel.telefono.value.toString())
+        //binding.txtDisplayNacimiento.setText(viewModel.nacimiento.value)
+
     }
 
-    private fun getName(){
-        //binding.etxtNom.text.toString()
+    private fun getInfo() = runBlocking<Unit>{
+        val getUserInfo = db.collection("users").document("12345678A")
+        getUserInfo.get()
+            .addOnSuccessListener { document ->
+                if (document != null) {
+                    Log.d("TAG", "Email: ${document.id} => ${document.data}")
+                    binding.etxtNom.setText(document.getField<String>("Nombre"))
+                    binding.etxtCorreu.setText(document.getField<String>("email"))
+                    binding.etxtNaixement.setText(document.getField<String>("informacion"))
+
+                    /*viewModel.setInfo(document.getField<String>("Nombre")!!,
+                        document.getField<String>("email")!!,
+                        document.getField<String>("informacion")!!)*/
+
+                } else {
+                    Log.d("TAG", "No such document")
+                }
+            }
+            .addOnFailureListener { exception ->
+                Log.w("TAG", "Error getting documents: ", exception)
+            }
+        //delay(5000)
     }
 }
