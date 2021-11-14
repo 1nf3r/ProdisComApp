@@ -4,15 +4,20 @@ import android.app.AlertDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import androidx.lifecycle.ViewModelProvider
 import cat.copernic.jose.antonio.miranda.prodiscomtest.databinding.ActivityRegisterBinding
 import cat.copernic.jose.antonio.miranda.prodiscomtest.ui.app.LoginActivity
+import cat.copernic.jose.antonio.miranda.prodiscomtest.ui.app.logged.perfil.PerfilViewModel
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 class Register : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding
+    private lateinit var viewModel: RegisterViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        viewModel = ViewModelProvider(this).get(RegisterViewModel::class.java)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -53,54 +58,52 @@ class Register : AppCompatActivity() {
         binding.btnRegistro.setOnClickListener {
 
             //Si s'han introduit el correu i contrasenya
-            if (binding.editTextTextEmailAddress.text.isNotEmpty() && binding.editTextTextPassword2.text.isNotEmpty()) { //Creem el registre amb email i contrasenya...
+            if (binding.etxtRegMail.text.isNotEmpty()
+                && binding.etxtRegCont.text.isNotEmpty()
+                && binding.etxtRegDni.length() == 9) { //Creem el registre amb email i contrasenya...
 
                 //Registrem a l'usuari i amb el mètode addOnCompleteListener, ens notificarà si el registre a estat un èxit o no.
                 FirebaseAuth.getInstance().createUserWithEmailAndPassword(
-                    binding.editTextTextEmailAddress.toString(),
-                    binding.editTextTextPassword2.toString()
+                    binding.etxtRegMail.text.toString(),
+                    binding.etxtRegCont.text.toString()
                 ).addOnCompleteListener {
 
                     if (it.isSuccessful) { //Si el registre ha estat un èxit...
                         showSucces(it.result?.user?.email ?: "", tipusProveidor.BASIC)
+                        finish()
                     } else { //Si el registre no ha estat un èxit...
                         showAlert()
                     }
 
                 }
 
-            }
+            } else
+                showAlert()
         }
     }
 
 
     //Funció que crea l'alert de tipus AlertDialog que es mostrarà si el registre no ha estat un èxit
     private fun showAlert() {
-
-        //Creem l'objecte de tipus AlertDialog passant-li com a paràmetre el context de l'Activity actual
-        val objectAlerDialog = androidx.appcompat.app.AlertDialog.Builder(this)
-
-        /* Un AlertDialog Pot mostrar un títol, contingut i com a molt, tres botons.*/
-
-        //Afegim el títol de l'alert
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Error")
+        builder.setMessage(
+            "No s'ha pogut completar el registre."
+        )
+        builder.setPositiveButton("Aceptar", null)
+        builder.show()
+        /*val objectAlerDialog = androidx.appcompat.app.AlertDialog.Builder(this)
         objectAlerDialog.setTitle("ERROR")
-        //Afegim el missatge a mostrar
         objectAlerDialog.setMessage("No s'ha pogut crear el registre")
-        //Afegim el botó positiu per acceptar i tancar l'alert.
         objectAlerDialog.setPositiveButton("Acceptar", null)
-
-        //Creem l'AlertDialog amb totes les seves propietats
         var alertDialog: androidx.appcompat.app.AlertDialog = objectAlerDialog.create()
-
-        //Mostrem l'AlertDialog creat
-        alertDialog.show()
+        alertDialog.show()*/
 
     }
 
 
     //Funcio que mostra el resultat del registre si ha tingut exit, mitjançant la pantalla Home
     private fun showSucces(email: String, proveidor: tipusProveidor) {
-
         //Creem un objecte Intent passant-li com a paràmetre el context de l'Activitat acual i el nom de la pantalla a la que volem navegar, és a dir, HomeActivity
         val homeIntent: Intent = Intent(this, ConRegistro::class.java).apply {
             putExtra("email", email) //Correu a mostrar
@@ -110,7 +113,53 @@ class Register : AppCompatActivity() {
             ) //proveidor a mostra. En el nostre cas de moment, només BASIC
         }
 
+        // Create a new user with a first and last name
+        viewModel.saveDB(
+            binding.etxtRegNom.text.toString(),
+            binding.etxtRegDni.text.toString(),
+            binding.etxtRegMail.text.toString(),
+           // binding.etxtRegCont.text.toString(),
+            binding.editTextTextPersonName5.text.toString()
+        )
         startActivity(homeIntent)
 
     }
+
+    /* private fun comprobar() {
+          if (!comprobarMail(binding.txtRegMail.text.toString())) {
+              binding.txtRegMail.error =
+                  "Mail no valid" //Muesta el error dentro del input text con el icono rojo
+              //binding.btnRegistro.isEnabled = false //desactiva el boton de registro
+          }
+
+
+      }*/
+
+    /*private fun setup() {
+        val nom = binding.txtRegNom.text.toString()
+        val dni = binding.txtRegDni.text.toString()
+        val email = binding.txtRegMail.text.toString()
+        val password = binding.txtRegCont.text.toString()
+        val confirmPass = binding.txtRegConfPass.text.toString()
+
+        binding.btnRegistro.setOnClickListener {
+            if (binding.txtRegMail.text.isNotEmpty() && binding.txtRegCont.text.isNotEmpty()) {
+                FirebaseAuth.getInstance().createUserWithEmailAndPassword(binding.txtRegMail.text.toString(),
+                    binding.txtRegCont.text.toString())
+                    .addOnCompleteListener {
+                        if (it.isSuccessful) { //Si el registre ha estat un èxit...
+                            showSucces(it.result?.user?.email ?: "", tipusProveidor.BASIC)
+                            db.collection("usuaris")
+                                .document(email)
+                                .set(hashMapOf("DNI" to dni, "Nom" to nom))
+                            finish()
+                        } else { //Si el registre no ha estat un èxit...
+                            showAlert()
+                        }
+
+                    }
+
+            }
+        }
+    }*/
 }
