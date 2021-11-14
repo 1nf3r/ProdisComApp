@@ -35,6 +35,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var usuario: String
     private val db = FirebaseFirestore.getInstance()
     private val auth:FirebaseAuth = Firebase.auth
+    private var loginComplete = "Error"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         Thread.sleep(1000)
@@ -106,11 +107,12 @@ class LoginActivity : AppCompatActivity() {
             usuario = username.text.toString()
             loading.visibility = View.GONE
 
-            //checkUser(binding.username.text.toString())
-            if (loginResult.error != null) {
-                showLoginFailed(loginResult.error)
-            }else if (loginResult.success != null) {
-                updateUiWithUser(loginResult.success)
+            checkUser(binding.username.text.toString())
+
+            if (loginResult.error != null && loginComplete.equals("Error")) {
+                showLoginFailed(loginResult.error!!)
+            }else if (loginResult.success != null && loginComplete.equals("Hecho")) {
+                updateUiWithUser(loginResult.success!!)
             }
 
             setResult(Activity.RESULT_OK)
@@ -151,22 +153,7 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    fun checkUser(dni:String) {
-        val getUserInfo = db.collection("users").document(dni)
-        getUserInfo.get()
-            .addOnSuccessListener { document ->
-                if (document != null) {
-                    Log.d("TAG", "Email: ${document.id} => ${document.data}")
-                    document.getField<String>("email")
-                } else {
-                    Log.d("TAG", "No such document")
-                }
-            }
-            .addOnFailureListener { exception ->
-                Log.w("TAG", "Error getting documents: ", exception)
-            }
-        //delay(5000)
-    }
+
 
     private fun updateUiWithUser(model: LoggedInUserView) {
         val welcome = getString(R.string.welcome)
@@ -188,6 +175,45 @@ class LoginActivity : AppCompatActivity() {
     private fun showLoginFailed(@StringRes errorString: Int) {
         Toast.makeText(applicationContext, errorString, Toast.LENGTH_SHORT).show()
     }
+
+    fun checkUser(dni:String) {
+        val getUserInfo = db.collection("users").document(dni)
+        getUserInfo.get()
+            .addOnSuccessListener { document ->
+                if (document != null && document.getField<String>("email") != null) {
+                    Log.d("TAG", "Email: ${document.id} => ${document.data}")
+                    login(document.getField<String>("email")!!)
+                } else {
+                    Log.d("TAG", "No such document")
+                    login("aadkshjsa@fgdyuj.kgjsdgsk")
+                }
+            }
+            .addOnFailureListener { exception ->
+                Log.w("TAG", "Error getting documents: ", exception)
+            }
+        //delay(5000)
+    }
+
+    private fun login(email:String){
+        val currentUser = auth.currentUser
+        auth.signInWithEmailAndPassword(email, binding.password.text.toString())
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    // Sign in success, update UI with the signed-in user's information
+                    Log.d("TAG", "signInWithEmail:success")
+                    val user = auth.currentUser
+                    loginComplete = "Hecho"
+                    //updateUI(user)
+                } else {
+                    // If sign in fails, display a message to the user.
+                    Log.w("TAG", "signInWithEmail:failure", task.exception)
+                    Toast.makeText(baseContext, "Authentication failed.",
+                        Toast.LENGTH_SHORT).show()
+                    loginComplete = "Error"
+                    //updateUI(null)
+                }
+            }
+    }
 }
 
 /**
@@ -204,3 +230,4 @@ fun EditText.afterTextChanged(afterTextChanged: (String) -> Unit) {
         override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
     })
 }
+

@@ -10,8 +10,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import cat.copernic.jose.antonio.miranda.prodiscomtest.R
 import cat.copernic.jose.antonio.miranda.prodiscomtest.databinding.FragmentPerfilBinding
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.getField
+import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking
@@ -22,6 +25,7 @@ class Perfil : Fragment() {
     private var _binding: FragmentPerfilBinding? = null
     private val binding get() = _binding!!
     private val db = FirebaseFirestore.getInstance()
+    private val auth: FirebaseAuth = Firebase.auth
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -48,7 +52,7 @@ class Perfil : Fragment() {
 
     fun getInfo() = runBlocking<Unit>{
         //Log.d("TAG",viewModel.dni.value!!)
-        val getUserInfo = db.collection("users").document("12345678A")
+        /*val getUserInfo = db.collection("users").document("12345678A")
         getUserInfo.get()
             .addOnSuccessListener { document ->
                 if (document != null) {
@@ -57,12 +61,28 @@ class Perfil : Fragment() {
                     binding.txtDisplayCorreo.setText(document.getField<String>("email"))
                     binding.txtDisplayNacimiento.setText(document.getField<String>("informacion"))
 
-                    /*viewModel.setInfo(document.getField<String>("Nombre")!!,
+                    *//*viewModel.setInfo(document.getField<String>("Nombre")!!,
                         document.getField<String>("email")!!,
-                        document.getField<String>("informacion")!!)*/
+                        document.getField<String>("informacion")!!)*//*
 
                 } else {
                     Log.d("TAG", "No such document")
+                }
+            }
+            .addOnFailureListener { exception ->
+                Log.w("TAG", "Error getting documents: ", exception)
+            }*/
+        val currentUser = auth.currentUser?.email
+
+
+        val getUserInfo = db.collection("users").whereEqualTo("email",currentUser)
+        getUserInfo.get()
+            .addOnSuccessListener { documents ->
+                for (document in documents) {
+                    Log.d("TAG", "Nombre: ${document.id} => ${document.data}")
+                    binding.txtDisplayNombre.setText(document.getField<String>("Nombre"))
+                    binding.txtDisplayCorreo.setText(document.getField<String>("email"))
+                    binding.txtDisplayNacimiento.setText(document.getField<String>("informacion"))
                 }
             }
             .addOnFailureListener { exception ->
