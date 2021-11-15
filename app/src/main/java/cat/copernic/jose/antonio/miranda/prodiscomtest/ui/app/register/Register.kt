@@ -17,7 +17,7 @@ class Register : AppCompatActivity() {
     private lateinit var viewModel: RegisterViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(RegisterViewModel::class.java)
+        viewModel = ViewModelProvider(this)[RegisterViewModel::class.java]
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -52,7 +52,9 @@ class Register : AppCompatActivity() {
 
     private fun setup() {
 
-        //title="Autenticació" //Nom pantalla
+        var dniCheck : String
+        dniCheck = binding.etxtRegDni.text.toString()
+        val regex = """[0-9]+[0-9]+[0-9]+[0-9]+[0-9]+[0-9]+[0-9]+[0-9]+[A-Z]""".toRegex()
 
         //Accedim al botó de registrar-se i escoltem l'esdevniment
         binding.btnRegistro.setOnClickListener {
@@ -60,7 +62,7 @@ class Register : AppCompatActivity() {
             //Si s'han introduit el correu i contrasenya
             if (binding.etxtRegMail.text.isNotEmpty()
                 && binding.etxtRegCont.text.isNotEmpty()
-                && binding.etxtRegDni.length() == 9) { //Creem el registre amb email i contrasenya...
+                && regex.matches(binding.etxtRegDni.text.toString())) { //Creem el registre amb email i contrasenya...
 
                 //Registrem a l'usuari i amb el mètode addOnCompleteListener, ens notificarà si el registre a estat un èxit o no.
                 FirebaseAuth.getInstance().createUserWithEmailAndPassword(
