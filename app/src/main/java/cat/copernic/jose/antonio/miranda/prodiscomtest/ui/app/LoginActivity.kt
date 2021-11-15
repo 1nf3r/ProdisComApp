@@ -110,8 +110,8 @@ class LoginActivity : AppCompatActivity() {
             loading.visibility = View.GONE
 
             checkUser(binding.username.text.toString())
-
-            if (loginResult.error != null && loginComplete.equals("Error")) {
+//Coroutines
+            if (loginResult.error != null && loginComplete == "Error") {
                 Log.d("TAG","No Entras")
                 showLoginFailed(loginResult.error!!)
             }else if (loginResult.success != null && loginComplete.equals("Hecho")) {

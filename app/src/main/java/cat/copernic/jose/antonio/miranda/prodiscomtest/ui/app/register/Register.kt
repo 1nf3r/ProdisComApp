@@ -8,9 +8,7 @@ import android.util.Log
 import androidx.lifecycle.ViewModelProvider
 import cat.copernic.jose.antonio.miranda.prodiscomtest.databinding.ActivityRegisterBinding
 import cat.copernic.jose.antonio.miranda.prodiscomtest.ui.app.LoginActivity
-import cat.copernic.jose.antonio.miranda.prodiscomtest.ui.app.logged.perfil.PerfilViewModel
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
 
 class Register : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding
@@ -52,17 +50,15 @@ class Register : AppCompatActivity() {
 
     private fun setup() {
 
-        var dniCheck : String
-        dniCheck = binding.etxtRegDni.text.toString()
-        val regex = """[0-9]+[0-9]+[0-9]+[0-9]+[0-9]+[0-9]+[0-9]+[0-9]+[A-Z]""".toRegex()
+        var checkDni: Boolean
 
         //Accedim al botó de registrar-se i escoltem l'esdevniment
         binding.btnRegistro.setOnClickListener {
-
+            checkDni = checkDni(binding.etxtRegDni.text.toString())
             //Si s'han introduit el correu i contrasenya
-            if (binding.etxtRegMail.text.isNotEmpty()
-                && binding.etxtRegCont.text.isNotEmpty()
-                && regex.matches(binding.etxtRegDni.text.toString())) { //Creem el registre amb email i contrasenya...
+            if ((binding.etxtRegMail.text.isNotEmpty()
+                        && binding.etxtRegCont.text.isNotEmpty()) && checkDni
+            ) { //Creem el registre amb email i contrasenya...
 
                 //Registrem a l'usuari i amb el mètode addOnCompleteListener, ens notificarà si el registre a estat un èxit o no.
                 FirebaseAuth.getInstance().createUserWithEmailAndPassword(
@@ -94,13 +90,6 @@ class Register : AppCompatActivity() {
         )
         builder.setPositiveButton("Aceptar", null)
         builder.show()
-        /*val objectAlerDialog = androidx.appcompat.app.AlertDialog.Builder(this)
-        objectAlerDialog.setTitle("ERROR")
-        objectAlerDialog.setMessage("No s'ha pogut crear el registre")
-        objectAlerDialog.setPositiveButton("Acceptar", null)
-        var alertDialog: androidx.appcompat.app.AlertDialog = objectAlerDialog.create()
-        alertDialog.show()*/
-
     }
 
 
@@ -120,7 +109,7 @@ class Register : AppCompatActivity() {
             binding.etxtRegNom.text.toString(),
             binding.etxtRegDni.text.toString(),
             binding.etxtRegMail.text.toString(),
-           // binding.etxtRegCont.text.toString(),
+            // binding.etxtRegCont.text.toString(),
             binding.editTextTextPersonName5.text.toString()
         )
         startActivity(homeIntent)
@@ -134,34 +123,55 @@ class Register : AppCompatActivity() {
               //binding.btnRegistro.isEnabled = false //desactiva el boton de registro
           }
 
-
       }*/
 
-    /*private fun setup() {
-        val nom = binding.txtRegNom.text.toString()
-        val dni = binding.txtRegDni.text.toString()
-        val email = binding.txtRegMail.text.toString()
-        val password = binding.txtRegCont.text.toString()
-        val confirmPass = binding.txtRegConfPass.text.toString()
+    private fun checkPass(): Boolean {
+        return false
+    }
 
-        binding.btnRegistro.setOnClickListener {
-            if (binding.txtRegMail.text.isNotEmpty() && binding.txtRegCont.text.isNotEmpty()) {
-                FirebaseAuth.getInstance().createUserWithEmailAndPassword(binding.txtRegMail.text.toString(),
-                    binding.txtRegCont.text.toString())
-                    .addOnCompleteListener {
-                        if (it.isSuccessful) { //Si el registre ha estat un èxit...
-                            showSucces(it.result?.user?.email ?: "", tipusProveidor.BASIC)
-                            db.collection("usuaris")
-                                .document(email)
-                                .set(hashMapOf("DNI" to dni, "Nom" to nom))
-                            finish()
-                        } else { //Si el registre no ha estat un èxit...
-                            showAlert()
-                        }
+    private fun checkDni(dni: String): Boolean {
+        val regexDni = """[0-9]+[0-9]+[0-9]+[0-9]+[0-9]+[0-9]+[0-9]+[0-9]+[A-Z]""".toRegex()
+        var comprobacion: Boolean = false
+        if (regexDni.matches(dni)) {
+            val dniNum: String = dni.substring(0,8)
+            Log.d("TAG2",dniNum)// falla aqui
+            val resultDni: Int = dniNum.toInt() % 23
+            val letraDni: String = dni[8].toString()
+            var letraComprobada: String
 
-                    }
 
+            when (resultDni) {
+                0 -> letraComprobada = "T"
+                1 -> letraComprobada = "R"
+                2 -> letraComprobada = "W"
+                3 -> letraComprobada = "A"
+                4 -> letraComprobada = "G"
+                5 -> letraComprobada = "M"
+                6 -> letraComprobada = "Y"
+                7 -> letraComprobada = "F"
+                8 -> letraComprobada = "P"
+                9 -> letraComprobada = "D"
+                10 -> letraComprobada = "X"
+                11 -> letraComprobada = "B"
+                12 -> letraComprobada = "N"
+                13 -> letraComprobada = "J"
+                14 -> letraComprobada = "Z"
+                15 -> letraComprobada = "S"
+                16 -> letraComprobada = "Q"
+                17 -> letraComprobada = "V"
+                18 -> letraComprobada = "H"
+                19 -> letraComprobada = "L"
+                20 -> letraComprobada = "C"
+                21 -> letraComprobada = "K"
+                22 -> letraComprobada = "E"
+
+                else -> letraComprobada = ""
             }
+
+            if (letraDni == letraComprobada) comprobacion = true
         }
-    }*/
+
+        return comprobacion
+
+    }
 }
