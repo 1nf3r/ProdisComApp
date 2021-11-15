@@ -15,9 +15,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.getField
 import com.google.firebase.ktx.Firebase
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.*
 import kotlin.system.measureTimeMillis
 
 private lateinit var viewModel: PerfilViewModel
@@ -42,12 +40,16 @@ class Perfil : Fragment() {
     }
 
     private fun displayInfo(){
-        getInfo()
-        //binding.txtDisplayNombre.setText(viewModel.nombre.value)
-        //binding.txtDisplayCorreo.setText(viewModel.correo.value)
-        //binding.txtDisplayTelefono.setText(viewModel.telefono.value.toString())
-        //binding.txtDisplayNacimiento.setText(viewModel.nacimiento.value)
+        GlobalScope.async(Dispatchers.Main) {
+            viewModel.getInfo2()
+            delay(2000)
+            binding.txtDisplayNombre.setText(viewModel.nombre.value)
+            binding.txtDisplayCorreo.setText(viewModel.correo.value)
+            //binding.txtDisplayTelefono.setText(viewModel.telefono.value.toString())
+            binding.txtDisplayNacimiento.setText(viewModel.nacimiento.value)
 
+
+        }
     }
 
     private fun getInfo() = runBlocking<Unit>{

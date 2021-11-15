@@ -22,7 +22,7 @@ class RegisterViewModel: ViewModel() {
             //"Contraseña" to contraseña,
             "informacion" to info
         )
-        users.document(dni).set(userInfo)
+        users.document(email).set(userInfo)
             //.addOnSuccessListener { documentReference ->
                 //Log.d("Register", "DocumentSnapshot added with ID: ${documentReference.id}")
             }
