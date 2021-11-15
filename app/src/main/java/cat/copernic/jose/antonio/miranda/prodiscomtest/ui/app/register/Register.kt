@@ -5,10 +5,12 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.core.text.isDigitsOnly
 import androidx.lifecycle.ViewModelProvider
 import cat.copernic.jose.antonio.miranda.prodiscomtest.databinding.ActivityRegisterBinding
 import cat.copernic.jose.antonio.miranda.prodiscomtest.ui.app.LoginActivity
 import com.google.firebase.auth.FirebaseAuth
+import java.util.regex.Pattern.compile
 
 class Register : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding
@@ -37,13 +39,7 @@ class Register : AppCompatActivity() {
             startActivity(Intent(this, LoginActivity::class.java))
             finish()
         }
-
-        //Al clicar te lleva a la pantalla de confirmacion de registro
-        /*binding.btnRegistro.setOnClickListener {
-            startActivity(Intent(this, ConRegistro::class.java))
-            finish()
-        }*/
-        //Setup
+        
         setup()
 
     }
@@ -116,7 +112,7 @@ class Register : AppCompatActivity() {
 
     }
 
-    /* private fun comprobar() {
+   /*  private fun comprobar() {
           if (!comprobarMail(binding.txtRegMail.text.toString())) {
               binding.txtRegMail.error =
                   "Mail no valid" //Muesta el error dentro del input text con el icono rojo
@@ -125,16 +121,50 @@ class Register : AppCompatActivity() {
 
       }*/
 
-    private fun checkPass(): Boolean {
-        return false
+    //Funcion para comprobar el nombre
+
+    private fun checkName(name:String) :Boolean {
+        val checkName = "^[A-Za-z]*$".toRegex()
+        var checker = false
+        if (checkName.matches(name)) checker = true
+
+        return checker
     }
+
+    //Funcion para comprobar el email
+
+    private fun checkMail(mail: String): Boolean {
+        var checker: Boolean = false
+        val checkMail = ("[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}" +
+                "\\@" +
+                "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}" +
+                "(" +
+                "\\." +
+                "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25}" +
+                ")+"
+                ).toRegex()
+        if (checkMail.matches(mail))  checker = true
+
+        return checker
+    }
+
+    //Funcion para comprobar la contraseña
+
+    private fun checkPass(passwd: String, checkPasswd: String): Boolean {
+        var checker :Boolean = false
+        if (passwd == checkPasswd) checker = true
+
+        return checker
+    }
+
+    //Funcion para comprobar el DNI
 
     private fun checkDni(dni: String): Boolean {
         val regexDni = """[0-9]+[0-9]+[0-9]+[0-9]+[0-9]+[0-9]+[0-9]+[0-9]+[A-Z]""".toRegex()
         var comprobacion: Boolean = false
         if (regexDni.matches(dni)) {
-            val dniNum: String = dni.substring(0,8)
-            Log.d("TAG2",dniNum)// falla aqui
+            val dniNum: String = dni.substring(0, 8)
+            Log.d("TAG2", dniNum)// falla aqui
             val resultDni: Int = dniNum.toInt() % 23
             val letraDni: String = dni[8].toString()
             var letraComprobada: String

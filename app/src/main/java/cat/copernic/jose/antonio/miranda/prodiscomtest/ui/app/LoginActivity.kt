@@ -114,7 +114,7 @@ class LoginActivity : AppCompatActivity() {
             if (loginResult.error != null && loginComplete == "Error") {
                 Log.d("TAG","No Entras")
                 showLoginFailed(loginResult.error!!)
-            }else if (loginResult.success != null && loginComplete.equals("Hecho")) {
+            }else if (loginResult.success != null && loginComplete == "Hecho") {
                 Log.d("TAG","Entras")
                 updateUiWithUser(loginResult.success!!)
             }
