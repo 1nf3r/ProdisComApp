@@ -31,9 +31,8 @@ class Perfil : Fragment() {
         viewModel = ViewModelProvider(this).get(PerfilViewModel::class.java)
         _binding = FragmentPerfilBinding.inflate(inflater, container, false)
         binding.btnToEditPerfil.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.editPerfil, null))
-
         binding.btnReturnPerfil.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.menu_principal, null))
-
+        viewModel.getInfo()
         displayInfo()
 
         return binding.root
@@ -41,8 +40,7 @@ class Perfil : Fragment() {
 
     private fun displayInfo(){
         GlobalScope.async(Dispatchers.Main) {
-            viewModel.getInfo2()
-            delay(2000)
+            delay(500)
             binding.txtDisplayNombre.setText(viewModel.nombre.value)
             binding.txtDisplayCorreo.setText(viewModel.correo.value)
             //binding.txtDisplayTelefono.setText(viewModel.telefono.value.toString())
@@ -88,7 +86,7 @@ class Perfil : Fragment() {
             .addOnFailureListener { exception ->
                 Log.w("TAG", "Error getting documents: ", exception)
             }
-        delay(500)
+        //delay(500)
     }
 
 

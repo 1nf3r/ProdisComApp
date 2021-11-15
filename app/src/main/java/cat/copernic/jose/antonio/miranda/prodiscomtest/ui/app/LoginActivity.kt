@@ -184,15 +184,12 @@ class LoginActivity : AppCompatActivity() {
     }
 
     fun checkUser(dni:String)  = runBlocking<Unit> {
-        val getUserInfo = db.collection("users").document(dni)
+        val getUserInfo = db.collection("users").whereEqualTo("DNI",dni)
         getUserInfo.get()
-            .addOnSuccessListener { document ->
-                if (document != null && document.getField<String>("email") != null) {
+            .addOnSuccessListener { documents ->
+                for (document in documents) {
                     //Log.d("TAG", "Email: ${document.id} => ${document.data}")
                     login(document.getField<String>("email")!!)
-                } else {
-                    Log.d("TAG", "No such document")
-                    login("aadkshjsa@fgdyuj.kgjsdgsk")
                 }
             }
             .addOnFailureListener { exception ->
@@ -205,7 +202,6 @@ class LoginActivity : AppCompatActivity() {
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
-                   // Log.d("TAG", "signInWithEmail:success")
                     loginComplete = "Hecho"
 
                     //updateUI(user)
