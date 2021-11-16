@@ -15,8 +15,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.getField
 import com.google.firebase.ktx.Firebase
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.*
 
 private lateinit var viewModel: PerfilViewModel
 class editPerfil : Fragment() {
@@ -38,21 +37,23 @@ class editPerfil : Fragment() {
         binding.btnReturnEditPerfil.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.perfil, null))
         binding.btnEditePerfilToHome.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.menu_principal, null))
 
+        viewModel.getInfo()
         displayInfo()
         //viewModel.setInfo("","",0,"")
         return binding.root
     }
 
     private fun displayInfo(){
-        getInfo()
-        //binding.txtDisplayNombre.setText(viewModel.nombre.value)
-        //binding.txtDisplayCorreo.setText(viewModel.correo.value)
-        //binding.txtDisplayTelefono.setText(viewModel.telefono.value.toString())
-        //binding.txtDisplayNacimiento.setText(viewModel.nacimiento.value)
-
+        GlobalScope.async(Dispatchers.Main) {
+            delay(500)
+            binding.etxtNom.setText(viewModel.nombre.value)
+            binding.etxtCorreu.setText(viewModel.correo.value)
+            //binding.txtDisplayTelefono.setText(viewModel.telefono.value.toString())
+            binding.etxtNaixement.setText(viewModel.nacimiento.value)
+        }
     }
 
-    private fun getInfo() = runBlocking<Unit>{
+    /*private fun getInfo() = runBlocking<Unit>{
         val currentUser = auth.currentUser?.email
         val getUserInfo = db.collection("users").whereEqualTo("email",currentUser)
         getUserInfo.get()
@@ -73,5 +74,5 @@ class editPerfil : Fragment() {
                 Log.w("TAG", "Error getting documents: ", exception)
             }
         delay(500)
-    }
+    }*/
 }

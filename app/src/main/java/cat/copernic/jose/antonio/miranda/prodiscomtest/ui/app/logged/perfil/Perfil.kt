@@ -15,9 +15,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.getField
 import com.google.firebase.ktx.Firebase
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.*
 import kotlin.system.measureTimeMillis
 
 private lateinit var viewModel: PerfilViewModel
@@ -33,21 +31,23 @@ class Perfil : Fragment() {
         viewModel = ViewModelProvider(this).get(PerfilViewModel::class.java)
         _binding = FragmentPerfilBinding.inflate(inflater, container, false)
         binding.btnToEditPerfil.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.editPerfil, null))
-
         binding.btnReturnPerfil.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.menu_principal, null))
-
+        viewModel.getInfo()
         displayInfo()
 
         return binding.root
     }
 
     private fun displayInfo(){
-        getInfo()
-        //binding.txtDisplayNombre.setText(viewModel.nombre.value)
-        //binding.txtDisplayCorreo.setText(viewModel.correo.value)
-        //binding.txtDisplayTelefono.setText(viewModel.telefono.value.toString())
-        //binding.txtDisplayNacimiento.setText(viewModel.nacimiento.value)
+        GlobalScope.async(Dispatchers.Main) {
+            delay(500)
+            binding.txtDisplayNombre.setText(viewModel.nombre.value)
+            binding.txtDisplayCorreo.setText(viewModel.correo.value)
+            //binding.txtDisplayTelefono.setText(viewModel.telefono.value.toString())
+            binding.txtDisplayNacimiento.setText(viewModel.nacimiento.value)
 
+
+        }
     }
 
     private fun getInfo() = runBlocking<Unit>{
@@ -86,7 +86,7 @@ class Perfil : Fragment() {
             .addOnFailureListener { exception ->
                 Log.w("TAG", "Error getting documents: ", exception)
             }
-        delay(500)
+        //delay(500)
     }
 
 
