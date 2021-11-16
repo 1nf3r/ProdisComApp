@@ -12,14 +12,11 @@ class RegisterViewModel: ViewModel() {
 
 
     fun saveDB(nombre:String, dni:String,email:String,/*contraseña:String,*/info:String) {
-
-
         val users = db.collection("users")
         val userInfo = hashMapOf(
             "Nombre" to nombre,
             "DNI" to dni,
             "email" to email,
-            //"Contraseña" to contraseña,
             "informacion" to info
         )
         users.document(email).set(userInfo)
