@@ -35,6 +35,7 @@ class LoginActivity : AppCompatActivity() {
     private val db = FirebaseFirestore.getInstance()
     private val auth: FirebaseAuth = Firebase.auth
     private var loginComplete = "Error"
+    private var emailD: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         Thread.sleep(1000)
@@ -57,7 +58,7 @@ class LoginActivity : AppCompatActivity() {
         binding.btnShow?.setOnClickListener {
             if (binding.password.inputType == 1) {
                 binding.password.inputType =
-                        InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+                    InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
                 btnshow?.setImageResource(R.drawable.ic_baseline_eye)
             } else {
                 binding.password.inputType = 1
@@ -71,8 +72,8 @@ class LoginActivity : AppCompatActivity() {
         binding.txtVAjuda?.setOnClickListener {
             builder.setTitle("Ajuda")
             builder.setMessage(
-                    "Hauras d'introduir el DNI i la contrasenya de 4 digits, si no tens" +
-                            " un usuari clica en el text Registrar-se."
+                "Hauras d'introduir el DNI i la contrasenya de 4 digits, si no tens" +
+                        " un usuari clica en el text Registrar-se."
             )
             builder.setPositiveButton("Aceptar", null)
             builder.show()
@@ -84,7 +85,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
         loginViewModel = ViewModelProvider(this, LoginViewModelFactory())
-                .get(LoginViewModel::class.java)
+            .get(LoginViewModel::class.java)
 
         loginViewModel.loginFormState.observe(this@LoginActivity, Observer {
             val loginState = it ?: return@Observer
@@ -124,16 +125,16 @@ class LoginActivity : AppCompatActivity() {
 
         username.afterTextChanged {
             loginViewModel.loginDataChanged(
-                    username.text.toString(),
-                    password.text.toString()
+                username.text.toString(),
+                password.text.toString()
             )
         }
 
         password.apply {
             afterTextChanged {
                 loginViewModel.loginDataChanged(
-                        username.text.toString(),
-                        password.text.toString()
+                    username.text.toString(),
+                    password.text.toString()
                 )
             }
 
@@ -141,8 +142,8 @@ class LoginActivity : AppCompatActivity() {
                 when (actionId) {
                     EditorInfo.IME_ACTION_DONE ->
                         loginViewModel.login(
-                                username.text.toString(),
-                                password.text.toString()
+                            username.text.toString(),
+                            password.text.toString()
                         )
                 }
                 false
@@ -155,120 +156,47 @@ class LoginActivity : AppCompatActivity() {
 
         }
 
-        var emailD: String = ""
+
 
         login.setOnClickListener {
             if (username.text.toString().isNotEmpty() && password.text.toString().isNotEmpty()) {
                 db.collection("users").whereEqualTo("DNI", username.text.toString())
-                        .get()
-                        .addOnSuccessListener { documents ->
-                            for (document in documents) {
-                                // Log.d("db", "${document.id} => ${document.data}")
-                                emailD = document.id
-                                //Log.d("db", emailD)
-                            }
+                    .get()
+                    .addOnSuccessListener { documents ->
+                        for (document in documents) {
+                            loginWithEmail(document.getString("email").toString())
                         }
-                loginWithEmail(emailD)
+                    }
             }
         }
 
     }
 
-
     private fun loginWithEmail(email: String) {
-        val errorDis = AlertDialog.Builder(this)
-        auth.signInWithEmailAndPassword(email, binding.password.text.toString())
-                .addOnCompleteListener {
-                    if (it.isSuccessful) {
-                        intent = Intent(applicationContext, MainActivity::class.java)
-                        startActivity(intent)
-                        //finish()
-                    } else {
-                        Toast.makeText(baseContext, "Authentication failed.",
-                                Toast.LENGTH_SHORT).show()
-                        errorDis.setTitle("Login Failed")
-                        errorDis.setMessage("DNI o Contrasenya incorrectes!!!")
-                        errorDis.setPositiveButton("Aceptar", null)
-                        errorDis.show()
-                    }
-
+        Firebase.auth.signInWithEmailAndPassword(email, binding.password.text.toString())
+            .addOnCompleteListener {
+                if (it.isSuccessful) {
+                    intent = Intent(applicationContext, MainActivity::class.java)
+                    startActivity(intent)
+                    finish()
                 }
+            }
+            .addOnFailureListener {
+                showError()
+            }
     }
 
-    /* private fun updateUiWithUser(model: LoggedInUserView) {
-         //getName()
-         //Complete and destroy login activity once successful
-         intent = Intent(applicationContext, MainActivity::class.java)
-         startActivity(intent)
-         finish()
-     }*/
+    private fun showError(){
+        val errorDis = AlertDialog.Builder(this)
+        errorDis.setTitle("Login Failed")
+        errorDis.setMessage("DNI o Contrasenya incorrectes!!!")
+        errorDis.setPositiveButton("Aceptar", null)
+        errorDis.show()
+    }
 
     private fun showLoginFailed(@StringRes errorString: Int) {
         Toast.makeText(applicationContext, errorString, Toast.LENGTH_SHORT).show()
     }
-
-
-    /* fun checkUser(dni: String) = runBlocking<Unit> {
-         val getUserInfo = db.collection("users").whereEqualTo("DNI", dni)
-         getUserInfo.get()
-                 .addOnSuccessListener { documents ->
-                     for (document in documents) {
-                         //Log.d("TAG", "Email: ${document.id} => ${document.data}")
-                         login(document.getField<String>("email")!!)
-                     }
-                 }
-                 .addOnFailureListener { exception ->
-                     Log.w("TAG", "Error getting documents: ", exception)
-
-                 }
-     }
-
-     private fun login(email: String) {
-         auth.signInWithEmailAndPassword(email, binding.password.text.toString())
-                 .addOnCompleteListener(this) { task ->
-                     if (task.isSuccessful) {
-                         // Sign in success, update UI with the signed-in user's information
-                         loginComplete = "Hecho"
-
-                         //updateUI(user)
-                     } else {
-                         // If sign in fails, display a message to the user.
-                         Log.w("TAG", "signInWithEmail:failure", task.exception)
-                         Toast.makeText(baseContext, "Authentication failed.",
-                                 Toast.LENGTH_SHORT).show()
-                         loginComplete = "Error"
-                         //updateUI(null)
-                     }
-
-                 }
-
-     }
-
-     private fun getName() {
-         val currentUser = auth.currentUser?.email
-         //displayName = "F"
-         val getUserInfo = db.collection("users").whereEqualTo("email", currentUser)
-         getUserInfo.get()
-                 .addOnSuccessListener { documents ->
-                     for (document in documents) {
-                         //Log.d("TAG", "Nombre: ${document.id} => ${document.data}")
-                         val displayName = document.getField<String>("Nombre")!!
-                         val welcome = getString(R.string.welcome)
-                         Toast.makeText(
-                                 applicationContext,
-                                 "$welcome $displayName",
-                                 Toast.LENGTH_LONG
-                         ).show()
-                         //return@addOnSuccessListener
-                     }
-                 }
-                 .addOnFailureListener { exception ->
-                     Log.w("TAG", "Error getting documents: ", exception)
-                 }
-
-         //delay(5000)
-         //return "F"
-     }*/
 
 }
 

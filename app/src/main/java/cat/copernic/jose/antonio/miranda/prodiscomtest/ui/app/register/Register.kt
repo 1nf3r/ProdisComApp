@@ -167,7 +167,7 @@ class Register : AppCompatActivity() {
             Log.d("TAG2", dniNum)// falla aqui
             val resultDni: Int = dniNum.toInt() % 23
             val letraDni: String = dni[8].toString()
-            var letraComprobada: String
+            val letraComprobada: String
 
 
             when (resultDni) {
