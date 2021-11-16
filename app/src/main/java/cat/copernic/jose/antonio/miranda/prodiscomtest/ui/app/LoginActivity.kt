@@ -35,9 +35,8 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private lateinit var usuario: String
     private val db = FirebaseFirestore.getInstance()
-    private val auth:FirebaseAuth = Firebase.auth
+    private val auth: FirebaseAuth = Firebase.auth
     private var loginComplete = "Error"
-   // private var displayName = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         Thread.sleep(1000)
@@ -56,12 +55,11 @@ class LoginActivity : AppCompatActivity() {
         val btnshow = binding.btnShow
 
 
-
         //Funcion para mostrar o ocultar la contrasenya en el login
         binding.btnShow?.setOnClickListener {
             if (binding.password.inputType == 1) {
                 binding.password.inputType =
-                    InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+                        InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
                 btnshow?.setImageResource(R.drawable.ic_baseline_eye)
             } else {
                 binding.password.inputType = 1
@@ -75,8 +73,8 @@ class LoginActivity : AppCompatActivity() {
         binding.txtVAjuda?.setOnClickListener {
             builder.setTitle("Ajuda")
             builder.setMessage(
-                "Hauras d'introduir el DNI i la contrasenya de 4 digits, si no tens" +
-                        " un usuari clica en el text Registrar-se."
+                    "Hauras d'introduir el DNI i la contrasenya de 4 digits, si no tens" +
+                            " un usuari clica en el text Registrar-se."
             )
             builder.setPositiveButton("Aceptar", null)
             builder.show()
@@ -88,7 +86,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
         loginViewModel = ViewModelProvider(this, LoginViewModelFactory())
-            .get(LoginViewModel::class.java)
+                .get(LoginViewModel::class.java)
 
         loginViewModel.loginFormState.observe(this@LoginActivity, Observer {
             val loginState = it ?: return@Observer
@@ -109,16 +107,17 @@ class LoginActivity : AppCompatActivity() {
             usuario = username.text.toString()
             loading.visibility = View.GONE
 
-            checkUser(binding.username.text.toString())
-//Coroutines
+            //checkUser(binding.username.text.toString())
+
+
             if (loginResult.error != null && loginComplete == "Error") {
-                Log.d("TAG","No Entras")
+                Log.d("TAG", "No Entras")
                 showLoginFailed(loginResult.error!!)
-            }else if (loginResult.success != null && loginComplete == "Hecho") {
-                Log.d("TAG","Entras")
-                updateUiWithUser(loginResult.success!!)
+            } else if (loginResult.success != null && loginComplete == "Hecho") {
+                Log.d("TAG", "Entras")
+               // updateUiWithUser(loginResult.success!!)
             }
-            Log.d("TAG","XD Entras")
+            Log.d("TAG", "XD Entras")
 
             setResult(Activity.RESULT_OK)
 
@@ -127,16 +126,16 @@ class LoginActivity : AppCompatActivity() {
 
         username.afterTextChanged {
             loginViewModel.loginDataChanged(
-                username.text.toString(),
-                password.text.toString()
+                    username.text.toString(),
+                    password.text.toString()
             )
         }
 
         password.apply {
             afterTextChanged {
                 loginViewModel.loginDataChanged(
-                    username.text.toString(),
-                    password.text.toString()
+                        username.text.toString(),
+                        password.text.toString()
                 )
             }
 
@@ -144,108 +143,108 @@ class LoginActivity : AppCompatActivity() {
                 when (actionId) {
                     EditorInfo.IME_ACTION_DONE ->
                         loginViewModel.login(
-                            username.text.toString(),
-                            password.text.toString()
+                                username.text.toString(),
+                                password.text.toString()
                         )
                 }
                 false
             }
 
-            login.setOnClickListener {
+            /*login.setOnClickListener {
                 loading.visibility = View.VISIBLE
                 loginViewModel.login(username.text.toString(), password.text.toString())
-            }
+            }*/
+
         }
 
+        val errorDis = AlertDialog.Builder(this)
+        login.setOnClickListener {
+            if (username.toString().isNotEmpty() && password.toString().isNotEmpty()){
+                db.collection()
+            } else {
+                errorDis.setTitle("Login Failed")
+                errorDis.setMessage("Has d'emplenar el DNI i la contrasenya")
+                errorDis.setPositiveButton("Aceptar", null)
+                errorDis.show()
+            }
+        }
     }
 
 
-
-    private fun updateUiWithUser(model: LoggedInUserView) {
-
-        getName()
-        /*val displayName =getName()
-        val welcome = getString(R.string.welcome)
-        // TODO : initiate successful logged in experience
-        Toast.makeText(
-            applicationContext,
-            "$welcome $displayName",
-            Toast.LENGTH_LONG
-        ).show()*/
-
+   /* private fun updateUiWithUser(model: LoggedInUserView) {
+        //getName()
         //Complete and destroy login activity once successful
         intent = Intent(applicationContext, MainActivity::class.java)
-        //intent.putExtra("DNI",username.text.toString())
         startActivity(intent)
         finish()
-    }
+    }*/
 
     private fun showLoginFailed(@StringRes errorString: Int) {
         Toast.makeText(applicationContext, errorString, Toast.LENGTH_SHORT).show()
     }
 
 
-
-    fun checkUser(dni:String)  = runBlocking<Unit> {
-        val getUserInfo = db.collection("users").whereEqualTo("DNI",dni)
+   /* fun checkUser(dni: String) = runBlocking<Unit> {
+        val getUserInfo = db.collection("users").whereEqualTo("DNI", dni)
         getUserInfo.get()
-            .addOnSuccessListener { documents ->
-                for (document in documents) {
-                    //Log.d("TAG", "Email: ${document.id} => ${document.data}")
-                    login(document.getField<String>("email")!!)
+                .addOnSuccessListener { documents ->
+                    for (document in documents) {
+                        //Log.d("TAG", "Email: ${document.id} => ${document.data}")
+                        login(document.getField<String>("email")!!)
+                    }
                 }
-            }
-            .addOnFailureListener { exception ->
-                Log.w("TAG", "Error getting documents: ", exception)
-            }
+                .addOnFailureListener { exception ->
+                    Log.w("TAG", "Error getting documents: ", exception)
+
+                }
     }
 
-    private fun login(email:String){
+    private fun login(email: String) {
         auth.signInWithEmailAndPassword(email, binding.password.text.toString())
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    // Sign in success, update UI with the signed-in user's information
-                    loginComplete = "Hecho"
+                .addOnCompleteListener(this) { task ->
+                    if (task.isSuccessful) {
+                        // Sign in success, update UI with the signed-in user's information
+                        loginComplete = "Hecho"
 
-                    //updateUI(user)
-                } else {
-                    // If sign in fails, display a message to the user.
-                    Log.w("TAG", "signInWithEmail:failure", task.exception)
-                    Toast.makeText(baseContext, "Authentication failed.",
-                        Toast.LENGTH_SHORT).show()
-                    loginComplete = "Error"
-                    //updateUI(null)
+                        //updateUI(user)
+                    } else {
+                        // If sign in fails, display a message to the user.
+                        Log.w("TAG", "signInWithEmail:failure", task.exception)
+                        Toast.makeText(baseContext, "Authentication failed.",
+                                Toast.LENGTH_SHORT).show()
+                        loginComplete = "Error"
+                        //updateUI(null)
+                    }
+
                 }
-
-            }
 
     }
 
-    private fun getName(){
+    private fun getName() {
         val currentUser = auth.currentUser?.email
         //displayName = "F"
-        val getUserInfo = db.collection("users").whereEqualTo("email",currentUser)
+        val getUserInfo = db.collection("users").whereEqualTo("email", currentUser)
         getUserInfo.get()
-            .addOnSuccessListener { documents ->
-                for (document in documents) {
-                    //Log.d("TAG", "Nombre: ${document.id} => ${document.data}")
-                    val displayName = document.getField<String>("Nombre")!!
-                    val welcome = getString(R.string.welcome)
-                    Toast.makeText(
-                        applicationContext,
-                        "$welcome $displayName",
-                        Toast.LENGTH_LONG
-                    ).show()
-                //return@addOnSuccessListener
+                .addOnSuccessListener { documents ->
+                    for (document in documents) {
+                        //Log.d("TAG", "Nombre: ${document.id} => ${document.data}")
+                        val displayName = document.getField<String>("Nombre")!!
+                        val welcome = getString(R.string.welcome)
+                        Toast.makeText(
+                                applicationContext,
+                                "$welcome $displayName",
+                                Toast.LENGTH_LONG
+                        ).show()
+                        //return@addOnSuccessListener
+                    }
                 }
-            }
-            .addOnFailureListener { exception ->
-                Log.w("TAG", "Error getting documents: ", exception)
-            }
+                .addOnFailureListener { exception ->
+                    Log.w("TAG", "Error getting documents: ", exception)
+                }
 
         //delay(5000)
         //return "F"
-    }
+    }*/
 
 }
 

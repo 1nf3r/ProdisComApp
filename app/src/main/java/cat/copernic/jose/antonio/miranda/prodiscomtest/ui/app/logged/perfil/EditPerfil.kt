@@ -13,7 +13,6 @@ import cat.copernic.jose.antonio.miranda.prodiscomtest.databinding.FragmentEditP
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.ktx.getField
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.*
 
