@@ -112,15 +112,6 @@ class Register : AppCompatActivity() {
 
     }
 
-   /*  private fun comprobar() {
-          if (!comprobarMail(binding.txtRegMail.text.toString())) {
-              binding.txtRegMail.error =
-                  "Mail no valid" //Muesta el error dentro del input text con el icono rojo
-              //binding.btnRegistro.isEnabled = false //desactiva el boton de registro
-          }
-
-      }*/
-
     //Funcion para comprobar el nombre
 
     private fun checkName(name:String) :Boolean {

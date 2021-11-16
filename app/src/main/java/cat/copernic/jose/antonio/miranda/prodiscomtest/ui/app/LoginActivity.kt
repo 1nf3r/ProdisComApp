@@ -33,7 +33,6 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private lateinit var usuario: String
     private val db = FirebaseFirestore.getInstance()
-    private val auth: FirebaseAuth = Firebase.auth
     private var loginComplete = "Error"
     private var emailD: String = ""
 
@@ -91,7 +90,7 @@ class LoginActivity : AppCompatActivity() {
             val loginState = it ?: return@Observer
 
             // disable login button unless both username / password is valid
-            login.isEnabled = loginState.isDataValid
+            //login.isEnabled = loginState.isDataValid
 
             if (loginState.usernameError != null) {
                 username.error = getString(loginState.usernameError)
@@ -163,10 +162,17 @@ class LoginActivity : AppCompatActivity() {
                 db.collection("users").whereEqualTo("DNI", username.text.toString())
                     .get()
                     .addOnSuccessListener { documents ->
+                        Log.d("TAG1", "Si funciona2")
                         for (document in documents) {
+                            Log.d("TAG1", "${document.id} => ${document.data}")
                             loginWithEmail(document.getString("email").toString())
                         }
                     }
+                    .addOnFailureListener { exception ->
+                        showError()
+                    }
+            } else {
+                showError()
             }
         }
 
@@ -179,14 +185,14 @@ class LoginActivity : AppCompatActivity() {
                     intent = Intent(applicationContext, MainActivity::class.java)
                     startActivity(intent)
                     finish()
+                } else {
+                    showError()
                 }
             }
-            .addOnFailureListener {
-                showError()
-            }
+
     }
 
-    private fun showError(){
+    private fun showError() {
         val errorDis = AlertDialog.Builder(this)
         errorDis.setTitle("Login Failed")
         errorDis.setMessage("DNI o Contrasenya incorrectes!!!")
