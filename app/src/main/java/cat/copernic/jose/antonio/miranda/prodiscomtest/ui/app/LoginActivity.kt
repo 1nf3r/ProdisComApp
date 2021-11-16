@@ -25,8 +25,8 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.getField
 import com.google.firebase.ktx.Firebase
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.runBlocking
+import com.squareup.okhttp.Dispatcher
+import kotlinx.coroutines.*
 
 
 class LoginActivity : AppCompatActivity() {
@@ -156,6 +156,7 @@ class LoginActivity : AppCompatActivity() {
                 loginViewModel.login(username.text.toString(), password.text.toString())
             }
         }
+
     }
 
 
@@ -182,6 +183,8 @@ class LoginActivity : AppCompatActivity() {
     private fun showLoginFailed(@StringRes errorString: Int) {
         Toast.makeText(applicationContext, errorString, Toast.LENGTH_SHORT).show()
     }
+
+
 
     fun checkUser(dni:String)  = runBlocking<Unit> {
         val getUserInfo = db.collection("users").document(dni)
