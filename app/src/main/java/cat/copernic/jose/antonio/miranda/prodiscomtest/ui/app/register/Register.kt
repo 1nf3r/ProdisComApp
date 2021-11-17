@@ -40,6 +40,7 @@ class Register : AppCompatActivity() {
             finish()
         }
 
+        //test()
         setup()
 
     }
@@ -198,5 +199,10 @@ class Register : AppCompatActivity() {
 
         return comprobacion
 
+    }
+    private fun test(){
+        if (!checkDni(binding.etxtRegDni.text.toString())){
+            binding.etxtRegDni.error = "DNI no valid"
+        }
     }
 }

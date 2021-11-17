@@ -21,7 +21,6 @@ class delUser : Fragment() {
         binding.btnReturnDelUser.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.usuarios, null))
         binding.btnDelUserToHome.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.menu_principal, null))
 
-
         return binding.root
     }
 }

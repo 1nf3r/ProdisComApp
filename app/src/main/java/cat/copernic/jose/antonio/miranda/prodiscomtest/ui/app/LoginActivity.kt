@@ -191,7 +191,6 @@ class LoginActivity : AppCompatActivity() {
                     showError()
                 }
             }
-
     }
 
     private fun showError() {
