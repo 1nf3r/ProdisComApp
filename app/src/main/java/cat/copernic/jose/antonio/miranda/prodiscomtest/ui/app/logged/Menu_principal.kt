@@ -14,6 +14,7 @@ import cat.copernic.jose.antonio.miranda.prodiscomtest.ui.app.LoginActivity
 import cat.copernic.jose.antonio.miranda.prodiscomtest.ui.app.logged.perfil.PerfilViewModel
 import cat.copernic.jose.antonio.miranda.prodiscomtest.ui.app.register.Register
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuth.*
 
 private lateinit var viewModel: PerfilViewModel
 class Menu_principal : Fragment() {
@@ -58,7 +59,7 @@ class Menu_principal : Fragment() {
         )
         binding.btnToSalir.setOnClickListener() {//Si clickem el boto tancar sessió...
             //Tanquem sessió
-            //FirebaseAuth.getInstance().signOut()
+            FirebaseAuth.getInstance().signOut()
             //Tornem a la pantalla login i acabem la main activity
             activity?.finish()
             activity?.startActivity(Intent(this.activity, LoginActivity::class.java))

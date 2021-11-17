@@ -156,7 +156,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
 
-
+        //No funciona el failure, preguntar como hacer el error rojo en los formularios.
         login.setOnClickListener {
             if (username.text.toString().isNotEmpty() && password.text.toString().isNotEmpty()) {
                 db.collection("users").whereEqualTo("DNI", username.text.toString())

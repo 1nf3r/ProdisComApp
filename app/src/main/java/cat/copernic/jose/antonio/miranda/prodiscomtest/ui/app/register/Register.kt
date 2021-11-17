@@ -91,7 +91,8 @@ class Register : AppCompatActivity() {
 
     //Funcio que mostra el resultat del registre si ha tingut exit, mitjançant la pantalla Home
     private fun showSucces(email: String, proveidor: tipusProveidor) {
-        //Creem un objecte Intent passant-li com a paràmetre el context de l'Activitat acual i el nom de la pantalla a la que volem navegar, és a dir, HomeActivity
+        //Creem un objecte Intent passant-li com a paràmetre el context de l'Activitat acual i
+        // el nom de la pantalla a la que volem navegar, és a dir, HomeActivity
         val homeIntent: Intent = Intent(this, ConRegistro::class.java).apply {
             putExtra("email", email) //Correu a mostrar
             putExtra(
@@ -100,7 +101,7 @@ class Register : AppCompatActivity() {
             ) //proveidor a mostra. En el nostre cas de moment, només BASIC
         }
 
-        // Create a new user with a first and last name
+        //Guardar al firestore les dades de nom, dni , correu
         viewModel.saveDB(
             binding.etxtRegNom.text.toString(),
             binding.etxtRegDni.text.toString(),
@@ -155,11 +156,9 @@ class Register : AppCompatActivity() {
         var comprobacion: Boolean = false
         if (regexDni.matches(dni)) {
             val dniNum: String = dni.substring(0, 8)
-            Log.d("TAG2", dniNum)// falla aqui
             val resultDni: Int = dniNum.toInt() % 23
             val letraDni: String = dni[8].toString()
             val letraComprobada: String
-
 
             when (resultDni) {
                 0 -> letraComprobada = "T"
