@@ -39,7 +39,7 @@ class Register : AppCompatActivity() {
             startActivity(Intent(this, LoginActivity::class.java))
             finish()
         }
-        
+
         setup()
 
     }
@@ -47,14 +47,19 @@ class Register : AppCompatActivity() {
     private fun setup() {
 
         var checkDni: Boolean
+        var checkMail: Boolean
+        var checkName: Boolean
+        var checkPasswd: Boolean
 
         //Accedim al botó de registrar-se i escoltem l'esdevniment
         binding.btnRegistro.setOnClickListener {
             checkDni = checkDni(binding.etxtRegDni.text.toString())
+            checkMail = checkMail(binding.txtRegistrarseEmail.text.toString())
+            checkName = checkName(binding.etxtRegNom.text.toString())
+            checkPasswd = checkPass(binding.etxtRegCont.text.toString(),binding.etxtRegConfPass.text.toString() )
+
             //Si s'han introduit el correu i contrasenya
-            if ((binding.etxtRegMail.text.isNotEmpty()
-                        && binding.etxtRegCont.text.isNotEmpty()) && checkDni
-            ) { //Creem el registre amb email i contrasenya...
+            if (checkMail && checkName && checkPasswd  && checkDni) { //Creem el registre amb email i contrasenya...
 
                 //Registrem a l'usuari i amb el mètode addOnCompleteListener, ens notificarà si el registre a estat un èxit o no.
                 FirebaseAuth.getInstance().createUserWithEmailAndPassword(
@@ -81,9 +86,7 @@ class Register : AppCompatActivity() {
     private fun showAlert() {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Error")
-        builder.setMessage(
-            "No s'ha pogut completar el registre."
-        )
+        builder.setMessage("No s'ha pogut completar el registre.")
         builder.setPositiveButton("Aceptar", null)
         builder.show()
     }
@@ -115,7 +118,7 @@ class Register : AppCompatActivity() {
 
     //Funcion para comprobar el nombre
 
-    private fun checkName(name:String) :Boolean {
+    private fun checkName(name: String): Boolean {
         val checkName = "^[A-Za-z]*$".toRegex()
         var checker = false
         if (checkName.matches(name)) checker = true
@@ -135,7 +138,7 @@ class Register : AppCompatActivity() {
                 "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25}" +
                 ")+"
                 ).toRegex()
-        if (checkMail.matches(mail))  checker = true
+        if (checkMail.matches(mail)) checker = true
 
         return checker
     }
@@ -143,7 +146,7 @@ class Register : AppCompatActivity() {
     //Funcion para comprobar la contraseña
 
     private fun checkPass(passwd: String, checkPasswd: String): Boolean {
-        var checker :Boolean = false
+        var checker: Boolean = false
         if (passwd == checkPasswd) checker = true
 
         return checker
