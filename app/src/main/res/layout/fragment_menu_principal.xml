@@ -80,7 +80,7 @@
             android:id="@+id/btnToSalir"
             style="@style/botonesMP"
             android:layout_width="0dp"
-            android:text="@string/salir_de_la_app"
+            android:text="@string/cerrar_sesion"
             app:icon="@drawable/ic_baseline_salir"
             app:iconTint="#000000"
             app:layout_constraintBottom_toBottomOf="parent"

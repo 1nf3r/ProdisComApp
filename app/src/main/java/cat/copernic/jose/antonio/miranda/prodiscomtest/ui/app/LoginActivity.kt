@@ -162,9 +162,9 @@ class LoginActivity : AppCompatActivity() {
                 db.collection("users").whereEqualTo("DNI", username.text.toString())
                     .get()
                     .addOnSuccessListener { documents ->
-                        Log.d("TAG1", "Si funciona2")
+                        //Log.d("TAG1", "Si funciona2")
                         for (document in documents) {
-                            Log.d("TAG1", "${document.id} => ${document.data}")
+                            //Log.d("TAG1", "${document.id} => ${document.data}")
                             loginWithEmail(document.getString("email").toString())
                         }
                     }
@@ -179,7 +179,9 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun loginWithEmail(email: String) {
-        Firebase.auth.signInWithEmailAndPassword(email, binding.password.text.toString())
+        var realPass = "Prodis"
+        realPass += binding.password.text.toString()
+        Firebase.auth.signInWithEmailAndPassword(email, realPass)
             .addOnCompleteListener {
                 if (it.isSuccessful) {
                     intent = Intent(applicationContext, MainActivity::class.java)

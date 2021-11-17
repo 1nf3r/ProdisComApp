@@ -50,30 +50,33 @@ class Register : AppCompatActivity() {
         var checkMail: Boolean
         var checkName: Boolean
         var checkPasswd: Boolean
+        var improvePassw = "Prodis"
+
 
         //Accedim al botó de registrar-se i escoltem l'esdevniment
         binding.btnRegistro.setOnClickListener {
+            //Comprovem si les dades introduides son correctes
             checkDni = checkDni(binding.etxtRegDni.text.toString())
-            checkMail = checkMail(binding.txtRegistrarseEmail.text.toString())
+            checkMail = checkMail(binding.etxtRegMail.text.toString())
             checkName = checkName(binding.etxtRegNom.text.toString())
-            checkPasswd = checkPass(binding.etxtRegCont.text.toString(),binding.etxtRegConfPass.text.toString() )
+            checkPasswd = checkPass(
+                binding.etxtRegCont.text.toString(),
+                binding.etxtRegConfPass.text.toString()
+            )
 
-            //Si s'han introduit el correu i contrasenya
-            if (checkMail && checkName && checkPasswd  && checkDni) { //Creem el registre amb email i contrasenya...
-
+            //Si totes les dades son correctes registrarem l'usuari
+            if (checkMail && checkName && checkPasswd && checkDni) { //Creem el registre amb email i contrasenya...
                 //Registrem a l'usuari i amb el mètode addOnCompleteListener, ens notificarà si el registre a estat un èxit o no.
+                improvePassw += binding.etxtRegCont.text.toString()
                 FirebaseAuth.getInstance().createUserWithEmailAndPassword(
-                    binding.etxtRegMail.text.toString(),
-                    binding.etxtRegCont.text.toString()
+                    binding.etxtRegMail.text.toString(), improvePassw
                 ).addOnCompleteListener {
-
                     if (it.isSuccessful) { //Si el registre ha estat un èxit...
                         showSucces(it.result?.user?.email ?: "", tipusProveidor.BASIC)
                         finish()
                     } else { //Si el registre no ha estat un èxit...
                         showAlert()
                     }
-
                 }
 
             } else
@@ -109,7 +112,6 @@ class Register : AppCompatActivity() {
             binding.etxtRegNom.text.toString(),
             binding.etxtRegDni.text.toString(),
             binding.etxtRegMail.text.toString(),
-            // binding.etxtRegCont.text.toString(),
             binding.editTextTextPersonName5.text.toString()
         )
         startActivity(homeIntent)
