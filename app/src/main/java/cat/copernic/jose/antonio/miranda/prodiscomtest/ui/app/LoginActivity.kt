@@ -163,13 +163,14 @@ class LoginActivity : AppCompatActivity() {
                     .get()
                     .addOnSuccessListener { documents ->
                         //Log.d("TAG1", "Si funciona2")
-                        for (document in documents) {
-                            //Log.d("TAG1", "${document.id} => ${document.data}")
-                            loginWithEmail(document.getString("email").toString())
+                        if (documents.isEmpty) {
+                            showError()
+                        } else {
+                            for (document in documents) {
+                                loginWithEmail(document.getString("email").toString())
+                            }
                         }
-                    }
-                    .addOnFailureListener { exception ->
-                        showError()
+
                     }
             } else {
                 showError()
@@ -187,8 +188,6 @@ class LoginActivity : AppCompatActivity() {
                     intent = Intent(applicationContext, MainActivity::class.java)
                     startActivity(intent)
                     finish()
-                } else {
-                    showError()
                 }
             }
     }
