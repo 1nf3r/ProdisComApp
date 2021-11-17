@@ -150,8 +150,7 @@ class Register : AppCompatActivity() {
 
     private fun checkPass(passwd: String, checkPasswd: String): Boolean {
         var checker: Boolean = false
-        if (passwd == checkPasswd) checker = true
-
+        if (passwd.length == 4 && passwd == checkPasswd) checker = true
         return checker
     }
 

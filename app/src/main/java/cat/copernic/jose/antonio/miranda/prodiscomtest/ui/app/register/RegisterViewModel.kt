@@ -8,6 +8,8 @@ import com.google.firebase.firestore.FirebaseFirestore
 
 class RegisterViewModel : ViewModel() {
 
+
+
     private val db = FirebaseFirestore.getInstance()
 
 

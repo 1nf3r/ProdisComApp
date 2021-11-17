@@ -162,7 +162,6 @@ class LoginActivity : AppCompatActivity() {
                 db.collection("users").whereEqualTo("DNI", username.text.toString())
                     .get()
                     .addOnSuccessListener { documents ->
-                        //Log.d("TAG1", "Si funciona2")
                         if (documents.isEmpty) {
                             showError()
                         } else {
@@ -194,7 +193,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun showError() {
         val errorDis = AlertDialog.Builder(this)
-        errorDis.setTitle("Login Failed")
+        errorDis.setTitle("Inici de Sessió fallat")
         errorDis.setMessage("DNI o Contrasenya incorrectes!!!")
         errorDis.setPositiveButton("Aceptar", null)
         errorDis.show()
