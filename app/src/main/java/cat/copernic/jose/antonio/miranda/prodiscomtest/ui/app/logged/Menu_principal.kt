@@ -59,7 +59,7 @@ class Menu_principal : Fragment() {
         )
         binding.btnToSalir.setOnClickListener() {//Si clickem el boto tancar sessió...
             //Tanquem sessió
-            FirebaseAuth.getInstance().signOut()
+            getInstance().signOut()
             //Tornem a la pantalla login i acabem la main activity
             activity?.finish()
             activity?.startActivity(Intent(this.activity, LoginActivity::class.java))

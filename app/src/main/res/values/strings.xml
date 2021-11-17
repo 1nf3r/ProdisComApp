@@ -134,4 +134,5 @@
     <string name="title_activity_conf_regsitro">ConfRegsitro</string>
     <string name="grup">Grup</string>
     <string name="missatges">Missatges</string>
+    <string name="buscar_usuari">Buscar Usuari</string>
 </resources>
