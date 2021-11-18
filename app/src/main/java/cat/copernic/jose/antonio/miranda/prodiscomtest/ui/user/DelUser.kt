@@ -39,6 +39,12 @@ class delUser : Fragment() {
 
         getInfo()
 
+
+
+
+
+
+
         return binding.root
     }
 
