@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.app.register.Register">
+    tools:context=".ui.register.Register">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -172,45 +172,24 @@
                     app:layout_constraintStart_toStartOf="@+id/txtRegistrarseConfirmarContrasenya"
                     app:layout_constraintTop_toBottomOf="@+id/txtRegistrarseConfirmarContrasenya" />
 
-                <CheckBox
-                    android:id="@+id/checkBox"
-                    android:layout_width="32dp"
-                    android:layout_height="42dp"
-                    android:layout_marginTop="24dp"
-                    app:layout_constraintEnd_toEndOf="@+id/titleRegistrar_se"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="@+id/titleRegistrar_se"
-                    app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName5" />
-
-                <TextView
-                    android:id="@+id/textView3"
-                    android:layout_width="0dp"
-                    android:layout_height="41dp"
-                    android:layout_marginTop="24dp"
-                    android:layout_marginEnd="32dp"
-                    android:text="Estic d'acord amb les condicions de servei i les polítiques de privacitat"
-                    android:textAlignment="textStart"
-                    android:textColor="@color/lila_prodis"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/checkBox"
-                    app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName5" />
+                <!--android:layout_width="350dp"
+                    android:layout_height="44dp"-->
 
                 <Button
                     android:id="@+id/btnRegistro"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="28dp"
                     android:layout_marginEnd="32dp"
                     android:backgroundTint="@color/prodis"
                     android:text="@string/registrar_se"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView3"
+                    app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName5"
                     app:strokeColor="#193A18"
                     app:strokeWidth="1dp" />
-                    <!--android:layout_width="350dp"
-                    android:layout_height="44dp"-->
 
                 <TextView
                     android:id="@+id/txtVInicia"

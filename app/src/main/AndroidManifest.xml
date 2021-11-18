@@ -10,16 +10,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProdisComTest">
         <activity
-            android:name=".ui.app.register.ConRegistro"
+            android:name=".ui.register.ConRegistro"
             android:exported="false" />
         <activity
-            android:name=".ui.app.register.Register"
+            android:name=".ui.register.Register"
             android:exported="false" />
         <activity
-            android:name=".ui.app.logged.MainActivity"
+            android:name=".ui.logged.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.app.LoginActivity"
+            android:name=".ui.LoginActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/splashTeme">
