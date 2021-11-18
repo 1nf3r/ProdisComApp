@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.activity.viewModels
 import androidx.core.text.isDigitsOnly
 import androidx.lifecycle.ViewModelProvider
 import cat.copernic.jose.antonio.miranda.prodiscomtest.databinding.ActivityRegisterBinding
@@ -14,10 +15,10 @@ import java.util.regex.Pattern.compile
 
 class Register : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding
-    private lateinit var viewModel: RegisterViewModel
+    private val viewModel: RegisterViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = ViewModelProvider(this)[RegisterViewModel::class.java]
+        //viewModel = ViewModelProvider(this)[RegisterViewModel::class.java]
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 

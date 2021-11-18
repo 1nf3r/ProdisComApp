@@ -28,7 +28,7 @@ class editPerfil : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        viewModel = ViewModelProvider(this).get(PerfilViewModel::class.java)
+        viewModel = ViewModelProvider(this)[PerfilViewModel::class.java]
 
         _binding = FragmentEditPerfilBinding.inflate(inflater, container, false)
         binding.btnGuardarPerfil.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.perfil, null))
