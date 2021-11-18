@@ -33,7 +33,6 @@ class LoginActivity : AppCompatActivity() {
         val login = binding.login
         val btnshow = binding.btnShow
 
-
         //Funcion para mostrar o ocultar la contrasenya en el login
         binding.btnShow?.setOnClickListener {
             if (binding.password.inputType == 1) {
