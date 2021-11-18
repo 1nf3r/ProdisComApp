@@ -33,7 +33,7 @@ class LoginDb {
                 .get()
                 .addOnSuccessListener { documents ->
                     if (documents.isEmpty) {
-                        errorLog.showError()
+//                        errorLog.showError()
                     } else {
                         for (document in documents) {
                             loginWithEmail(document.getString("email").toString())
@@ -42,7 +42,7 @@ class LoginDb {
 
                 }
         } else {
-            errorLog.showError()
+//            errorLog.showError()
         }
     }
 
