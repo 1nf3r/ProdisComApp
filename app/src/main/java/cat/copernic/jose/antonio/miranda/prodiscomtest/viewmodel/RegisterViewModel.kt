@@ -1,7 +1,8 @@
-package cat.copernic.jose.antonio.miranda.prodiscomtest.ui.register
+package cat.copernic.jose.antonio.miranda.prodiscomtest.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import cat.copernic.jose.antonio.miranda.prodiscomtest.data.RegisterFormData
 import com.google.firebase.firestore.FirebaseFirestore
 
 class RegisterViewModel : ViewModel() {

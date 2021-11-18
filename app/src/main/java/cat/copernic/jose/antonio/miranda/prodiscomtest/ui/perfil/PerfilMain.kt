@@ -1,4 +1,4 @@
-package cat.copernic.jose.antonio.miranda.prodiscomtest.ui.logged.perfil
+package cat.copernic.jose.antonio.miranda.prodiscomtest.ui.perfil
 
 import android.os.Bundle
 import android.util.Log
@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import cat.copernic.jose.antonio.miranda.prodiscomtest.R
 import cat.copernic.jose.antonio.miranda.prodiscomtest.databinding.FragmentPerfilBinding
+import cat.copernic.jose.antonio.miranda.prodiscomtest.viewmodel.PerfilViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -18,7 +19,7 @@ import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.*
 
 private lateinit var viewModel: PerfilViewModel
-class Perfil : Fragment() {
+public class Perfil : Fragment() {
     private var _binding: FragmentPerfilBinding? = null
     private val binding get() = _binding!!
     private val db = FirebaseFirestore.getInstance()
@@ -51,26 +52,6 @@ class Perfil : Fragment() {
 
     private fun getInfo() = runBlocking<Unit>{
         //Log.d("TAG",viewModel.dni.value!!)
-        /*val getUserInfo = db.collection("users").document("12345678A")
-        getUserInfo.get()
-            .addOnSuccessListener { document ->
-                if (document != null) {
-                    Log.d("TAG", "Email: ${document.id} => ${document.data}")
-                    binding.txtDisplayNombre.setText(document.getField<String>("Nombre"))
-                    binding.txtDisplayCorreo.setText(document.getField<String>("email"))
-                    binding.txtDisplayNacimiento.setText(document.getField<String>("informacion"))
-
-                    *//*viewModel.setInfo(document.getField<String>("Nombre")!!,
-                        document.getField<String>("email")!!,
-                        document.getField<String>("informacion")!!)*//*
-
-                } else {
-                    Log.d("TAG", "No such document")
-                }
-            }
-            .addOnFailureListener { exception ->
-                Log.w("TAG", "Error getting documents: ", exception)
-            }*/
         val currentUser = auth.currentUser?.email
         val getUserInfo = db.collection("users").whereEqualTo("email",currentUser)
         getUserInfo.get()

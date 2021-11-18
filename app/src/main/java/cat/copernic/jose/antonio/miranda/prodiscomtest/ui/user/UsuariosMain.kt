@@ -1,4 +1,4 @@
-package cat.copernic.jose.antonio.miranda.prodiscomtest.ui.logged.users
+package cat.copernic.jose.antonio.miranda.prodiscomtest.ui.user
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,7 +9,7 @@ import androidx.navigation.Navigation
 import cat.copernic.jose.antonio.miranda.prodiscomtest.R
 import cat.copernic.jose.antonio.miranda.prodiscomtest.databinding.FragmentUsuariosBinding
 
-class Usuarios : Fragment() {
+class UsuariosMain : Fragment() {
     private var _binding: FragmentUsuariosBinding? = null
     private val binding get() = _binding!!
     override fun onCreateView(
@@ -23,7 +23,6 @@ class Usuarios : Fragment() {
         binding.btnValUser.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.valUser, null))
         binding.btnBloqUser.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.bloqUser, null))
         binding.btnReturnUser.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.menu_principal, null))
-        //binding.btnUserToHome.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.menu_principal, null))
 
         return binding.root
     }

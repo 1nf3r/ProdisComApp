@@ -1,4 +1,4 @@
-package cat.copernic.jose.antonio.miranda.prodiscomtest.ui.logged.autorizaciones
+package cat.copernic.jose.antonio.miranda.prodiscomtest.ui.authoritzations
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,7 +9,7 @@ import androidx.navigation.Navigation
 import cat.copernic.jose.antonio.miranda.prodiscomtest.R
 import cat.copernic.jose.antonio.miranda.prodiscomtest.databinding.FragmentNuevaAutorizacionBinding
 
-class nuevaAutorizacion : Fragment() {
+class NuevaAutorizacion : Fragment() {
     private var _binding: FragmentNuevaAutorizacionBinding? = null
     private val binding get() = _binding!!
     override fun onCreateView(

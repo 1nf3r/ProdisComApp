@@ -16,8 +16,8 @@
             android:name=".ui.register.Register"
             android:exported="false" />
         <activity
-            android:name=".ui.logged.MainActivity"
-            android:exported="false" />
+            android:name=".ui.MainActivity"
+            android:exported="true" />
         <activity
             android:name=".ui.LoginActivity"
             android:exported="true"
@@ -25,7 +25,6 @@
             android:theme="@style/splashTeme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/menu_principal"
-        android:name="cat.copernic.jose.antonio.miranda.prodiscomtest.ui.logged.Menu_principal"
+        android:name="cat.copernic.jose.antonio.miranda.prodiscomtest.ui.Menu_principal"
         android:label="Menu_principal" >
         <action
             android:id="@+id/action_menu_principal_to_autorizacion"
@@ -30,7 +30,7 @@
     </fragment>
     <fragment
         android:id="@+id/autorizacion"
-        android:name="cat.copernic.jose.antonio.miranda.prodiscomtest.ui.logged.autorizaciones.Autorizacion"
+        android:name="cat.copernic.jose.antonio.miranda.prodiscomtest.ui.authoritzations.AutorizacionMain"
         android:label="fragment_autorizacion"
         tools:layout="@layout/fragment_autorizacion" >
         <action
@@ -42,7 +42,7 @@
     </fragment>
     <fragment
         android:id="@+id/usuarios"
-        android:name="cat.copernic.jose.antonio.miranda.prodiscomtest.ui.logged.users.Usuarios"
+        android:name="cat.copernic.jose.antonio.miranda.prodiscomtest.ui.user.UsuariosMain"
         android:label="fragment_usuarios"
         tools:layout="@layout/fragment_usuarios" >
         <action
@@ -72,7 +72,7 @@
     </fragment>
     <fragment
         android:id="@+id/ajustes"
-        android:name="cat.copernic.jose.antonio.miranda.prodiscomtest.ui.logged.ajustes.ajustes"
+        android:name="cat.copernic.jose.antonio.miranda.prodiscomtest.ui.ajustes"
         android:label="fragment_ajustes"
         tools:layout="@layout/fragment_ajustes" >
         <action
@@ -81,27 +81,27 @@
     </fragment>
     <fragment
         android:id="@+id/addUsuario"
-        android:name="cat.copernic.jose.antonio.miranda.prodiscomtest.ui.logged.users.addUser"
+        android:name="cat.copernic.jose.antonio.miranda.prodiscomtest.ui.user.addUser"
         android:label="fragment_add_usuario"
         tools:layout="@layout/fragment_add_usuario" />
     <fragment
         android:id="@+id/delUser"
-        android:name="cat.copernic.jose.antonio.miranda.prodiscomtest.ui.logged.users.delUser"
+        android:name="cat.copernic.jose.antonio.miranda.prodiscomtest.ui.user.delUser"
         android:label="fragment_del_user"
         tools:layout="@layout/fragment_del_user" />
     <fragment
         android:id="@+id/modUser"
-        android:name="cat.copernic.jose.antonio.miranda.prodiscomtest.ui.logged.users.modUser"
+        android:name="cat.copernic.jose.antonio.miranda.prodiscomtest.ui.user.modUser"
         android:label="fragment_mod_user"
         tools:layout="@layout/fragment_mod_user" />
     <fragment
         android:id="@+id/valUser"
-        android:name="cat.copernic.jose.antonio.miranda.prodiscomtest.ui.logged.users.valUser"
+        android:name="cat.copernic.jose.antonio.miranda.prodiscomtest.ui.user.valUser"
         android:label="fragment_val_user"
         tools:layout="@layout/fragment_val_user" />
     <fragment
         android:id="@+id/bloqUser"
-        android:name="cat.copernic.jose.antonio.miranda.prodiscomtest.ui.logged.users.bloqUser"
+        android:name="cat.copernic.jose.antonio.miranda.prodiscomtest.ui.user.bloqUser"
         android:label="fragment_bloq_user"
         tools:layout="@layout/fragment_bloq_user" />
     <fragment
@@ -111,27 +111,27 @@
         tools:layout="@layout/fragment_edit_perfil" />
     <fragment
         android:id="@+id/condiciones"
-        android:name="cat.copernic.jose.antonio.miranda.prodiscomtest.ui.logged.ajustes.condiciones"
+        android:name="cat.copernic.jose.antonio.miranda.prodiscomtest.ui.condiciones"
         android:label="fragment_condiciones"
         tools:layout="@layout/fragment_condiciones" />
     <fragment
         android:id="@+id/nuevaAutorizacion"
-        android:name="cat.copernic.jose.antonio.miranda.prodiscomtest.ui.logged.autorizaciones.nuevaAutorizacion"
+        android:name="cat.copernic.jose.antonio.miranda.prodiscomtest.ui.authoritzations.NuevaAutorizacion"
         android:label="fragment_nueva_autorizacion"
         tools:layout="@layout/fragment_nueva_autorizacion" />
     <fragment
         android:id="@+id/resultadosAutorizaciones"
-        android:name="cat.copernic.jose.antonio.miranda.prodiscomtest.ui.logged.autorizaciones.resultadosAutorizaciones"
+        android:name="cat.copernic.jose.antonio.miranda.prodiscomtest.ui.authoritzations.ResultadosAutorizaciones"
         android:label="fragment_resultados_autorizaciones"
         tools:layout="@layout/fragment_resultados_autorizaciones" />
     <fragment
         android:id="@+id/grup"
-        android:name="cat.copernic.jose.antonio.miranda.prodiscomtest.ui.logged.grup.Grup"
+        android:name="cat.copernic.jose.antonio.miranda.prodiscomtest.ui.grup.GrupMain"
         android:label="fragment_grup"
         tools:layout="@layout/fragment_grup" />
     <fragment
         android:id="@+id/mensajes"
-        android:name="cat.copernic.jose.antonio.miranda.prodiscomtest.ui.logged.mensajes.Mensajes"
+        android:name="cat.copernic.jose.antonio.miranda.prodiscomtest.ui.message.MensajesMain"
         android:label="fragment_mensajes"
         tools:layout="@layout/fragment_mensajes" />
 </navigation>

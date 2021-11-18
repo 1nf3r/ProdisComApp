@@ -1,4 +1,4 @@
-package cat.copernic.jose.antonio.miranda.prodiscomtest.ui.logged.users
+package cat.copernic.jose.antonio.miranda.prodiscomtest.ui.user
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

@@ -1,4 +1,4 @@
-package cat.copernic.jose.antonio.miranda.prodiscomtest.ui.logged.mensajes
+package cat.copernic.jose.antonio.miranda.prodiscomtest.ui.message
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,7 +9,7 @@ import androidx.navigation.Navigation
 import cat.copernic.jose.antonio.miranda.prodiscomtest.R
 import cat.copernic.jose.antonio.miranda.prodiscomtest.databinding.FragmentMensajesBinding
 
-class Mensajes : Fragment() {
+class MensajesMain : Fragment() {
     private var _binding: FragmentMensajesBinding? = null
     private val binding get() = _binding!!
     override fun onCreateView(

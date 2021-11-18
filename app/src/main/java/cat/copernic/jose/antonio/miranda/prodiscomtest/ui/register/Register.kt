@@ -7,6 +7,7 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import cat.copernic.jose.antonio.miranda.prodiscomtest.databinding.ActivityRegisterBinding
 import cat.copernic.jose.antonio.miranda.prodiscomtest.ui.LoginActivity
+import cat.copernic.jose.antonio.miranda.prodiscomtest.viewmodel.RegisterViewModel
 import com.google.firebase.auth.FirebaseAuth
 
 class Register : AppCompatActivity() {

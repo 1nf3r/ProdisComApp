@@ -1,4 +1,4 @@
-package cat.copernic.jose.antonio.miranda.prodiscomtest.ui.register
+package cat.copernic.jose.antonio.miranda.prodiscomtest.data
 
 data class RegisterFormData(
     val name: String? = null,

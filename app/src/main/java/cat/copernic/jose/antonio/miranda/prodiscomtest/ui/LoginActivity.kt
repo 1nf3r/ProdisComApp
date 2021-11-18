@@ -7,7 +7,6 @@ import android.text.InputType
 import androidx.appcompat.app.AppCompatActivity
 import cat.copernic.jose.antonio.miranda.prodiscomtest.R
 import cat.copernic.jose.antonio.miranda.prodiscomtest.databinding.ActivityLoginBinding
-import cat.copernic.jose.antonio.miranda.prodiscomtest.ui.logged.MainActivity
 import cat.copernic.jose.antonio.miranda.prodiscomtest.ui.register.Register
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore

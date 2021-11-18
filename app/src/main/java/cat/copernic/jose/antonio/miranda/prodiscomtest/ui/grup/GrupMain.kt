@@ -1,4 +1,4 @@
-package cat.copernic.jose.antonio.miranda.prodiscomtest.ui.logged.grup
+package cat.copernic.jose.antonio.miranda.prodiscomtest.ui.grup
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,7 +10,7 @@ import cat.copernic.jose.antonio.miranda.prodiscomtest.R
 import cat.copernic.jose.antonio.miranda.prodiscomtest.databinding.FragmentAutorizacionBinding
 import cat.copernic.jose.antonio.miranda.prodiscomtest.databinding.FragmentGrupBinding
 
-class Grup : Fragment() {
+class GrupMain : Fragment() {
 
     private lateinit var binding: FragmentGrupBinding
     override fun onCreateView(

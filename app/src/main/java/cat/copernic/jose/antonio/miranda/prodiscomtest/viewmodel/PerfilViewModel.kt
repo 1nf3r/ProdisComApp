@@ -1,4 +1,4 @@
-package cat.copernic.jose.antonio.miranda.prodiscomtest.ui.logged.perfil
+package cat.copernic.jose.antonio.miranda.prodiscomtest.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.LiveData
