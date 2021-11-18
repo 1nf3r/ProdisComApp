@@ -135,7 +135,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="Introdueix una contrasenya"
-                    android:inputType="textPassword"
+                    android:inputType="numberPassword"
                     app:layout_constraintEnd_toEndOf="@+id/txtRegistrarseContrasenya"
                     app:layout_constraintStart_toStartOf="@+id/txtRegistrarseContrasenya"
                     app:layout_constraintTop_toBottomOf="@+id/txtRegistrarseContrasenya" />
@@ -167,7 +167,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="Confirma la contrasenya"
-                    android:inputType="textPassword"
+                    android:inputType="numberPassword"
                     app:layout_constraintEnd_toEndOf="@+id/txtRegistrarseConfirmarContrasenya"
                     app:layout_constraintStart_toStartOf="@+id/txtRegistrarseConfirmarContrasenya"
                     app:layout_constraintTop_toBottomOf="@+id/txtRegistrarseConfirmarContrasenya" />
@@ -202,6 +202,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/txtVAjuda2" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
     </ScrollView>

@@ -4,13 +4,11 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.getField
 import com.google.firebase.ktx.Firebase
-import kotlinx.coroutines.*
-import kotlin.system.measureTimeMillis
+
 
 
 class PerfilViewModel: ViewModel() {

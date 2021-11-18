@@ -2,6 +2,7 @@ package cat.copernic.jose.antonio.miranda.prodiscomtest.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log.i
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -25,10 +26,7 @@ class Menu_principal : Fragment() {
         viewModel = ViewModelProvider(this)[PerfilViewModel::class.java]
         _binding = FragmentMenuPrincipalBinding.inflate(inflater, container, false)
         binding.btnToPerfil.setOnClickListener(
-            Navigation.createNavigateOnClickListener(
-                R.id.perfil,
-                null
-            )
+            Navigation.createNavigateOnClickListener(R.id.action_menu_principal_to_perfil )
         )
         binding.btnToAjustes.setOnClickListener(
             Navigation.createNavigateOnClickListener(

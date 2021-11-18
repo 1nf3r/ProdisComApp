@@ -1,4 +1,4 @@
-package cat.copernic.jose.antonio.miranda.prodiscomtest.ui.perfil
+package cat.copernic.jose.antonio.miranda.prodiscomtest.ui.logged.perfil
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -17,7 +17,7 @@ import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.*
 
 private lateinit var viewModel: PerfilViewModel
-class editPerfil : Fragment() {
+class EditPerfil : Fragment() {
     private var _binding: FragmentEditPerfilBinding? = null
     private val binding get() = _binding!!
     private val per = Perfil()

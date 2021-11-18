@@ -1,4 +1,4 @@
-package cat.copernic.jose.antonio.miranda.prodiscomtest.ui.perfil
+package cat.copernic.jose.antonio.miranda.prodiscomtest.ui.logged.perfil
 
 import android.os.Bundle
 import android.util.Log
@@ -38,6 +38,7 @@ public class Perfil : Fragment() {
         return binding.root
     }
 
+    @DelicateCoroutinesApi
     private fun displayInfo(){
         GlobalScope.async(Dispatchers.Main) {
             delay(500)
