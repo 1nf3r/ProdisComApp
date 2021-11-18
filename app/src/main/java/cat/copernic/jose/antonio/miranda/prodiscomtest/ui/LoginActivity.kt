@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.text.InputType
 import androidx.appcompat.app.AppCompatActivity
 import cat.copernic.jose.antonio.miranda.prodiscomtest.R
+import cat.copernic.jose.antonio.miranda.prodiscomtest.data.UserFormData
 import cat.copernic.jose.antonio.miranda.prodiscomtest.databinding.ActivityLoginBinding
 import cat.copernic.jose.antonio.miranda.prodiscomtest.ui.register.Register
 import com.google.firebase.auth.ktx.auth
@@ -18,6 +19,7 @@ class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
     private val db = FirebaseFirestore.getInstance()
+    private var currentUser = UserFormData()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         Thread.sleep(1000)
@@ -27,7 +29,7 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val username = binding.username
+        val dni = binding.username
         val password = binding.password
         val login = binding.login
         val btnshow = binding.btnShow
@@ -65,8 +67,8 @@ class LoginActivity : AppCompatActivity() {
 
         //Al clicar se iniciara el proceso de login
         login.setOnClickListener {
-            if (username.text.toString().isNotEmpty() && password.text.toString().isNotEmpty()) {
-                db.collection("users").whereEqualTo("DNI", username.text.toString())
+            if (dni.text.toString().isNotEmpty() && password.text.toString().isNotEmpty()) {
+                db.collection("users").whereEqualTo("DNI", dni.text.toString())
                     .get()
                     .addOnSuccessListener { documents ->
                         if (documents.isEmpty) {
