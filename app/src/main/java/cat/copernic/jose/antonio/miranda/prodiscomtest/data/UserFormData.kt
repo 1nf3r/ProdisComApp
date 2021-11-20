@@ -8,5 +8,6 @@ data class UserFormData(
     val tel: String? = null,
     val passwd: String? = null,
     val passConf: String? = null,
-    val imgUser: String? = null
+    val imgUser: String? = null,
+    val supUser: Boolean? = null
 )

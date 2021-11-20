@@ -5,13 +5,17 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import cat.copernic.jose.antonio.miranda.prodiscomtest.R
 import cat.copernic.jose.antonio.miranda.prodiscomtest.data.UserFormData
 import cat.copernic.jose.antonio.miranda.prodiscomtest.databinding.ActivityLoginBinding
 import cat.copernic.jose.antonio.miranda.prodiscomtest.ui.register.Register
+import cat.copernic.jose.antonio.miranda.prodiscomtest.viewmodel.LoginViewModel
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
+import androidx.lifecycle.ViewModelProviders
 
 
 class LoginActivity : AppCompatActivity() {
@@ -19,7 +23,7 @@ class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
     private val db = FirebaseFirestore.getInstance()
-    private var currentUser = UserFormData()
+    private lateinit var viewModel: LoginViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         Thread.sleep(1000)
@@ -28,6 +32,8 @@ class LoginActivity : AppCompatActivity() {
 
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        //viewModel = ViewModelProviders
 
         val dni = binding.username
         val password = binding.password
@@ -38,7 +44,7 @@ class LoginActivity : AppCompatActivity() {
         binding.btnShow?.setOnClickListener {
             if (binding.password.inputType == 1) {
                 binding.password.inputType =
-                    InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+                    InputType.TYPE_CLASS_TEXT or InputType.TYPE_NUMBER_VARIATION_PASSWORD
                 btnshow?.setImageResource(R.drawable.ic_baseline_eye)
             } else {
                 binding.password.inputType = 1
@@ -72,7 +78,7 @@ class LoginActivity : AppCompatActivity() {
                     .get()
                     .addOnSuccessListener { documents ->
                         if (documents.isEmpty) {
-                            showError()
+                            showLoginError()
                         } else {
                             for (document in documents) {
                                 loginWithEmail(document.getString("email").toString())
@@ -81,7 +87,7 @@ class LoginActivity : AppCompatActivity() {
 
                     }
             } else {
-                showError()
+                showLoginError()
             }
         }
 
@@ -100,7 +106,7 @@ class LoginActivity : AppCompatActivity() {
             }
     }
 
-    private fun showError() {
+    private fun showLoginError() {
         val errorDis = AlertDialog.Builder(this)
         errorDis.setTitle("Inici de Sessió fallat")
         errorDis.setMessage("DNI o Contrasenya incorrectes!!!")
