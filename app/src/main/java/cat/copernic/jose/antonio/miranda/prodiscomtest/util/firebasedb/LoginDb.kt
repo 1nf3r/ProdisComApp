@@ -1,6 +1,7 @@
 package cat.copernic.jose.antonio.miranda.prodiscomtest.util.firebasedb
 
 
+import android.util.Log
 import cat.copernic.jose.antonio.miranda.prodiscomtest.data.UserFormData
 import cat.copernic.jose.antonio.miranda.prodiscomtest.util.ErrorLogs
 import com.google.firebase.auth.ktx.auth
@@ -13,10 +14,10 @@ class LoginDb {
     private val db = FirebaseFirestore.getInstance()
     private var mail: String = ""
 
-    fun loginWithEmail(email: String): Boolean {
+    fun loginWithEmail(email: String, passwd: String): Boolean {
         var logSuccess = false
         var realPass = "Prodis"
-        realPass += currentUser.passwd
+        realPass += passwd
         Firebase.auth.signInWithEmailAndPassword(email, realPass)
             .addOnCompleteListener {
                 if (it.isSuccessful) {
@@ -26,10 +27,10 @@ class LoginDb {
         return logSuccess
     }
 
-    fun searchByDni(): Boolean {
+    fun searchByDni(dni: String, passwd: String ): Boolean {
         var showError = false
-        if (currentUser.mail != null && currentUser.passwd != null) {  // FALLA AQUI
-            db.collection("users").whereEqualTo("DNI", currentUser.dni)
+        if (dni.isNotEmpty() && passwd.isNotEmpty()) {
+            db.collection("users").whereEqualTo("DNI", dni)
                 .get()
                 .addOnSuccessListener { documents ->
                     if (documents.isEmpty) {
@@ -37,7 +38,9 @@ class LoginDb {
                     } else {
                         for (document in documents) {
 //                            loginWithEmail(document.getString("email").toString())
-                            mail = document.getString("email").toString() //PUEDE FALLAR
+//                            mail = document.getString("email").toString() //FALLA AQUI
+                            loginWithEmail(document.getString("email").toString(), passwd)
+
                         }
                     }
 

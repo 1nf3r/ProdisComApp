@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -36,8 +37,8 @@ class LoginActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this)[LoginViewModel::class.java]
 
 
-        val dni = binding.username
-        val password = binding.password
+        val dni = binding.username.text.toString()
+        val password = binding.password.text.toString()
         val login = binding.login
         val btnshow = binding.btnShow
 
@@ -72,9 +73,9 @@ class LoginActivity : AppCompatActivity() {
         }
 
 
-        //TEST//
+        //TEST LOGIN//
         login.setOnClickListener {
-            viewModel.userLogin(this)
+            viewModel.userLogin(this, binding.username.text.toString() ,binding.password.text.toString())
         }
 
        /* //Al clicar se iniciara el proceso de login
