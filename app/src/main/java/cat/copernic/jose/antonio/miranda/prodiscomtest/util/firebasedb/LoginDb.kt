@@ -37,7 +37,7 @@ class LoginDb {
                     } else {
                         for (document in documents) {
 //                            loginWithEmail(document.getString("email").toString())
-                            mail = document.getString("email").toString()
+                            mail = document.getString("email").toString() //PUEDE FALLAR
                         }
                     }
 
