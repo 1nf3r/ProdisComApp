@@ -9,11 +9,11 @@ import com.google.firebase.ktx.Firebase
 
 class LoginDb {
 
-    private val currentUser:  UserFormData = UserFormData()
+    private val currentUser: UserFormData = UserFormData()
     private val db = FirebaseFirestore.getInstance()
-    private val errorLog: ErrorLogs = ErrorLogs()
+    private var mail: String = ""
 
-    private fun loginWithEmail(email: String) :Boolean{
+    fun loginWithEmail(email: String): Boolean {
         var logSuccess = false
         var realPass = "Prodis"
         realPass += currentUser.passwd
@@ -26,24 +26,30 @@ class LoginDb {
         return logSuccess
     }
 
-    //TODO: Arreglar la insercion de activities en estas funciones
-    private fun searchByDni(){
+    fun searchByDni(): Boolean {
+        var showError = false
         if (currentUser.mail != null && currentUser.passwd != null) {
             db.collection("users").whereEqualTo("DNI", currentUser.dni)
                 .get()
                 .addOnSuccessListener { documents ->
                     if (documents.isEmpty) {
-//                        errorLog.showError()
+                        showError = true
                     } else {
                         for (document in documents) {
-                            loginWithEmail(document.getString("email").toString())
+//                            loginWithEmail(document.getString("email").toString())
+                            mail = document.getString("email").toString()
                         }
                     }
 
                 }
         } else {
-//            errorLog.showError()
+            showError = true
         }
+        return showError
+    }
+
+    fun getMail(): String {
+        return mail
     }
 
 

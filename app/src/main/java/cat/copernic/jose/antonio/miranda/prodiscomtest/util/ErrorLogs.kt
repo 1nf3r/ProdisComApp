@@ -6,10 +6,10 @@ import android.content.Context
 
 class ErrorLogs {
 
-     fun showError(context: Context) {
+     fun showError(context: Context, title: String, message: String) {
         val errorDis = AlertDialog.Builder(context)
-        errorDis.setTitle("Inici de Sessió fallat")
-        errorDis.setMessage("DNI o Contrasenya incorrectes!!!")
+        errorDis.setTitle(title)
+        errorDis.setMessage(message)
         errorDis.setPositiveButton("Aceptar", null)
         errorDis.show()
     }

@@ -22,7 +22,6 @@ class LoginActivity : AppCompatActivity() {
 
 
     private lateinit var binding: ActivityLoginBinding
-    private val db = FirebaseFirestore.getInstance()
     private lateinit var viewModel: LoginViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,6 +33,8 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         //viewModel = ViewModelProviders
+        viewModel = ViewModelProvider(this)[LoginViewModel::class.java]
+
 
         val dni = binding.username
         val password = binding.password
@@ -71,7 +72,12 @@ class LoginActivity : AppCompatActivity() {
         }
 
 
-        //Al clicar se iniciara el proceso de login
+        //TEST//
+        login.setOnClickListener {
+            viewModel.userLogin(this)
+        }
+
+       /* //Al clicar se iniciara el proceso de login
         login.setOnClickListener {
             if (dni.text.toString().isNotEmpty() && password.text.toString().isNotEmpty()) {
                 db.collection("users").whereEqualTo("DNI", dni.text.toString())
@@ -89,7 +95,7 @@ class LoginActivity : AppCompatActivity() {
             } else {
                 showLoginError()
             }
-        }
+        }*/
 
     }
 
