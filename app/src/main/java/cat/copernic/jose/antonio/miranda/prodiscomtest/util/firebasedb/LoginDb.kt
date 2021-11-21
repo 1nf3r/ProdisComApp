@@ -30,10 +30,12 @@ class LoginDb {
     fun searchByDni(dni: String, passwd: String ): Boolean {
         var showError = false
         if (dni.isNotEmpty() && passwd.isNotEmpty()) {
+            Log.i("login", "entra")
             db.collection("users").whereEqualTo("DNI", dni)
                 .get()
                 .addOnSuccessListener { documents ->
                     if (documents.isEmpty) {
+                        Log.i("login", "Deberia entrar")
                         showError = true
                     } else {
                         for (document in documents) {
