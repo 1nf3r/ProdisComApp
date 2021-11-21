@@ -99,7 +99,7 @@ class LoginActivity : AppCompatActivity() {
 
     }
 
-    private fun loginWithEmail(email: String) {
+   /* private fun loginWithEmail(email: String) {
         var realPass = "Prodis"
         realPass += binding.password.text.toString()
         Firebase.auth.signInWithEmailAndPassword(email, realPass)
@@ -118,7 +118,7 @@ class LoginActivity : AppCompatActivity() {
         errorDis.setMessage("DNI o Contrasenya incorrectes!!!")
         errorDis.setPositiveButton("Aceptar", null)
         errorDis.show()
-    }
+    }*/
 
 
 }
