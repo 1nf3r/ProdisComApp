@@ -28,7 +28,7 @@ class LoginDb {
 
     fun searchByDni(): Boolean {
         var showError = false
-        if (currentUser.mail != null && currentUser.passwd != null) {
+        if (currentUser.mail != null && currentUser.passwd != null) {  // FALLA AQUI
             db.collection("users").whereEqualTo("DNI", currentUser.dni)
                 .get()
                 .addOnSuccessListener { documents ->

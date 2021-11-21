@@ -24,7 +24,16 @@ class LoginViewModel : ViewModel() {
                 "Dni o contrasenya incorrectes"
             )
         } else {
-            loginDb.loginWithEmail(loginDb.getMail())
+            if (loginDb.loginWithEmail(loginDb.getMail())) {
+
+            } else {
+                showError.showError(
+                    activity,
+                    "Failed Login",
+                    "Contrasenya o Dno incorrectes."
+                )
+            }
+
         }
 
     }
