@@ -13,6 +13,8 @@ class LoginDb {
     private val currentUser: UserFormData = UserFormData()
     private val db = FirebaseFirestore.getInstance()
     private var mail: String = ""
+    private var showError = false
+
 
     fun loginWithEmail(email: String, passwd: String): Boolean {
         var logSuccess = false
@@ -27,8 +29,8 @@ class LoginDb {
         return logSuccess
     }
 
-    fun searchByDni(dni: String, passwd: String ): Boolean {
-        var showError = false
+    fun searchByDni(dni: String, passwd: String): Boolean {
+
         if (dni.isNotEmpty() && passwd.isNotEmpty()) {
             Log.i("login", "entra")
             db.collection("users").whereEqualTo("DNI", dni)
@@ -36,18 +38,20 @@ class LoginDb {
                 .addOnSuccessListener { documents ->
                     if (documents.isEmpty) {
                         Log.i("login", "Deberia entrar")
-                        showError = true
+                        showError = true //FALLA AQUI
                     } else {
                         for (document in documents) {
-//                            loginWithEmail(document.getString("email").toString())
 //                            mail = document.getString("email").toString() //FALLA AQUI
-                            loginWithEmail(document.getString("email").toString(), passwd)
-
+                            Log.i("login", "yas")
+                            loginWithEmail(
+                                document.getString("email").toString(),
+                                passwd
+                            )
                         }
                     }
-
                 }
         } else {
+
             showError = true
         }
         return showError
@@ -56,6 +60,4 @@ class LoginDb {
     fun getMail(): String {
         return mail
     }
-
-
 }

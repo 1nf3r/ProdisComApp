@@ -1,6 +1,7 @@
 package cat.copernic.jose.antonio.miranda.prodiscomtest.viewmodel
 
 import android.app.Activity
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -22,8 +23,10 @@ class LoginViewModel : ViewModel() {
                 "Failed Login",
                 "Dni o contrasenya incorrectes"
             )
+            Log.i("login", "Entra en show")
 
         }
 
     }
+
 }

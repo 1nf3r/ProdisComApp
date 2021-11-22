@@ -22,6 +22,7 @@ import androidx.lifecycle.ViewModelProviders
 class LoginActivity : AppCompatActivity() {
 
 
+    private val db = FirebaseFirestore.getInstance()
     private lateinit var binding: ActivityLoginBinding
     private lateinit var viewModel: LoginViewModel
 
@@ -73,15 +74,15 @@ class LoginActivity : AppCompatActivity() {
         }
 
 
-        //TEST LOGIN//
+      /*  //TEST LOGIN//
         login.setOnClickListener {
             viewModel.userLogin(this, binding.username.text.toString() ,binding.password.text.toString())
-        }
+        }*/
 
-       /* //Al clicar se iniciara el proceso de login
+        //Al clicar se iniciara el proceso de login
         login.setOnClickListener {
-            if (dni.text.toString().isNotEmpty() && password.text.toString().isNotEmpty()) {
-                db.collection("users").whereEqualTo("DNI", dni.text.toString())
+            if (binding.username.text.toString().isNotEmpty() && binding.password.text.toString().isNotEmpty()) {
+                db.collection("users").whereEqualTo("DNI", binding.username.text.toString())
                     .get()
                     .addOnSuccessListener { documents ->
                         if (documents.isEmpty) {
@@ -96,11 +97,11 @@ class LoginActivity : AppCompatActivity() {
             } else {
                 showLoginError()
             }
-        }*/
+        }
 
     }
 
-   /* private fun loginWithEmail(email: String) {
+    private fun loginWithEmail(email: String) {
         var realPass = "Prodis"
         realPass += binding.password.text.toString()
         Firebase.auth.signInWithEmailAndPassword(email, realPass)
@@ -109,6 +110,8 @@ class LoginActivity : AppCompatActivity() {
                     intent = Intent(applicationContext, MainActivity::class.java)
                     startActivity(intent)
                     finish()
+                } else {
+                    showLoginError()
                 }
             }
     }
@@ -119,7 +122,7 @@ class LoginActivity : AppCompatActivity() {
         errorDis.setMessage("DNI o Contrasenya incorrectes!!!")
         errorDis.setPositiveButton("Aceptar", null)
         errorDis.show()
-    }*/
+    }
 
 
 }
