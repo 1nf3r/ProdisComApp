@@ -94,7 +94,7 @@ class modUser : Fragment() {
         errorDis.show()
     }
 
-
+    //HAY QUE PROBAR DE CAMBIAR EL MAIL PARA VER QUE PASA EN FIREBASE
     private fun updateUser() {
         getUserInfo.update(
             "email",

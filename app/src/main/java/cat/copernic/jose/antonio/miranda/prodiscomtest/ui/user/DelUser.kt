@@ -22,8 +22,6 @@ class delUser : Fragment() {
     private val db = FirebaseFirestore.getInstance()
     private lateinit var getUserInfo: DocumentReference
     private var found = false
-    val user = Firebase.auth
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
