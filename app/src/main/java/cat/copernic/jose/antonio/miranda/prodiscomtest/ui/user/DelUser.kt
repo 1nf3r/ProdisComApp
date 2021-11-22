@@ -21,8 +21,9 @@ class delUser : Fragment() {
     private val binding get() = _binding!!
     private val db = FirebaseFirestore.getInstance()
     private lateinit var getUserInfo: DocumentReference
-    private val authUser = FirebaseAuth.getInstance()
     private var found = false
+    val user = Firebase.auth
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -54,7 +55,6 @@ class delUser : Fragment() {
         binding.btnDelUs.setOnClickListener {
             if (found) {
                 getUserInfo.delete()
-                authUser
                 found = false
             } else {
                 notFoundError()

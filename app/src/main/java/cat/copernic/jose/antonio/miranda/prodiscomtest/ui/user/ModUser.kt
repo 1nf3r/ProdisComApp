@@ -17,7 +17,6 @@ class modUser : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentModUserBinding.inflate(inflater, container, false)
-        //binding.btnAddUser.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.addUsuario, null))
 
         binding.btnReturnModUser.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.usuarios, null))
         binding.btnModUserToHome.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.menu_principal, null))
