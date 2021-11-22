@@ -17,7 +17,7 @@ import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.*
 
 private lateinit var viewModel: PerfilViewModel
-class EditPerfil : Fragment() {
+class editPerfil : Fragment() {
     private var _binding: FragmentEditPerfilBinding? = null
     private val binding get() = _binding!!
     private val per = Perfil()

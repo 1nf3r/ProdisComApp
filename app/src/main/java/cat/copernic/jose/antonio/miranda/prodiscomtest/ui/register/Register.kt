@@ -4,15 +4,27 @@ import android.app.AlertDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import cat.copernic.jose.antonio.miranda.prodiscomtest.databinding.ActivityRegisterBinding
 import cat.copernic.jose.antonio.miranda.prodiscomtest.ui.LoginActivity
 import cat.copernic.jose.antonio.miranda.prodiscomtest.viewmodel.RegisterViewModel
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.getField
+import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.*
+import android.R.bool
+import kotlinx.coroutines.tasks.await
+
 
 class Register : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding
     private val viewModel: RegisterViewModel by viewModels()
+    private val db = FirebaseFirestore.getInstance()
+    private val auth: FirebaseAuth = Firebase.auth
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //viewModel = ViewModelProvider(this)[RegisterViewModel::class.java]
@@ -46,6 +58,7 @@ class Register : AppCompatActivity() {
     private fun setup() {
 
         var checkDni: Boolean
+        var checkDni2 = false
         var checkMail: Boolean
         var checkName: Boolean
         var checkPasswd: Boolean
@@ -56,6 +69,9 @@ class Register : AppCompatActivity() {
         binding.btnRegistro.setOnClickListener {
             //Comprovem si les dades introduides son correctes
             checkDni = checkDni(binding.etxtRegDni.text.toString())
+            CoroutineScope(Dispatchers.Main).launch {
+                checkDni2 = checkDni2(binding.etxtRegDni.text.toString())
+            }
             checkMail = checkMail(binding.etxtRegMail.text.toString())
             checkName = checkName(binding.etxtRegNom.text.toString())
             checkPasswd = checkPass(
@@ -63,23 +79,36 @@ class Register : AppCompatActivity() {
                 binding.etxtRegConfPass.text.toString()
             )
 
-            //Si totes les dades son correctes registrarem l'usuari
-            if (checkMail && checkName && checkPasswd && checkDni) { //Creem el registre amb email i contrasenya...
-                //Registrem a l'usuari i amb el mètode addOnCompleteListener, ens notificarà si el registre a estat un èxit o no.
-                improvePassw += binding.etxtRegCont.text.toString()
-                FirebaseAuth.getInstance().createUserWithEmailAndPassword(
-                    binding.etxtRegMail.text.toString(), improvePassw
-                ).addOnCompleteListener {
-                    if (it.isSuccessful) { //Si el registre ha estat un èxit...
-                        showSucces(it.result?.user?.email ?: "", tipusProveidor.BASIC)
-                        finish()
-                    } else { //Si el registre no ha estat un èxit...
-                        showAlert()
-                    }
-                }
 
-            } else
-                showAlert()
+            CoroutineScope(Dispatchers.Main).launch {
+                delay(2000)
+                //Si totes les dades son correctes registrarem l'usuari
+                Log.i("Check", "Mail: "+checkMail.toString())
+                Log.i("Check", "Name: "+checkName.toString())
+                Log.i("Check", "Password: "+checkPasswd.toString())
+                Log.i("Check", "Dni: "+checkDni.toString())
+                Log.i("Check", "Dni2: "+checkDni2.toString())
+                if (checkMail && checkName && checkPasswd && checkDni && checkDni2) { //Creem el registre amb email i contrasenya...
+                    //Registrem a l'usuari i amb el mètode addOnCompleteListener, ens notificarà si el registre a estat un èxit o no.
+                    improvePassw += binding.etxtRegCont.text.toString()
+                    FirebaseAuth.getInstance().createUserWithEmailAndPassword(
+                        binding.etxtRegMail.text.toString(), improvePassw
+                    ).addOnCompleteListener {
+                        if (it.isSuccessful) { //Si el registre ha estat un èxit...
+                            showSucces(
+                                it.result?.user?.email ?: "",
+                                tipusProveidor.BASIC,
+                                binding.etxtRegDni.text.toString()
+                            )
+                            finish()
+                        } else { //Si el registre no ha estat un èxit...
+                            showAlert()
+                        }
+                    }
+
+                } else
+                    showAlert()
+            }
         }
     }
 
@@ -95,7 +124,7 @@ class Register : AppCompatActivity() {
 
 
     //Funcio que mostra el resultat del registre si ha tingut exit, mitjançant la pantalla Home
-    private fun showSucces(email: String, proveidor: tipusProveidor) {
+    private fun showSucces(email: String, proveidor: tipusProveidor, dni: String) {
         //Creem un objecte Intent passant-li com a paràmetre el context de l'Activitat acual i
         // el nom de la pantalla a la que volem navegar, és a dir, HomeActivity
         val homeIntent: Intent = Intent(this, ConRegistro::class.java).apply {
@@ -104,6 +133,7 @@ class Register : AppCompatActivity() {
                 "proveidor",
                 proveidor.name
             ) //proveidor a mostra. En el nostre cas de moment, només BASIC
+            putExtra("dni", dni)
         }
 
         //Guardar al firestore les dades de nom, dni , correu
@@ -190,16 +220,62 @@ class Register : AppCompatActivity() {
 
                 else -> letraComprobada = ""
             }
-
             if (letraDni == letraComprobada) comprobacion = true
         }
-
         return comprobacion
-
     }
+
+    suspend fun checkDni2(dni: String): Boolean {
+        return db.collection("users").whereEqualTo("DNI", dni)
+            .get()
+            .await().isEmpty
+    }
+
+    /*private fun checkDni3(dni: String): Boolean {
+        var checker = true
+        db.collection("users").whereEqualTo("DNI", dni)
+            .get()
+            .addOnSuccessListener { documents ->
+                if (documents.isEmpty) {
+                    return@addOnSuccessListener
+                } else {
+                    for (document in documents) {
+                        return@addOnSuccessListener
+                    }
+                }
+
+            }
+        return checker
+    }*/
+    /*private fun checkDni4(dni: String): Boolean {
+
+        var checker = false
+        Log.i("TAG", checker.toString()+" dni1")
+        if(db.collection("users")
+                .whereEqualTo("DNI", dni)
+                .get().isSuccessful() == false){
+            checker = true
+        }else if(db.collection("users").whereEqualTo("DNI", dni)
+                .get().isSuccessful){
+            checker = false
+        }
+        Log.i("TAG", checker.toString()+" dni2")
+        return checker
+    }*/
+
+
+
     private fun test(){
         if (!checkDni(binding.etxtRegDni.text.toString())){
             binding.etxtRegDni.error = "DNI no valid"
         }
+    }
+
+    private fun showError() {
+        val errorDis = AlertDialog.Builder(this)
+        errorDis.setTitle("Inici de Sessió fallat")
+        errorDis.setMessage("DNI o Contrasenya incorrectes!!!")
+        errorDis.setPositiveButton("Aceptar", null)
+        errorDis.show()
     }
 }

@@ -25,16 +25,21 @@ class ConRegistro : AppCompatActivity() {
         //Poden ser nuls, ja que si no hem fet un registre o una autenticació, no existiran
         val email: String? = bundle?.getString("email")
         val proveidor: String? = bundle?.getString("proveidor")
+        val dni: String? = bundle?.getString("dni")
 
-        setup(email ?: "", proveidor ?: "") //Si no existeixen es mostrarà buit
+        setup(email ?: "", proveidor ?: "", dni?: "") //Si no existeixen es mostrarà buit
+
+        binding.btnToInici.setOnClickListener {
+            finish()
+        }
     }
 
     //Mostrem la pantalla amb el correu de l'autenticació o registre i el proveidor, que en aquest cas serà basic
-    private fun setup(email: String, proveidor: String) {
+    private fun setup(email: String, proveidor: String, dni: String) {
         title = "Inici"
 
         binding.txtMail.text = email
-        binding.txtProvedor.text = proveidor
+        binding.txtDni.text = dni
 
 
     }
