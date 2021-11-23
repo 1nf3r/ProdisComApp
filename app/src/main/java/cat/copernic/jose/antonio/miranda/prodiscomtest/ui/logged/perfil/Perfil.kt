@@ -33,6 +33,16 @@ public class Perfil : Fragment() {
         binding.btnToEditPerfil.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.editPerfil, null))
         binding.btnReturnPerfil.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.menu_principal, null))
         viewModel.getInfo()
+        val datosRecuperados = arguments
+
+        //val id: Long = datosRecuperados!!.getLong("id")
+        //val edad: Int = datosRecuperados!!.getInt("edad")
+        //val nombre: String = datosRecuperados!!.getString("Nombre")!!
+        // Imprimimos, pero en tu caso haz lo necesario
+        // Imprimimos, pero en tu caso haz lo necesario
+        //Log.d("GastosFragmentEditar", "El ID: $id")
+        //Log.d("GastosFragmentEditar", "La edad: $edad")
+        //Log.d("GastosFragmentEditar", "El nombre: $nombre")
         displayInfo()
 
         return binding.root

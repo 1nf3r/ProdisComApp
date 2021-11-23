@@ -16,6 +16,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.*
 
+
 private lateinit var viewModel: PerfilViewModel
 class editPerfil : Fragment() {
     private var _binding: FragmentEditPerfilBinding? = null
@@ -31,6 +32,7 @@ class editPerfil : Fragment() {
         viewModel = ViewModelProvider(this)[PerfilViewModel::class.java]
 
         _binding = FragmentEditPerfilBinding.inflate(inflater, container, false)
+
         binding.btnGuardarPerfil.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.perfil, null))
 
         binding.btnReturnEditPerfil.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.perfil, null))

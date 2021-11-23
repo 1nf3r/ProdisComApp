@@ -8,7 +8,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.getField
 import com.google.firebase.ktx.Firebase
-
+import kotlinx.coroutines.tasks.await
 
 
 class PerfilViewModel: ViewModel() {
@@ -49,7 +49,7 @@ class PerfilViewModel: ViewModel() {
         //_nacimiento.value = nacimiento
     }
 
-    fun getInfo(){
+     fun getInfo(){
         val getUserInfo = db.collection("users").document(currentUser?.email!!)
             getUserInfo.get()
                 .addOnSuccessListener { document ->
@@ -64,7 +64,7 @@ class PerfilViewModel: ViewModel() {
                 }
                 .addOnFailureListener { exception ->
                     Log.w("TAG", "Error getting documents: ", exception)
-                }
+                }//.await()
         }
           //  }
 
