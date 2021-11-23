@@ -79,15 +79,29 @@
                     app:layout_constraintTop_toBottomOf="@+id/etxtRegDni" />
 
                 <TextView
+                    android:id="@+id/txtRegistrarseTel"
+                    style="@style/txtRegistrarse"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Tel:"
+                    app:layout_constraintEnd_toEndOf="@+id/titleRegistrar_se"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/titleRegistrar_se"
+                    app:layout_constraintTop_toBottomOf="@+id/etxtRegMail" />
+
+                <TextView
                     android:id="@+id/txtRegistrarseContrasenya"
                     style="@style/txtRegistrarse"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Contrasenya"
                     app:layout_constraintEnd_toEndOf="@+id/titleRegistrar_se"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/titleRegistrar_se"
-                    app:layout_constraintTop_toBottomOf="@+id/etxtRegMail" />
+                    app:layout_constraintTop_toBottomOf="@+id/etxtRegTel" />
 
+                <!-- No hace falta de momento
                 <TextView
                     android:id="@+id/txtRegistrarseFamiliar"
                     style="@style/txtRegistrarse"
@@ -96,7 +110,7 @@
                     android:text="Informació del familiar"
                     app:layout_constraintEnd_toEndOf="@+id/titleRegistrar_se"
                     app:layout_constraintStart_toStartOf="@+id/titleRegistrar_se"
-                    app:layout_constraintTop_toBottomOf="@+id/etxtRegConfPass" />
+                    app:layout_constraintTop_toBottomOf="@+id/etxtRegConfPass" /> -->
 
                 <EditText
                     android:id="@+id/etxtRegNom"
@@ -130,17 +144,19 @@
                     app:layout_constraintTop_toBottomOf="@+id/txtRegistrarseEmail" />
 
                 <EditText
-                    android:id="@+id/etxtRegCont"
+                    android:id="@+id/etxtRegTel"
                     style="@style/etxtRegistarse"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="Introdueix una contrasenya"
+                    android:hint="Introdueix el teu numero"
+                    android:inputType="number"
                     android:maxLength="4"
-                    android:inputType="numberPassword"
                     app:layout_constraintEnd_toEndOf="@+id/txtRegistrarseContrasenya"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/txtRegistrarseContrasenya"
-                    app:layout_constraintTop_toBottomOf="@+id/txtRegistrarseContrasenya" />
+                    app:layout_constraintTop_toBottomOf="@+id/txtRegistrarseTel" />
 
+                <!-- No hace falta de momento
                 <EditText
                     android:id="@+id/editTextTextPersonName5"
                     style="@style/etxtRegistarse"
@@ -150,7 +166,21 @@
                     android:inputType="textPersonName"
                     app:layout_constraintEnd_toEndOf="@+id/txtRegistrarseFamiliar"
                     app:layout_constraintStart_toStartOf="@+id/txtRegistrarseFamiliar"
-                    app:layout_constraintTop_toBottomOf="@+id/txtRegistrarseFamiliar" />
+                    app:layout_constraintTop_toBottomOf="@+id/txtRegistrarseFamiliar" /> -->
+
+                <EditText
+                    android:id="@+id/etxtRegCont"
+                    style="@style/etxtRegistarse"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:hint="Introdueix una contrasenya"
+                    android:inputType="numberPassword"
+                    android:maxLength="4"
+                    app:layout_constraintEnd_toEndOf="@+id/txtRegistrarseContrasenya"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/txtRegistrarseContrasenya"
+                    app:layout_constraintTop_toBottomOf="@+id/txtRegistrarseContrasenya" />
 
                 <TextView
                     android:id="@+id/txtRegistrarseConfirmarContrasenya"
@@ -182,14 +212,14 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
-                    android:layout_marginTop="28dp"
+                    android:layout_marginTop="40dp"
                     android:layout_marginEnd="32dp"
                     android:backgroundTint="@color/prodis"
                     android:text="@string/registrar_se"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName5"
+                    app:layout_constraintTop_toBottomOf="@+id/etxtRegConfPass"
                     app:strokeColor="#193A18"
                     app:strokeWidth="1dp" />
 
