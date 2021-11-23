@@ -1,6 +1,7 @@
 package cat.copernic.jose.antonio.miranda.prodiscomtest.ui.user
 
 import android.app.AlertDialog
+import android.content.DialogInterface
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -52,8 +53,7 @@ class delUser : Fragment() {
 
         binding.btnDelUs.setOnClickListener {
             if (found) {
-                getUserInfo.delete()
-                found = false
+                conDelUser()
             } else {
                 notFoundError()
             }
@@ -64,7 +64,7 @@ class delUser : Fragment() {
 
     //TODO USAR LA FUNCION DE COMPROBACION PARA DNI Y MAIL PARA BUSCAR POR LOS DOS CAMPOS
 
-    private fun getInfo(mailUser: String) :Boolean{
+    private fun getInfo(mailUser: String): Boolean {
         found = false
         getUserInfo = db.collection("users").document(mailUser)
         getUserInfo.get()
@@ -80,10 +80,10 @@ class delUser : Fragment() {
                     notFoundError()
                 }
             }
-        return  found
+        return found
     }
 
-    private fun printInfo(mail: String, nom: String, dni:String) {
+    private fun printInfo(mail: String, nom: String, dni: String) {
         binding.txResultMail.text = mail
         binding.txResultNom.text = nom
         binding.txResultDni.text = dni
@@ -96,4 +96,23 @@ class delUser : Fragment() {
         errorDis.setPositiveButton("Aceptar", null)
         errorDis.show()
     }
+
+    private fun delUser() {
+        getUserInfo.delete()
+        found = false
+    }
+
+    private fun conDelUser() {
+        val delDis = AlertDialog.Builder(activity)
+        delDis.setTitle("Eliminar Usuari")
+        delDis.setMessage("Estas segur que vols eliminar l'usuari? ")
+        delDis.setPositiveButton(
+            "Confirmar",
+            DialogInterface.OnClickListener(function = positiveButtonClick)
+        )
+        delDis.setNegativeButton("Cancelar", null)
+        delDis.show()
+    }
+
+    private val positiveButtonClick = { dialog: DialogInterface, which: Int -> delUser() }
 }
