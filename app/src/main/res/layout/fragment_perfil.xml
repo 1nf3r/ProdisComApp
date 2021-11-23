@@ -159,15 +159,17 @@
 
         <ImageView
             android:id="@+id/imgDisplayFoto"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="131dp"
+            android:layout_height="135dp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerInside"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.17"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/titleBGPerfil"
             app:layout_constraintVertical_bias="0.07999998"
-            tools:src="@tools:sample/avatars" />
+            app:srcCompat="@drawable/no_user" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

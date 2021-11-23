@@ -10,19 +10,21 @@ import androidx.navigation.Navigation
 import cat.copernic.jose.antonio.miranda.prodiscomtest.R
 import cat.copernic.jose.antonio.miranda.prodiscomtest.databinding.FragmentEditPerfilBinding
 import cat.copernic.jose.antonio.miranda.prodiscomtest.viewmodel.PerfilViewModel
+import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.*
 
+
 private lateinit var viewModel: PerfilViewModel
 class editPerfil : Fragment() {
     private var _binding: FragmentEditPerfilBinding? = null
     private val binding get() = _binding!!
-    private val per = Perfil()
+/*    private val per = Perfil()
     private val db = FirebaseFirestore.getInstance()
-    private val auth: FirebaseAuth = Firebase.auth
+    private val auth: FirebaseAuth = Firebase.auth*/
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,6 +41,15 @@ class editPerfil : Fragment() {
         viewModel.getInfo()
         displayInfo()
         //viewModel.setInfo("","",0,"")
+        val media = "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg"
+        if (media !== null) {
+            Glide.with(this)
+                .load(media)
+                .into(binding.iVPerfilFoto)
+        } else {
+            binding.iVPerfilFoto.setImageResource(R.drawable.adduser_edittext)
+        }
+
         return binding.root
     }
 
@@ -51,6 +62,8 @@ class editPerfil : Fragment() {
             binding.etxtNaixement.setText(viewModel.nacimiento.value)
         }
     }
+
+
 
     /*private fun getInfo() = runBlocking<Unit>{
         val currentUser = auth.currentUser?.email

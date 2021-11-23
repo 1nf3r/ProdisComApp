@@ -47,7 +47,7 @@ class LoginActivity : AppCompatActivity() {
         binding.btnShow?.setOnClickListener {
             if (binding.password.inputType == 1) {
                 binding.password.inputType =
-                    InputType.TYPE_CLASS_TEXT or InputType.TYPE_NUMBER_VARIATION_PASSWORD
+                    InputType.TYPE_NUMBER_VARIATION_PASSWORD or InputType.TYPE_CLASS_NUMBER
                 btnshow?.setImageResource(R.drawable.ic_baseline_eye)
             } else {
                 binding.password.inputType = 1
