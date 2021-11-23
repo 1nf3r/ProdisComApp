@@ -24,15 +24,7 @@ private lateinit var viewModel: PerfilViewModel
 class editPerfil : Fragment() {
     private var _binding: FragmentEditPerfilBinding? = null
     private val binding get() = _binding!!
-    private var latestTmpUri: Uri? = null
-//    HACER FOTO
-    val takeImageResult = registerForActivityResult(ActivityResultContracts.TakePicture()) { isSuccess ->
-        if (isSuccess) {
-            latestTmpUri?.let { uri ->
-//                binding.imgFoto.setImageURI(uri)
-            }
-        }
-    }
+
 /*    private val per = Perfil()
     private val db = FirebaseFirestore.getInstance()
     private val auth: FirebaseAuth = Firebase.auth*/
