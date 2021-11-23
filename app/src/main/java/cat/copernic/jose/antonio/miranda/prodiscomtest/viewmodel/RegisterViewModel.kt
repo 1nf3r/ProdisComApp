@@ -13,13 +13,12 @@ class RegisterViewModel : ViewModel() {
     private val db = FirebaseFirestore.getInstance()
 
 
-    fun saveDB(nombre: String, dni: String, email: String, info: String) {
+    fun saveDB(nombre: String, dni: String, email: String) {
         val users = db.collection("users")
         val userInfo = hashMapOf(
             "Nombre" to nombre,
             "DNI" to dni,
-            "email" to email,
-            "informacion" to info
+            "email" to email
         )
         users.document(email).set(userInfo)
     }

@@ -140,8 +140,7 @@ class Register : AppCompatActivity() {
         viewModel.saveDB(
             binding.etxtRegNom.text.toString(),
             binding.etxtRegDni.text.toString(),
-            binding.etxtRegMail.text.toString(),
-            binding.editTextTextPersonName5.text.toString()
+            binding.etxtRegMail.text.toString()
         )
         startActivity(homeIntent)
 
