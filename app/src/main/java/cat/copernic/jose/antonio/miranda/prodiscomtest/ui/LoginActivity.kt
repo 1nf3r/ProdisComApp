@@ -4,22 +4,27 @@ import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import cat.copernic.jose.antonio.miranda.prodiscomtest.R
 import cat.copernic.jose.antonio.miranda.prodiscomtest.data.UserFormData
 import cat.copernic.jose.antonio.miranda.prodiscomtest.databinding.ActivityLoginBinding
 import cat.copernic.jose.antonio.miranda.prodiscomtest.ui.register.Register
+import cat.copernic.jose.antonio.miranda.prodiscomtest.viewmodel.LoginViewModel
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
+import androidx.lifecycle.ViewModelProviders
 
 
 class LoginActivity : AppCompatActivity() {
 
 
-    private lateinit var binding: ActivityLoginBinding
     private val db = FirebaseFirestore.getInstance()
-    private var currentUser = UserFormData()
+    private lateinit var binding: ActivityLoginBinding
+    private lateinit var viewModel: LoginViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         Thread.sleep(1000)
@@ -29,8 +34,12 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val dni = binding.username
-        val password = binding.password
+        //viewModel = ViewModelProviders
+        viewModel = ViewModelProvider(this)[LoginViewModel::class.java]
+
+
+        val dni = binding.username.text.toString()
+        val password = binding.password.text.toString()
         val login = binding.login
         val btnshow = binding.btnShow
 
@@ -38,7 +47,7 @@ class LoginActivity : AppCompatActivity() {
         binding.btnShow?.setOnClickListener {
             if (binding.password.inputType == 1) {
                 binding.password.inputType =
-                    InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+                    InputType.TYPE_CLASS_TEXT or InputType.TYPE_NUMBER_VARIATION_PASSWORD
                 btnshow?.setImageResource(R.drawable.ic_baseline_eye)
             } else {
                 binding.password.inputType = 1
@@ -65,14 +74,19 @@ class LoginActivity : AppCompatActivity() {
         }
 
 
+      /*  //TEST LOGIN//
+        login.setOnClickListener {
+            viewModel.userLogin(this, binding.username.text.toString() ,binding.password.text.toString())
+        }*/
+
         //Al clicar se iniciara el proceso de login
         login.setOnClickListener {
-            if (dni.text.toString().isNotEmpty() && password.text.toString().isNotEmpty()) {
-                db.collection("users").whereEqualTo("DNI", dni.text.toString())
+            if (binding.username.text.toString().isNotEmpty() && binding.password.text.toString().isNotEmpty()) {
+                db.collection("users").whereEqualTo("DNI", binding.username.text.toString())
                     .get()
                     .addOnSuccessListener { documents ->
                         if (documents.isEmpty) {
-                            showError()
+                            showLoginError()
                         } else {
                             for (document in documents) {
                                 loginWithEmail(document.getString("email").toString())
@@ -81,7 +95,7 @@ class LoginActivity : AppCompatActivity() {
 
                     }
             } else {
-                showError()
+                showLoginError()
             }
         }
 
@@ -96,11 +110,13 @@ class LoginActivity : AppCompatActivity() {
                     intent = Intent(applicationContext, MainActivity::class.java)
                     startActivity(intent)
                     finish()
+                } else {
+                    showLoginError()
                 }
             }
     }
 
-    private fun showError() {
+    private fun showLoginError() {
         val errorDis = AlertDialog.Builder(this)
         errorDis.setTitle("Inici de Sessió fallat")
         errorDis.setMessage("DNI o Contrasenya incorrectes!!!")

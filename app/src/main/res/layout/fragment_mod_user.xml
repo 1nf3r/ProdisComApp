@@ -37,5 +37,141 @@
             tools:layout_editor_absoluteX="343dp"
             tools:layout_editor_absoluteY="32dp" />
 
+        <EditText
+            android:id="@+id/eTxtSearch"
+            android:layout_width="288dp"
+            android:layout_height="46dp"
+            android:layout_marginStart="32dp"
+            android:background="@drawable/rounded_edittext"
+            android:ems="10"
+            android:hint="@string/buscar_usuari"
+            android:inputType="textPersonName"
+            android:paddingStart="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titleBGModUser"
+            app:layout_constraintVertical_bias="0.092"
+            tools:ignore="MissingConstraints" />
+
+        <ImageView
+            android:id="@+id/iVBuscar"
+            android:layout_width="42dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="10dp"
+            android:src="@drawable/ic_baseline_search"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.037"
+            app:layout_constraintStart_toEndOf="@+id/eTxtSearch"
+            app:layout_constraintTop_toTopOf="@+id/eTxtSearch" />
+
+        <TextView
+            android:id="@+id/txtVInfo"
+            style="@style/textViewUsuarios"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:text="Informació de l'usuari"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.453"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/eTxtSearch" />
+
+        <TextView
+            android:id="@+id/txtVNom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="56dp"
+            android:layout_marginTop="64dp"
+            android:text="Nom:"
+            app:layout_constraintBottom_toBottomOf="@+id/txResultNom"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtVInfo" />
+
+        <TextView
+            android:id="@+id/txtVDni"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="DNI:"
+            app:layout_constraintBottom_toBottomOf="@+id/txResultDni"
+            app:layout_constraintStart_toStartOf="@+id/txtVNom"
+            app:layout_constraintTop_toBottomOf="@+id/txtVNom" />
+
+        <TextView
+            android:id="@+id/txtVMail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Correu Electronic:"
+            app:layout_constraintBottom_toBottomOf="@+id/txResultMail"
+            app:layout_constraintStart_toStartOf="@+id/txtVDni"
+            app:layout_constraintTop_toBottomOf="@+id/txtVDni" />
+
+        <TextView
+            android:id="@+id/txtVTelf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Telèfon:"
+            app:layout_constraintBottom_toBottomOf="@+id/txResultTel"
+            app:layout_constraintStart_toStartOf="@+id/txtVMail"
+            app:layout_constraintTop_toBottomOf="@+id/txtVMail" />
+
+        <Button
+            android:id="@+id/btnModUs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/modificar_usuari"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titleBGModUser"
+            app:layout_constraintVertical_bias="0.885" />
+
+        <EditText
+            android:id="@+id/txResultNom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="152dp"
+            android:layout_marginTop="64dp"
+            android:text="-"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.14"
+            app:layout_constraintStart_toEndOf="@+id/txtVNom"
+            app:layout_constraintTop_toBottomOf="@+id/txtVInfo" />
+
+        <EditText
+            android:id="@+id/txResultDni"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="-"
+            app:layout_constraintEnd_toEndOf="@+id/txResultNom"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/txResultNom"
+            app:layout_constraintTop_toBottomOf="@+id/txResultNom" />
+
+        <EditText
+            android:id="@+id/txResultMail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="-"
+            app:layout_constraintEnd_toEndOf="@+id/txResultDni"
+            app:layout_constraintHorizontal_bias="0.555"
+            app:layout_constraintStart_toStartOf="@+id/txResultDni"
+            app:layout_constraintTop_toBottomOf="@+id/txResultDni" />
+
+        <EditText
+            android:id="@+id/txResultTel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="-"
+            app:layout_constraintEnd_toEndOf="@+id/txResultMail"
+            app:layout_constraintStart_toStartOf="@+id/txResultMail"
+            app:layout_constraintTop_toBottomOf="@+id/txResultMail" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

@@ -1,6 +1,7 @@
 package cat.copernic.jose.antonio.miranda.prodiscomtest.util.firebasedb
 
 
+import android.util.Log
 import cat.copernic.jose.antonio.miranda.prodiscomtest.data.UserFormData
 import cat.copernic.jose.antonio.miranda.prodiscomtest.util.ErrorLogs
 import com.google.firebase.auth.ktx.auth
@@ -9,14 +10,16 @@ import com.google.firebase.ktx.Firebase
 
 class LoginDb {
 
-    private val currentUser:  UserFormData = UserFormData()
+    private val currentUser: UserFormData = UserFormData()
     private val db = FirebaseFirestore.getInstance()
-    private val errorLog: ErrorLogs = ErrorLogs()
+    private var mail: String = ""
+    private var showError = false
 
-    private fun loginWithEmail(email: String) :Boolean{
+
+    fun loginWithEmail(email: String, passwd: String): Boolean {
         var logSuccess = false
         var realPass = "Prodis"
-        realPass += currentUser.passwd
+        realPass += passwd
         Firebase.auth.signInWithEmailAndPassword(email, realPass)
             .addOnCompleteListener {
                 if (it.isSuccessful) {
@@ -26,25 +29,35 @@ class LoginDb {
         return logSuccess
     }
 
-    //TODO: Arreglar la insercion de activities en estas funciones
-    private fun searchByDni(){
-        if (currentUser.mail != null && currentUser.passwd != null) {
-            db.collection("users").whereEqualTo("DNI", currentUser.dni)
+    fun searchByDni(dni: String, passwd: String): Boolean {
+
+        if (dni.isNotEmpty() && passwd.isNotEmpty()) {
+            Log.i("login", "entra")
+            db.collection("users").whereEqualTo("DNI", dni)
                 .get()
                 .addOnSuccessListener { documents ->
                     if (documents.isEmpty) {
-//                        errorLog.showError()
+                        Log.i("login", "Deberia entrar")
+                        showError = true //FALLA AQUI
                     } else {
                         for (document in documents) {
-                            loginWithEmail(document.getString("email").toString())
+//                            mail = document.getString("email").toString() //FALLA AQUI
+                            Log.i("login", "yas")
+                            loginWithEmail(
+                                document.getString("email").toString(),
+                                passwd
+                            )
                         }
                     }
-
                 }
         } else {
-//            errorLog.showError()
+
+            showError = true
         }
+        return showError
     }
 
-
+    fun getMail(): String {
+        return mail
+    }
 }
