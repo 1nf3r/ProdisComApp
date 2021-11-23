@@ -6,7 +6,7 @@ import android.content.DialogInterface
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 
-class DeleteUserDb {
+class UserOpDb {
 
     private val db = FirebaseFirestore.getInstance()
     private lateinit var getUserInfo: DocumentReference
