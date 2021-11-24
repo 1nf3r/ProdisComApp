@@ -120,24 +120,6 @@ public class Perfil : Fragment() {
         startForActivityGallery.launch(intent)
     }
 
-    private fun obrirCamera() {
-        lifecycleScope.launchWhenStarted {
-            getTmpFileUri().let { uri ->
-                latestTmpUri = uri
-                takeImageResult.launch(uri)
-            }
-        }
-    }
-
-    private fun getTmpFileUri(): Uri {
-        val tmpFile = File.createTempFile("tmp_image_file", ".png", cacheDir).apply {
-            createNewFile()
-            deleteOnExit()
-        }
-
-        return FileProvider.getUriForFile(activity?.applicationContext!!, "cat.copernic.jose.antonio.miranda.prodiscomtest.provider", tmpFile)
-    }
-
 
 
 }
