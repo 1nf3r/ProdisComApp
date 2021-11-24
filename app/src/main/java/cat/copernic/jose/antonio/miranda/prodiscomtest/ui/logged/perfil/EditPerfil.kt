@@ -36,6 +36,7 @@ class editPerfil : Fragment() {
         viewModel = ViewModelProvider(this)[PerfilViewModel::class.java]
 
         _binding = FragmentEditPerfilBinding.inflate(inflater, container, false)
+
         binding.btnGuardarPerfil.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.perfil, null))
 
         binding.btnReturnEditPerfil.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.perfil, null))

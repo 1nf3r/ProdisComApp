@@ -8,16 +8,21 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import cat.copernic.jose.antonio.miranda.prodiscomtest.R
 import cat.copernic.jose.antonio.miranda.prodiscomtest.databinding.FragmentDelUserBinding
+import cat.copernic.jose.antonio.miranda.prodiscomtest.viewmodel.DelUserViewModel
+import cat.copernic.jose.antonio.miranda.prodiscomtest.viewmodel.PerfilViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.*
 
 class delUser : Fragment() {
+    private lateinit var viewModel: DelUserViewModel
     private var _binding: FragmentDelUserBinding? = null
     private val binding get() = _binding!!
     private val db = FirebaseFirestore.getInstance()
@@ -30,6 +35,7 @@ class delUser : Fragment() {
     ): View {
         _binding = FragmentDelUserBinding.inflate(inflater, container, false)
 
+        viewModel = ViewModelProvider(this)[DelUserViewModel::class.java]
         binding.btnReturnDelUser.setOnClickListener(
             Navigation.createNavigateOnClickListener(
                 R.id.usuarios,
@@ -44,11 +50,18 @@ class delUser : Fragment() {
         )
 
         binding.iVBuscar.setOnClickListener {
+        CoroutineScope(Dispatchers.Main).launch {
             if (binding.eTxtSearch.text.toString().isNotEmpty()) {
-                getInfo(binding.eTxtSearch.text.toString())
+                found = viewModel.getInfo(binding.eTxtSearch.text.toString(), requireActivity())
+                Log.d("DelUser","Busca")
+                printInfo()
+
             } else {
                 notFoundError()
             }
+        }
+
+
         }
 
         binding.btnDelUs.setOnClickListener {
@@ -62,31 +75,13 @@ class delUser : Fragment() {
         return binding.root
     }
 
-    //TODO USAR LA FUNCION DE COMPROBACION PARA DNI Y MAIL PARA BUSCAR POR LOS DOS CAMPOS
-
-    private fun getInfo(mailUser: String): Boolean {
-        found = false
-        getUserInfo = db.collection("users").document(mailUser)
-        getUserInfo.get()
-            .addOnSuccessListener { document ->
-                if (document.exists()) {
-                    printInfo(
-                        document.get("email") as String,
-                        document.get("Nombre") as String,
-                        document.get("DNI") as String
-                    )
-                    found = true
-                } else {
-                    notFoundError()
-                }
-            }
-        return found
-    }
-
-    private fun printInfo(mail: String, nom: String, dni: String) {
-        binding.txResultMail.text = mail
-        binding.txResultNom.text = nom
-        binding.txResultDni.text = dni
+    private fun printInfo() {
+            Log.i("DelUser","Correo: "+viewModel.correo.value)
+            Log.i("DelUser","Nombre: "+viewModel.nombre.value)
+            Log.i("DelUser","Dni: "+viewModel.dni.value)
+            binding.txResultMail.text = viewModel.correo.value
+            binding.txResultNom.text = viewModel.nombre.value
+            binding.txResultDni.text = viewModel.dni.value
     }
 
     private fun notFoundError() {
@@ -97,10 +92,7 @@ class delUser : Fragment() {
         errorDis.show()
     }
 
-    private fun delUser() {
-        getUserInfo.delete()
-        found = false
-    }
+
 
     private fun conDelUser() {
         val delDis = AlertDialog.Builder(activity)
@@ -114,5 +106,5 @@ class delUser : Fragment() {
         delDis.show()
     }
 
-    private val positiveButtonClick = { dialog: DialogInterface, which: Int -> delUser() }
+    private val positiveButtonClick = { dialog: DialogInterface, which: Int -> viewModel.delUser() }
 }
