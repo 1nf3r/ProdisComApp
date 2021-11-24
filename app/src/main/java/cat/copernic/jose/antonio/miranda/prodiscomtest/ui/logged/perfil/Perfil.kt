@@ -33,15 +33,7 @@ public class Perfil : Fragment() {
     private val binding get() = _binding!!
     private val db = FirebaseFirestore.getInstance()
     private val auth: FirebaseAuth = Firebase.auth
-    private var latestTmpUri: Uri? = null
-    //    HACER FOTO
-    val takeImageResult = registerForActivityResult(ActivityResultContracts.TakePicture()) { isSuccess ->
-        if (isSuccess) {
-            latestTmpUri?.let { uri ->
-               binding.imgDisplayFoto.setImageURI(uri)
-            }
-        }
-    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -69,6 +61,11 @@ public class Perfil : Fragment() {
         Glide.with(this)
             .load(media)
             .into(binding.imgDisplayFoto)
+
+
+        binding.btnGaleria.setOnClickListener {
+            obrirGaleria()
+        }
 
         return binding.root
     }

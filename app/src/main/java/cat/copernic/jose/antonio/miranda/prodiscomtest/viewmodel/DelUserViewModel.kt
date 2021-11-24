@@ -84,8 +84,6 @@ class DelUserViewModel: ViewModel() {
 
     fun delUser() {
         getUserInfo.delete()
-        var user = FirebaseAuth.getInstance().currentUser!!
-        user.delete()
         found = false
     }
 
