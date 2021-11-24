@@ -24,8 +24,8 @@ private lateinit var viewModel: PerfilViewModel
 public class Perfil : Fragment() {
     private var _binding: FragmentPerfilBinding? = null
     private val binding get() = _binding!!
-    private val db = FirebaseFirestore.getInstance()
-    private val auth: FirebaseAuth = Firebase.auth
+    //private val db = FirebaseFirestore.getInstance()
+    //private val auth: FirebaseAuth = Firebase.auth
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -80,7 +80,7 @@ public class Perfil : Fragment() {
         }
     }
 
-    private fun getInfo() = runBlocking<Unit> {
+    /*private fun getInfo() = runBlocking<Unit> {
         //Log.d("TAG",viewModel.dni.value!!)
         val currentUser = auth.currentUser?.email
         val getUserInfo = db.collection("users").whereEqualTo("email", currentUser)
@@ -97,7 +97,7 @@ public class Perfil : Fragment() {
                 Log.w("TAG", "Error getting documents: ", exception)
             }
         //delay(500)
-    }
+    }*/
 
 
 }
