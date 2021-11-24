@@ -45,6 +45,7 @@
             app:layout_constraintVertical_bias="0.14" />
 
         <LinearLayout
+            android:id="@+id/linearLayout2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
@@ -170,6 +171,33 @@
             app:layout_constraintTop_toBottomOf="@+id/titleBGPerfil"
             app:layout_constraintVertical_bias="0.07999998"
             app:srcCompat="@drawable/no_user" />
+
+        <Button
+            android:id="@+id/btnCamera"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="68dp"
+            android:text="Foto Camara"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btnGaleria"
+            app:layout_constraintHorizontal_bias="0.8"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+            app:layout_constraintVertical_bias="0.094" />
+
+        <Button
+            android:id="@+id/btnGaleria"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="88dp"
+            android:layout_marginEnd="16dp"
+            android:text="Foto Galeria"
+            app:layout_constraintBottom_toBottomOf="@+id/btnCamera"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.841"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+            app:layout_constraintVertical_bias="1.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
