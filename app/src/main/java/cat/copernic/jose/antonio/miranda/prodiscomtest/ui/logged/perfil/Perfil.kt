@@ -10,7 +10,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.FileProvider
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import cat.copernic.jose.antonio.miranda.prodiscomtest.R
 import cat.copernic.jose.antonio.miranda.prodiscomtest.databinding.FragmentPerfilBinding
@@ -31,6 +33,15 @@ public class Perfil : Fragment() {
     private val binding get() = _binding!!
     private val db = FirebaseFirestore.getInstance()
     private val auth: FirebaseAuth = Firebase.auth
+    private var latestTmpUri: Uri? = null
+    //    HACER FOTO
+    val takeImageResult = registerForActivityResult(ActivityResultContracts.TakePicture()) { isSuccess ->
+        if (isSuccess) {
+            latestTmpUri?.let { uri ->
+               binding.imgDisplayFoto.setImageURI(uri)
+            }
+        }
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -49,12 +60,6 @@ public class Perfil : Fragment() {
                 null
             )
         )
-
-        binding.btnGaleria.setOnClickListener {
-            obrirGaleria()
-        }
-
-
         viewModel.getInfo()
         displayInfo()
 
@@ -114,6 +119,7 @@ public class Perfil : Fragment() {
         intent.type = "image/*"
         startForActivityGallery.launch(intent)
     }
+
 
 
 }
