@@ -13,7 +13,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.tasks.await
 
-class DelUserViewModel: ViewModel() {
+class ModDelUserViewModel: ViewModel() {
 
     private val db = FirebaseFirestore.getInstance()
     private lateinit var getUserInfo: DocumentReference
@@ -84,8 +84,6 @@ class DelUserViewModel: ViewModel() {
 
     fun delUser() {
         getUserInfo.delete()
-        var user = FirebaseAuth.getInstance().currentUser!!
-        user.delete()
         found = false
     }
 

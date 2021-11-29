@@ -79,17 +79,17 @@ class Register : AppCompatActivity() {
                 binding.etxtRegConfPass.text.toString()
             )
 
-
             CoroutineScope(Dispatchers.Main).launch {
-                delay(2000)
                 //Si totes les dades son correctes registrarem l'usuari
                 Log.i("Check", "Mail: "+checkMail.toString())
                 Log.i("Check", "Name: "+checkName.toString())
                 Log.i("Check", "Password: "+checkPasswd.toString())
                 Log.i("Check", "Dni: "+checkDni.toString())
                 Log.i("Check", "Dni2: "+checkDni2.toString())
-                if (checkMail && checkName && checkPasswd && checkDni && checkDni2) { //Creem el registre amb email i contrasenya...
-                    //Registrem a l'usuari i amb el mètode addOnCompleteListener, ens notificarà si el registre a estat un èxit o no.
+                //Creem el registre amb email i contrasenya...
+                if (checkMail && checkName && checkPasswd && checkDni && checkDni2) {
+                    //Registrem a l'usuari i amb el mètode addOnCompleteListener,
+                    // ens notificarà si el registre a estat un èxit o no.
                     improvePassw += binding.etxtRegCont.text.toString()
                     FirebaseAuth.getInstance().createUserWithEmailAndPassword(
                         binding.etxtRegMail.text.toString(), improvePassw
@@ -104,7 +104,7 @@ class Register : AppCompatActivity() {
                         } else { //Si el registre no ha estat un èxit...
                             showAlert()
                         }
-                    }
+                    }.await()
 
                 } else
                     showAlert()
