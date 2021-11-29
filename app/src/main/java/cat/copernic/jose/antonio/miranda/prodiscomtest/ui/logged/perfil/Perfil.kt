@@ -2,7 +2,8 @@ package cat.copernic.jose.antonio.miranda.prodiscomtest.ui.logged.perfil
 
 import android.app.Activity
 import android.content.Intent
-import android.net.Uri
+import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -10,9 +11,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.content.FileProvider
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import cat.copernic.jose.antonio.miranda.prodiscomtest.R
 import cat.copernic.jose.antonio.miranda.prodiscomtest.databinding.FragmentPerfilBinding
@@ -23,18 +22,21 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.getField
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 import kotlinx.coroutines.*
-import java.io.File
+import java.io.ByteArrayOutputStream
 
 private lateinit var viewModel: PerfilViewModel
 
-public class Perfil : Fragment() {
+ class Perfil : Fragment() {
     private var _binding: FragmentPerfilBinding? = null
     private val binding get() = _binding!!
     private val db = FirebaseFirestore.getInstance()
     private val auth: FirebaseAuth = Firebase.auth
+    lateinit var storageRef: StorageReference
 
-    override fun onCreateView(
+     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
@@ -66,6 +68,8 @@ public class Perfil : Fragment() {
         binding.btnGaleria.setOnClickListener {
             obrirGaleria()
         }
+
+
 
         return binding.root
     }
@@ -105,9 +109,26 @@ public class Perfil : Fragment() {
     private val startForActivityGallery = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()){ result ->
         if (result.resultCode == Activity.RESULT_OK){
-            val data = result.data?.data
+            Log.i("HOLA", "HOLA1")
+            val dataLocal = result.data?.data
             //setImageUri només funciona per rutes locals, no a internet
-            binding.imgDisplayFoto.setImageURI(data)
+            binding.imgDisplayFoto.setImageURI(dataLocal)
+            Log.i("HOLA", "HOLA2")
+            // Get the data from an ImageView as bytes
+            binding.imgDisplayFoto.isDrawingCacheEnabled = true
+            binding.imgDisplayFoto.buildDrawingCache()
+            Log.i("HOLA", "HOLA3")
+            val bitmap = (binding.imgDisplayFoto.drawable as BitmapDrawable).bitmap
+            val baos = ByteArrayOutputStream()
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+            val data = baos.toByteArray()
+            storageRef = FirebaseStorage.getInstance().reference
+            var uploadTask = storageRef.putBytes(data)
+            uploadTask.addOnFailureListener {
+                Log.i("HOLA", "failed")
+            }.addOnSuccessListener { taskSnapshot ->
+                Log.i("HOLA", "success")
+            }
         }
     }
 
@@ -116,7 +137,4 @@ public class Perfil : Fragment() {
         intent.type = "image/*"
         startForActivityGallery.launch(intent)
     }
-
-
-
 }
