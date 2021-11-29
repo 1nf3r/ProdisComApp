@@ -12,7 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import cat.copernic.jose.antonio.miranda.prodiscomtest.R
 import cat.copernic.jose.antonio.miranda.prodiscomtest.databinding.FragmentDelUserBinding
-import cat.copernic.jose.antonio.miranda.prodiscomtest.viewmodel.DelUserViewModel
+import cat.copernic.jose.antonio.miranda.prodiscomtest.viewmodel.ModDelUserViewModel
 import cat.copernic.jose.antonio.miranda.prodiscomtest.viewmodel.PerfilViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -22,7 +22,7 @@ import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.*
 
 class delUser : Fragment() {
-    private lateinit var viewModel: DelUserViewModel
+    private lateinit var viewModel: ModDelUserViewModel
     private var _binding: FragmentDelUserBinding? = null
     private val binding get() = _binding!!
     private val db = FirebaseFirestore.getInstance()
@@ -35,7 +35,7 @@ class delUser : Fragment() {
     ): View {
         _binding = FragmentDelUserBinding.inflate(inflater, container, false)
 
-        viewModel = ViewModelProvider(this)[DelUserViewModel::class.java]
+        viewModel = ViewModelProvider(this)[ModDelUserViewModel::class.java]
         binding.btnReturnDelUser.setOnClickListener(
             Navigation.createNavigateOnClickListener(
                 R.id.usuarios,
@@ -50,18 +50,15 @@ class delUser : Fragment() {
         )
 
         binding.iVBuscar.setOnClickListener {
-        CoroutineScope(Dispatchers.Main).launch {
-            if (binding.eTxtSearch.text.toString().isNotEmpty()) {
-                found = viewModel.getInfo(binding.eTxtSearch.text.toString(), requireActivity())
-                Log.d("DelUser","Busca")
-                printInfo()
-
-            } else {
-                notFoundError()
+            CoroutineScope(Dispatchers.Main).launch {
+                if (binding.eTxtSearch.text.toString().isNotEmpty()) {
+                    found = viewModel.getInfo(binding.eTxtSearch.text.toString(), requireActivity())
+                    Log.d("DelUser","Busca")
+                    printInfo()
+                } else {
+                    notFoundError()
+                }
             }
-        }
-
-
         }
 
         binding.btnDelUs.setOnClickListener {
