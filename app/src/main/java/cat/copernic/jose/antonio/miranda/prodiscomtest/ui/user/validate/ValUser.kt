@@ -6,8 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import cat.copernic.jose.antonio.miranda.prodiscomtest.R
 import cat.copernic.jose.antonio.miranda.prodiscomtest.databinding.FragmentValUserBinding
+import cat.copernic.jose.antonio.miranda.prodiscomtest.ui.user.validate.CustomAdapter
+import cat.copernic.jose.antonio.miranda.prodiscomtest.ui.user.validate.ValItemsViewModel
 
 class valUser : Fragment() {
     private var _binding: FragmentValUserBinding? = null
@@ -21,6 +25,26 @@ class valUser : Fragment() {
         binding.btnReturnValUser.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.usuarios, null))
         binding.btnValUserToHome.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.menu_principal, null))
 
+        // getting the recyclerview by its id
+        //val recyclerview = findViewById<RecyclerView>(R.id.recyclerView)
+
+        // this creates a vertical layout Manager
+        binding.recyclerView.layoutManager = LinearLayoutManager(activity)
+
+        // ArrayList of class ItemsViewModel
+        val data = ArrayList<ValItemsViewModel>()
+
+        // This loop will create 20 Views containing
+        // the image with the count of view
+        for (i in 1..20) {
+            data.add(ValItemsViewModel("Item " + i))
+        }
+
+        // This will pass the ArrayList to our Adapter
+        val adapter = CustomAdapter(data)
+
+        // Setting the Adapter with the recyclerview
+        binding.recyclerView.adapter = adapter
 
         return binding.root
     }
