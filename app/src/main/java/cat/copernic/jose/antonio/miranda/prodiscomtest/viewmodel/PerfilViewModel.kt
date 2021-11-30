@@ -66,21 +66,5 @@ class PerfilViewModel: ViewModel() {
                     Log.w("TAG", "Error getting documents: ", exception)
                 }//.await()
         }
-          //  }
-
-
-        //}
-
-        /*getUserInfo.get()
-            .addOnSuccessListener { documents ->
-                for (document in documents) {
-                    Log.d("TAG", "Nombre: ${document.id} => ${document.data}")
-                    //Log.d("TAG", document.getField<String>("Nombre")!!)
-                    _nombre.value = document.getField<String>("Nombre")
-                }
-            }
-            .addOnFailureListener { exception ->
-                Log.w("TAG", "Error getting documents: ", exception)
-            }*/
 
     }

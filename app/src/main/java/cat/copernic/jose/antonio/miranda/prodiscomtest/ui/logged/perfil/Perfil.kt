@@ -35,6 +35,8 @@ class Perfil : Fragment() {
     private val db = FirebaseFirestore.getInstance()
     private val auth: FirebaseAuth = Firebase.auth
     lateinit var storageRef: StorageReference
+    var filename = "perfilImg-" + FirebaseAuth.getInstance().currentUser?.email
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -59,12 +61,18 @@ class Perfil : Fragment() {
         viewModel.getInfo()
         displayInfo()
 
-        val media = "https://firebasestorage.googleapis.com/v0/b/prodiscom-ij.appspot.com/" +
-                "o/pikachu.jpeg?alt=media&token=44aef3bc-05e2-4e23-9857-ba55da5805e6"
 
-        Glide.with(this)
-            .load(media)
-            .into(binding.imgDisplayFoto)
+        storageRef = FirebaseStorage.getInstance().getReference("user_images/$filename")
+        storageRef.child("user_images/$filename").downloadUrl.addOnSuccessListener { url ->
+            Glide.with(this)
+                .load(url.toString())
+                .into(binding.imgDisplayFoto)
+
+        }.addOnFailureListener {
+            binding.imgDisplayFoto
+        }
+
+
 
 
         binding.btnGaleria.setOnClickListener {
@@ -95,9 +103,7 @@ class Perfil : Fragment() {
         if (result.resultCode == Activity.RESULT_OK) {
             Log.i("HOLA", "HOLA1")
             val dataLocal = result.data?.data
-            var filename =
-                "perfilImg-" + FirebaseAuth.getInstance().currentUser?.email
-            storageRef = FirebaseStorage.getInstance().getReference("user_images/$filename")
+
             if (dataLocal != null) {
                 storageRef.putFile(dataLocal)
                     .addOnSuccessListener {
