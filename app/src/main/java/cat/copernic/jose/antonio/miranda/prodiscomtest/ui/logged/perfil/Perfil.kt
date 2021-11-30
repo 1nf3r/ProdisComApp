@@ -35,7 +35,7 @@ class Perfil : Fragment() {
     private val db = FirebaseFirestore.getInstance()
     private val auth: FirebaseAuth = Firebase.auth
     lateinit var storageRef: StorageReference
-    var filename = "perfilImg-" + FirebaseAuth.getInstance().currentUser?.email
+    private var filename = "perfilImg-"
 
 
     override fun onCreateView(
@@ -63,14 +63,16 @@ class Perfil : Fragment() {
 
 
         storageRef = FirebaseStorage.getInstance().getReference("user_images/$filename")
-        storageRef.child("user_images/$filename").downloadUrl.addOnSuccessListener { url ->
-            Glide.with(this)
-                .load(url.toString())
-                .into(binding.imgDisplayFoto)
+        Log.i("HELLO", storageRef.child("user_images/$filename").toString())
+        storageRef.child("user_images/$filename").downloadUrl
+                .addOnSuccessListener { url ->
+                Glide.with(this)
+                    .load(url.toString())
+                    .into(binding.imgDisplayFoto)
 
-        }.addOnFailureListener {
-            binding.imgDisplayFoto
-        }
+            }.addOnFailureListener {
+                binding.imgDisplayFoto.setImageResource(R.drawable.no_user)
+            }
 
 
 
@@ -101,15 +103,12 @@ class Perfil : Fragment() {
         ActivityResultContracts.StartActivityForResult()
     ) { result ->
         if (result.resultCode == Activity.RESULT_OK) {
-            Log.i("HOLA", "HOLA1")
             val dataLocal = result.data?.data
-
             if (dataLocal != null) {
                 storageRef.putFile(dataLocal)
                     .addOnSuccessListener {
                         binding.imgDisplayFoto.setImageURI(dataLocal)
                     }.addOnFailureListener {
-                        Log.i("HOLA", "FAIL")
                     }
             }
 
