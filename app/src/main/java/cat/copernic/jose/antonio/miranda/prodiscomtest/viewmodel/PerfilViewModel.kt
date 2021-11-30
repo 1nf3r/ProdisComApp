@@ -55,9 +55,9 @@ class PerfilViewModel: ViewModel() {
                 .addOnSuccessListener { document ->
                     if (document != null) {
                         //Log.d("TAG", "Email: ${document.id} => ${document.data}")
-                        _nombre.value = document.getField<String>("Nombre")!!
-                        _correo.value = document.getField<String>("email")!!
-                        _nacimiento.value = document.getField<String>("informacion")!!
+                        _nombre.value = document.get("Nombre") as String
+                        _correo.value = document.get("email") as String
+//                        _nacimiento.value = document.get("informacion")as String
                     } else {
                         Log.d("TAG", "No such document")
                     }

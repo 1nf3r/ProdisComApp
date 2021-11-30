@@ -29,14 +29,14 @@ import java.io.ByteArrayOutputStream
 
 private lateinit var viewModel: PerfilViewModel
 
- class Perfil : Fragment() {
+class Perfil : Fragment() {
     private var _binding: FragmentPerfilBinding? = null
     private val binding get() = _binding!!
     private val db = FirebaseFirestore.getInstance()
     private val auth: FirebaseAuth = Firebase.auth
     lateinit var storageRef: StorageReference
 
-     override fun onCreateView(
+    override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
@@ -54,11 +54,13 @@ private lateinit var viewModel: PerfilViewModel
                 null
             )
         )
+
+
         viewModel.getInfo()
         displayInfo()
 
         val media = "https://firebasestorage.googleapis.com/v0/b/prodiscom-ij.appspot.com/" +
-                    "o/pikachu.jpeg?alt=media&token=44aef3bc-05e2-4e23-9857-ba55da5805e6"
+                "o/pikachu.jpeg?alt=media&token=44aef3bc-05e2-4e23-9857-ba55da5805e6"
 
         Glide.with(this)
             .load(media)
@@ -80,55 +82,31 @@ private lateinit var viewModel: PerfilViewModel
             delay(500)
             binding.txtDisplayNombre.setText(viewModel.nombre.value)
             binding.txtDisplayCorreo.setText(viewModel.correo.value)
-            //binding.txtDisplayTelefono.setText(viewModel.telefono.value.toString())
             binding.txtDisplayNacimiento.setText(viewModel.nacimiento.value)
 
 
         }
     }
 
-    private fun getInfo() = runBlocking<Unit> {
-        //Log.d("TAG",viewModel.dni.value!!)
-        val currentUser = auth.currentUser?.email
-        val getUserInfo = db.collection("users").whereEqualTo("email", currentUser)
-        getUserInfo.get()
-            .addOnSuccessListener { documents ->
-                for (document in documents) {
-                    //Log.d("TAG", "Nombre: ${document.id} => ${document.data}")
-                    binding.txtDisplayNombre.setText(document.getField<String>("Nombre"))
-                    binding.txtDisplayCorreo.setText(document.getField<String>("email"))
-                    binding.txtDisplayNacimiento.setText(document.getField<String>("informacion"))
-                }
-            }
-            .addOnFailureListener { exception ->
-                Log.w("TAG", "Error getting documents: ", exception)
-            }
-        //delay(500)
-    }
 
     private val startForActivityGallery = registerForActivityResult(
-        ActivityResultContracts.StartActivityForResult()){ result ->
-        if (result.resultCode == Activity.RESULT_OK){
+        ActivityResultContracts.StartActivityForResult()
+    ) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
             Log.i("HOLA", "HOLA1")
             val dataLocal = result.data?.data
-            //setImageUri només funciona per rutes locals, no a internet
-            binding.imgDisplayFoto.setImageURI(dataLocal)
-            Log.i("HOLA", "HOLA2")
-            // Get the data from an ImageView as bytes
-            binding.imgDisplayFoto.isDrawingCacheEnabled = true
-            binding.imgDisplayFoto.buildDrawingCache()
-            Log.i("HOLA", "HOLA3")
-            val bitmap = (binding.imgDisplayFoto.drawable as BitmapDrawable).bitmap
-            val baos = ByteArrayOutputStream()
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
-            val data = baos.toByteArray()
-            storageRef = FirebaseStorage.getInstance().reference
-            var uploadTask = storageRef.putBytes(data)
-            uploadTask.addOnFailureListener {
-                Log.i("HOLA", "failed")
-            }.addOnSuccessListener { taskSnapshot ->
-                Log.i("HOLA", "success")
+            var filename =
+                "perfilImg-" + FirebaseAuth.getInstance().currentUser?.email
+            storageRef = FirebaseStorage.getInstance().getReference("user_images/$filename")
+            if (dataLocal != null) {
+                storageRef.putFile(dataLocal)
+                    .addOnSuccessListener {
+                        binding.imgDisplayFoto.setImageURI(dataLocal)
+                    }.addOnFailureListener {
+                        Log.i("HOLA", "FAIL")
+                    }
             }
+
         }
     }
 
@@ -136,5 +114,9 @@ private lateinit var viewModel: PerfilViewModel
         val intent = Intent(Intent.ACTION_PICK)
         intent.type = "image/*"
         startForActivityGallery.launch(intent)
+    }
+
+    private fun imgNameFormater() {
+
     }
 }
