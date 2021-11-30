@@ -1,6 +1,7 @@
 package cat.copernic.jose.antonio.miranda.prodiscomtest.ui.user
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,10 +13,20 @@ import cat.copernic.jose.antonio.miranda.prodiscomtest.R
 import cat.copernic.jose.antonio.miranda.prodiscomtest.databinding.FragmentValUserBinding
 import cat.copernic.jose.antonio.miranda.prodiscomtest.ui.user.validate.CustomAdapter
 import cat.copernic.jose.antonio.miranda.prodiscomtest.ui.user.validate.ValItemsViewModel
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.getField
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
 
 class valUser : Fragment() {
     private var _binding: FragmentValUserBinding? = null
     private val binding get() = _binding!!
+    private val db = FirebaseFirestore.getInstance()
+    private var nom = "1";
+    private var correu = "1";
+    private var dni = "1";
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -36,16 +47,32 @@ class valUser : Fragment() {
 
         // This loop will create 20 Views containing
         // the image with the count of view
-        for (i in 1..20) {
-            data.add(ValItemsViewModel("Item " + i))
+        CoroutineScope(Dispatchers.Main).launch {
+            getInfo(data)
+            // This will pass the ArrayList to our Adapter
+            val adapter = CustomAdapter(data)
+            // Setting the Adapter with the recyclerview
+            binding.recyclerView.adapter = adapter
         }
 
-        // This will pass the ArrayList to our Adapter
-        val adapter = CustomAdapter(data)
 
-        // Setting the Adapter with the recyclerview
-        binding.recyclerView.adapter = adapter
 
         return binding.root
+    }
+
+    suspend fun getInfo(data:ArrayList<ValItemsViewModel>){
+        val getUserInfo = db.collection("users").whereEqualTo("zValidado",false)
+        getUserInfo.get()
+            .addOnSuccessListener { documents ->
+                for (document in documents) {
+                    data.add(ValItemsViewModel(
+                        document.get("email") as String,
+                        document.get("Nombre") as String,
+                        document.get("DNI") as String,
+                        document.get("Fecha") as String))
+
+                }
+            }.await()
+
     }
 }

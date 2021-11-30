@@ -4,6 +4,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import cat.copernic.jose.antonio.miranda.prodiscomtest.data.UserFormData
 import com.google.firebase.firestore.FirebaseFirestore
+import java.text.SimpleDateFormat
+import java.util.*
 
 class RegisterViewModel : ViewModel() {
 
@@ -18,7 +20,14 @@ class RegisterViewModel : ViewModel() {
         val userInfo = hashMapOf(
             "Nombre" to nombre,
             "DNI" to dni,
-            "email" to email
+            "email" to email,
+            "Fecha" to SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+                .format(Date()),
+            //"Telefono" to telefono,
+            "zValidado" to false,
+            "zBloqueado" to false,
+            "zEliminado" to false,
+            "zAdmin" to false
         )
         users.document(email).set(userInfo)
     }

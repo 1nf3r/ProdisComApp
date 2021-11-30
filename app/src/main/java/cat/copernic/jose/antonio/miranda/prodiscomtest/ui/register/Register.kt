@@ -141,6 +141,7 @@ class Register : AppCompatActivity() {
             binding.etxtRegNom.text.toString(),
             binding.etxtRegDni.text.toString(),
             binding.etxtRegMail.text.toString()
+            //binding.etxtRegTel.text.toString() as Int
         )
         startActivity(homeIntent)
 
