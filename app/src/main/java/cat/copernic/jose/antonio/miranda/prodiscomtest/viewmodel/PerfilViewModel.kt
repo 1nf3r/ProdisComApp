@@ -55,9 +55,9 @@ class PerfilViewModel: ViewModel() {
                 .addOnSuccessListener { document ->
                     if (document != null) {
                         //Log.d("TAG", "Email: ${document.id} => ${document.data}")
-                        _nombre.value = document.getField<String>("Nombre")!!
-                        _correo.value = document.getField<String>("email")!!
-                        _nacimiento.value = document.getField<String>("informacion")!!
+                        _nombre.value = document.get("Nombre") as String
+                        _correo.value = document.get("email") as String
+//                        _nacimiento.value = document.get("informacion")as String
                     } else {
                         Log.d("TAG", "No such document")
                     }
@@ -66,21 +66,5 @@ class PerfilViewModel: ViewModel() {
                     Log.w("TAG", "Error getting documents: ", exception)
                 }//.await()
         }
-          //  }
-
-
-        //}
-
-        /*getUserInfo.get()
-            .addOnSuccessListener { documents ->
-                for (document in documents) {
-                    Log.d("TAG", "Nombre: ${document.id} => ${document.data}")
-                    //Log.d("TAG", document.getField<String>("Nombre")!!)
-                    _nombre.value = document.getField<String>("Nombre")
-                }
-            }
-            .addOnFailureListener { exception ->
-                Log.w("TAG", "Error getting documents: ", exception)
-            }*/
 
     }

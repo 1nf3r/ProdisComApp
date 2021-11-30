@@ -2,7 +2,8 @@ package cat.copernic.jose.antonio.miranda.prodiscomtest.ui.logged.perfil
 
 import android.app.Activity
 import android.content.Intent
-import android.net.Uri
+import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -10,9 +11,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.content.FileProvider
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import cat.copernic.jose.antonio.miranda.prodiscomtest.R
 import cat.copernic.jose.antonio.miranda.prodiscomtest.databinding.FragmentPerfilBinding
@@ -23,16 +22,21 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.getField
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 import kotlinx.coroutines.*
-import java.io.File
+import java.io.ByteArrayOutputStream
 
 private lateinit var viewModel: PerfilViewModel
 
-public class Perfil : Fragment() {
+class Perfil : Fragment() {
     private var _binding: FragmentPerfilBinding? = null
     private val binding get() = _binding!!
     private val db = FirebaseFirestore.getInstance()
     private val auth: FirebaseAuth = Firebase.auth
+    lateinit var storageRef: StorageReference
+    var filename = "perfilImg-" + FirebaseAuth.getInstance().currentUser?.email
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -52,20 +56,30 @@ public class Perfil : Fragment() {
                 null
             )
         )
+
+
         viewModel.getInfo()
         displayInfo()
 
-        val media = "https://firebasestorage.googleapis.com/v0/b/prodiscom-ij.appspot.com/" +
-                    "o/pikachu.jpeg?alt=media&token=44aef3bc-05e2-4e23-9857-ba55da5805e6"
 
-        Glide.with(this)
-            .load(media)
-            .into(binding.imgDisplayFoto)
+        storageRef = FirebaseStorage.getInstance().getReference("user_images/$filename")
+        storageRef.child("user_images/$filename").downloadUrl.addOnSuccessListener { url ->
+            Glide.with(this)
+                .load(url.toString())
+                .into(binding.imgDisplayFoto)
+
+        }.addOnFailureListener {
+            binding.imgDisplayFoto
+        }
+
+
 
 
         binding.btnGaleria.setOnClickListener {
             obrirGaleria()
         }
+
+
 
         return binding.root
     }
@@ -76,38 +90,29 @@ public class Perfil : Fragment() {
             delay(500)
             binding.txtDisplayNombre.setText(viewModel.nombre.value)
             binding.txtDisplayCorreo.setText(viewModel.correo.value)
-            //binding.txtDisplayTelefono.setText(viewModel.telefono.value.toString())
             binding.txtDisplayNacimiento.setText(viewModel.nacimiento.value)
 
 
         }
     }
 
-    private fun getInfo() = runBlocking<Unit> {
-        //Log.d("TAG",viewModel.dni.value!!)
-        val currentUser = auth.currentUser?.email
-        val getUserInfo = db.collection("users").whereEqualTo("email", currentUser)
-        getUserInfo.get()
-            .addOnSuccessListener { documents ->
-                for (document in documents) {
-                    //Log.d("TAG", "Nombre: ${document.id} => ${document.data}")
-                    binding.txtDisplayNombre.setText(document.getField<String>("Nombre"))
-                    binding.txtDisplayCorreo.setText(document.getField<String>("email"))
-                    binding.txtDisplayNacimiento.setText(document.getField<String>("informacion"))
-                }
-            }
-            .addOnFailureListener { exception ->
-                Log.w("TAG", "Error getting documents: ", exception)
-            }
-        //delay(500)
-    }
 
     private val startForActivityGallery = registerForActivityResult(
-        ActivityResultContracts.StartActivityForResult()){ result ->
-        if (result.resultCode == Activity.RESULT_OK){
-            val data = result.data?.data
-            //setImageUri només funciona per rutes locals, no a internet
-            binding.imgDisplayFoto.setImageURI(data)
+        ActivityResultContracts.StartActivityForResult()
+    ) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            Log.i("HOLA", "HOLA1")
+            val dataLocal = result.data?.data
+
+            if (dataLocal != null) {
+                storageRef.putFile(dataLocal)
+                    .addOnSuccessListener {
+                        binding.imgDisplayFoto.setImageURI(dataLocal)
+                    }.addOnFailureListener {
+                        Log.i("HOLA", "FAIL")
+                    }
+            }
+
         }
     }
 
@@ -117,6 +122,7 @@ public class Perfil : Fragment() {
         startForActivityGallery.launch(intent)
     }
 
+    private fun imgNameFormater() {
 
-
+    }
 }
