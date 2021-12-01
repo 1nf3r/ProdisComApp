@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -64,15 +65,19 @@ class valUser : Fragment() {
         val getUserInfo = db.collection("users").whereEqualTo("zValidado",false)
         getUserInfo.get()
             .addOnSuccessListener { documents ->
+                var contador = 0
                 for (document in documents) {
                     data.add(ValItemsViewModel(
                         document.get("email") as String,
                         document.get("Nombre") as String,
                         document.get("DNI") as String,
                         document.get("Fecha") as String))
-
+                    contador++
                 }
+                if(contador == 0)
+                    Toast.makeText(activity, "Cap usuari pendent de validació", Toast.LENGTH_LONG).show()
             }.await()
+
 
     }
 }

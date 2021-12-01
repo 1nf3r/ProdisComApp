@@ -17,6 +17,10 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import androidx.lifecycle.ViewModelProviders
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
 
 
 class LoginActivity : AppCompatActivity() {
@@ -81,39 +85,45 @@ class LoginActivity : AppCompatActivity() {
 
         //Al clicar se iniciara el proceso de login
         login.setOnClickListener {
-            if (binding.username.text.toString().isNotEmpty() && binding.password.text.toString().isNotEmpty()) {
-                db.collection("users").whereEqualTo("DNI", binding.username.text.toString())
-                    .get()
-                    .addOnSuccessListener { documents ->
-                        if (documents.isEmpty) {
-                            showLoginError()
-                        } else {
-                            for (document in documents) {
-                                loginWithEmail(document.getString("email").toString())
-                            }
-                        }
+            CoroutineScope(Dispatchers.Main).launch {
+                if (binding.username.text.toString().isNotEmpty()
+                    && binding.password.text.toString().isNotEmpty()
+                ) {
+                        db.collection("users").whereEqualTo("DNI", binding.username.text.toString())
+                            .get()
+                            .addOnSuccessListener { documents ->
+                                if (documents.isEmpty) {
+                                    showLoginError()
+                                } else {
+                                    for (document in documents) {
+                                        loginWithEmail(document.getString("email").toString())
+                                    }
+                                }
 
-                    }
-            } else {
-                showLoginError()
+                            }
+                } else {
+                    showLoginError()
+                }
             }
         }
 
     }
 
     private fun loginWithEmail(email: String) {
-        var realPass = "Prodis"
-        realPass += binding.password.text.toString()
-        Firebase.auth.signInWithEmailAndPassword(email, realPass)
-            .addOnCompleteListener {
-                if (it.isSuccessful) {
-                    intent = Intent(applicationContext, MainActivity::class.java)
-                    startActivity(intent)
-                    finish()
-                } else {
-                    showLoginError()
+        //if(checkValidated(email)) {
+            var realPass = "Prodis"
+            realPass += binding.password.text.toString()
+            Firebase.auth.signInWithEmailAndPassword(email, realPass)
+                .addOnCompleteListener {
+                    if (it.isSuccessful) {
+                        intent = Intent(applicationContext, MainActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    } else {
+                        showLoginError()
+                    }
                 }
-            }
+        //}
     }
 
     private fun showLoginError() {
@@ -124,6 +134,14 @@ class LoginActivity : AppCompatActivity() {
         errorDis.show()
     }
 
+    suspend fun checkValidated(email : String): Boolean{
+        db.collection("users").document(email)
+            .get()
+            .addOnSuccessListener { documents ->
+                //TODO el validado
+            }.await()
+        return false
+    }
 
 }
 
