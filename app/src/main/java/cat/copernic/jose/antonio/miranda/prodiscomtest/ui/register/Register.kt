@@ -75,7 +75,7 @@ class Register : AppCompatActivity() {
                 checkName = checkName(binding.etxtRegNom.text.toString())
                 checkPasswd = checkPass(
                     binding.etxtRegCont.text.toString(),
-                    binding.etxtRegConfPass.text.toString()0
+                    binding.etxtRegConfPass.text.toString()
                 )
 
 
