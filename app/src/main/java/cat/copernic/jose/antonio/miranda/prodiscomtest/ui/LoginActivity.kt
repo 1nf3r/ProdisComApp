@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -96,11 +97,13 @@ class LoginActivity : AppCompatActivity() {
                                     showLoginError()
                                 } else {
                                     for (document in documents) {
-                                        loginWithEmail(document.getString("email").toString())
+                                        CoroutineScope(Dispatchers.Main).launch {
+                                            loginWithEmail(document.get("email") as String)
+                                        }
                                     }
                                 }
 
-                            }
+                            }.await()
                 } else {
                     showLoginError()
                 }
@@ -109,8 +112,8 @@ class LoginActivity : AppCompatActivity() {
 
     }
 
-    private fun loginWithEmail(email: String) {
-        //if(checkValidated(email)) {
+    suspend fun loginWithEmail(email: String) {
+        if(checkValidated(email)) {
             var realPass = "Prodis"
             realPass += binding.password.text.toString()
             Firebase.auth.signInWithEmailAndPassword(email, realPass)
@@ -123,7 +126,8 @@ class LoginActivity : AppCompatActivity() {
                         showLoginError()
                     }
                 }
-        //}
+        }else
+            Toast.makeText(this, "Usuari no validat", Toast.LENGTH_LONG).show()
     }
 
     private fun showLoginError() {
@@ -135,12 +139,14 @@ class LoginActivity : AppCompatActivity() {
     }
 
     suspend fun checkValidated(email : String): Boolean{
+        var check = false
         db.collection("users").document(email)
             .get()
-            .addOnSuccessListener { documents ->
-                //TODO el validado
+            .addOnSuccessListener { document ->
+                check = document.get("zValidado") as Boolean
+                Log.i("Validado",check.toString())
             }.await()
-        return false
+        return check
     }
 
 }
