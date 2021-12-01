@@ -86,6 +86,8 @@ class LoginActivity : AppCompatActivity() {
 
         //Al clicar se iniciara el proceso de login
         login.setOnClickListener {
+            login.isEnabled = false
+            login.isClickable = false
             CoroutineScope(Dispatchers.Main).launch {
                 if (binding.username.text.toString().isNotEmpty()
                     && binding.password.text.toString().isNotEmpty()
