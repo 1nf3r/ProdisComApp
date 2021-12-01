@@ -129,10 +129,14 @@ class LoginActivity : AppCompatActivity() {
                     }
                 }
         }else
+            binding.login.isEnabled = true
+            binding.login.isClickable = true
             Toast.makeText(this, "Usuari no validat", Toast.LENGTH_LONG).show()
     }
 
     private fun showLoginError() {
+        binding.login.isEnabled = true
+        binding.login.isClickable = true
         val errorDis = AlertDialog.Builder(this)
         errorDis.setTitle("Inici de Sessió fallat")
         errorDis.setMessage("DNI o Contrasenya incorrectes!!!")
