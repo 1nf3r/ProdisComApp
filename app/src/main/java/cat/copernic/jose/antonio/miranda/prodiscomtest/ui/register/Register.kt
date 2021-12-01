@@ -67,19 +67,18 @@ class Register : AppCompatActivity() {
 
         //Accedim al botó de registrar-se i escoltem l'esdevniment
         binding.btnRegistro.setOnClickListener {
-            //Comprovem si les dades introduides son correctes
-            checkDni = checkDni(binding.etxtRegDni.text.toString())
             CoroutineScope(Dispatchers.Main).launch {
+                //Comprovem si les dades introduides son correctes
+                checkDni = checkDni(binding.etxtRegDni.text.toString())
                 checkDni2 = checkDni2(binding.etxtRegDni.text.toString())
-            }
-            checkMail = checkMail(binding.etxtRegMail.text.toString())
-            checkName = checkName(binding.etxtRegNom.text.toString())
-            checkPasswd = checkPass(
-                binding.etxtRegCont.text.toString(),
-                binding.etxtRegConfPass.text.toString()
-            )
+                checkMail = checkMail(binding.etxtRegMail.text.toString())
+                checkName = checkName(binding.etxtRegNom.text.toString())
+                checkPasswd = checkPass(
+                    binding.etxtRegCont.text.toString(),
+                    binding.etxtRegConfPass.text.toString()0
+                )
 
-            CoroutineScope(Dispatchers.Main).launch {
+
                 //Si totes les dades son correctes registrarem l'usuari
                 Log.i("Check", "Mail: "+checkMail.toString())
                 Log.i("Check", "Name: "+checkName.toString())
@@ -225,7 +224,7 @@ class Register : AppCompatActivity() {
         return comprobacion
     }
 
-    suspend fun checkDni2(dni: String): Boolean {
+    private suspend fun checkDni2(dni: String): Boolean {
         return db.collection("users").whereEqualTo("DNI", dni)
             .get()
             .await().isEmpty
