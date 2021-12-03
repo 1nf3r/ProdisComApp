@@ -78,12 +78,6 @@ class LoginActivity : AppCompatActivity() {
             startActivity(Intent(this, Register::class.java))
         }
 
-
-      /*  //TEST LOGIN//
-        login.setOnClickListener {
-            viewModel.userLogin(this, binding.username.text.toString() ,binding.password.text.toString())
-        }*/
-
         //Al clicar se iniciara el proceso de login
         login.setOnClickListener {
             login.isEnabled = false
@@ -128,10 +122,11 @@ class LoginActivity : AppCompatActivity() {
                         showLoginError()
                     }
                 }
-        }else
+        }else {
             binding.login.isEnabled = true
             binding.login.isClickable = true
             Toast.makeText(this, "Usuari no validat", Toast.LENGTH_LONG).show()
+        }
     }
 
     private fun showLoginError() {

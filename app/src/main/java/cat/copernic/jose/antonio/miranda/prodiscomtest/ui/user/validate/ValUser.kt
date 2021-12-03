@@ -56,8 +56,6 @@ class valUser : Fragment() {
             binding.recyclerView.adapter = adapter
         }
 
-
-
         return binding.root
     }
 
