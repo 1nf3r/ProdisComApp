@@ -30,7 +30,7 @@ class LoginActivity : AppCompatActivity() {
     private val db = FirebaseFirestore.getInstance()
     private lateinit var binding: ActivityLoginBinding
     private lateinit var viewModel: LoginViewModel
-
+    var checkAdmin = false
     override fun onCreate(savedInstanceState: Bundle?) {
         Thread.sleep(1000)
         setTheme(R.style.Theme_ProdisComTest)
@@ -115,23 +115,23 @@ class LoginActivity : AppCompatActivity() {
     }
 
     suspend fun loginWithEmail(email: String) {
-        if(checkValidated(email)) {
-            var realPass = "Prodis"
-            realPass += binding.password.text.toString()
-            Firebase.auth.signInWithEmailAndPassword(email, realPass)
-                .addOnCompleteListener {
-                    if (it.isSuccessful) {
-                        intent = Intent(applicationContext, MainActivity::class.java)
-                        startActivity(intent)
-                        finish()
-                    } else {
-                        showLoginError()
+        if(checkBooleans(email)) {
+            if(checkAdmin) {
+                var realPass = "Prodis"
+                realPass += binding.password.text.toString()
+                Firebase.auth.signInWithEmailAndPassword(email, realPass)
+                    .addOnCompleteListener {
+                        if (it.isSuccessful) {
+                            intent = Intent(applicationContext, MainActivity::class.java)
+                            startActivity(intent)
+                            finish()
+                        } else {
+                            showLoginError()
+                        }
                     }
-                }
-        }else {
-            binding.login.isEnabled = true
-            binding.login.isClickable = true
-            Toast.makeText(this, "Usuari no validat", Toast.LENGTH_LONG).show()
+            }else{
+                
+            }
         }
     }
 
@@ -145,15 +145,48 @@ class LoginActivity : AppCompatActivity() {
         errorDis.show()
     }
 
-    suspend fun checkValidated(email : String): Boolean{
+    private suspend fun checkBooleans(email : String): Boolean{
+        var checkBloqueado = true
+        var checkEliminado = true
+        var checkValidado = false
         var check = false
         db.collection("users").document(email)
             .get()
             .addOnSuccessListener { document ->
-                check = document.get("zValidado") as Boolean
-                Log.i("Validado",check.toString())
+                checkAdmin = document.get("zAdmin") as Boolean
+                checkBloqueado = document.get("zBloqueado") as Boolean
+                checkEliminado = document.get("zEliminado") as Boolean
+                checkValidado = document.get("zValidado") as Boolean
+                Log.i("Validado","Admin "+checkAdmin.toString())
+                Log.i("Validado","Bloqueado "+checkBloqueado.toString())
+                Log.i("Validado","Eliminado "+checkEliminado.toString())
+                Log.i("Validado","Validado "+checkValidado.toString())
+
             }.await()
+        if(!checkBloqueado &&
+           !checkEliminado &&
+            checkValidado){
+            check = true
+            Log.i("Accedes",check.toString())
+        }else if(!checkValidado) {
+            enableButtons()
+            Toast.makeText(this, "Usuari no validat", Toast.LENGTH_LONG).show()
+        }else if(checkBloqueado) {
+            enableButtons()
+            Toast.makeText(this, "Usuari bloquejat", Toast.LENGTH_LONG).show()
+        }else if(checkEliminado){
+            enableButtons()
+            Toast.makeText(this, "Usuari eliminat", Toast.LENGTH_LONG).show()
+        }else {
+            enableButtons()
+            Toast.makeText(this, "Error al comprovar usuari", Toast.LENGTH_LONG).show()
+        }
         return check
+    }
+
+    private fun enableButtons(){
+        binding.login.isEnabled = true
+        binding.login.isClickable = true
     }
 
 }
