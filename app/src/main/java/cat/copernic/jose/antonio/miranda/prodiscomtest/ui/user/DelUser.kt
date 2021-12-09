@@ -54,7 +54,6 @@ class delUser : Fragment() {
             CoroutineScope(Dispatchers.Main).launch {
                 if (binding.eTxtSearch.text.toString().isNotEmpty()) {
                     found = viewModel.getInfo(binding.eTxtSearch.text.toString(), requireActivity())
-                    Log.d("DelUser","Busca")
                     printInfo()
                 } else {
                     notFoundError()

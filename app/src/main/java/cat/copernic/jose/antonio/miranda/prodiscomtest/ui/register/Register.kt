@@ -16,6 +16,8 @@ import com.google.firebase.firestore.ktx.getField
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.*
 import android.R.bool
+import android.content.res.Resources
+import cat.copernic.jose.antonio.miranda.prodiscomtest.R
 import kotlinx.coroutines.tasks.await
 
 
@@ -34,13 +36,10 @@ class Register : AppCompatActivity() {
         //Al clicar en necesitas ayuda saldra un pop up.
         val builder = AlertDialog.Builder(this)
         binding.txtVAjuda2.setOnClickListener {
-            builder.setTitle("Ajuda")
-            builder.setMessage(
-                "Hauras d'introduir el DNI, Contrasenya, Email i acceptar les condicions de servei," +
-                        " la informacio familiar es opcional." +
-                        "\nSi ja t'has registrat clica en Inicia Sessio."
+            builder.setTitle(Resources.getSystem().getString(R.string.help))
+            builder.setMessage(Resources.getSystem().getString(R.string.help_info)
             )
-            builder.setPositiveButton("Aceptar", null)
+            builder.setPositiveButton(Resources.getSystem().getString(R.string.accept), null)
             builder.show()
         }
 
@@ -78,13 +77,6 @@ class Register : AppCompatActivity() {
                     binding.etxtRegConfPass.text.toString()
                 )
 
-
-                //Si totes les dades son correctes registrarem l'usuari
-                Log.i("Check", "Mail: "+checkMail.toString())
-                Log.i("Check", "Name: "+checkName.toString())
-                Log.i("Check", "Password: "+checkPasswd.toString())
-                Log.i("Check", "Dni: "+checkDni.toString())
-                Log.i("Check", "Dni2: "+checkDni2.toString())
                 //Creem el registre amb email i contrasenya...
                 if (checkMail && checkName && checkPasswd && checkDni && checkDni2) {
                     //Registrem a l'usuari i amb el mètode addOnCompleteListener,
@@ -115,9 +107,9 @@ class Register : AppCompatActivity() {
     //Funció que crea l'alert de tipus AlertDialog que es mostrarà si el registre no ha estat un èxit
     private fun showAlert() {
         val builder = AlertDialog.Builder(this)
-        builder.setTitle("Error")
-        builder.setMessage("No s'ha pogut completar el registre.")
-        builder.setPositiveButton("Aceptar", null)
+        builder.setTitle(Resources.getSystem().getString(R.string.error))
+        builder.setMessage(Resources.getSystem().getString(R.string.signup_failed))
+        builder.setPositiveButton(Resources.getSystem().getString(R.string.accept), null)
         builder.show()
     }
 
@@ -266,15 +258,15 @@ class Register : AppCompatActivity() {
 
     private fun test(){
         if (!checkDni(binding.etxtRegDni.text.toString())){
-            binding.etxtRegDni.error = "DNI no valid"
+            binding.etxtRegDni.error = Resources.getSystem().getString(R.string.invalid_dni)
         }
     }
 
     private fun showError() {
         val errorDis = AlertDialog.Builder(this)
-        errorDis.setTitle("Inici de Sessió fallat")
-        errorDis.setMessage("DNI o Contrasenya incorrectes!!!")
-        errorDis.setPositiveButton("Aceptar", null)
+        errorDis.setTitle(Resources.getSystem().getString(R.string.login_failed))
+        errorDis.setMessage(Resources.getSystem().getString(R.string.invalid_auth))
+        errorDis.setPositiveButton(Resources.getSystem().getString(R.string.accept), null)
         errorDis.show()
     }
 }

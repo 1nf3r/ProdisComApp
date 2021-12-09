@@ -36,7 +36,7 @@ class editPerfil : Fragment() {
         binding.btnReturnEditPerfil.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.perfil, null))
         binding.btnEditePerfilToHome.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.menu_principal, null))
 
-        viewModel.getInfo()
+//        viewModel.getInfo()
         displayInfo()
         //viewModel.setInfo("","",0,"")
         val media = "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg"

@@ -1,6 +1,5 @@
 package cat.copernic.jose.antonio.miranda.prodiscomtest.viewmodel
 
-import android.app.Activity
 import android.app.AlertDialog
 import android.content.DialogInterface
 import android.content.res.Resources
@@ -109,13 +108,13 @@ class PerfilViewModel : ViewModel() {
     }
 
     private fun updateUser() {
-        getUserInfo.update(
-            "email",
-            binding.txResultMail.text.toString(),
-            "DNI",
-            binding.txResultDni.text.toString(),
-            "Nombre", binding.txResultNom.text.toString()
-        )
+//        getUserInfo.update(
+//            "email",
+//            binding.txResultMail.text.toString(),
+//            "DNI",
+//            binding.txResultDni.text.toString(),
+//            "Nombre", binding.txResultNom.text.toString()
+//        )
     }
 
     private val positiveButtonClick = { dialog: DialogInterface, which: Int -> updateUser() }
