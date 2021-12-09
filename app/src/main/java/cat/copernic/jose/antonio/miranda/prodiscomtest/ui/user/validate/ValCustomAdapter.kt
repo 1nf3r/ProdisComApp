@@ -1,5 +1,6 @@
 package cat.copernic.jose.antonio.miranda.prodiscomtest.ui.user.validate
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,9 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import cat.copernic.jose.antonio.miranda.prodiscomtest.R
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 
 class CustomAdapter(private val mList: List<ValItemsViewModel>) : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
@@ -20,7 +24,8 @@ class CustomAdapter(private val mList: List<ValItemsViewModel>) : RecyclerView.A
         // that is used to hold list item
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.fragment_val_user_recycler, parent, false)
-        ViewHolder(view).listeners()
+        //ViewHolder(view).listeners()
+
         return ViewHolder(view)
     }
 
@@ -37,6 +42,15 @@ class CustomAdapter(private val mList: List<ValItemsViewModel>) : RecyclerView.A
         holder.txtCorreu.text = ItemsViewModel.correu
         holder.txtDni.text = ItemsViewModel.dni
         holder.txtFecha.text = ItemsViewModel.fecha
+        holder.btnValidar.setOnClickListener {
+            Log.i("Validar", holder.layoutPosition.toString())
+            Log.i("Validar", holder.txtCorreu.text as String)
+            CoroutineScope(Dispatchers.Main).launch {
+                updateValidated(holder.txtCorreu.text as String)
+            }
+
+        }
+
     }
 
     // return the number of the items in the list
@@ -52,23 +66,11 @@ class CustomAdapter(private val mList: List<ValItemsViewModel>) : RecyclerView.A
         val txtDni: TextView = itemView.findViewById(R.id.txtValUserDisplayDni)
         val txtFecha: TextView = itemView.findViewById(R.id.txtValUserDisplayFecha)
         val btnValidar: Button = itemView.findViewById(R.id.btnValidate)
-        fun listeners(){
-            btnValidar.setOnClickListener {
-                toast()
-            }
+
+    }
+        private suspend fun updateValidated(email : String){
+            val update = db.collection("users").document(email)
+            update.update("zValidado",true).await()
+            Log.i("Validar", email + " Validado")   
         }
-
-    }
-    private fun toast(){
-        println("Lo pilla")
-        /*val getUserInfo = db.collection("users").whereEqualTo("zValidado",false)
-        getUserInfo.get()
-            .addOnSuccessListener { documents ->
-                var contador = 0
-                for (document in documents) {
-
-                }
-                    //Toast.makeText(activity, "Cap usuari pendent de validació", Toast.LENGTH_LONG).show()
-            }//.await()*/
-    }
 }
