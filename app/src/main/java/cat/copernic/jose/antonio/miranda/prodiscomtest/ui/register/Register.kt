@@ -258,13 +258,13 @@ class Register : AppCompatActivity() {
 
     private fun test(){
         if (!checkDni(binding.etxtRegDni.text.toString())){
-            binding.etxtRegDni.error = Resources.getSystem().getString(R.string.invalid_dni)
+            binding.etxtRegDni.error = R.string.invalid_dni
         }
     }
 
     private fun showError() {
         val errorDis = AlertDialog.Builder(this)
-        errorDis.setTitle(Resources.getSystem().getString(R.string.login_failed))
+        errorDis.setTitle(R.string.login_failed)
         errorDis.setMessage(Resources.getSystem().getString(R.string.invalid_auth))
         errorDis.setPositiveButton(Resources.getSystem().getString(R.string.accept), null)
         errorDis.show()
