@@ -25,9 +25,6 @@ class valUser : Fragment() {
     private var _binding: FragmentValUserBinding? = null
     private val binding get() = _binding!!
     private val db = FirebaseFirestore.getInstance()
-    private var nom = "1";
-    private var correu = "1";
-    private var dni = "1";
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -45,19 +42,16 @@ class valUser : Fragment() {
 
         // ArrayList of class ItemsViewModel
         val data = ArrayList<ValItemsViewModel>()
-
-        // This loop will create 20 Views containing
-        // the image with the count of view
         CoroutineScope(Dispatchers.Main).launch {
             getInfo(data)
             // This will pass the ArrayList to our Adapter
             val adapter = CustomAdapter(data)
             // Setting the Adapter with the recyclerview
             binding.recyclerView.adapter = adapter
+            binding.recyclerView.setOnClickListener {
+                println("hola")
+            }
         }
-
-
-
         return binding.root
     }
 
@@ -73,11 +67,12 @@ class valUser : Fragment() {
                         document.get("DNI") as String,
                         document.get("Fecha") as String))
                     contador++
+
                 }
                 if(contador == 0)
                     Toast.makeText(activity, "Cap usuari pendent de validació", Toast.LENGTH_LONG).show()
             }.await()
-
-
     }
+
+
 }

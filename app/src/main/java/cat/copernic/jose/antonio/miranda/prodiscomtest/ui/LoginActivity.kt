@@ -128,10 +128,11 @@ class LoginActivity : AppCompatActivity() {
                         showLoginError()
                     }
                 }
-        }else
+        }else {
             binding.login.isEnabled = true
             binding.login.isClickable = true
             Toast.makeText(this, "Usuari no validat", Toast.LENGTH_LONG).show()
+        }
     }
 
     private fun showLoginError() {
