@@ -17,6 +17,7 @@ import cat.copernic.jose.antonio.miranda.prodiscomtest.viewmodel.PerfilViewModel
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
@@ -34,6 +35,8 @@ class Perfil : Fragment() {
     lateinit var storageRef: StorageReference
     private var filename = "perfilImg-" + Firebase.auth.currentUser?.email
     private var dataLocal: Uri? = null
+    private lateinit var getUserInfo: DocumentReference
+    private var found = false
 
 
     override fun onCreateView(
@@ -55,7 +58,8 @@ class Perfil : Fragment() {
             )
         )
 
-        viewModel.getInfo()
+        viewModel.getInfo(activity)
+
         displayInfo()
 
         storageRef = FirebaseStorage.getInstance().getReference()
@@ -125,4 +129,6 @@ class Perfil : Fragment() {
                 }
         }
     }
+
+
 }

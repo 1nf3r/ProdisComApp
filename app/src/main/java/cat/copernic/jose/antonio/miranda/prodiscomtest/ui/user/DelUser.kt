@@ -2,6 +2,7 @@ package cat.copernic.jose.antonio.miranda.prodiscomtest.ui.user
 
 import android.app.AlertDialog
 import android.content.DialogInterface
+import android.content.res.Resources
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -73,9 +74,6 @@ class delUser : Fragment() {
     }
 
     private fun printInfo() {
-            Log.i("DelUser","Correo: "+viewModel.correo.value)
-            Log.i("DelUser","Nombre: "+viewModel.nombre.value)
-            Log.i("DelUser","Dni: "+viewModel.dni.value)
             binding.txResultMail.text = viewModel.correo.value
             binding.txResultNom.text = viewModel.nombre.value
             binding.txResultDni.text = viewModel.dni.value
@@ -83,9 +81,9 @@ class delUser : Fragment() {
 
     private fun notFoundError() {
         val errorDis = AlertDialog.Builder(activity)
-        errorDis.setTitle("Usuari no trovat")
-        errorDis.setMessage("No existeix cap usuari amb aquestes dades")
-        errorDis.setPositiveButton("Aceptar", null)
+        errorDis.setTitle(Resources.getSystem().getString(R.string.user_not_found))
+        errorDis.setMessage(Resources.getSystem().getString(R.string.any_user_data))
+        errorDis.setPositiveButton(Resources.getSystem().getString(R.string.accept), null)
         errorDis.show()
     }
 
@@ -93,13 +91,13 @@ class delUser : Fragment() {
 
     private fun conDelUser() {
         val delDis = AlertDialog.Builder(activity)
-        delDis.setTitle("Eliminar Usuari")
-        delDis.setMessage("Estas segur que vols eliminar l'usuari? ")
+        delDis.setTitle(Resources.getSystem().getString(R.string.eliminar_usuari))
+        delDis.setMessage(Resources.getSystem().getString(R.string.del_confirm))
         delDis.setPositiveButton(
-            "Confirmar",
+            Resources.getSystem().getString(R.string.confirm),
             DialogInterface.OnClickListener(function = positiveButtonClick)
         )
-        delDis.setNegativeButton("Cancelar", null)
+        delDis.setNegativeButton(Resources.getSystem().getString(R.string.cancel), null)
         delDis.show()
     }
 

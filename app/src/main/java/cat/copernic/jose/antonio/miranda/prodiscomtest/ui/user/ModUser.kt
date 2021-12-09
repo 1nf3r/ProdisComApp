@@ -2,6 +2,7 @@ package cat.copernic.jose.antonio.miranda.prodiscomtest.ui.user
 
 import android.app.AlertDialog
 import android.content.DialogInterface
+import android.content.res.Resources
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -47,7 +48,7 @@ class modUser : Fragment() {
             }
         }
 
-        binding.btnModUs.setOnClickListener{
+        binding.btnModUs.setOnClickListener {
             confirmUpdate()
         }
         return binding.root
@@ -88,9 +89,9 @@ class modUser : Fragment() {
 
     private fun notFoundError() {
         val errorDis = AlertDialog.Builder(activity)
-        errorDis.setTitle("Usuari no trovat")
-        errorDis.setMessage("No existeix cap usuari amb aquestes dades")
-        errorDis.setPositiveButton("Aceptar", null)
+        errorDis.setTitle(Resources.getSystem().getString(R.string.user_not_found))
+        errorDis.setMessage(Resources.getSystem().getString(R.string.any_user_data))
+        errorDis.setPositiveButton(Resources.getSystem().getString(R.string.accept), null)
         errorDis.show()
     }
 
@@ -105,14 +106,17 @@ class modUser : Fragment() {
         )
     }
 
-    private val positiveButtonClick = {dialog: DialogInterface, which: Int -> updateUser()}
+    private val positiveButtonClick = { dialog: DialogInterface, which: Int -> updateUser() }
 
-    private fun confirmUpdate(){
+    private fun confirmUpdate() {
         val updateDis = AlertDialog.Builder(activity)
-        updateDis.setTitle("Modificar Usuari")
-        updateDis.setMessage("Estas segur que vols modificar el missatge?")
-        updateDis.setPositiveButton("Aceptar", DialogInterface.OnClickListener(function = positiveButtonClick))
-        updateDis.setNegativeButton("Cancelar", null)
+        updateDis.setTitle(Resources.getSystem().getString(R.string.modificar_usuari))
+        updateDis.setMessage(Resources.getSystem().getString(R.string.mod_confirm))
+        updateDis.setPositiveButton(
+            Resources.getSystem().getString(R.string.accept),
+            DialogInterface.OnClickListener(function = positiveButtonClick)
+        )
+        updateDis.setNegativeButton(Resources.getSystem().getString(R.string.cancel), null)
         updateDis.show()
     }
 }
