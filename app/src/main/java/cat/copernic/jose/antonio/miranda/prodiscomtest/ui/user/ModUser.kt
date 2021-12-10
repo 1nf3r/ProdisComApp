@@ -113,7 +113,7 @@ class modUser : Fragment() {
         updateDis.setTitle(R.string.modificar_usuari)
         updateDis.setMessage(R.string.mod_confirm)
         updateDis.setPositiveButton(
-            Resources.getSystem().getString(R.string.accept),
+            R.string.accept,
             DialogInterface.OnClickListener(function = positiveButtonClick)
         )
         updateDis.setNegativeButton(R.string.cancel, null)

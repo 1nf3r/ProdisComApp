@@ -18,6 +18,7 @@ class MensajesMain : Fragment() {
     ): View {
         _binding = FragmentMensajesBinding.inflate(inflater, container, false)
         binding.btnReturnMensajes.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.menu_principal, null))
+        binding.btnToMensajePers.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.contacts, null))
         return binding.root
     }
 

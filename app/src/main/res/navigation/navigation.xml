@@ -133,5 +133,21 @@
         android:id="@+id/mensajes"
         android:name="cat.copernic.jose.antonio.miranda.prodiscomtest.ui.message.MensajesMain"
         android:label="fragment_mensajes"
-        tools:layout="@layout/fragment_mensajes" />
+        tools:layout="@layout/fragment_mensajes" >
+        <action
+            android:id="@+id/action_mensajes_to_contacts"
+            app:destination="@id/contacts" />
+    </fragment>
+    <fragment
+        android:id="@+id/contacts"
+        android:name="cat.copernic.jose.antonio.miranda.prodiscomtest.ui.message.Contacts"
+        android:label="Contacts" >
+        <action
+            android:id="@+id/action_contacts_to_chat"
+            app:destination="@id/chat" />
+    </fragment>
+    <fragment
+        android:id="@+id/chat"
+        android:name="cat.copernic.jose.antonio.miranda.prodiscomtest.ui.message.Chat"
+        android:label="Chat" />
 </navigation>

@@ -64,12 +64,11 @@ class LoginActivity : AppCompatActivity() {
         //Al clicar en necesitas ayuda te sale un alert indicando el mensaje.
         val builder = AlertDialog.Builder(this)
         binding.txtVAjuda?.setOnClickListener {
-            builder.setTitle("Ajuda")
+            builder.setTitle(R.string.help)
             builder.setMessage(
-                "Hauras d'introduir el DNI i la contrasenya de 4 digits, si no tens" +
-                        " un usuari clica en el text Registrar-se."
+               R.string.help_login_info
             )
-            builder.setPositiveButton("Aceptar", null)
+            builder.setPositiveButton(R.string.accept, null)
             builder.show()
         }
 
@@ -125,7 +124,7 @@ class LoginActivity : AppCompatActivity() {
         }else {
             binding.login.isEnabled = true
             binding.login.isClickable = true
-            Toast.makeText(this, "Usuari no validat", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, R.string.user_not_validate, Toast.LENGTH_LONG).show()
         }
     }
 
@@ -133,9 +132,9 @@ class LoginActivity : AppCompatActivity() {
         binding.login.isEnabled = true
         binding.login.isClickable = true
         val errorDis = AlertDialog.Builder(this)
-        errorDis.setTitle("Inici de Sessió fallat")
-        errorDis.setMessage("DNI o Contrasenya incorrectes!!!")
-        errorDis.setPositiveButton("Aceptar", null)
+        errorDis.setTitle(R.string.failed_login)
+        errorDis.setMessage(R.string.invalid_auth)
+        errorDis.setPositiveButton(R.string.accept, null)
         errorDis.show()
     }
 
