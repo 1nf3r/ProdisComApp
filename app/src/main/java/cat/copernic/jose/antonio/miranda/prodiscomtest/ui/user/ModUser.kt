@@ -89,9 +89,9 @@ class modUser : Fragment() {
 
     private fun notFoundError() {
         val errorDis = AlertDialog.Builder(activity)
-        errorDis.setTitle(Resources.getSystem().getString(R.string.user_not_found))
-        errorDis.setMessage(Resources.getSystem().getString(R.string.any_user_data))
-        errorDis.setPositiveButton(Resources.getSystem().getString(R.string.accept), null)
+        errorDis.setTitle(R.string.user_not_found)
+        errorDis.setMessage(R.string.any_user_data)
+        errorDis.setPositiveButton(R.string.accept, null)
         errorDis.show()
     }
 
@@ -110,13 +110,13 @@ class modUser : Fragment() {
 
     private fun confirmUpdate() {
         val updateDis = AlertDialog.Builder(activity)
-        updateDis.setTitle(Resources.getSystem().getString(R.string.modificar_usuari))
-        updateDis.setMessage(Resources.getSystem().getString(R.string.mod_confirm))
+        updateDis.setTitle(R.string.modificar_usuari)
+        updateDis.setMessage(R.string.mod_confirm)
         updateDis.setPositiveButton(
             Resources.getSystem().getString(R.string.accept),
             DialogInterface.OnClickListener(function = positiveButtonClick)
         )
-        updateDis.setNegativeButton(Resources.getSystem().getString(R.string.cancel), null)
+        updateDis.setNegativeButton(R.string.cancel, null)
         updateDis.show()
     }
 }

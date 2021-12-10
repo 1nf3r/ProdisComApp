@@ -17,6 +17,7 @@ import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.*
 import android.R.bool
 import android.content.res.Resources
+import androidx.core.text.isDigitsOnly
 import cat.copernic.jose.antonio.miranda.prodiscomtest.R
 import kotlinx.coroutines.tasks.await
 
@@ -36,10 +37,9 @@ class Register : AppCompatActivity() {
         //Al clicar en necesitas ayuda saldra un pop up.
         val builder = AlertDialog.Builder(this)
         binding.txtVAjuda2.setOnClickListener {
-            builder.setTitle(Resources.getSystem().getString(R.string.help))
-            builder.setMessage(Resources.getSystem().getString(R.string.help_info)
-            )
-            builder.setPositiveButton(Resources.getSystem().getString(R.string.accept), null)
+            builder.setTitle(R.string.help)
+            builder.setMessage(R.string.help_info)
+            builder.setPositiveButton((R.string.accept), null)
             builder.show()
         }
 
@@ -176,44 +176,52 @@ class Register : AppCompatActivity() {
     //Funcion para comprobar el DNI
 
     private fun checkDni(dni: String): Boolean {
-        val regexDni = """[0-9]+[0-9]+[0-9]+[0-9]+[0-9]+[0-9]+[0-9]+[0-9]+[A-Z]""".toRegex()
+
         var comprobacion: Boolean = false
-        if (regexDni.matches(dni)) {
-            val dniNum: String = dni.substring(0, 8)
-            val resultDni: Int = dniNum.toInt() % 23
-            val letraDni: String = dni[8].toString()
-            val letraComprobada: String
-
-            when (resultDni) {
-                0 -> letraComprobada = "T"
-                1 -> letraComprobada = "R"
-                2 -> letraComprobada = "W"
-                3 -> letraComprobada = "A"
-                4 -> letraComprobada = "G"
-                5 -> letraComprobada = "M"
-                6 -> letraComprobada = "Y"
-                7 -> letraComprobada = "F"
-                8 -> letraComprobada = "P"
-                9 -> letraComprobada = "D"
-                10 -> letraComprobada = "X"
-                11 -> letraComprobada = "B"
-                12 -> letraComprobada = "N"
-                13 -> letraComprobada = "J"
-                14 -> letraComprobada = "Z"
-                15 -> letraComprobada = "S"
-                16 -> letraComprobada = "Q"
-                17 -> letraComprobada = "V"
-                18 -> letraComprobada = "H"
-                19 -> letraComprobada = "L"
-                20 -> letraComprobada = "C"
-                21 -> letraComprobada = "K"
-                22 -> letraComprobada = "E"
-
-                else -> letraComprobada = ""
-            }
-            if (letraDni == letraComprobada) comprobacion = true
+        val dniNum = dni.substring(0, dni.length -1)
+        if (dni.length < 9 || !dniNum.isDigitsOnly()){
+            return false
         }
-        return comprobacion
+        val dniLletra = dni.substring(dni.length - 1).uppercase()
+        val letraDni = "TRWAGMYFPDXBNJZSQVHLCKE"
+        return dniLletra == letraDni[dniNum.toInt() % 23].toString()
+//        val regexDni = """[0-9]+[0-9]+[0-9]+[0-9]+[0-9]+[0-9]+[0-9]+[0-9]+[A-Z]""".toRegex()
+//        if (regexDni.matches(dni)) {
+//            val dniNum: String = dni.substring(0, 8)
+//            val resultDni: Int = dniNum.toInt() % 23
+//            val letraDni: String = dni[8].toString()
+//            val letraComprobada: String
+//
+//            when (resultDni) {
+//                0 -> letraComprobada = "T"
+//                1 -> letraComprobada = "R"
+//                2 -> letraComprobada = "W"
+//                3 -> letraComprobada = "A"
+//                4 -> letraComprobada = "G"
+//                5 -> letraComprobada = "M"
+//                6 -> letraComprobada = "Y"
+//                7 -> letraComprobada = "F"
+//                8 -> letraComprobada = "P"
+//                9 -> letraComprobada = "D"
+//                10 -> letraComprobada = "X"
+//                11 -> letraComprobada = "B"
+//                12 -> letraComprobada = "N"
+//                13 -> letraComprobada = "J"
+//                14 -> letraComprobada = "Z"
+//                15 -> letraComprobada = "S"
+//                16 -> letraComprobada = "Q"
+//                17 -> letraComprobada = "V"
+//                18 -> letraComprobada = "H"
+//                19 -> letraComprobada = "L"
+//                20 -> letraComprobada = "C"
+//                21 -> letraComprobada = "K"
+//                22 -> letraComprobada = "E"
+//
+//                else -> letraComprobada = ""
+//            }
+//            if (letraDni == letraComprobada) comprobacion = true
+//        }
+//        return comprobacion
     }
 
     private suspend fun checkDni2(dni: String): Boolean {
@@ -258,15 +266,15 @@ class Register : AppCompatActivity() {
 
     private fun test(){
         if (!checkDni(binding.etxtRegDni.text.toString())){
-            binding.etxtRegDni.error = Resources.getSystem().getString(R.string.invalid_dni)
+            binding.etxtRegDni.error = R.string.invalid_dni.toString()
         }
     }
 
     private fun showError() {
         val errorDis = AlertDialog.Builder(this)
-        errorDis.setTitle(Resources.getSystem().getString(R.string.login_failed))
-        errorDis.setMessage(Resources.getSystem().getString(R.string.invalid_auth))
-        errorDis.setPositiveButton(Resources.getSystem().getString(R.string.accept), null)
+        errorDis.setTitle(R.string.login_failed)
+        errorDis.setMessage(R.string.invalid_auth)
+        errorDis.setPositiveButton(R.string.accept, null)
         errorDis.show()
     }
 }

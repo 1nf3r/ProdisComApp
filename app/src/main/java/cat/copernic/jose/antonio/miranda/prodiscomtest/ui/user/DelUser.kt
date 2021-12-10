@@ -80,9 +80,9 @@ class delUser : Fragment() {
 
     private fun notFoundError() {
         val errorDis = AlertDialog.Builder(activity)
-        errorDis.setTitle(Resources.getSystem().getString(R.string.user_not_found))
-        errorDis.setMessage(Resources.getSystem().getString(R.string.any_user_data))
-        errorDis.setPositiveButton(Resources.getSystem().getString(R.string.accept), null)
+        errorDis.setTitle(R.string.user_not_found)
+        errorDis.setMessage(R.string.any_user_data)
+        errorDis.setPositiveButton(R.string.accept, null)
         errorDis.show()
     }
 
@@ -90,13 +90,13 @@ class delUser : Fragment() {
 
     private fun conDelUser() {
         val delDis = AlertDialog.Builder(activity)
-        delDis.setTitle(Resources.getSystem().getString(R.string.eliminar_usuari))
-        delDis.setMessage(Resources.getSystem().getString(R.string.del_confirm))
+        delDis.setTitle(R.string.eliminar_usuari)
+        delDis.setMessage(R.string.del_confirm)
         delDis.setPositiveButton(
-            Resources.getSystem().getString(R.string.confirm),
+            R.string.confirm,
             DialogInterface.OnClickListener(function = positiveButtonClick)
         )
-        delDis.setNegativeButton(Resources.getSystem().getString(R.string.cancel), null)
+        delDis.setNegativeButton(R.string.cancel, null)
         delDis.show()
     }
 
