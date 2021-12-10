@@ -63,11 +63,8 @@ class Perfil : Fragment() {
         displayInfo()
 
         storageRef = FirebaseStorage.getInstance().getReference()
-        Log.i("HELLO", storageRef.child("user_images/$filename").toString())
         storageRef.child("user_images/$filename").downloadUrl
             .addOnSuccessListener { url ->
-
-
                 Glide.with(this)
                     .load(url.toString())
                     .into(binding.imgDisplayFoto)

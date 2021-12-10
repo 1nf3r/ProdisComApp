@@ -42,11 +42,6 @@ class PerfilViewModel : ViewModel() {
         get() = _nacimiento
 
 
-    init {
-        //getInfo()
-
-        Log.d("TAG", "GameViewModel created!")
-    }
 
     fun setDni(dni: String) {
         _dni.value = dni
