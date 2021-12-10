@@ -130,7 +130,18 @@ class LoginActivity : AppCompatActivity() {
                         }
                     }
             }else{
-                
+                var realPass = "Prodis"
+                realPass += binding.password.text.toString()
+                Firebase.auth.signInWithEmailAndPassword(email, realPass)
+                    .addOnCompleteListener {
+                        if (it.isSuccessful) {
+                            intent = Intent(applicationContext, MainActivityUser::class.java)
+                            startActivity(intent)
+                            finish()
+                        } else {
+                            showLoginError()
+                        }
+                    }
             }
         }
     }
