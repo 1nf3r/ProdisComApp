@@ -2,8 +2,7 @@ package cat.copernic.jose.antonio.miranda.prodiscomtest.ui.logged.perfil
 
 import android.app.Activity
 import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.drawable.BitmapDrawable
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -13,19 +12,18 @@ import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
-import cat.copernic.jose.antonio.miranda.prodiscomtest.R
 import cat.copernic.jose.antonio.miranda.prodiscomtest.databinding.FragmentPerfilBinding
 import cat.copernic.jose.antonio.miranda.prodiscomtest.viewmodel.PerfilViewModel
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.ktx.getField
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import kotlinx.coroutines.*
-import java.io.ByteArrayOutputStream
+
 
 private lateinit var viewModel: PerfilViewModel
 
@@ -35,7 +33,10 @@ class Perfil : Fragment() {
     private val db = FirebaseFirestore.getInstance()
     private val auth: FirebaseAuth = Firebase.auth
     lateinit var storageRef: StorageReference
-    var filename = "perfilImg-" + FirebaseAuth.getInstance().currentUser?.email
+    private var filename = "perfilImg-" + Firebase.auth.currentUser?.email
+    private var dataLocal: Uri? = null
+    private lateinit var getUserInfo: DocumentReference
+    private var found = false
 
 
     override fun onCreateView(
@@ -44,41 +45,41 @@ class Perfil : Fragment() {
     ): View {
         viewModel = ViewModelProvider(this).get(PerfilViewModel::class.java)
         _binding = FragmentPerfilBinding.inflate(inflater, container, false)
-        binding.btnToEditPerfil.setOnClickListener(
-            Navigation.createNavigateOnClickListener(
-                R.id.editPerfil,
-                null
-            )
-        )
+//        binding.btnToEditPerfil.setOnClickListener(
+//            Navigation.createNavigateOnClickListener(
+//                cat.copernic.jose.antonio.miranda.prodiscomtest.R.id.editPerfil,
+//                null
+//            )
+//        )
         binding.btnReturnPerfil.setOnClickListener(
             Navigation.createNavigateOnClickListener(
-                R.id.menu_principal,
+                cat.copernic.jose.antonio.miranda.prodiscomtest.R.id.menu_principal,
                 null
             )
         )
 
+        viewModel.getInfo(activity)
 
-        viewModel.getInfo()
         displayInfo()
 
+        storageRef = FirebaseStorage.getInstance().getReference()
+        storageRef.child("user_images/$filename").downloadUrl
+            .addOnSuccessListener { url ->
+                Glide.with(this)
+                    .load(url.toString())
+                    .into(binding.imgDisplayFoto)
 
-        storageRef = FirebaseStorage.getInstance().getReference("user_images/$filename")
-        storageRef.child("user_images/$filename").downloadUrl.addOnSuccessListener { url ->
-            Glide.with(this)
-                .load(url.toString())
-                .into(binding.imgDisplayFoto)
+            }.addOnFailureListener {
+                binding.imgDisplayFoto.setImageResource(cat.copernic.jose.antonio.miranda.prodiscomtest.R.drawable.no_user)
+            }
 
-        }.addOnFailureListener {
-            binding.imgDisplayFoto
-        }
-
-
-
-
-        binding.btnGaleria.setOnClickListener {
+        binding.imgDisplayFoto.setOnClickListener {
             obrirGaleria()
         }
 
+        binding.btnGuardarPerf.setOnClickListener {
+            guardarInfo()
+        }
 
 
         return binding.root
@@ -101,16 +102,9 @@ class Perfil : Fragment() {
         ActivityResultContracts.StartActivityForResult()
     ) { result ->
         if (result.resultCode == Activity.RESULT_OK) {
-            Log.i("HOLA", "HOLA1")
-            val dataLocal = result.data?.data
-
+            dataLocal = result.data?.data!!
             if (dataLocal != null) {
-                storageRef.putFile(dataLocal)
-                    .addOnSuccessListener {
-                        binding.imgDisplayFoto.setImageURI(dataLocal)
-                    }.addOnFailureListener {
-                        Log.i("HOLA", "FAIL")
-                    }
+                binding.imgDisplayFoto.setImageURI(dataLocal)
             }
 
         }
@@ -122,7 +116,16 @@ class Perfil : Fragment() {
         startForActivityGallery.launch(intent)
     }
 
-    private fun imgNameFormater() {
-
+    private fun guardarInfo() {
+        if (dataLocal != null) {
+            storageRef = FirebaseStorage.getInstance().getReference("user_images/$filename")
+            storageRef.putFile(dataLocal!!)
+                .addOnSuccessListener {
+                    binding.imgDisplayFoto.setImageURI(dataLocal)
+                }.addOnFailureListener {
+                }
+        }
     }
+
+
 }

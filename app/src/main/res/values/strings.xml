@@ -18,8 +18,17 @@
     <string name="cerrar_sesion">Tancar Sessió</string>
     <string name="todo">TODO</string>
     <string name="editar_perfil">Editar Perfil</string>
+    <string name="failed_login">Inici de Sessió fallat</string>
+    <string name="invalid_auth">DNI o Contrasenya incorrectes</string>
+    <string name="invalid_dni">DNI no valid</string>
     <string name="perfil">Perfil</string>
+    <string name="accept">Acceptar</string>
+    <string name="signup_failed">No s\'ha pogut completar el registre.</string>
+    <string name="mod_confirm">Estas segur que vols modificar el missatge?</string>
+    <string name="del_confirm">Estas segur que vols eliminar l\'usuari?</string>
+    <string name="error">Error</string>
     <string name="crear_autorizaci">Crear Autorizació</string>
+    <string name="confirm">Confirmar</string>
     <string name="enviar">Enviar</string>
     <string name="resultats">Resultats</string>
     <string name="configuraci">Configuració</string>
@@ -31,6 +40,7 @@
     <string name="usuaris_bloquejats">Usuaris Bloquejats</string>
     <string name="necessites_ajuda">Necessites ajuda?</string>
     <string name="contrasenya">Contrasenya</string>
+    <string name="any_user_data">No existeix cap usuari amb aquestes dades</string>
     <string name="usuari">Usuari</string>
     <string name="introdueixi_un_usuari_i_contrasenya_per_entrar">Introdueixi un usuari i contrasenya per entrar!</string>
     <string name="iniciar_sesi">Iniciar Sessió</string>
@@ -38,9 +48,15 @@
     <string name="prodiscom">ProdisCom</string>
     <string name="condicions">Condicions</string>
     <string name="has_oblidat_la_contrasenya">Has oblidat la contrasenya?</string>
+    <string name="help">Ajuda</string>
+    <string name="help_info">Hauras d\'introduir el DNI, Contrasenya, Email i acceptar les condicions de servei, la informacio familiar es opcional. Si ja t\'has registrat clica en Inicia Sessio.</string>
+    <string name="help_login_info">Hauras d\'introduir el DNI i la contrasenya de 4 digits, si no tens un usuari clica en el text Registrar-se.</string>
     <string name="registrar_se">Registrar-se</string>
+    <string name="cancel">Cancel·lar</string>
     <string name="grups">Grups</string>
     <string name="title_activity_grups">Grups</string>
+    <string name="user_not_found">Usuari no trovat</string>
+    <string name="user_not_validate">Usuari no validat</string>
     <string name="large_text">
         "Material is the metaphor.\n\n"
 
@@ -135,4 +151,5 @@
     <string name="grup">Grup</string>
     <string name="missatges">Missatges</string>
     <string name="buscar_usuari">Buscar Usuari</string>
+    <string name="contactes">Contactes</string>
 </resources>
