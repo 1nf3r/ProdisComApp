@@ -130,6 +130,11 @@
         android:label="fragment_grup"
         tools:layout="@layout/fragment_grup" />
     <fragment
+        android:id="@+id/CrearGrup"
+        android:name="cat.copernic.jose.antonio.miranda.prodiscomtest.ui.grup.CrearGrup"
+        android:label="fragment_crear_grup"
+        tools:layout="@layout/fragment_crear_grup" />
+    <fragment
         android:id="@+id/mensajes"
         android:name="cat.copernic.jose.antonio.miranda.prodiscomtest.ui.message.MensajesMain"
         android:label="fragment_mensajes"
