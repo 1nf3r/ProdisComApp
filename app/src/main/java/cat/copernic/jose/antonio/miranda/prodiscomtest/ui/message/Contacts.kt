@@ -1,23 +1,22 @@
 package cat.copernic.jose.antonio.miranda.prodiscomtest.ui.message
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
+import androidx.recyclerview.widget.LinearLayoutManager
 import cat.copernic.jose.antonio.miranda.prodiscomtest.R
 import cat.copernic.jose.antonio.miranda.prodiscomtest.databinding.FragmentContactsBinding
-import cat.copernic.jose.antonio.miranda.prodiscomtest.databinding.FragmentMensajesBinding
-import com.google.android.gms.common.api.GoogleApiClient
+import cat.copernic.jose.antonio.miranda.prodiscomtest.ui.user.validate.CustomAdapter
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.auth.User
-import com.google.rpc.context.AttributeContext
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class Contacts : Fragment() {
     private var _binding: FragmentContactsBinding? = null
@@ -42,6 +41,22 @@ class Contacts : Fragment() {
                 null
             )
         )
+        binding.recyclerView.layoutManager = LinearLayoutManager(activity)
+        val data = ArrayList<ContactsViewModel>()
+
+        CoroutineScope(Dispatchers.Main).launch {
+//            getInfo(data)
+            for (i in 1..5) {
+            data.add(ContactsViewModel(i.toString()))
+            }
+            // This will pass the ArrayList to our Adapter
+            val adapter = ContactsCustomAdapter(data)
+            // Setting the Adapter with the recyclerview
+            binding.recyclerView.adapter = adapter
+            binding.recyclerView.setOnClickListener {
+                println("hola")
+            }
+        }
 
         firebaseAuth = FirebaseAuth.getInstance()
         val firebaseUser = FirebaseAuth.getInstance().currentUser
@@ -81,7 +96,8 @@ class Contacts : Fragment() {
                                         listOfToUsersNames
                                     )
                                 }
-/*                                binding.recyclerView.adapter = arrayAdapter
+
+                                /*binding.recyclerView.adapter = arrayAdapter
                                 binding.recyclerView.onItemClickListener = AdapterView.OnItemClickListener{ _, _, position, _ ->
                                     val intent = Intent(this, ChatActivity::class.java)
                                     intent.putExtra("fromUser", fromUser)
