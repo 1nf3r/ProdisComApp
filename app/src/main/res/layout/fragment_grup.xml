@@ -33,7 +33,7 @@
             android:src="@drawable/ic_baseline_salir" />
 
         <Button
-            android:id="@+id/btnCreaGrup"
+            android:id="@+id/btnCrearGrup"
             style="@style/botonesGrup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -51,9 +51,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:text="Modificar Grup"
-            app:layout_constraintEnd_toEndOf="@+id/btnCreaGrup"
-            app:layout_constraintStart_toStartOf="@+id/btnCreaGrup"
-            app:layout_constraintTop_toBottomOf="@+id/btnCreaGrup" />
+            app:layout_constraintEnd_toEndOf="@+id/btnCrearGrup"
+            app:layout_constraintStart_toStartOf="@+id/btnCrearGrup"
+            app:layout_constraintTop_toBottomOf="@+id/btnCrearGrup" />
 
         <Button
             android:id="@+id/btnElGrup"

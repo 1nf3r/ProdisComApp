@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import cat.copernic.jose.antonio.miranda.prodiscomtest.R
-import cat.copernic.jose.antonio.miranda.prodiscomtest.databinding.FragmentAutorizacionBinding
 import cat.copernic.jose.antonio.miranda.prodiscomtest.databinding.FragmentGrupBinding
 
 class GrupMain : Fragment() {
@@ -22,6 +21,13 @@ class GrupMain : Fragment() {
         binding.btnReturnGrup.setOnClickListener(
             Navigation.createNavigateOnClickListener(
                 R.id.menu_principal,
+                null
+            )
+        )
+
+        binding.btnCrearGrup.setOnClickListener(
+            Navigation.createNavigateOnClickListener(
+                R.id.CrearGrup,
                 null
             )
         )
