@@ -61,7 +61,7 @@ class CrearGrup : Fragment() {
     }
 
     suspend private fun crearGrup(adapter: CrearGrupCustomAdapter) {
-        val nameGroup = binding.etxtNomGrup.text.toString()
+        val nameGroup = binding.etxtNomGrup.text.toString().lowercase()
         if(checkGroups(nameGroup)) {
             val groups = db.collection("grups")
             val users = hashMapOf(
