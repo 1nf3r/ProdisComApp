@@ -25,7 +25,7 @@ class GrupMain : Fragment() {
             )
         )
 
-        binding.btnCrearGrup.setOnClickListener(
+        binding.btnToCrearGrup.setOnClickListener(
             Navigation.createNavigateOnClickListener(
                 R.id.CrearGrup,
                 null

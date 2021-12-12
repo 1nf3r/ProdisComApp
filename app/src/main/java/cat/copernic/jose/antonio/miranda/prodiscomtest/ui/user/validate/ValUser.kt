@@ -56,7 +56,7 @@ class valUser : Fragment() {
     }
 
     suspend fun getInfo(data:ArrayList<ValItemsViewModel>){
-        val getUserInfo = db.collection("users").whereEqualTo("zValidado",false)
+        val getUserInfo = db.collection("users").orderBy("Fecha").whereEqualTo("zValidado",false)
         getUserInfo.get()
             .addOnSuccessListener { documents ->
                 var contador = 0
