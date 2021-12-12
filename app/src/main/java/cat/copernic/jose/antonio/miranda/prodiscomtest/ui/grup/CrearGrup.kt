@@ -1,6 +1,7 @@
 package cat.copernic.jose.antonio.miranda.prodiscomtest.ui.grup
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -48,7 +49,10 @@ class CrearGrup : Fragment() {
             binding.recyclerView.adapter = adapter
 
             binding.btnCrearGrup.setOnClickListener(){
-               crearGrup(adapter)
+                CoroutineScope(Dispatchers.Main).launch {
+                    crearGrup(adapter)
+
+                }
             }
         }
 
@@ -56,32 +60,51 @@ class CrearGrup : Fragment() {
             return binding.root
     }
 
-    private fun crearGrup(adapter: CrearGrupCustomAdapter) {
-        val groups = db.collection("grups")
+    suspend private fun crearGrup(adapter: CrearGrupCustomAdapter) {
         val nameGroup = binding.etxtNomGrup.text.toString()
-        val users = hashMapOf(
-            "Descripción" to binding.etxtDescripicioGrup.text.toString(),
-            "Email" to adapter.users)
-        groups.document(nameGroup).set(users)
-        /*for(i in users){
+        if(checkGroups(nameGroup)) {
+            val groups = db.collection("grups")
+            val users = hashMapOf(
+                "Nombre" to nameGroup,
+                "Descripción" to binding.etxtDescripicioGrup.text.toString(),
+                "Email" to adapter.users
+            )
+            groups.document(nameGroup).set(users).addOnSuccessListener {
+                Toast.makeText(activity, "Grup creat correctament", Toast.LENGTH_LONG).show()
+            }
+            /*for(i in users){
             println(i)
         }*/
+        }else {
+            Toast.makeText(activity, "El nom del grup ja existeix", Toast.LENGTH_LONG).show()
+        }
     }
 
     suspend fun getInfo(data:ArrayList<CrearGrupItemViewModel>){
-        val getUserInfo = db.collection("users").whereEqualTo("zAdmin", false)
+        val getUserInfo = db.collection("users")
+            .whereEqualTo("zValidado", true)
+            .whereEqualTo("zAdmin",false)
         getUserInfo.get()
             .addOnSuccessListener { documents ->
                 var contador = 0
                 for (document in documents) {
-                    data.add(CrearGrupItemViewModel(
-                        document.get("Nombre") as String,
-                        document.get("email") as String,
-                        document.get("DNI") as String))
-                    contador++
+                        data.add(
+                            CrearGrupItemViewModel(
+                                document.get("Nombre") as String,
+                                document.get("email") as String,
+                                document.get("DNI") as String
+                            )
+                        )
+                        contador++
                 }
                 if(contador == 0)
                     Toast.makeText(activity, "Error al cercar usuaris", Toast.LENGTH_LONG).show()
             }.await()
+    }
+
+    private suspend fun checkGroups(name: String): Boolean {
+        return db.collection("grups").whereEqualTo("Nombre", name)
+            .get()
+            .await().isEmpty
     }
 }
