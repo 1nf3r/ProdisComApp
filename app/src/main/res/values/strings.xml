@@ -152,4 +152,15 @@
     <string name="missatges">Missatges</string>
     <string name="buscar_usuari">Buscar Usuari</string>
     <string name="contactes">Contactes</string>
+    <string name="crear_grup">Crear Grup</string>
+    <string name="nom_del_grup">Nom del grup</string>
+    <string name="seleccionar_participants">Seleccionar participants</string>
+    <string name="seleccionar_usuaris">Seleccionar usuaris</string>
+    <string name="seleccionar">Seleccionar</string>
+    <string name="item">Item</string>
+    <string name="correu">Correu:</string>
+    <string name="dni">Dni:</string>
+    <string name="nom">Nom:</string>
+    <string name="data">Data:</string>
+    <string name="descripcio">Descripció</string>
 </resources>
