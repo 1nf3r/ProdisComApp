@@ -1,14 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.grup.CrearGrup">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/titleBGAutorizaciones2"
+            style="@style/backgroundTitulos"
+            android:background="@color/azul_grup"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/btnReturnCrearGrup"
+            style="@style/btn_return"
+            android:src="@drawable/ic_baseline_salir"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="32dp"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/txtTitleCrearGrup"
+            style="@style/titulos"
+            android:text="@string/crear_grup"
+            tools:layout_editor_absoluteX="103dp"
+            tools:layout_editor_absoluteY="32dp"
+            tools:ignore="MissingConstraints" />
+
+        <EditText
+            android:id="@+id/etxtNomGrup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/nom_del_grup"
+            android:inputType="textPersonName"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titleBGAutorizaciones2"
+            app:layout_constraintVertical_bias="0.060000002" />
+
+        <ScrollView
+            android:layout_width="0dp"
+            android:layout_height="396dp"
+            app:layout_constraintBottom_toTopOf="@+id/btnCrearGrup"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtselect_users"
+            app:layout_constraintVertical_bias="0.02">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="399dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="60dp" />
+            </LinearLayout>
+        </ScrollView>
+
+        <Button
+            android:id="@+id/btnCrearGrup"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:text="@string/crear_grup"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtselect_users"
+            app:layout_constraintVertical_bias="0.9" />
+
+        <TextView
+            android:id="@+id/txtselect_users"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@string/seleccionar_usuaris"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etxtDescripicioGrup"
+            app:layout_constraintVertical_bias="0.05" />
+
+        <EditText
+            android:id="@+id/etxtDescripicioGrup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/descripcio"
+            android:inputType="textPersonName"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etxtNomGrup"
+            app:layout_constraintVertical_bias="0.02" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

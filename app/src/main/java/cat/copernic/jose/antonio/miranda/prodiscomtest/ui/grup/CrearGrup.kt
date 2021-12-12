@@ -5,24 +5,83 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.navigation.Navigation
+import androidx.recyclerview.widget.LinearLayoutManager
+import cat.copernic.jose.antonio.miranda.prodiscomtest.R
 import cat.copernic.jose.antonio.miranda.prodiscomtest.databinding.FragmentCrearGrupBinding
+import cat.copernic.jose.antonio.miranda.prodiscomtest.ui.user.validate.CustomAdapter
+import cat.copernic.jose.antonio.miranda.prodiscomtest.ui.user.validate.ValItemsViewModel
+import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
 
 
 class CrearGrup : Fragment() {
     private lateinit var binding: FragmentCrearGrupBinding
+    private val db = FirebaseFirestore.getInstance()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
             binding = FragmentCrearGrupBinding.inflate(inflater, container, false)
 
-            /*binding.btnReturnGrup.setOnClickListener(
+            binding.btnReturnCrearGrup.setOnClickListener(
                 Navigation.createNavigateOnClickListener(
                     R.id.menu_principal,
                     null
                 )
-            )*/
+            )
+
+        binding.recyclerView.layoutManager = LinearLayoutManager(activity)
+
+        // ArrayList of class ItemsViewModel
+        val data = ArrayList<CrearGrupItemViewModel>()
+        CoroutineScope(Dispatchers.Main).launch {
+            getInfo(data)
+
+            // This will pass the ArrayList to our Adapter
+            val adapter = CrearGrupCustomAdapter(data)
+            // Setting the Adapter with the recyclerview
+            binding.recyclerView.adapter = adapter
+
+            binding.btnCrearGrup.setOnClickListener(){
+               crearGrup(adapter)
+            }
+        }
+
 
             return binding.root
+    }
+
+    private fun crearGrup(adapter: CrearGrupCustomAdapter) {
+        val groups = db.collection("grups")
+        val nameGroup = binding.etxtNomGrup.text.toString()
+        val users = hashMapOf(
+            "Descripción" to binding.etxtDescripicioGrup.text.toString(),
+            "Email" to adapter.users)
+        groups.document(nameGroup).set(users)
+        /*for(i in users){
+            println(i)
+        }*/
+    }
+
+    suspend fun getInfo(data:ArrayList<CrearGrupItemViewModel>){
+        val getUserInfo = db.collection("users").whereEqualTo("zAdmin", false)
+        getUserInfo.get()
+            .addOnSuccessListener { documents ->
+                var contador = 0
+                for (document in documents) {
+                    data.add(CrearGrupItemViewModel(
+                        document.get("Nombre") as String,
+                        document.get("email") as String,
+                        document.get("DNI") as String))
+                    contador++
+                }
+                if(contador == 0)
+                    Toast.makeText(activity, "Error al cercar usuaris", Toast.LENGTH_LONG).show()
+            }.await()
     }
 }
