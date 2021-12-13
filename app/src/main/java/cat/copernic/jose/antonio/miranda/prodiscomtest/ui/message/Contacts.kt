@@ -2,6 +2,7 @@ package cat.copernic.jose.antonio.miranda.prodiscomtest.ui.message
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
@@ -41,22 +42,9 @@ class Contacts : Fragment() {
                 null
             )
         )
+
         binding.recyclerView.layoutManager = LinearLayoutManager(activity)
         val data = ArrayList<ContactsViewModel>()
-
-        CoroutineScope(Dispatchers.Main).launch {
-//            getInfo(data)
-            for (i in 1..5) {
-            data.add(ContactsViewModel(i.toString()))
-            }
-            // This will pass the ArrayList to our Adapter
-            val adapter = ContactsCustomAdapter(data)
-            // Setting the Adapter with the recyclerview
-            binding.recyclerView.adapter = adapter
-            binding.recyclerView.setOnClickListener {
-                println("hola")
-            }
-        }
 
         firebaseAuth = FirebaseAuth.getInstance()
         val firebaseUser = FirebaseAuth.getInstance().currentUser
@@ -69,7 +57,7 @@ class Contacts : Fragment() {
                     val document = task.result
                     if (document!!.exists()) {
                         val fromUser = document.toObject(User::class.java)
-                        val userContactsRef = rootRef.collection("contacts").document(fromUid)
+                        val userContactsRef = rootRef.collection("contactes").document(fromUid)
                             .collection("userContacts")
                         userContactsRef.get().addOnCompleteListener { t ->
                             if (t.isSuccessful) {
@@ -89,14 +77,19 @@ class Contacts : Fragment() {
                                     listOfRooms.add(d.id)
 
                                 }
-                                val arrayAdapter = context?.let {
-                                    ArrayAdapter(
-                                        it,
-                                        android.R.layout.simple_list_item_1,
-                                        listOfToUsersNames
-                                    )
-                                }
 
+                                CoroutineScope(Dispatchers.Main).launch {
+                                    for (i in 1..5) {
+                                        data.add(ContactsViewModel(i.toString()))
+                                    }
+                                    // This will pass the ArrayList to our Adapter
+                                    val adapter = ContactsCustomAdapter(data)
+                                    // Setting the Adapter with the recyclerview
+                                    binding.recyclerView.adapter = adapter
+                                    binding.recyclerView.setOnClickListener {
+                                        println("hola")
+                                    }
+                                }
                                 /*binding.recyclerView.adapter = arrayAdapter
                                 binding.recyclerView.onItemClickListener = AdapterView.OnItemClickListener{ _, _, position, _ ->
                                     val intent = Intent(this, ChatActivity::class.java)
@@ -119,10 +112,10 @@ class Contacts : Fragment() {
 
     }
 
-    /*override fun onOptionsItemSelected(item: MenuItem): Boolean {
+/*    override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.btnReturnMensajes -> {
-                binding.btnReturnMensajes.setOnClickListener(
+                binding.btnAddContact.setOnClickListener(
                     Navigation.createNavigateOnClickListener(
                         R.id.menu_principal,
                         null
