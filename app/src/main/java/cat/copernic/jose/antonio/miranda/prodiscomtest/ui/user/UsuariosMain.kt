@@ -17,7 +17,7 @@ class UsuariosMain : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentUsuariosBinding.inflate(inflater, container, false)
-        binding.btnAddUser.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.addUsuario, null))
+//        binding.btnAddUser.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.addUsuario, null))
         binding.btnDelUser.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.delUser, null))
         binding.btnModUser.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.modUser, null))
         binding.btnValUser.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.valUser, null))

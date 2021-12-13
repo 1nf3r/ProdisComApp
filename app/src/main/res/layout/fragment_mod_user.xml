@@ -11,6 +11,16 @@
         android:layout_height="match_parent">
 
         <TextView
+            android:id="@+id/txtVTelf2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Telèfon:"
+            app:layout_constraintBottom_toBottomOf="@+id/txResultTel"
+            app:layout_constraintStart_toStartOf="@+id/txtVDni"
+            app:layout_constraintTop_toBottomOf="@+id/txtVDni"
+            app:layout_constraintVertical_bias="0.772" />
+
+        <TextView
             android:id="@+id/titleBGModUser"
             style="@style/backgroundTitulos"
             android:background="@color/usuariosBG"
@@ -91,31 +101,22 @@
             android:id="@+id/txtVDni"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginStart="4dp"
             android:text="DNI:"
             app:layout_constraintBottom_toBottomOf="@+id/txResultDni"
-            app:layout_constraintStart_toStartOf="@+id/txtVNom"
-            app:layout_constraintTop_toBottomOf="@+id/txtVNom" />
-
-        <TextView
-            android:id="@+id/txtVMail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="Correu Electronic:"
-            app:layout_constraintBottom_toBottomOf="@+id/txResultMail"
-            app:layout_constraintStart_toStartOf="@+id/txtVDni"
-            app:layout_constraintTop_toBottomOf="@+id/txtVDni" />
+            app:layout_constraintStart_toStartOf="@+id/txVCognom"
+            app:layout_constraintTop_toBottomOf="@+id/txVCognom"
+            app:layout_constraintVertical_bias="0.736" />
 
         <TextView
             android:id="@+id/txtVTelf"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
             android:text="Telèfon:"
             app:layout_constraintBottom_toBottomOf="@+id/txResultTel"
-            app:layout_constraintStart_toStartOf="@+id/txtVMail"
-            app:layout_constraintTop_toBottomOf="@+id/txtVMail" />
+            app:layout_constraintStart_toStartOf="@+id/txtVDni"
+            app:layout_constraintTop_toBottomOf="@+id/txtVDni"
+            app:layout_constraintVertical_bias="0.772" />
 
         <Button
             android:id="@+id/btnModUs"
@@ -148,20 +149,9 @@
             android:layout_marginTop="20dp"
             android:text="-"
             app:layout_constraintEnd_toEndOf="@+id/txResultNom"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/txResultNom"
-            app:layout_constraintTop_toBottomOf="@+id/txResultNom" />
-
-        <EditText
-            android:id="@+id/txResultMail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="-"
-            app:layout_constraintEnd_toEndOf="@+id/txResultDni"
-            app:layout_constraintHorizontal_bias="0.555"
-            app:layout_constraintStart_toStartOf="@+id/txResultDni"
-            app:layout_constraintTop_toBottomOf="@+id/txResultDni" />
+            app:layout_constraintTop_toBottomOf="@+id/txResultCognom" />
 
         <EditText
             android:id="@+id/txResultTel"
@@ -169,9 +159,31 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="-"
-            app:layout_constraintEnd_toEndOf="@+id/txResultMail"
-            app:layout_constraintStart_toStartOf="@+id/txResultMail"
-            app:layout_constraintTop_toBottomOf="@+id/txResultMail" />
+            app:layout_constraintEnd_toEndOf="@+id/txResultDni"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/txResultDni"
+            app:layout_constraintTop_toBottomOf="@+id/txResultDni" />
+
+        <TextView
+            android:id="@+id/txVCognom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Cognom:"
+            app:layout_constraintBottom_toBottomOf="@+id/txResultCognom"
+            app:layout_constraintStart_toStartOf="@+id/txtVNom"
+            app:layout_constraintTop_toBottomOf="@+id/txtVNom" />
+
+        <EditText
+            android:id="@+id/txResultCognom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="-"
+            app:layout_constraintEnd_toEndOf="@+id/txResultNom"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/txResultNom"
+            app:layout_constraintTop_toBottomOf="@+id/txResultNom" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
