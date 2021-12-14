@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import cat.copernic.jose.antonio.miranda.prodiscomtest.R
 import cat.copernic.jose.antonio.miranda.prodiscomtest.ui.user.validate.CustomAdapter
@@ -40,6 +42,9 @@ class ContactsCustomAdapter(private val mList: List<ContactsViewModel>) : Recycl
 
         // sets the text to the textview from our itemHolder class
         holder.txtNom.text = ItemsViewModel.nom
+        holder.itemView.setOnClickListener {
+            it.findNavController().navigate(R.id.chat)
+        }
     }
 
     // return the number of the items in the list

@@ -1,5 +1,6 @@
 package cat.copernic.jose.antonio.miranda.prodiscomtest.ui.message
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -25,9 +26,11 @@ class Contacts : Fragment() {
     private var firebaseAuth: FirebaseAuth? = null
     private var authStateListener: FirebaseAuth.AuthStateListener? = null
     private val firebaseUser = FirebaseAuth.getInstance().currentUser
-    private val fromUid = firebaseUser!!.uid
+    private val fromUid = firebaseUser!!.email
     private val rootRef = FirebaseFirestore.getInstance()
-    private val uidRef = rootRef.collection("users").document(fromUid) //FALLA AQUI TENGO QUE CAMBIAR EL ID DE USERS PARA QUE PILLE EMAIL
+    private val uidRef =
+        fromUid?.let { rootRef.collection("users").document(it) } //FALLA AQUI TENGO QUE CAMBIAR EL ID DE USERS PARA QUE PILLE EMAIL
+    private lateinit  var adapter: ContactsCustomAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -50,30 +53,24 @@ class Contacts : Fragment() {
 
         binding.recyclerView.layoutManager = LinearLayoutManager(activity)
         val data = ArrayList<ContactsViewModel>()
-        CoroutineScope(Dispatchers.Main).launch {
-/*            for (i in 1..5) {
-                data.add(ContactsViewModel(i.toString()))
-            }*/
             getContacts(data)
-            val adapter = ContactsCustomAdapter(data)
+            adapter = ContactsCustomAdapter(data)
             binding.recyclerView.adapter = adapter
-            binding.recyclerView.setOnClickListener {
-                println("hola")
-            }
-        }
 
         firebaseAuth = FirebaseAuth.getInstance()
         val firebaseUser = FirebaseAuth.getInstance().currentUser
         if (firebaseUser != null) {
 
-            uidRef.get().addOnCompleteListener { task ->
+            uidRef?.get()?.addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     val document = task.result
                     if (document!!.exists()) {
                         val fromUser = document.toObject(Users::class.java)
-                        val userContactsRef = rootRef.collection("contactes").document(fromUid)
-                            .collection("userContacts")
-                        userContactsRef.get().addOnCompleteListener { t ->
+                        val userContactsRef = fromUid?.let {
+                            rootRef.collection("contactes").document(it)
+                                .collection("userContacts")
+                        }
+                        userContactsRef?.get()?.addOnCompleteListener { t ->
                             if (t.isSuccessful) {
                                 val listOfToUsersNames = ArrayList<String>()
                                 val listOfToUsers =
@@ -87,18 +84,6 @@ class Contacts : Fragment() {
                                     listOfRooms.add(d.id)
 
                                 }
-
-
-                                /*binding.recyclerView.adapter = arrayAdapter
-                                binding.recyclerView.onItemClickListener = AdapterView.OnItemClickListener{ _, _, position, _ ->
-                                    val intent = Intent(this, ChatActivity::class.java)
-                                    intent.putExtra("fromUser", fromUser)
-                                    intent.putExtra("toUser", listOfToUsers[position])
-                                    intent.putExtra("roomId", "noRoomId")
-                                    startActivity(intent)
-                                    requireActivity().finish()
-                                }*/
-
                             }
                         }
                     }
@@ -109,11 +94,12 @@ class Contacts : Fragment() {
         return binding.root
     }
 
-    private suspend fun getContacts(data:ArrayList<ContactsViewModel>) {
+    @SuppressLint("NotifyDataSetChanged")
+    private fun getContacts(data:ArrayList<ContactsViewModel>) {
         firebaseAuth = FirebaseAuth.getInstance()
         if (firebaseUser != null) {
             Log.i("Mensaje", "Entra1")
-            uidRef.get().addOnCompleteListener { task ->
+            uidRef?.get()?.addOnCompleteListener { task ->
                 Log.i("Mensaje", "Entra2")
                 if (task.isSuccessful) {
                     Log.i("Mensaje", "Entra3")
@@ -121,9 +107,11 @@ class Contacts : Fragment() {
                     if (document!!.exists()) {
                         Log.i("Mensaje", "Entra4")
                         val fromUser = document.toObject(Users::class.java)
-                        val userContactsRef = rootRef.collection("contactes").document(fromUid)
-                            .collection("userContacts")
-                        userContactsRef.get().addOnCompleteListener { t ->
+                        val userContactsRef = fromUid?.let {
+                            rootRef.collection("contactes").document(it)
+                                .collection("userContacts")
+                        }
+                        userContactsRef?.get()?.addOnCompleteListener { t ->
                             Log.i("Mensaje", "Entra5")
                             if (t.isSuccessful) {
                                 Log.i("Mensaje", "Entra6")
@@ -134,16 +122,18 @@ class Contacts : Fragment() {
                                     Log.i("Mensaje", "Entra7")
                                     val toUser = d.toObject(Users::class.java)
                                     data.add(ContactsViewModel(toUser.userName))
+                                    println(data)
+                                    adapter.notifyDataSetChanged()
                                     listOfToUsersNames.add(toUser.userName)
                                     listOfToUsers.add(toUser)
                                     listOfRooms.add(d.id)
-
                                 }
                             }
                         }
                     }
                 }
-            }.await()
+
+            }
         }
     }
 }
