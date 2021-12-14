@@ -18,25 +18,9 @@ class Chat : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentChatBinding.inflate(inflater, container, false)
-//        binding.btnReturnMensajes.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.menu_principal, null))
+        println(ChatArgs.fromBundle(requireArguments()).main.size)
+
         return binding.root
     }
-
-    /*override fun onOptionsItemSelected(item: MenuItem): Boolean {
-    return when (item.itemId) {
-        R.id.btnReturnMensajes -> {
-            binding.btnReturnMensajes.setOnClickListener(
-                Navigation.createNavigateOnClickListener(
-                    R.id.menu_principal,
-                    null
-                )
-            )
-            true
-        }
-        else -> super.onOptionsItemSelected(item)
-    }
-
-    return super.onOptionsItemSelected(item)
-}*/
 
 }
