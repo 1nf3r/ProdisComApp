@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import cat.copernic.jose.antonio.miranda.prodiscomtest.R
 import com.google.firebase.firestore.FirebaseFirestore
@@ -24,7 +24,6 @@ class CustomAdapter(private val mList: List<ValItemsViewModel>) : RecyclerView.A
         // that is used to hold list item
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.fragment_val_user_recycler, parent, false)
-        //ViewHolder(view).listeners()
 
         return ViewHolder(view)
     }
@@ -33,9 +32,6 @@ class CustomAdapter(private val mList: List<ValItemsViewModel>) : RecyclerView.A
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         val ItemsViewModel = mList[position]
-
-        // sets the image to the imageview from our itemHolder class
-        //holder.imageView.setImageResource(ItemsViewModel.image)
 
         // sets the text to the textview from our itemHolder class
         holder.txtNom.text = ItemsViewModel.nom
@@ -47,10 +43,16 @@ class CustomAdapter(private val mList: List<ValItemsViewModel>) : RecyclerView.A
             Log.i("Validar", holder.txtCorreu.text as String)
             CoroutineScope(Dispatchers.Main).launch {
                 updateValidated(holder.txtCorreu.text as String)
+
+                holder.cardView.visibility = View.GONE
+                holder.itemView.visibility = View.GONE
+                val params = holder.itemView.layoutParams
+                params.height = 0
+                params.width = 0
+                holder.itemView.layoutParams = params
+                holder.itemView.visibility = View.VISIBLE
             }
-
         }
-
     }
 
     // return the number of the items in the list
@@ -60,17 +62,18 @@ class CustomAdapter(private val mList: List<ValItemsViewModel>) : RecyclerView.A
 
     // Holds the views for adding it to image and text
     inner class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
-        //val imageView: ImageView = itemView.findViewById(R.id.imageview)
         val txtNom: TextView = itemView.findViewById(R.id.txtValUserDisplayNom)
         val txtCorreu: TextView = itemView.findViewById(R.id.txtValUserDisplayCorreu)
         val txtDni: TextView = itemView.findViewById(R.id.txtValUserDisplayDni)
         val txtFecha: TextView = itemView.findViewById(R.id.txtValUserDisplayFecha)
         val btnValidar: Button = itemView.findViewById(R.id.btnValidate)
 
+        val cardView: CardView = itemView.findViewById(R.id.valCard)
     }
-        private suspend fun updateValidated(email : String){
-            val update = db.collection("users").document(email)
-            update.update("zValidado",true).await()
-            Log.i("Validar", email + " Validado")   
-        }
+
+    private suspend fun updateValidated(email : String){
+        val update = db.collection("users").document(email)
+        update.update("zValidado",true).await()
+        Log.i("Validar", email + " Validado")
+    }
 }
