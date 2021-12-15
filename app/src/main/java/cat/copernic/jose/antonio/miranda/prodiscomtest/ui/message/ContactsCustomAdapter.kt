@@ -11,39 +11,34 @@ import cat.copernic.jose.antonio.miranda.prodiscomtest.R
 import cat.copernic.jose.antonio.miranda.prodiscomtest.data.Users
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.auth.User
 
 class ContactsCustomAdapter(private val mList: List<ContactsViewModel>) : RecyclerView.Adapter<ContactsCustomAdapter.ViewHolder>() {
 
-    private val db = FirebaseFirestore.getInstance()
     private val firebaseUser = FirebaseAuth.getInstance().currentUser
-    private val fromUid = firebaseUser!!.email
-    private val rootRef = FirebaseFirestore.getInstance()
-    private val uidRef =
-        fromUid?.let { rootRef.collection("users").document(it) }
     private var firebaseAuth: FirebaseAuth? = null
     private var listOfToUsers = ArrayList<Users>()
+    private var listOfToUserNames = ArrayList<String?>()
+    private var listOfRooms = ArrayList<String>()
+
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.fragment_contacts_recycler, parent, false)
             getContacts()
-
-        Log.i("pasar2", listOfToUsers.size.toString())
-        Log.i("pasar2", listOfToUsers.toString())
         return ViewHolder(view)
     }
 
     // binds the list items to a view
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-
         val itemsViewModel = mList[position]
-        holder.txtNom.text = itemsViewModel.userName
+        holder.txtNom.text = itemsViewModel.Nombre
         holder.itemView.setOnClickListener {
-            //it.findNavController().navigate(R.id.chat)
+            /*it.findNavController().navigate(ContactsDirections
+                .actionContactsToChat(arrayOf(listOfToUsers[position])))*/
             it.findNavController().navigate(ContactsDirections
-                .actionContactsToChat(listOfToUsers.toTypedArray()))
-            Log.i("pasar5", listOfToUsers.toString())
+                .actionContactsToChat(listOfToUsers[position]))
         }
     }
 
@@ -60,25 +55,30 @@ class ContactsCustomAdapter(private val mList: List<ContactsViewModel>) : Recycl
     private fun getContacts() {
         firebaseAuth = FirebaseAuth.getInstance()
         if (firebaseUser != null) {
-            uidRef?.get()?.addOnCompleteListener { task ->
-                Log.i("Mensaje", "Entra2")
+            val fromUid = firebaseUser.email
+            val fromUidString = fromUid.toString()
+            val rootRef = FirebaseFirestore.getInstance()
+            val uidRef = rootRef.collection("users").document(fromUidString)
+            uidRef.get().addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     val document = task.result
                     if (document!!.exists()) {
+                        val fromUser = document.toObject(Users::class.java) //TENGO QUE PASAR COMO ARGUMENTO TAMBIEN
+                        Log.i("ahorasi", fromUser.toString())
                         val userContactsRef = fromUid?.let {
                             rootRef.collection("contactes").document(it)
                                 .collection("userContacts")
                         }
                         userContactsRef?.get()?.addOnCompleteListener { t ->
                             if (t.isSuccessful) {
-                                val listOfRooms = ArrayList<String>()
                                 var listOfToUsers2 = ArrayList<Users>()
                                 for (d in t.result!!) {
                                     val toUser = d.toObject(Users::class.java)
+                                    listOfToUserNames.add(toUser.Nombre)
                                     listOfToUsers2.add(toUser)
                                     listOfRooms.add(d.id)
                                 }
-                                Log.i( "pasar1", listOfToUsers2.toString())
+//                                Log.i( "pasar1", listOfToUsers2.toString())
                                 setListOfToUsers(listOfToUsers2)
                             }
                         }

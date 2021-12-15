@@ -2,19 +2,18 @@ package cat.copernic.jose.antonio.miranda.prodiscomtest.ui.message
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import cat.copernic.jose.antonio.miranda.prodiscomtest.R
 import cat.copernic.jose.antonio.miranda.prodiscomtest.data.Users
 import cat.copernic.jose.antonio.miranda.prodiscomtest.databinding.FragmentContactsBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.auth.User
 
 class Contacts : Fragment() {
     private var _binding: FragmentContactsBinding? = null
@@ -62,26 +61,20 @@ class Contacts : Fragment() {
         firebaseAuth = FirebaseAuth.getInstance()
         if (firebaseUser != null) {
             uidRef?.get()?.addOnCompleteListener { task ->
-                Log.i("Mensaje", "Entra2")
                 if (task.isSuccessful) {
                     val document = task.result
                     if (document!!.exists()) {
-                        val fromUser = document.toObject(Users::class.java)
+//                        val fromUser = document.toObject(User::class.java)
                         val userContactsRef = fromUid?.let {
                             rootRef.collection("contactes").document(it)
                                 .collection("userContacts")
                         }
                         userContactsRef?.get()?.addOnCompleteListener { t ->
                             if (t.isSuccessful) {
-                                val listOfToUsersNames = ArrayList<String>()
-                                val listOfToUsers = ArrayList<Users>()
-                                val listOfRooms = ArrayList<String>()
                                 for (d in t.result!!) {
                                     val toUser = d.toObject(Users::class.java)
-                                    data.add(ContactsViewModel(toUser.userName!!))
+                                    data.add(ContactsViewModel(toUser.Nombre!!))
                                     adapter.notifyDataSetChanged()
-                                    listOfToUsers.add(toUser)
-                                    listOfRooms.add(d.id)
                                 }
                             }
                         }
