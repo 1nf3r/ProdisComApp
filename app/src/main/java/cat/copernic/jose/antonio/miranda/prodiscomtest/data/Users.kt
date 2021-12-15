@@ -3,7 +3,7 @@ package cat.copernic.jose.antonio.miranda.prodiscomtest.data
 import android.os.Parcel
 import android.os.Parcelable
 
-class Users(
+data class Users(
     val uid: String? = "",
     val userName: String? = "",
     var rooms: MutableMap<String, Any>? = null
