@@ -1,7 +1,5 @@
 package cat.copernic.jose.antonio.miranda.prodiscomtest.data
 
-import android.os.Parcel
-import android.os.Parcelable
 import java.io.Serializable
 
 data class Users(

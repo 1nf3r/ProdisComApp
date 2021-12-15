@@ -21,8 +21,6 @@ class ContactsCustomAdapter(private val mList: List<ContactsViewModel>) : Recycl
     private var listOfToUserNames = ArrayList<String?>()
     private var listOfRooms = ArrayList<String>()
 
-
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.fragment_contacts_recycler, parent, false)
@@ -35,8 +33,6 @@ class ContactsCustomAdapter(private val mList: List<ContactsViewModel>) : Recycl
         val itemsViewModel = mList[position]
         holder.txtNom.text = itemsViewModel.Nombre
         holder.itemView.setOnClickListener {
-            /*it.findNavController().navigate(ContactsDirections
-                .actionContactsToChat(arrayOf(listOfToUsers[position])))*/
             it.findNavController().navigate(ContactsDirections
                 .actionContactsToChat(listOfToUsers[position]))
         }
