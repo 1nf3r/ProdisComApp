@@ -23,6 +23,8 @@ class Chat : Fragment() {
         _binding = FragmentChatBinding.inflate(inflater, container, false)
 //        println(ChatArgs.fromBundle(requireArguments()).main!!.size)
         val listOfToUsers = ChatArgs.fromBundle(requireArguments()).main
+        val fromUser = ChatArgs.fromBundle(requireArguments()).localUser
+        Log.i("HOLA", fromUser.toString())
         Log.i("HOLA", listOfToUsers.toString())
 //        Log.i("HOLA", listOfToUsers[0].toString())
         rootRef = FirebaseFirestore.getInstance()

@@ -158,5 +158,9 @@
         <argument
             android:name="main"
             app:argType="cat.copernic.jose.antonio.miranda.prodiscomtest.data.Users" />
+        <argument
+            android:name="localUser"
+            app:argType="cat.copernic.jose.antonio.miranda.prodiscomtest.data.Users"
+            app:nullable="true" />
     </fragment>
 </navigation>

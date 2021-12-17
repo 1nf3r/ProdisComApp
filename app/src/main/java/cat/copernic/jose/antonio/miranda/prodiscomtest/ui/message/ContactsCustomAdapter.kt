@@ -20,6 +20,7 @@ class ContactsCustomAdapter(private val mList: List<ContactsViewModel>) : Recycl
     private var listOfToUsers = ArrayList<Users>()
     private var listOfToUserNames = ArrayList<String?>()
     private var listOfRooms = ArrayList<String>()
+    private var fromUserData: Users? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -34,7 +35,7 @@ class ContactsCustomAdapter(private val mList: List<ContactsViewModel>) : Recycl
         holder.txtNom.text = itemsViewModel.Nombre
         holder.itemView.setOnClickListener {
             it.findNavController().navigate(ContactsDirections
-                .actionContactsToChat(listOfToUsers[position]))
+                .actionContactsToChat(listOfToUsers[position], fromUserData))
         }
     }
 
@@ -60,6 +61,7 @@ class ContactsCustomAdapter(private val mList: List<ContactsViewModel>) : Recycl
                     val document = task.result
                     if (document!!.exists()) {
                         val fromUser = document.toObject(Users::class.java) //TENGO QUE PASAR COMO ARGUMENTO TAMBIEN
+                        fromUserData = fromUser
                         Log.i("ahorasi", fromUser.toString())
                         val userContactsRef = fromUid?.let {
                             rootRef.collection("contactes").document(it)
