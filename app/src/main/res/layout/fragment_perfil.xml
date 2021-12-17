@@ -32,119 +32,105 @@
             tools:layout_editor_absoluteX="16dp"
             tools:layout_editor_absoluteY="32dp" />
 
-        <LinearLayout
-            android:id="@+id/linearLayout2"
-            android:layout_width="0dp"
+
+        <TextView
+            android:id="@+id/txtNom"
+            style="@style/txtDisplayPerfil"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="150dp"
-            android:layout_marginEnd="32dp"
-            android:background="@color/perfilBG"
-            android:orientation="horizontal"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.14"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="28dp"
+            android:text="Nom:"
+            android:textAlignment="textStart"
+            app:layout_constraintEnd_toStartOf="@+id/txtDisplayNombre"
+            app:layout_constraintHorizontal_bias="0.136"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/titleBGPerfil"
-            app:layout_constraintVertical_bias="0.16000003">
+            app:layout_constraintTop_toBottomOf="@+id/imgDisplayFoto" />
 
-            <Space
-                android:layout_width="10dp"
-                android:layout_height="match_parent" />
+        <TextView
+            android:id="@+id/txtCorreu"
+            style="@style/txtDisplayPerfil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="Correu:"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="@+id/txtNom"
+            app:layout_constraintHorizontal_bias="0.47"
+            app:layout_constraintStart_toStartOf="@+id/txtNom"
+            app:layout_constraintTop_toBottomOf="@+id/txtNom" />
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+        <TextView
+            android:id="@+id/txtTelefon"
+            style="@style/txtDisplayPerfil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="Teléfon:"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="@+id/txtCorreu"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/txtCorreu"
+            app:layout_constraintTop_toBottomOf="@+id/txtCorreu" />
 
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="10dp" />
+        <TextView
+            android:id="@+id/txtNaixement"
+            style="@style/txtDisplayPerfil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="Naixement:"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="@+id/txtTelefon"
+            app:layout_constraintHorizontal_bias="0.533"
+            app:layout_constraintStart_toStartOf="@+id/txtTelefon"
+            app:layout_constraintTop_toBottomOf="@+id/txtTelefon" />
 
-                <TextView
-                    android:id="@+id/txtNom"
-                    style="@style/txtDisplayPerfil"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Nom:"
-                    android:textAlignment="textStart" />
 
-                <TextView
-                    android:id="@+id/txtCorreu"
-                    style="@style/txtDisplayPerfil"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Correu:"
-                    android:textAlignment="center" />
+        <EditText
+            android:id="@+id/txtDisplayNombre"
+            style="@style/txtDisplayPerfil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="100dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgDisplayFoto"
+            tools:text="Juan" />
 
-                <TextView
-                    android:id="@+id/txtTelefon"
-                    style="@style/txtDisplayPerfil"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Teléfon:"
-                    android:textAlignment="center" />
+        <TextView
+            android:id="@+id/txtDisplayCorreo"
+            style="@style/txtDisplayPerfil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="@+id/txtDisplayNombre"
+            app:layout_constraintStart_toStartOf="@+id/txtDisplayNombre"
+            app:layout_constraintTop_toTopOf="@+id/txtCorreu"
+            tools:text="juanillo@gmail.com" />
 
-                <TextView
-                    android:id="@+id/txtNaixement"
-                    style="@style/txtDisplayPerfil"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Naixement:   "
-                    android:textAlignment="center" />
+        <EditText
+            android:id="@+id/txtDisplayTelefono"
+            style="@style/txtDisplayPerfil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            app:layout_constraintEnd_toEndOf="@+id/txtDisplayCorreo"
+            app:layout_constraintHorizontal_bias="0.514"
+            app:layout_constraintStart_toStartOf="@+id/txtDisplayCorreo"
+            app:layout_constraintTop_toBottomOf="@+id/txtDisplayCorreo"
+            tools:text="123456789" />
 
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="10dp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="10dp" />
-
-                <EditText
-                    android:id="@+id/txtDisplayNombre"
-                    style="@style/txtDisplayPerfil"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    tools:text="Juan" />
-
-                <EditText
-                    android:id="@+id/txtDisplayCorreo"
-                    style="@style/txtDisplayPerfil"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    tools:text="juanillo@gmail.com" />
-
-                <EditText
-                    android:id="@+id/txtDisplayTelefono"
-                    style="@style/txtDisplayPerfil"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    tools:text="123456789" />
-
-                <EditText
-                    android:id="@+id/txtDisplayNacimiento"
-                    style="@style/txtDisplayPerfil"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    tools:text="20/04/1969" />
-
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="10dp" />
-            </LinearLayout>
-
-            <Space
-                android:layout_width="10dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
-        </LinearLayout>
+        <EditText
+            android:id="@+id/txtDisplayNacimiento"
+            style="@style/txtDisplayPerfil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="@+id/txtDisplayTelefono"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/txtDisplayTelefono"
+            app:layout_constraintTop_toBottomOf="@+id/txtDisplayTelefono"
+            tools:text="20/04/1969" />
 
         <ImageView
             android:id="@+id/imgDisplayFoto"
@@ -156,7 +142,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/titleBGPerfil"
-            app:layout_constraintVertical_bias="0.074"
+            app:layout_constraintVertical_bias="0.04"
             app:srcCompat="@drawable/no_user" />
 
         <Button
@@ -166,10 +152,9 @@
             android:text="Guardar"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
-            app:layout_constraintVertical_bias="0.362" />
+            app:layout_constraintTop_toBottomOf="@+id/titleBGPerfil"
+            app:layout_constraintVertical_bias="0.917" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

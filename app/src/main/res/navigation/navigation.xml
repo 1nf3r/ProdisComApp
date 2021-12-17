@@ -154,5 +154,13 @@
     <fragment
         android:id="@+id/chat"
         android:name="cat.copernic.jose.antonio.miranda.prodiscomtest.ui.message.Chat"
-        android:label="Chat" />
+        android:label="Chat" >
+        <argument
+            android:name="main"
+            app:argType="cat.copernic.jose.antonio.miranda.prodiscomtest.data.Users" />
+        <argument
+            android:name="localUser"
+            app:argType="cat.copernic.jose.antonio.miranda.prodiscomtest.data.Users"
+            app:nullable="true" />
+    </fragment>
 </navigation>

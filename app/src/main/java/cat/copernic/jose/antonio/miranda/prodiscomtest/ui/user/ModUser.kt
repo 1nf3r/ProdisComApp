@@ -80,7 +80,7 @@ class modUser : Fragment() {
 
     private fun printInfo(mail: String, nom: String, dni: String /*tel: String*/) {
 
-        binding.txResultMail.setText(mail)
+//        binding.txResultMail.setText(mail)
         binding.txResultNom.setText(nom)
         binding.txResultDni.setText(dni)
 //        binding.txResultTel.setText(tel)
@@ -99,7 +99,7 @@ class modUser : Fragment() {
     private fun updateUser() {
         getUserInfo.update(
             "email",
-            binding.txResultMail.text.toString(),
+//            binding.txResultMail.text.toString(),
             "DNI",
             binding.txResultDni.text.toString(),
             "Nombre", binding.txResultNom.text.toString()
