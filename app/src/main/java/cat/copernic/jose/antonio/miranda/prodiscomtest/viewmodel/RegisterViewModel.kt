@@ -19,7 +19,7 @@ class RegisterViewModel : ViewModel() {
         val users = db.collection("users")
         val userInfo = hashMapOf(
             "Nombre" to nombre,
-            "DNI" to dni,
+            "DNI" to dni.uppercase(),
             "email" to email,
             "Fecha" to SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
                 .format(Date()),

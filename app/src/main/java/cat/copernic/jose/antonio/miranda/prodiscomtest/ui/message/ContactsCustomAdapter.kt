@@ -60,7 +60,7 @@ class ContactsCustomAdapter(private val mList: List<ContactsViewModel>) : Recycl
                 if (task.isSuccessful) {
                     val document = task.result
                     if (document!!.exists()) {
-                        val fromUser = document.toObject(Users::class.java) //TENGO QUE PASAR COMO ARGUMENTO TAMBIEN
+                        val fromUser = document.toObject(Users::class.java)
                         fromUserData = fromUser
                         Log.i("ahorasi", fromUser.toString())
                         val userContactsRef = fromUid?.let {
