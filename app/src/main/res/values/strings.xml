@@ -150,7 +150,7 @@
     <string name="title_activity_conf_regsitro">ConfRegsitro</string>
     <string name="grup">Grup</string>
     <string name="missatges">Missatges</string>
-    <string name="buscar_usuari">Introdueix un email d'usuari</string>
+    <string name="buscar_usuari">Introdueix un email d\'usuari</string>
     <string name="contactes">Contactes</string>
     <string name="crear_grup">Crear Grup</string>
     <string name="nom_del_grup">Nom del grup</string>

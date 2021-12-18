@@ -16,7 +16,7 @@ class RegisterViewModel : ViewModel() {
 
 
     fun saveDB(nombre: String, dni: String, email: String, apellido: String, telefono: String) {
-        telefono.toInt()
+
         val users = db.collection("users")
         val userInfo = hashMapOf(
             "Nombre" to nombre,

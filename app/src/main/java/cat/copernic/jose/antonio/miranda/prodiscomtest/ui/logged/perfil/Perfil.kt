@@ -32,13 +32,14 @@ private lateinit var viewModel: PerfilViewModel
 class Perfil : Fragment() {
     private var _binding: FragmentPerfilBinding? = null
     private val binding get() = _binding!!
-    private val db = FirebaseFirestore.getInstance()
-    private val auth: FirebaseAuth = Firebase.auth
     lateinit var storageRef: StorageReference
     private var filename = "perfilImg-" + Firebase.auth.currentUser?.email
     private var dataLocal: Uri? = null
     private lateinit var getUserInfo: DocumentReference
-    private var found = false
+    private var name = ""
+    private var mail = ""
+    private var telf = ""
+    private var birth = ""
 
 
     override fun onCreateView(
@@ -86,13 +87,15 @@ class Perfil : Fragment() {
         GlobalScope.async(Dispatchers.Main) {
             delay(500)
             binding.txtDisplayNombre.setText(viewModel.nombre.value)
+            name = viewModel.nombre.value.toString()
             binding.txtDisplayCorreo.setText(viewModel.correo.value)
+            mail = viewModel.correo.value.toString()
+            binding.txtDisplayTelefono.setText(viewModel.telefono.value)
+            telf = viewModel.telefono.value.toString()
             binding.txtDisplayNacimiento.setText(viewModel.nacimiento.value)
-
-
+            birth = viewModel.nacimiento.value.toString()
         }
     }
-
 
     private val startForActivityGallery = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
@@ -113,7 +116,13 @@ class Perfil : Fragment() {
     }
 
     private fun guardarInfo() {
+        var changedName = false
+        var changedMail = false
+        var changedTelf = false
+        var changedBirth = false
+        var changedImage: Boolean
         if (dataLocal != null) {
+            changedImage = true
             storageRef = FirebaseStorage.getInstance().getReference("user_images/$filename")
             storageRef.putFile(dataLocal!!)
                 .addOnSuccessListener {
@@ -121,27 +130,32 @@ class Perfil : Fragment() {
                 }.addOnFailureListener {
                 }
         } else {
-            Toast.makeText(requireContext(), R.string.any_change, Toast.LENGTH_LONG).show()
+            changedImage = false
         }
-        if (true){
-            /*
-        val users = db.collection("users")
-        val userInfo = hashMapOf(
-            "Nombre" to nombre,
-            "Apellido" to apellido,
-            "DNI" to dni.uppercase(),
-            "email" to email,
-            "Fecha" to SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
-                .format(Date()),
-            "Telefono" to telefono,
-            "zValidado" to false,
-            "zBloqueado" to false,
-            "zEliminado" to false,
-            "zAdmin" to false
-        )
-        users.document(email).set(userInfo)*/
-        } 
 
+        if (name != binding.txtDisplayNombre.text.toString()){
+            changedName = true
+        }
+        if (mail != binding.txtDisplayCorreo.text.toString()){
+            changedMail = true
+        }
+        if (telf != binding.txtDisplayTelefono.text.toString()){
+            changedTelf = true
+        }
+        if (birth != binding.txtDisplayNacimiento.text.toString()){
+            changedBirth = true
+        }
+       /* Log.i("cambiado1",changedName.toString())
+        Log.i("cambiado2",changedMail.toString())
+        Log.i("cambiado3",changedTelf.toString())
+        Log.i("cambiado4",changedBirth.toString())
+        Log.i("cambiado5",changedImage.toString())*/
+
+        if (!changedName && !changedMail && !changedTelf && !changedBirth && !changedImage){
+            Toast.makeText(requireContext(), R.string.any_change, Toast.LENGTH_LONG).show()
+        } else if (changedMail) {
+            //MIRAR COMO CAMBIAR EL MAIL Y HACERLO TODO JUNTO
+        }
     }
 
 
