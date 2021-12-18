@@ -60,6 +60,7 @@ class Register : AppCompatActivity() {
         var checkDni2 = false
         var checkMail: Boolean
         var checkName: Boolean
+        var checkLastName: Boolean
         var checkPasswd: Boolean
         var improvePassw = "Prodis"
 
@@ -72,13 +73,14 @@ class Register : AppCompatActivity() {
                 checkDni2 = checkDni2(binding.etxtRegDni.text.toString())
                 checkMail = checkMail(binding.etxtRegMail.text.toString())
                 checkName = checkName(binding.etxtRegNom.text.toString())
+                checkLastName = checkLastName(binding.etxtRegCognom.text.toString())
                 checkPasswd = checkPass(
                     binding.etxtRegCont.text.toString(),
                     binding.etxtRegConfPass.text.toString()
                 )
 
                 //Creem el registre amb email i contrasenya...
-                if (checkMail && checkName && checkPasswd && checkDni && checkDni2) {
+                if (checkMail && checkName && checkLastName && checkPasswd && checkDni && checkDni2) {
                     //Registrem a l'usuari i amb el mètode addOnCompleteListener,
                     // ens notificarà si el registre a estat un èxit o no.
                     improvePassw += binding.etxtRegCont.text.toString()
@@ -107,9 +109,9 @@ class Register : AppCompatActivity() {
     //Funció que crea l'alert de tipus AlertDialog que es mostrarà si el registre no ha estat un èxit
     private fun showAlert() {
         val builder = AlertDialog.Builder(this)
-        builder.setTitle(Resources.getSystem().getString(R.string.error))
-        builder.setMessage(Resources.getSystem().getString(R.string.signup_failed))
-        builder.setPositiveButton(Resources.getSystem().getString(R.string.accept), null)
+        builder.setTitle(R.string.error)
+        builder.setMessage(R.string.signup_failed)
+        builder.setPositiveButton(R.string.accept, null)
         builder.show()
     }
 
@@ -131,11 +133,20 @@ class Register : AppCompatActivity() {
         viewModel.saveDB(
             binding.etxtRegNom.text.toString(),
             binding.etxtRegDni.text.toString(),
-            binding.etxtRegMail.text.toString()
-            //binding.etxtRegTel.text.toString() as Int
+            binding.etxtRegMail.text.toString(),
+            binding.etxtRegCognom.text.toString(),
+            binding.etxtRegTel.text.toString()
         )
         startActivity(homeIntent)
 
+    }
+
+    //Funcion para comprobar el apellido
+    private fun checkLastName(name: String): Boolean {
+        val checkLastName = "^[\\p{L}\\s.’\\-,]+\$".toRegex()
+        var checker = false
+        if (checkLastName.matches(name)) checker = true
+        return checker
     }
 
     //Funcion para comprobar el nombre

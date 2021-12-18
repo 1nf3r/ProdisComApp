@@ -15,15 +15,17 @@ class RegisterViewModel : ViewModel() {
     private val db = FirebaseFirestore.getInstance()
 
 
-    fun saveDB(nombre: String, dni: String, email: String) {
+    fun saveDB(nombre: String, dni: String, email: String, apellido: String, telefono: String) {
+        telefono.toInt()
         val users = db.collection("users")
         val userInfo = hashMapOf(
             "Nombre" to nombre,
+            "Apellido" to apellido,
             "DNI" to dni.uppercase(),
             "email" to email,
             "Fecha" to SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
                 .format(Date()),
-            //"Telefono" to telefono,
+            "Telefono" to telefono,
             "zValidado" to false,
             "zBloqueado" to false,
             "zEliminado" to false,

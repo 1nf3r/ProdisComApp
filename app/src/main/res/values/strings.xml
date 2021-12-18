@@ -10,7 +10,7 @@
     <string name="invalid_password">Contrasenya ha de tenir minim 4 digits</string>
     <string name="login_failed">"Login failed"</string>
 
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="any_change">No s\'ha produit cap canvi</string>
     <string name="que_quieres_hacer">¿Que vols fer?</string>
     <string name="autoritzacions">Autoritzacions</string>
     <string name="autorizaciones">Autoritzacions</string>
@@ -150,7 +150,7 @@
     <string name="title_activity_conf_regsitro">ConfRegsitro</string>
     <string name="grup">Grup</string>
     <string name="missatges">Missatges</string>
-    <string name="buscar_usuari">Buscar Usuari</string>
+    <string name="buscar_usuari">Introdueix un email d'usuari</string>
     <string name="contactes">Contactes</string>
     <string name="crear_grup">Crear Grup</string>
     <string name="nom_del_grup">Nom del grup</string>
@@ -163,4 +163,15 @@
     <string name="nom">Nom:</string>
     <string name="data">Data:</string>
     <string name="descripcio">Descripció</string>
+    <string name="cognoms">Cognoms</string>
+    <string name="email">Email</string>
+    <string name="telf">Telf:</string>
+    <string name="escriu_el_teu_nom">Escriu el teu nom</string>
+    <string name="escriu_els_teus_cognoms">Escriu els teus cognoms</string>
+    <string name="indica_el_teu_dni">Indica el teu DNI</string>
+    <string name="escriu_el_teu_correu_electronic">Escriu el teu correu electronic</string>
+    <string name="introdueix_el_teu_numero">Introdueix el teu numero</string>
+    <string name="introdueix_una_contrasenya">Introdueix una contrasenya</string>
+    <string name="confirmar_contrasenya">Confirmar Contrasenya</string>
+    <string name="ya_tens_compte_inicia_sessi">Ya tens compte? Inicia sessió</string>
 </resources>

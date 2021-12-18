@@ -9,9 +9,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import cat.copernic.jose.antonio.miranda.prodiscomtest.R
 import cat.copernic.jose.antonio.miranda.prodiscomtest.databinding.FragmentPerfilBinding
 import cat.copernic.jose.antonio.miranda.prodiscomtest.viewmodel.PerfilViewModel
 import com.bumptech.glide.Glide
@@ -45,12 +47,6 @@ class Perfil : Fragment() {
     ): View {
         viewModel = ViewModelProvider(this).get(PerfilViewModel::class.java)
         _binding = FragmentPerfilBinding.inflate(inflater, container, false)
-//        binding.btnToEditPerfil.setOnClickListener(
-//            Navigation.createNavigateOnClickListener(
-//                cat.copernic.jose.antonio.miranda.prodiscomtest.R.id.editPerfil,
-//                null
-//            )
-//        )
         binding.btnReturnPerfil.setOnClickListener(
             Navigation.createNavigateOnClickListener(
                 cat.copernic.jose.antonio.miranda.prodiscomtest.R.id.menu_principal,
@@ -124,7 +120,28 @@ class Perfil : Fragment() {
                     binding.imgDisplayFoto.setImageURI(dataLocal)
                 }.addOnFailureListener {
                 }
+        } else {
+            Toast.makeText(requireContext(), R.string.any_change, Toast.LENGTH_LONG).show()
         }
+        if (true){
+            /*
+        val users = db.collection("users")
+        val userInfo = hashMapOf(
+            "Nombre" to nombre,
+            "Apellido" to apellido,
+            "DNI" to dni.uppercase(),
+            "email" to email,
+            "Fecha" to SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+                .format(Date()),
+            "Telefono" to telefono,
+            "zValidado" to false,
+            "zBloqueado" to false,
+            "zEliminado" to false,
+            "zAdmin" to false
+        )
+        users.document(email).set(userInfo)*/
+        } 
+
     }
 
 
