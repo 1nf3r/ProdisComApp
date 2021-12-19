@@ -57,6 +57,8 @@
     <string name="title_activity_grups">Grups</string>
     <string name="user_not_found">Usuari no trovat</string>
     <string name="user_not_validate">Usuari no validat</string>
+    <string name="changes_applied">S\'han guardat els canvis </string>
+    <string name="mail_changed">Email canviat satisfactoriament</string>
     <string name="large_text">
         "Material is the metaphor.\n\n"
 

@@ -33,6 +33,7 @@ class Perfil : Fragment() {
     private var _binding: FragmentPerfilBinding? = null
     private val binding get() = _binding!!
     lateinit var storageRef: StorageReference
+    private var currentUser = Firebase.auth.currentUser
     private var filename = "perfilImg-" + Firebase.auth.currentUser?.email
     private var dataLocal: Uri? = null
     private lateinit var getUserInfo: DocumentReference
@@ -133,30 +134,50 @@ class Perfil : Fragment() {
             changedImage = false
         }
 
-        if (name != binding.txtDisplayNombre.text.toString()){
+        if (name != binding.txtDisplayNombre.text.toString()) {
             changedName = true
         }
-        if (mail != binding.txtDisplayCorreo.text.toString()){
+        if (mail != binding.txtDisplayCorreo.text.toString()) {
             changedMail = true
         }
-        if (telf != binding.txtDisplayTelefono.text.toString()){
+        if (telf != binding.txtDisplayTelefono.text.toString()) {
             changedTelf = true
         }
-        if (birth != binding.txtDisplayNacimiento.text.toString()){
+        if (birth != binding.txtDisplayNacimiento.text.toString()) {
             changedBirth = true
         }
-       /* Log.i("cambiado1",changedName.toString())
-        Log.i("cambiado2",changedMail.toString())
-        Log.i("cambiado3",changedTelf.toString())
-        Log.i("cambiado4",changedBirth.toString())
-        Log.i("cambiado5",changedImage.toString())*/
+        /* Log.i("cambiado1",changedName.toString())
+         Log.i("cambiado2",changedMail.toString())
+         Log.i("cambiado3",changedTelf.toString())
+         Log.i("cambiado4",changedBirth.toString())
+         Log.i("cambiado5",changedImage.toString())*/
 
-        if (!changedName && !changedMail && !changedTelf && !changedBirth && !changedImage){
+        if (changedMail) {
+            if (changedName || changedTelf || changedBirth || changedImage) {
+                currentUser?.updateEmail(viewModel.correo.value.toString())
+                //cambiar todos los campos
+                Toast.makeText(requireContext(), R.string.changes_applied, Toast.LENGTH_LONG).show()
+            } else {
+                currentUser?.updateEmail(viewModel.correo.value.toString())
+                Toast.makeText(requireContext(), R.string.mail_changed, Toast.LENGTH_LONG).show()
+            }
+
+        } else if (changedName || changedTelf || changedBirth || changedImage) {
+            //cambiar todos los campos
+            Toast.makeText(requireContext(), R.string.changes_applied, Toast.LENGTH_LONG).show()
+        } else {
             Toast.makeText(requireContext(), R.string.any_change, Toast.LENGTH_LONG).show()
-        } else if (changedMail) {
-            //MIRAR COMO CAMBIAR EL MAIL Y HACERLO TODO JUNTO
         }
     }
 
+    private fun changeFields(){
+        getUserInfo.update(
+            "email",
+            binding.txResultMail.text.toString(),
+            "DNI",
+            binding.txResultDni.text.toString(),
+            "Nombre", binding.txResultNom.text.toString()
+        )
+    }
 
 }
