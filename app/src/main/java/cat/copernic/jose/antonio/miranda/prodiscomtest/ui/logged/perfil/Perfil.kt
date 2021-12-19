@@ -155,7 +155,7 @@ class Perfil : Fragment() {
         if (changedMail) {
             if (changedName || changedTelf || changedBirth || changedImage) {
                 currentUser?.updateEmail(viewModel.correo.value.toString())
-                //cambiar todos los campos
+                changeFields()
                 Toast.makeText(requireContext(), R.string.changes_applied, Toast.LENGTH_LONG).show()
             } else {
                 currentUser?.updateEmail(viewModel.correo.value.toString())
@@ -163,7 +163,7 @@ class Perfil : Fragment() {
             }
 
         } else if (changedName || changedTelf || changedBirth || changedImage) {
-            //cambiar todos los campos
+            changeFields()
             Toast.makeText(requireContext(), R.string.changes_applied, Toast.LENGTH_LONG).show()
         } else {
             Toast.makeText(requireContext(), R.string.any_change, Toast.LENGTH_LONG).show()
