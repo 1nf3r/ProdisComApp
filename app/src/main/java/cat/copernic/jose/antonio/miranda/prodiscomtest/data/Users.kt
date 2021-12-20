@@ -6,5 +6,4 @@ data class Users(
     val email: String? = "",
     val Nombre: String? = "",
     var rooms: MutableMap<String, Any>? = null,
-//    var roomId: String? = null
 ) : Serializable

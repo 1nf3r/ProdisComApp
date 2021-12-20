@@ -34,6 +34,8 @@ class Perfil : Fragment() {
     private val binding get() = _binding!!
     lateinit var storageRef: StorageReference
     private var currentUser = Firebase.auth.currentUser
+    private val currentMail = Firebase.auth.currentUser?.email
+    private var currentUserMail: String = currentMail!!
     private var filename = "perfilImg-" + Firebase.auth.currentUser?.email
     private var dataLocal: Uri? = null
     private lateinit var getUserInfo: DocumentReference
@@ -133,7 +135,6 @@ class Perfil : Fragment() {
         } else {
             changedImage = false
         }
-
         if (name != binding.txtDisplayNombre.text.toString()) {
             changedName = true
         }
@@ -146,12 +147,6 @@ class Perfil : Fragment() {
         if (birth != binding.txtDisplayNacimiento.text.toString()) {
             changedBirth = true
         }
-        /* Log.i("cambiado1",changedName.toString())
-         Log.i("cambiado2",changedMail.toString())
-         Log.i("cambiado3",changedTelf.toString())
-         Log.i("cambiado4",changedBirth.toString())
-         Log.i("cambiado5",changedImage.toString())*/
-
         if (changedMail) {
             if (changedName || changedTelf || changedBirth || changedImage) {
                 currentUser?.updateEmail(viewModel.correo.value.toString())
@@ -161,7 +156,6 @@ class Perfil : Fragment() {
                 currentUser?.updateEmail(viewModel.correo.value.toString())
                 Toast.makeText(requireContext(), R.string.mail_changed, Toast.LENGTH_LONG).show()
             }
-
         } else if (changedName || changedTelf || changedBirth || changedImage) {
             changeFields()
             Toast.makeText(requireContext(), R.string.changes_applied, Toast.LENGTH_LONG).show()
@@ -170,13 +164,13 @@ class Perfil : Fragment() {
         }
     }
 
-    private fun changeFields(){
-        getUserInfo.update(
-            "email",
-            binding.txResultMail.text.toString(),
-            "DNI",
-            binding.txResultDni.text.toString(),
-            "Nombre", binding.txResultNom.text.toString()
+    private fun changeFields() {
+        //Se tiene que hacer un observer
+        getUserInfo = FirebaseFirestore.getInstance().collection("users")
+            .document(currentUserMail)
+        getUserInfo.update("Nombre",viewModel.nombre.value.toString(),
+            "Telefono", viewModel.telefono.value.toString(),
+            "Fecha", viewModel.nacimiento.value.toString()
         )
     }
 

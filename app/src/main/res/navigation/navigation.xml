@@ -162,5 +162,8 @@
             android:name="localUser"
             app:argType="cat.copernic.jose.antonio.miranda.prodiscomtest.data.Users"
             app:nullable="true" />
+        <argument
+            android:name="roomId"
+            app:argType="string" />
     </fragment>
 </navigation>
