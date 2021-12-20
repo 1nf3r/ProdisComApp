@@ -35,14 +35,10 @@ class Chat : Fragment() {
         var toRooms = toUser.rooms
         var roomId = ChatArgs.fromBundle(requireArguments()).roomId
 
-        Log.i("HOLA", fromUser.toString())
-        Log.i("HOLA1", fromUid)
-        Log.i("HOLA2", toUser.toString())
-        Log.i("HOLA3", toUid)
-
-
-
-
+//        Log.i("HOLA", fromUser.toString())
+//        Log.i("HOLA1", fromUid)
+//        Log.i("HOLA2", toUser.toString())
+//        Log.i("HOLA3", toUid)
 
         if (roomId == "noRoomId") {
             roomId = rootRef!!.collection("messages").document().id
@@ -82,7 +78,8 @@ class Chat : Fragment() {
 
             val messageText = binding.txWriteMessage.text.toString()
             val message = Message(messageText, fromUid)
-            rootRef!!.collection("missatges").document(roomId).collection("roomMessages").add(message)
+            rootRef!!.collection("missatges").document(roomId).collection("roomMessages")
+                .add(message)
             binding.txWriteMessage.text.clear()
         }
 
