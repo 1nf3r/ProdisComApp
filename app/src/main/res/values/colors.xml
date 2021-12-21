@@ -15,5 +15,6 @@
     <color name="usuariosBG">#000000</color>
     <color name="lila_prodis">#9C27B0</color>
     <color name="azul_grup">#245195</color>
+    <color name="grayDark">#2E2E2E</color>
 
 </resources>

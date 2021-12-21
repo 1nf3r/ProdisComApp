@@ -67,6 +67,7 @@ class Perfil : Fragment() {
             .addOnSuccessListener { url ->
                 Glide.with(this)
                     .load(url.toString())
+                    .circleCrop()
                     .into(binding.imgDisplayFoto)
 
             }.addOnFailureListener {

@@ -18,6 +18,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.Navigation
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -30,6 +31,7 @@ class LoginActivity : AppCompatActivity() {
     private val db = FirebaseFirestore.getInstance()
     private lateinit var binding: ActivityLoginBinding
     private lateinit var viewModel: LoginViewModel
+    private var currentUser = Firebase.auth.currentUser
     var checkAdmin = false
     override fun onCreate(savedInstanceState: Bundle?) {
         Thread.sleep(1000)
@@ -78,40 +80,41 @@ class LoginActivity : AppCompatActivity() {
             startActivity(Intent(this, Register::class.java))
         }
 
-
-        /*  //TEST LOGIN//
-          login.setOnClickListener {
-              viewModel.userLogin(this, binding.username.text.toString() ,binding.password.text.toString())
-          }*/
-
-        //Al clicar se iniciara el proceso de login
-        login.setOnClickListener {
-            login.isEnabled = false
-            login.isClickable = false
-            CoroutineScope(Dispatchers.Main).launch {
-                if (binding.username.text.toString().isNotEmpty()
-                    && binding.password.text.toString().isNotEmpty()
-                ) {
-                    db.collection("users")
-                        .whereEqualTo("DNI", binding.username.text.toString().uppercase())
-                        .get()
-                        .addOnSuccessListener { documents ->
-                            if (documents.isEmpty) {
-                                showLoginError()
-                            } else {
-                                for (document in documents) {
-                                    CoroutineScope(Dispatchers.Main).launch {
-                                        loginWithEmail(document.get("email") as String)
+        if (currentUser != null){
+            intent = Intent(applicationContext, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+        } else {
+            login.setOnClickListener {
+                login.isEnabled = false
+                login.isClickable = false
+                CoroutineScope(Dispatchers.Main).launch {
+                    if (binding.username.text.toString().isNotEmpty()
+                        && binding.password.text.toString().isNotEmpty()
+                    ) {
+                        db.collection("users")
+                            .whereEqualTo("DNI", binding.username.text.toString().uppercase())
+                            .get()
+                            .addOnSuccessListener { documents ->
+                                if (documents.isEmpty) {
+                                    showLoginError()
+                                } else {
+                                    for (document in documents) {
+                                        CoroutineScope(Dispatchers.Main).launch {
+                                            loginWithEmail(document.get("email") as String)
+                                        }
                                     }
                                 }
-                            }
 
-                        }.await()
-                } else {
-                    showLoginError()
+                            }.await()
+                    } else {
+                        showLoginError()
+                    }
                 }
             }
         }
+
+
 
     }
 
