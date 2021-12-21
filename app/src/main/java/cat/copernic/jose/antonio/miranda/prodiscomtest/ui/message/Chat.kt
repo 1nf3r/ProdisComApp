@@ -88,5 +88,14 @@ class Chat : Fragment() {
     }
 }
 
-
+//TODO Grupos : Chat
+//TODO Hacer Notificaciones
+//TODO Realizar Observer
+//TODO Mejorar MVVM
+//TODO Arreglar Perfil.kt
+//TODO Mejorar los temas de la app
+//TODO Mejorar los contactos de forma automatica
+//TODO Mejorar informacion del usuario
+//TODO Hacer que el login no se quite despues de cerrar la app
+//TODO Que el user normal vaya a contactos directamente
 

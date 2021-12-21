@@ -69,7 +69,7 @@ class LoginActivity : AppCompatActivity() {
                 "Hauras d'introduir el DNI i la contrasenya de 4 digits, si no tens" +
                         " un usuari clica en el text Registrar-se."
             )
-            builder.setPositiveButton("Aceptar", null)
+            builder.setPositiveButton(R.string.accept, null)
             builder.show()
         }
 
