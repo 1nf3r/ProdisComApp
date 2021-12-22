@@ -73,11 +73,10 @@ class ContactsCustomAdapter(private val mList: List<ContactsViewModel>) : Recycl
                                 var listOfToUsers2 = ArrayList<Users>()
                                 for (d in t.result!!) {
                                     val toUser = d.toObject(Users::class.java)
-                                    listOfToUserNames.add(toUser.Nombre)
+                                    listOfToUserNames.add(toUser.nombre)
                                     listOfToUsers2.add(toUser)
                                     listOfRooms.add(d.id)
                                 }
-//                                Log.i( "pasar1", listOfToUsers2.toString())
                                 setListOfToUsers(listOfToUsers2)
                             }
                         }

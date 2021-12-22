@@ -73,7 +73,7 @@ class Contacts : Fragment() {
                             if (t.isSuccessful) {
                                 for (d in t.result!!) {
                                     val toUser = d.toObject(Users::class.java)
-                                    data.add(ContactsViewModel(toUser.Nombre!!))
+                                    data.add(ContactsViewModel(toUser.nombre!!))
                                     adapter.notifyDataSetChanged()
                                 }
                             }

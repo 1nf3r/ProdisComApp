@@ -24,6 +24,7 @@ class Chat : Fragment() {
     private val binding get() = _binding!!
     private var rootRef: FirebaseFirestore? = null
     private var fromUid: String = ""
+    private var adapter: MessageAdapter? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -36,16 +37,11 @@ class Chat : Fragment() {
         val fromUidNull = fromUser?.email
         fromUid = fromUidNull!!
         val toUser = ChatArgs.fromBundle(requireArguments()).main
-        var fromRooms = fromUser?.rooms
+        var fromRooms = fromUser.rooms
         val toUidNull = toUser.email
         val toUid: String = toUidNull!!
         var toRooms = toUser.rooms
         var roomId = ChatArgs.fromBundle(requireArguments()).roomId
-
-//        Log.i("HOLA", fromUser.toString())
-//        Log.i("HOLA1", fromUid)
-//        Log.i("HOLA2", toUser.toString())
-//        Log.i("HOLA3", toUid)
 
         if (roomId == "noRoomId") {
             roomId = rootRef!!.collection("messages").document().id
@@ -93,7 +89,10 @@ class Chat : Fragment() {
         val query = rootRef!!.collection("missatges").document(roomId).collection("roomMessages")
             .orderBy("sentAt", Query.Direction.ASCENDING)
         val options =
-            FirestoreRecyclerOptions.Builder<Message>().setQuery(query, Message::class.java)
+            FirestoreRecyclerOptions.Builder<Message>().setQuery(query, Message::class.java).build()
+        Log.i("mensajetest" , options.toString())
+        adapter = MessageAdapter(options)
+        binding.recyclerView.adapter = adapter
 
         return binding.root
     }
@@ -109,7 +108,7 @@ class Chat : Fragment() {
     inner class MessageAdapter internal constructor(options: FirestoreRecyclerOptions<Message>) :
         FirestoreRecyclerAdapter<Message, MessageViewHolder>(options) {
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MessageViewHolder {
-            return if (viewType == R.layout.fragment_chat_remoto) {
+          return if (viewType == R.layout.fragment_chat_remoto) {
                 val view = LayoutInflater.from(parent.context)
                     .inflate(R.layout.fragment_chat_remoto, parent, false)
                 MessageViewHolder(view)
@@ -133,13 +132,13 @@ class Chat : Fragment() {
         }
 
         override fun onDataChanged() {
-            recycler_view.layoutManager.scrollToPosition(itemCount - 1)
+            binding.recyclerView.layoutManager?.scrollToPosition(itemCount - 1)
+
         }
     }
 
     override fun onStart() {
         super.onStart()
-
         if (adapter != null) {
             adapter!!.startListening()
         }
@@ -147,7 +146,6 @@ class Chat : Fragment() {
 
     override fun onStop() {
         super.onStop()
-
         if (adapter != null) {
             adapter!!.stopListening()
         }

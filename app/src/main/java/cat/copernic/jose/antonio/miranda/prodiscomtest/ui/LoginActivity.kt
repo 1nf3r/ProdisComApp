@@ -7,18 +7,14 @@ import android.text.InputType
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import cat.copernic.jose.antonio.miranda.prodiscomtest.R
-import cat.copernic.jose.antonio.miranda.prodiscomtest.data.UserFormData
 import cat.copernic.jose.antonio.miranda.prodiscomtest.databinding.ActivityLoginBinding
 import cat.copernic.jose.antonio.miranda.prodiscomtest.ui.register.Register
 import cat.copernic.jose.antonio.miranda.prodiscomtest.viewmodel.LoginViewModel
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
-import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.Navigation
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -43,6 +39,8 @@ class LoginActivity : AppCompatActivity() {
 
         //viewModel = ViewModelProviders
         viewModel = ViewModelProvider(this)[LoginViewModel::class.java]
+
+
 
 
         val dni = binding.username.text.toString()
@@ -73,6 +71,11 @@ class LoginActivity : AppCompatActivity() {
             )
             builder.setPositiveButton(R.string.accept, null)
             builder.show()
+        }
+
+        //Al clicar te lleva a recuperar contrasenya
+        binding.txtVOlCont?.setOnClickListener {
+            startActivity(Intent(this, RestorePassActivity::class.java))
         }
 
         //Al clicar en Registrarse te lleva al activity Register.
