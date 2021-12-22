@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import cat.copernic.jose.antonio.miranda.prodiscomtest.R
 import cat.copernic.jose.antonio.miranda.prodiscomtest.data.Message
@@ -90,7 +91,8 @@ class Chat : Fragment() {
             .orderBy("sentAt", Query.Direction.ASCENDING)
         val options =
             FirestoreRecyclerOptions.Builder<Message>().setQuery(query, Message::class.java).build()
-        Log.i("mensajetest" , options.toString())
+
+        binding.recyclerView.layoutManager = LinearLayoutManager(activity)
         adapter = MessageAdapter(options)
         binding.recyclerView.adapter = adapter
 
@@ -100,7 +102,7 @@ class Chat : Fragment() {
     inner class MessageViewHolder internal constructor(private val view: View) :
         RecyclerView.ViewHolder(view) {
         internal fun setMessage(message: Message) {
-            val textView: TextView = view.findViewById<TextView>(R.id.text_view)
+            val textView: TextView = view.findViewById(R.id.text_view)
             textView.text = message.messageText
         }
     }
