@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.an0droid.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.ProdisComTest" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.ProdisComTest" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/prodis</item>
         <item name="colorPrimaryVariant">@color/prodis</item>

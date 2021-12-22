@@ -164,7 +164,7 @@ class Chat : Fragment() {
 //TODO Mejorar los temas de la app
 //TODO Mejorar los contactos de forma automatica
 //TODO Mejorar informacion del usuario
-//TODO Hacer que el login no se quite despues de cerrar la app
+//TODO Hacer que el login no se quite despues de cerrar la app (Mejorar)
 //TODO Que el user normal vaya a contactos directamente
 //TODO Idiomas
 //TODO Modo Horizontal

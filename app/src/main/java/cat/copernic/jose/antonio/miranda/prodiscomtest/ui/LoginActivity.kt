@@ -2,6 +2,7 @@ package cat.copernic.jose.antonio.miranda.prodiscomtest.ui
 
 import android.app.AlertDialog
 import android.content.Intent
+import android.content.res.Configuration
 import android.os.Bundle
 import android.text.InputType
 import android.util.Log
@@ -22,8 +23,6 @@ import kotlinx.coroutines.tasks.await
 
 
 class LoginActivity : AppCompatActivity() {
-
-
     private val db = FirebaseFirestore.getInstance()
     private lateinit var binding: ActivityLoginBinding
     private lateinit var viewModel: LoginViewModel
@@ -84,6 +83,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
         if (currentUser != null){
+            darkMode()
             intent = Intent(applicationContext, MainActivity::class.java)
             startActivity(intent)
             finish()
@@ -206,6 +206,20 @@ class LoginActivity : AppCompatActivity() {
     private fun enableButtons() {
         binding.login.isEnabled = true
         binding.login.isClickable = true
+    }
+
+    private fun darkMode(){
+        val currentNightMode = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
+
+        when (currentNightMode) {
+            Configuration.UI_MODE_NIGHT_YES -> {
+                this.setTheme(R.style.DarkTheme)
+
+            }
+            Configuration.UI_MODE_NIGHT_NO -> {
+                this.setTheme(R.style.Theme_ProdisComTest)
+            }
+        }
     }
 
 }
