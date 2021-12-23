@@ -17,8 +17,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProdisComTest">
         <activity
-            android:name=".ui.RestorePassActivity"
-            android:exported="false" />
+            android:name=".ui.RestorePass"
+            android:exported="true" />
         <activity
             android:name=".ui.MainActivityUser"
             android:exported="true" />

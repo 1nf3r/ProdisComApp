@@ -57,6 +57,9 @@
     <string name="title_activity_grups">Grups</string>
     <string name="user_not_found">Usuari no trovat</string>
     <string name="user_not_validate">Usuari no validat</string>
+    <string name="user_block">Usuari bloquejat</string>
+    <string name="user_deleted">Usuari eliminat</string>
+    <string name="error_check_user">Error al comprobar usuari</string>
     <string name="changes_applied">S\'han guardat els canvis </string>
     <string name="mail_changed">Email canviat satisfactoriament</string>
     <string name="large_text">
@@ -152,6 +155,7 @@
     <string name="title_activity_conf_regsitro">ConfRegsitro</string>
     <string name="grup">Grup</string>
     <string name="missatges">Missatges</string>
+    <string name="login_help">Hauras d\'introduir el DNI i la contrasenya de 4 digits, si no tens un usuari clica en el text Registrar-se.</string>
     <string name="buscar_usuari">Introdueix un email d\'usuari</string>
     <string name="contactes">Contactes</string>
     <string name="crear_grup">Crear Grup</string>
@@ -166,7 +170,6 @@
     <string name="data">Data:</string>
     <string name="descripcio">Descripció</string>
     <string name="cognoms">Cognoms</string>
-    <string name="email">Email</string>
     <string name="telf">Telf:</string>
     <string name="escriu_el_teu_nom">Escriu el teu nom</string>
     <string name="escriu_els_teus_cognoms">Escriu els teus cognoms</string>
@@ -177,4 +180,7 @@
     <string name="confirmar_contrasenya">Confirmar Contrasenya</string>
     <string name="ya_tens_compte_inicia_sessi">Ya tens compte? Inicia sessió</string>
     <string name="escriu_un_missatge">Escriu un missatge</string>
+    <string name="restaurar_ncontrasenya">Restaurar \nContrasenya</string>
+    <string name="email">Email</string>
+    <string name="recuperar_contrasenya">Recuperar Contrasenya</string>
 </resources>

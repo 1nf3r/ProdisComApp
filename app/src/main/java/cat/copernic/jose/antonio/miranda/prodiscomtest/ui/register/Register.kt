@@ -62,7 +62,7 @@ class Register : AppCompatActivity() {
         var checkName: Boolean
         var checkLastName: Boolean
         var checkPasswd: Boolean
-        var improvePassw = "Prodis"
+        var improvePassw = "prodis"
 
 
         //Accedim al botó de registrar-se i escoltem l'esdevniment

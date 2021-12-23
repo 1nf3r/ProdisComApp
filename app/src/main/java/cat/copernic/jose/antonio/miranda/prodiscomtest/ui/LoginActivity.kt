@@ -38,12 +38,6 @@ class LoginActivity : AppCompatActivity() {
 
         //viewModel = ViewModelProviders
         viewModel = ViewModelProvider(this)[LoginViewModel::class.java]
-
-
-
-
-        val dni = binding.username.text.toString()
-        val password = binding.password.text.toString()
         val login = binding.login
         val btnshow = binding.btnShow
 
@@ -63,18 +57,15 @@ class LoginActivity : AppCompatActivity() {
         //Al clicar en necesitas ayuda te sale un alert indicando el mensaje.
         val builder = AlertDialog.Builder(this)
         binding.txtVAjuda?.setOnClickListener {
-            builder.setTitle("Ajuda")
-            builder.setMessage(
-                "Hauras d'introduir el DNI i la contrasenya de 4 digits, si no tens" +
-                        " un usuari clica en el text Registrar-se."
-            )
+            builder.setTitle(R.string.help)
+            builder.setMessage(R.string.login_help)
             builder.setPositiveButton(R.string.accept, null)
             builder.show()
         }
 
         //Al clicar te lleva a recuperar contrasenya
         binding.txtVOlCont?.setOnClickListener {
-            startActivity(Intent(this, RestorePassActivity::class.java))
+            startActivity(Intent(this, RestorePass::class.java))
         }
 
         //Al clicar en Registrarse te lleva al activity Register.
@@ -116,15 +107,12 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
         }
-
-
-
     }
 
     suspend fun loginWithEmail(email: String) {
         if (checkBooleans(email)) {
             if (checkAdmin) {
-                var realPass = "Prodis"
+                var realPass = "prodis"
                 realPass += binding.password.text.toString()
                 Firebase.auth.signInWithEmailAndPassword(email, realPass)
                     .addOnCompleteListener {
@@ -137,7 +125,7 @@ class LoginActivity : AppCompatActivity() {
                         }
                     }
             } else {
-                var realPass = "Prodis"
+                var realPass = "prodis"
                 realPass += binding.password.text.toString()
                 Firebase.auth.signInWithEmailAndPassword(email, realPass)
                     .addOnCompleteListener {
@@ -157,9 +145,9 @@ class LoginActivity : AppCompatActivity() {
         binding.login.isEnabled = true
         binding.login.isClickable = true
         val errorDis = AlertDialog.Builder(this)
-        errorDis.setTitle("Inici de Sessió fallat")
-        errorDis.setMessage("DNI o Contrasenya incorrectes!!!")
-        errorDis.setPositiveButton("Aceptar", null)
+        errorDis.setTitle(R.string.failed_login)
+        errorDis.setMessage(R.string.invalid_auth)
+        errorDis.setPositiveButton(R.string.accept, null)
         errorDis.show()
     }
 
@@ -175,11 +163,6 @@ class LoginActivity : AppCompatActivity() {
                 checkBloqueado = document.get("zBloqueado") as Boolean
                 checkEliminado = document.get("zEliminado") as Boolean
                 checkValidado = document.get("zValidado") as Boolean
-                Log.i("Validado", "Admin " + checkAdmin.toString())
-                Log.i("Validado", "Bloqueado " + checkBloqueado.toString())
-                Log.i("Validado", "Eliminado " + checkEliminado.toString())
-                Log.i("Validado", "Validado " + checkValidado.toString())
-
             }.await()
         if (!checkBloqueado &&
             !checkEliminado &&
@@ -189,16 +172,16 @@ class LoginActivity : AppCompatActivity() {
             Log.i("Accedes", check.toString())
         } else if (!checkValidado) {
             enableButtons()
-            Toast.makeText(this, "Usuari no validat", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, R.string.user_not_validate, Toast.LENGTH_LONG).show()
         } else if (checkBloqueado) {
             enableButtons()
-            Toast.makeText(this, "Usuari bloquejat", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, R.string.user_block, Toast.LENGTH_LONG).show()
         } else if (checkEliminado) {
             enableButtons()
-            Toast.makeText(this, "Usuari eliminat", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, R.string.user_deleted, Toast.LENGTH_LONG).show()
         } else {
             enableButtons()
-            Toast.makeText(this, "Error al comprovar usuari", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, R.string.error_check_user, Toast.LENGTH_LONG).show()
         }
         return check
     }
@@ -221,7 +204,4 @@ class LoginActivity : AppCompatActivity() {
             }
         }
     }
-
 }
-
-
