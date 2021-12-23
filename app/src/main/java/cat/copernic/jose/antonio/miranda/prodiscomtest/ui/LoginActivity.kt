@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import cat.copernic.jose.antonio.miranda.prodiscomtest.R
+import cat.copernic.jose.antonio.miranda.prodiscomtest.RestorePassword
 import cat.copernic.jose.antonio.miranda.prodiscomtest.databinding.ActivityLoginBinding
 import cat.copernic.jose.antonio.miranda.prodiscomtest.ui.register.Register
 import cat.copernic.jose.antonio.miranda.prodiscomtest.viewmodel.LoginViewModel
@@ -65,7 +66,7 @@ class LoginActivity : AppCompatActivity() {
 
         //Al clicar te lleva a recuperar contrasenya
         binding.txtVOlCont?.setOnClickListener {
-            startActivity(Intent(this, RestorePass::class.java))
+            startActivity(Intent(this, RestorePassword::class.java))
         }
 
         //Al clicar en Registrarse te lleva al activity Register.
