@@ -99,8 +99,21 @@ class Register : AppCompatActivity() {
                         }
                     }.await()
 
-                } else
+                } else if (!checkMail){
+                    showError(R.string.accept)
+                } else if (!checkName) {
+                    showError(R.string.accept)
+                } else if (!checkLastName){
+                    showError(R.string.accept)
+                } else if (!checkPasswd) {
+                    showError(R.string.accept)
+                } else if (!checkDni) {
+                    showError(R.string.accept)
+                } else if (!checkDni2){
+                    showError(R.string.accept)
+                } else {
                     showAlert()
+                }
             }
         }
     }
@@ -211,10 +224,10 @@ class Register : AppCompatActivity() {
         }
     }
 
-    private fun showError() {
+    private fun showError(error: Int) {
         val errorDis = AlertDialog.Builder(this)
         errorDis.setTitle(R.string.login_failed)
-        errorDis.setMessage(R.string.invalid_auth)
+        errorDis.setMessage(error)
         errorDis.setPositiveButton(R.string.accept, null)
         errorDis.show()
     }
