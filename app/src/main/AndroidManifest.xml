@@ -20,9 +20,6 @@
             android:name=".RestorePassword"
             android:exported="false" />
         <activity
-            android:name=".ui.RestorePass"
-            android:exported="true" />
-        <activity
             android:name=".ui.MainActivityUser"
             android:exported="true" />
         <activity

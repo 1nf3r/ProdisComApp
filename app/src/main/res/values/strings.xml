@@ -53,6 +53,7 @@
     <string name="help_login_info">Hauras d\'introduir el DNI i la contrasenya de 4 digits, si no tens un usuari clica en el text Registrar-se.</string>
     <string name="registrar_se">Registrar-se</string>
     <string name="cancel">Cancel·lar</string>
+    <string name="field_empty">Has d\'emplenar tots els camps</string>
     <string name="grups">Grups</string>
     <string name="title_activity_grups">Grups</string>
     <string name="user_not_found">Usuari no trovat</string>
