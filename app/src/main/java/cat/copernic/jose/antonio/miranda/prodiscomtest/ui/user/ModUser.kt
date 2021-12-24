@@ -67,7 +67,7 @@ class modUser : Fragment() {
                 if (document.exists()) {
                     printInfo(
                         document.get("email") as String,
-                        document.get("Nombre") as String,
+                        document.get("nombre") as String,
                         document.get("DNI") as String,
 //                        document.get("Tel") as String
                     )
@@ -104,7 +104,7 @@ class modUser : Fragment() {
 //            binding.txResultMail.text.toString(),
             "DNI",
             binding.txResultDni.text.toString(),
-            "Nombre", binding.txResultNom.text.toString()
+            "nombre", binding.txResultNom.text.toString()
         )
     }
 

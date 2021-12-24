@@ -169,7 +169,7 @@ class Perfil : Fragment() {
         //Se tiene que hacer un observer
         getUserInfo = FirebaseFirestore.getInstance().collection("users")
             .document(currentUserMail)
-        getUserInfo.update("Nombre",viewModel.nombre.value.toString(),
+        getUserInfo.update("nombre",viewModel.nombre.value.toString(),
             "Telefono", viewModel.telefono.value.toString(),
             "Fecha", viewModel.nacimiento.value.toString()
         )

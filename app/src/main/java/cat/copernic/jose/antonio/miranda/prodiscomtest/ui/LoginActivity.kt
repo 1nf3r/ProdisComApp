@@ -28,6 +28,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var viewModel: LoginViewModel
     private var currentUser = Firebase.auth.currentUser
     var checkAdmin = false
+    private var validate: Boolean = false
     override fun onCreate(savedInstanceState: Bundle?) {
         Thread.sleep(1000)
         setTheme(R.style.Theme_ProdisComTest)
@@ -40,6 +41,7 @@ class LoginActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this)[LoginViewModel::class.java]
         val login = binding.login
         val btnshow = binding.btnShow
+
 
         //Funcion para mostrar o ocultar la contrasenya en el login
         binding.btnShow?.setOnClickListener {
@@ -73,11 +75,35 @@ class LoginActivity : AppCompatActivity() {
             startActivity(Intent(this, Register::class.java))
         }
 
-        if (currentUser != null){
+/*        CoroutineScope(Dispatchers.Main).launch {
+            db.collection("users").whereEqualTo("email", currentUser?.email.toString()).get()
+                .addOnSuccessListener { documents ->
+                    if (documents.isEmpty) {
+                        returnFalse()
+                    } else {
+                        for (document in documents) {
+                            CoroutineScope(Dispatchers.Main).launch {
+                                returnZvalidate(document.get("zValidado") as Boolean)
+                            }
+                        }
+                    }
+                }
+        }*/
+
+        if (currentUser != null /*&& validate*/) {
             darkMode()
             intent = Intent(applicationContext, MainActivity::class.java)
             startActivity(intent)
             finish()
+/*            if (checkAdmin) {
+                intent = Intent(applicationContext, MainActivity::class.java)
+                startActivity(intent)
+                finish()
+            } else {
+                intent = Intent(applicationContext, MainActivityUser::class.java)
+                startActivity(intent)
+                finish()
+            }*/
         } else {
             login.setOnClickListener {
                 login.isEnabled = false
@@ -87,7 +113,10 @@ class LoginActivity : AppCompatActivity() {
                         && binding.password.text.toString().isNotEmpty()
                     ) {
                         db.collection("users")
-                            .whereEqualTo("DNI", binding.username.text.toString().uppercase())
+                            .whereEqualTo(
+                                "DNI",
+                                binding.username.text.toString().uppercase()
+                            )
                             .get()
                             .addOnSuccessListener { documents ->
                                 if (documents.isEmpty) {
@@ -96,6 +125,7 @@ class LoginActivity : AppCompatActivity() {
                                     for (document in documents) {
                                         CoroutineScope(Dispatchers.Main).launch {
                                             loginWithEmail(document.get("email") as String)
+
                                         }
                                     }
                                 }
@@ -191,8 +221,9 @@ class LoginActivity : AppCompatActivity() {
         binding.login.isClickable = true
     }
 
-    private fun darkMode(){
-        val currentNightMode = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
+    private fun darkMode() {
+        val currentNightMode =
+            resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
 
         when (currentNightMode) {
             Configuration.UI_MODE_NIGHT_YES -> {
@@ -204,4 +235,13 @@ class LoginActivity : AppCompatActivity() {
             }
         }
     }
+
+/*   private fun returnFalse(): Boolean {
+        this.validate = false
+        return validate
+    }
+    private fun returnZvalidate(zvalidate: Boolean): Boolean{
+        this.validate = zvalidate
+        return validate
+    }*/
 }

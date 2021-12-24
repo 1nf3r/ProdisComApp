@@ -58,7 +58,7 @@ class PerfilViewModel : ViewModel() {
                 if (document.exists()) {
                     printInfo(
                         document.get("email") as String,
-                        document.get("Nombre") as String,
+                        document.get("nombre") as String,
                         document.get("DNI") as String,
                         document.get("Telefono") as String,
                         document.get("Fecha") as String

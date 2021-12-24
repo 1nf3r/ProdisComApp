@@ -7,14 +7,17 @@ import java.util.*
 
 class RegisterViewModel : ViewModel() {
 
-    private var map :Map<String, Boolean> = mapOf("room1" to true)
+    private var random = (10000000..100000000).random()
+    private var map: Map<String, Boolean> = mapOf(random.toString() to true)
     private val db = FirebaseFirestore.getInstance()
 
     fun saveDB(nombre: String, dni: String, email: String, apellido: String, telefono: String) {
 
         val users = db.collection("users")
+        val contactes = db.collection("contactes")
+        val rooms = db.collection("rooms")
         val userInfo = hashMapOf(
-            "Nombre" to nombre,
+            "nombre" to nombre,
             "Apellido" to apellido,
             "DNI" to dni.uppercase(),
             "email" to email,
@@ -27,6 +30,18 @@ class RegisterViewModel : ViewModel() {
             "zEliminado" to false,
             "zAdmin" to false
         )
+        val roomInfo = hashMapOf(
+            "rooms" to map
+        )
+
+        val contactInfo = hashMapOf(
+            "email" to email,
+            "nombre" to nombre,
+            "rooms" to map
+        )
+
         users.document(email).set(userInfo)
+        contactes.document(email).collection("userContacts").document(email).set(contactInfo)
+        rooms.document(email).collection("userRooms").document("room1").set(roomInfo)
     }
 }

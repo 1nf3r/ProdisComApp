@@ -55,6 +55,18 @@
             app:layout_constraintStart_toStartOf="@+id/btnToMensajeGrup"
             app:layout_constraintTop_toBottomOf="@+id/btnToMensajeGrup" />
 
+        <Button
+            android:id="@+id/btnToContacts"
+            style="@style/botonesAut"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="Contactes"
+            app:layout_constraintEnd_toEndOf="@+id/btnToMensajeGrup"
+            app:layout_constraintHorizontal_bias="0.461"
+            app:layout_constraintStart_toStartOf="@+id/btnToMensajeGrup"
+            app:layout_constraintTop_toBottomOf="@+id/btnToMensajePers" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

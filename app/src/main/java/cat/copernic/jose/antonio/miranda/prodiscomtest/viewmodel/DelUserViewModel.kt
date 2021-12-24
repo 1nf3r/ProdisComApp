@@ -6,6 +6,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import cat.copernic.jose.antonio.miranda.prodiscomtest.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.DocumentReference
@@ -55,7 +56,7 @@ class ModDelUserViewModel: ViewModel() {
                 if (document.exists()) {
                     saveInfo(
                         document.get("email") as String,
-                        document.get("Nombre") as String,
+                        document.get("nombre") as String,
                         document.get("DNI") as String
                     )
                     found = true
@@ -76,9 +77,9 @@ class ModDelUserViewModel: ViewModel() {
 
     fun notFoundError() {
         val errorDis = AlertDialog.Builder(activity)
-        errorDis.setTitle("Usuari no trovat")
-        errorDis.setMessage("No existeix cap usuari amb aquestes dades")
-        errorDis.setPositiveButton("Aceptar", null)
+        errorDis.setTitle(R.string.user_not_found)
+        errorDis.setMessage(R.string.any_user_data)
+        errorDis.setPositiveButton(R.string.accept, null)
         errorDis.show()
     }
 

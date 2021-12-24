@@ -205,40 +205,6 @@ class Register : AppCompatActivity() {
             .await().isEmpty
     }
 
-    /*private fun checkDni3(dni: String): Boolean {
-        var checker = true
-        db.collection("users").whereEqualTo("DNI", dni)
-            .get()
-            .addOnSuccessListener { documents ->
-                if (documents.isEmpty) {
-                    return@addOnSuccessListener
-                } else {
-                    for (document in documents) {
-                        return@addOnSuccessListener
-                    }
-                }
-
-            }
-        return checker
-    }*/
-    /*private fun checkDni4(dni: String): Boolean {
-
-        var checker = false
-        Log.i("TAG", checker.toString()+" dni1")
-        if(db.collection("users")
-                .whereEqualTo("DNI", dni)
-                .get().isSuccessful() == false){
-            checker = true
-        }else if(db.collection("users").whereEqualTo("DNI", dni)
-                .get().isSuccessful){
-            checker = false
-        }
-        Log.i("TAG", checker.toString()+" dni2")
-        return checker
-    }*/
-
-
-
     private fun test(){
         if (!checkDni(binding.etxtRegDni.text.toString())){
             binding.etxtRegDni.error = R.string.invalid_dni.toString()

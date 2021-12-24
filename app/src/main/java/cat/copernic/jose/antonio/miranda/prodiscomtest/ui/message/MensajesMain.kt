@@ -17,8 +17,24 @@ class MensajesMain : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentMensajesBinding.inflate(inflater, container, false)
-        binding.btnReturnMensajes.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.menu_principal, null))
-        binding.btnToMensajePers.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.contacts, null))
+        binding.btnReturnMensajes.setOnClickListener(
+            Navigation.createNavigateOnClickListener(
+                R.id.menu_principal,
+                null
+            )
+        )
+        binding.btnToMensajePers.setOnClickListener(
+            Navigation.createNavigateOnClickListener(
+                R.id.contacts,
+                null
+            )
+        )
+        binding.btnToContacts.setOnClickListener(
+            Navigation.createNavigateOnClickListener(
+                R.id.contacts,
+                null
+            )
+        )
         return binding.root
     }
 
