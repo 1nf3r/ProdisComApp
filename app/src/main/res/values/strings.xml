@@ -63,6 +63,9 @@
     <string name="error_check_user">Error al comprobar usuari</string>
     <string name="changes_applied">S\'han guardat els canvis </string>
     <string name="mail_changed">Email canviat satisfactoriament</string>
+    <string name="not_match">Email i Dni no coincideixen</string>
+    <string name="mail_success">El correu s\'ha enviat correctament</string>
+    <string name="mail_failed">S\'ha produit un error, proba un altre cop</string>
     <string name="large_text">
         "Material is the metaphor.\n\n"
 
