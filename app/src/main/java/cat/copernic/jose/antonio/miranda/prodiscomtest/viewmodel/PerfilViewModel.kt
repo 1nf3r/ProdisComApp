@@ -50,22 +50,6 @@ class PerfilViewModel : ViewModel() {
         //_nacimiento.value = nacimiento
     }
 
-/*     fun getInfo(){
-        val getUserInfo = db.collection("users").document(currentUser?.email!!)
-            getUserInfo.get()
-                .addOnSuccessListener { document ->
-                    if (document != null) {
-                        _nombre.value = document.get("Nombre") as String
-                        _correo.value = document.get("email") as String
-                    } else {
-                        Log.d("TAG", "No such document")
-                    }
-                }
-                .addOnFailureListener { exception ->
-                    Log.w("TAG", "Error getting documents: ", exception)
-                }//.await()
-        }*/
-
     fun getInfo(activity: FragmentActivity?): Boolean {
         found = false
         getUserInfo = db.collection("users").document(currentUser?.email!!)

@@ -1,19 +1,14 @@
 package cat.copernic.jose.antonio.miranda.prodiscomtest.viewmodel
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import cat.copernic.jose.antonio.miranda.prodiscomtest.data.UserFormData
 import com.google.firebase.firestore.FirebaseFirestore
 import java.text.SimpleDateFormat
 import java.util.*
 
 class RegisterViewModel : ViewModel() {
 
-    private val registerModel = MutableLiveData<UserFormData>()
-
-
+    private var map :Map<String, Boolean> = mapOf("room1" to true)
     private val db = FirebaseFirestore.getInstance()
-
 
     fun saveDB(nombre: String, dni: String, email: String, apellido: String, telefono: String) {
 
@@ -26,6 +21,7 @@ class RegisterViewModel : ViewModel() {
             "Fecha" to SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
                 .format(Date()),
             "Telefono" to telefono,
+            "rooms" to map,
             "zValidado" to false,
             "zBloqueado" to false,
             "zEliminado" to false,

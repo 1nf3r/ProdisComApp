@@ -1,12 +1,12 @@
-package cat.copernic.jose.antonio.miranda.prodiscomtest
+package cat.copernic.jose.antonio.miranda.prodiscomtest.ui
 
 import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import cat.copernic.jose.antonio.miranda.prodiscomtest.R
 import cat.copernic.jose.antonio.miranda.prodiscomtest.databinding.ActivityRestorePasswordBinding
-import cat.copernic.jose.antonio.miranda.prodiscomtest.ui.LoginActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.CoroutineScope
