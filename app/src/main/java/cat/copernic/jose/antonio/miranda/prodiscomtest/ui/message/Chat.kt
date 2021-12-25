@@ -157,12 +157,8 @@ class Chat : Fragment() {
 }
 
 //TODO Grupos : Chat
-//TODO Hacer Notificaciones
 //TODO Arreglar Perfil.kt Realizar Observer
 //TODO Mejorar los temas de la app
-//TODO Mejorar los contactos de forma automatica
-//TODO Mejorar informacion del usuario
 //TODO Que el user normal vaya a contactos directamente
 //TODO Idiomas
 //TODO Modo Horizontal
-//TODO Recuperar contrasenya

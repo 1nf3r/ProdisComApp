@@ -63,6 +63,9 @@
     <string name="error_check_user">Error al comprobar usuari</string>
     <string name="changes_applied">S\'han guardat els canvis </string>
     <string name="mail_changed">Email canviat satisfactoriament</string>
+    <string name="register_success">Registre Complert</string>
+    <string name="new_message">Tens 1 nou missatge</string>
+    <string name="register_complete">El registre s\'ha completat correctament, hauras d\'esperar a que un administrador validi el teu usuari, aquest proces pot trigar uns dies</string>
     <string name="not_match">Email i Dni no coincideixen</string>
     <string name="mail_success">El correu s\'ha enviat correctament</string>
     <string name="mail_failed">S\'ha produit un error, proba un altre cop</string>

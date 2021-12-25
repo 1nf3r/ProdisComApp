@@ -16,9 +16,19 @@ import com.google.firebase.firestore.ktx.getField
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.*
 import android.R.bool
+import android.annotation.SuppressLint
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
+import android.content.Context
 import android.content.res.Resources
+import android.graphics.BitmapFactory
+import android.os.Build
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 import androidx.core.text.isDigitsOnly
 import cat.copernic.jose.antonio.miranda.prodiscomtest.R
+import cat.copernic.jose.antonio.miranda.prodiscomtest.ui.MainActivity
 import kotlinx.coroutines.tasks.await
 
 
@@ -27,12 +37,16 @@ class Register : AppCompatActivity() {
     private val viewModel: RegisterViewModel by viewModels()
     private val db = FirebaseFirestore.getInstance()
     private val auth: FirebaseAuth = Firebase.auth
+    private val CHANNEL_ID = "channel_id_example_01"
+    private val notificacioId = 101
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //viewModel = ViewModelProvider(this)[RegisterViewModel::class.java]
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        creacioCanalNotificacio()
 
         //Al clicar en necesitas ayuda saldra un pop up.
         val builder = AlertDialog.Builder(this)
@@ -152,6 +166,8 @@ class Register : AppCompatActivity() {
         )
         startActivity(homeIntent)
 
+        enviarNotificacio()
+
     }
 
     //Funcion para comprobar el apellido
@@ -231,4 +247,53 @@ class Register : AppCompatActivity() {
         errorDis.setPositiveButton(R.string.accept, null)
         errorDis.show()
     }
+
+    private fun creacioCanalNotificacio() {
+        if(Build.VERSION.SDK_INT>= Build.VERSION_CODES.O) { //>=26 version Oreo i superiors
+            val nom = "Titol de la notificació"
+            val descripcio = "Descripció notificació."
+            val importancia = NotificationManager.IMPORTANCE_DEFAULT
+            val canal = NotificationChannel(CHANNEL_ID, nom, importancia)
+            canal.description = descripcio
+            val notificationManager: NotificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannel(canal)
+        }
+    }
+
+    @SuppressLint("UnspecifiedImmutableFlag")
+    private fun enviarNotificacio(){
+
+        //Activity que es mostrarà al fer click a la notificació
+        val resultIntent : Intent = Intent(this,MainActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        }
+
+        val resultPendingIntent = PendingIntent.getActivity(
+            this,0,resultIntent,0)
+
+        val bitmap = BitmapFactory.decodeResource(applicationContext.resources, R.drawable.campana)
+        val bitmapGran = BitmapFactory.decodeResource(applicationContext.resources, R.drawable.notificacio)
+
+
+        val textMessage = getString(R.string.new_message)
+        val regSuccess = getString(R.string.register_success)
+        val contMessage = getString(R.string.register_complete)
+
+        //Construim la notificació
+        val mBuilder = NotificationCompat.Builder(this,CHANNEL_ID)
+            .setSmallIcon(android.R.drawable.ic_notification_overlay)
+            .setContentTitle(regSuccess)
+            .setContentText(textMessage)
+            .setLargeIcon(bitmapGran)
+            .setStyle(NotificationCompat.BigTextStyle().bigText(contMessage))
+            .setContentIntent(resultPendingIntent)
+            .setDefaults(NotificationCompat.DEFAULT_ALL)
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+
+
+        val notificationManager = NotificationManagerCompat.from(this)
+        notificationManager.notify(notificacioId, mBuilder.build())
+
+    }
+
 }
