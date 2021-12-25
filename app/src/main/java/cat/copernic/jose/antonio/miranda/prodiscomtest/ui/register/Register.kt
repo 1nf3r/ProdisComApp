@@ -271,9 +271,7 @@ class Register : AppCompatActivity() {
         val resultPendingIntent = PendingIntent.getActivity(
             this,0,resultIntent,0)
 
-        val bitmap = BitmapFactory.decodeResource(applicationContext.resources, R.drawable.campana)
         val bitmapGran = BitmapFactory.decodeResource(applicationContext.resources, R.drawable.notificacio)
-
 
         val textMessage = getString(R.string.new_message)
         val regSuccess = getString(R.string.register_success)
