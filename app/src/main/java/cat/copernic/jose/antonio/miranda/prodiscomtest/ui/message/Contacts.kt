@@ -45,6 +45,10 @@ class Contacts : Fragment() {
             )
         )
 
+        binding.addContacts.setOnClickListener(
+            Navigation.createNavigateOnClickListener(R.id.allContacts, null)
+        )
+
 
         binding.recyclerView.layoutManager = LinearLayoutManager(activity)
         val data = ArrayList<ContactsViewModel>()

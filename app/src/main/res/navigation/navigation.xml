@@ -150,6 +150,9 @@
         <action
             android:id="@+id/action_contacts_to_chat"
             app:destination="@id/chat" />
+        <action
+            android:id="@+id/action_contacts_to_allContacts"
+            app:destination="@id/allContacts" />
     </fragment>
     <fragment
         android:id="@+id/chat"
@@ -166,4 +169,9 @@
             android:name="roomId"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/allContacts"
+        android:name="cat.copernic.jose.antonio.miranda.prodiscomtest.ui.message.AllContacts"
+        android:label="fragment_all_contacts"
+        tools:layout="@layout/fragment_all_contacts" />
 </navigation>

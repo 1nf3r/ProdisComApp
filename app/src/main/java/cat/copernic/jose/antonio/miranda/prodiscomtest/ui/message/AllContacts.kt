@@ -22,8 +22,9 @@ class AllContacts : Fragment() {
     private val firebaseUser = FirebaseAuth.getInstance().currentUser
     private val fromUid = firebaseUser!!.email
     private val rootRef = FirebaseFirestore.getInstance()
+    val fromMail: String = fromUid.toString()
     private val uidRef =
-        fromUid?.let { rootRef.collection("users").document(it) }
+        fromUid?.let {  rootRef.collection("users").document(it) }
     private lateinit var adapter: AllContactsCustomAdapter
 
     override fun onCreateView(
@@ -64,26 +65,16 @@ class AllContacts : Fragment() {
         firebaseAuth = FirebaseAuth.getInstance()
         if (firebaseUser != null) {
             uidRef?.get()?.addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    val document = task.result
-                    if (document!!.exists()) {
-//                        val fromUser = document.toObject(User::class.java)
-                        val userContactsRef = fromUid?.let {
-                            rootRef.collection("contactes").document(it)
-                                .collection("userContacts")
-                        }
-                        userContactsRef?.get()?.addOnCompleteListener { t ->
-                            if (t.isSuccessful) {
+
+            }
+        }
+    }
+}
+
+/*
                                 for (d in t.result!!) {
                                     val toUser = d.toObject(Users::class.java)
                                     data.add(AllContactsViewModel(toUser.nombre!!))
                                     adapter.notifyDataSetChanged()
                                 }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
+* */
