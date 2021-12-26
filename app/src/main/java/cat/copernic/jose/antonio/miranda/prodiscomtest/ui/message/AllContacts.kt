@@ -2,6 +2,7 @@ package cat.copernic.jose.antonio.miranda.prodiscomtest.ui.message
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +14,9 @@ import cat.copernic.jose.antonio.miranda.prodiscomtest.data.Users
 import cat.copernic.jose.antonio.miranda.prodiscomtest.databinding.FragmentAllContactsBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class AllContacts : Fragment() {
     private var _binding: FragmentAllContactsBinding? = null
@@ -20,11 +24,7 @@ class AllContacts : Fragment() {
     private var firebaseAuth: FirebaseAuth? = null
     private var authStateListener: FirebaseAuth.AuthStateListener? = null
     private val firebaseUser = FirebaseAuth.getInstance().currentUser
-    private val fromUid = firebaseUser!!.email
     private val rootRef = FirebaseFirestore.getInstance()
-    val fromMail: String = fromUid.toString()
-    private val uidRef =
-        fromUid?.let {  rootRef.collection("users").document(it) }
     private lateinit var adapter: AllContactsCustomAdapter
 
     override fun onCreateView(
@@ -45,7 +45,6 @@ class AllContacts : Fragment() {
             )
         )
 
-
         binding.recyclerView.layoutManager = LinearLayoutManager(activity)
         val data = ArrayList<AllContactsViewModel>()
         getContacts(data)
@@ -56,25 +55,18 @@ class AllContacts : Fragment() {
         return binding.root
     }
 
-
-//    TODO CAMBIAR FUNCION PARA COJER USER
-
-
     @SuppressLint("NotifyDataSetChanged")
     private fun getContacts(data: ArrayList<AllContactsViewModel>) {
         firebaseAuth = FirebaseAuth.getInstance()
         if (firebaseUser != null) {
-            uidRef?.get()?.addOnCompleteListener { task ->
-
+            rootRef.collection("users").get().addOnSuccessListener { documents ->
+                for (document in documents) {
+                    data.add(AllContactsViewModel(document.get("nombre") as String))
+                    adapter.notifyDataSetChanged()
+                }
             }
         }
     }
 }
 
-/*
-                                for (d in t.result!!) {
-                                    val toUser = d.toObject(Users::class.java)
-                                    data.add(AllContactsViewModel(toUser.nombre!!))
-                                    adapter.notifyDataSetChanged()
-                                }
-* */
+

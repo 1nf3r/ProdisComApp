@@ -1,32 +1,38 @@
 package cat.copernic.jose.antonio.miranda.prodiscomtest.ui.message
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import cat.copernic.jose.antonio.miranda.prodiscomtest.R
 import cat.copernic.jose.antonio.miranda.prodiscomtest.data.Users
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.auth.User
 
-class AllContactsCustomAdapter(private val mList: List<AllContactsViewModel>) : RecyclerView.Adapter<AllContactsCustomAdapter.ViewHolder>() {
+class AllContactsCustomAdapter(private val mList: List<AllContactsViewModel>) :
+    RecyclerView.Adapter<AllContactsCustomAdapter.ViewHolder>() {
 
     private val firebaseUser = FirebaseAuth.getInstance().currentUser
+    val fromUid = firebaseUser?.email
+    val fromUidString = fromUid.toString()
     private var firebaseAuth: FirebaseAuth? = null
     private var listOfToUsers = ArrayList<Users>()
-    private var listOfToUserNames = ArrayList<String?>()
-    private var listOfRooms = ArrayList<String>()
+    private val rootRef = FirebaseFirestore.getInstance()
+
+    /*    private var listOfToUserNames = ArrayList<String?>()
+        private var listOfRooms = ArrayList<String>()*/
     private var fromUserData: Users? = null
+
     private var roomId = "noRoomId"
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.fragment_contacts_recycler, parent, false)
-            getContacts()
+            .inflate(R.layout.fragment_all_contacts_recycler, parent, false)
+        getAllContacts()
+        getCurrentUser()
         return ViewHolder(view)
     }
 
@@ -35,8 +41,11 @@ class AllContactsCustomAdapter(private val mList: List<AllContactsViewModel>) : 
         val itemsViewModel = mList[position]
         holder.txtNom.text = itemsViewModel.Nombre
         holder.itemView.setOnClickListener {
-            it.findNavController().navigate(ContactsDirections
-                .actionContactsToChat(listOfToUsers[position], fromUserData, roomId ))
+            Navigation.createNavigateOnClickListener(
+                R.id.contacts,
+                null
+            )
+            addContacts(listOfToUsers[position])
         }
     }
 
@@ -47,17 +56,51 @@ class AllContactsCustomAdapter(private val mList: List<AllContactsViewModel>) : 
 
     // Holds the views for adding it to image and text
     inner class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
-        val txtNom: TextView = itemView.findViewById(R.id.textView4)
+        val txtNom: TextView = itemView.findViewById(R.id.textView5)
     }
 
 
-//    TODO CREAR FUNCION PARA AÑADIR EL USUARIO DE "USERS" EN CONTACTES
-
-    private fun getContacts() {
+    private fun getAllContacts() {
         firebaseAuth = FirebaseAuth.getInstance()
         if (firebaseUser != null) {
-            val fromUid = firebaseUser.email
-            val fromUidString = fromUid.toString()
+            rootRef.collection("users").get().addOnSuccessListener { documents ->
+                for (document in documents) {
+                    listOfToUsers.add(
+                        Users(
+                            document.get("email") as String,
+                            document.get("nombre") as String,
+                            document.get("rooms") as MutableMap<String, Any>
+                        )
+                    )
+                 /*   selectContacts(
+                        Users(
+                            document.get("email") as String,
+                            document.get("nombre") as String,
+                            document.get("rooms") as MutableMap<String, Any>
+                        )
+                    )*/
+                }
+            }
+        }
+    }
+
+
+
+    private fun addContacts(userToAdd: Users) {
+
+        val userContactsAddInfo = hashMapOf(
+            "rooms" to userToAdd.rooms,
+            "email" to userToAdd.email,
+            "nombre" to userToAdd.nombre
+        )
+        rootRef.collection("contactes").document(fromUidString)
+            .collection("userContacts").document(userToAdd.email.toString())
+            .set(userContactsAddInfo)
+    }
+
+    private fun getCurrentUser() {
+        firebaseAuth = FirebaseAuth.getInstance()
+        if (firebaseUser != null) {
             val rootRef = FirebaseFirestore.getInstance()
             val uidRef = rootRef.collection("users").document(fromUidString)
             uidRef.get().addOnCompleteListener { task ->
@@ -66,30 +109,9 @@ class AllContactsCustomAdapter(private val mList: List<AllContactsViewModel>) : 
                     if (document!!.exists()) {
                         val fromUser = document.toObject(Users::class.java)
                         fromUserData = fromUser
-                        Log.i("ahorasi", fromUser.toString())
-                        val userContactsRef = fromUid?.let {
-                            rootRef.collection("contactes").document(it)
-                                .collection("userContacts")
-                        }
-                        userContactsRef?.get()?.addOnCompleteListener { t ->
-                            if (t.isSuccessful) {
-                                var listOfToUsers2 = ArrayList<Users>()
-                                for (d in t.result!!) {
-                                    val toUser = d.toObject(Users::class.java)
-                                    listOfToUserNames.add(toUser.nombre)
-                                    listOfToUsers2.add(toUser)
-                                    listOfRooms.add(d.id)
-                                }
-                                setListOfToUsers(listOfToUsers2)
-                            }
-                        }
                     }
                 }
             }
         }
-    }
-
-    fun setListOfToUsers(user: ArrayList<Users>){
-        this.listOfToUsers = user
     }
 }
