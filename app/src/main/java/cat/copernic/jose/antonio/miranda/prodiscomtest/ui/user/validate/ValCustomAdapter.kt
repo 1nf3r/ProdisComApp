@@ -39,8 +39,6 @@ class CustomAdapter(private val mList: List<ValItemsViewModel>) : RecyclerView.A
         holder.txtDni.text = ItemsViewModel.dni
         holder.txtFecha.text = ItemsViewModel.fecha
         holder.btnValidar.setOnClickListener {
-            Log.i("Validar", holder.layoutPosition.toString())
-            Log.i("Validar", holder.txtCorreu.text as String)
             CoroutineScope(Dispatchers.Main).launch {
                 updateValidated(holder.txtCorreu.text as String)
 
@@ -74,6 +72,5 @@ class CustomAdapter(private val mList: List<ValItemsViewModel>) : RecyclerView.A
     private suspend fun updateValidated(email : String){
         val update = db.collection("users").document(email)
         update.update("zValidado",true).await()
-        Log.i("Validar", email + " Validado")
     }
 }
