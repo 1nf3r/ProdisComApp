@@ -20,6 +20,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
+import java.util.*
 
 
 class LoginActivity : AppCompatActivity() {
@@ -73,6 +74,22 @@ class LoginActivity : AppCompatActivity() {
         //Al clicar en Registrarse te lleva al activity Register.
         binding.txtVRegister?.setOnClickListener {
             startActivity(Intent(this, Register::class.java))
+        }
+
+        binding.btnCat?.setOnClickListener{
+            val localizacion = Locale("ca", "ES")
+            Locale.setDefault(localizacion)
+            val config = Configuration()
+            config.locale = localizacion
+            baseContext.resources.updateConfiguration(config, baseContext.resources.displayMetrics)
+        }
+
+        binding.btnEsp?.setOnClickListener {
+            val localizacion = Locale("es", "ES")
+            Locale.setDefault(localizacion)
+            val config = Configuration()
+            config.locale = localizacion
+            baseContext.resources.updateConfiguration(config, baseContext.resources.displayMetrics)
         }
 
 /*        CoroutineScope(Dispatchers.Main).launch {
