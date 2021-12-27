@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.CheckBox
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
@@ -16,7 +17,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 
 class CustomAdapter(private val mList: List<ValItemsViewModel>) : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
-
+    private var admin = false
     private val db = FirebaseFirestore.getInstance()
     // create new views
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -51,6 +52,13 @@ class CustomAdapter(private val mList: List<ValItemsViewModel>) : RecyclerView.A
                 holder.itemView.visibility = View.VISIBLE
             }
         }
+        holder.cbAdmin.setOnClickListener(){
+            if(holder.cbAdmin.isChecked){
+                admin = true
+            } else if(!holder.cbAdmin.isChecked){
+                admin = false
+            }
+            }
     }
 
     // return the number of the items in the list
@@ -67,10 +75,12 @@ class CustomAdapter(private val mList: List<ValItemsViewModel>) : RecyclerView.A
         val btnValidar: Button = itemView.findViewById(R.id.btnValidate)
 
         val cardView: CardView = itemView.findViewById(R.id.valCard)
+        val cbAdmin: CheckBox = itemView.findViewById(R.id.cbAdmin)
     }
 
     private suspend fun updateValidated(email : String){
         val update = db.collection("users").document(email)
         update.update("zValidado",true).await()
+        update.update("zAdmin",admin).await()
     }
 }

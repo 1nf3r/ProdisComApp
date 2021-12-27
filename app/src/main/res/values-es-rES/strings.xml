@@ -83,7 +83,7 @@
     <string name="item">Item</string>
     <string name="correu">Correo:</string>
     <string name="dni">Dni:</string>
-    <string name="nom">Nombre:</string>
+    <string name="nom">Nombre: </string>
     <string name="data">Fecha:</string>
     <string name="descripcio">Descripción</string>
     <string name="cognoms">Apellidos</string>
@@ -109,4 +109,5 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="afegir_contacte">Añadir Contacto</string>
+    <string name="administrador">Administrador</string>
 </resources>

@@ -86,7 +86,7 @@ class CrearGrup : Fragment() {
                 for (document in documents) {
                         data.add(
                             CrearGrupItemViewModel(
-                                document.get("Nombre") as String,
+                                document.get("nombre") as String,
                                 document.get("email") as String,
                                 document.get("DNI") as String
                             )
