@@ -29,8 +29,6 @@ class CrearGrupCustomAdapter(private val mList: List<CrearGrupItemViewModel>) : 
         // that is used to hold list item
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.fragment_crear_grup_recycler, parent, false)
-        //ViewHolder(view).listeners()
-
         return ViewHolder(view)
     }
 
@@ -38,9 +36,6 @@ class CrearGrupCustomAdapter(private val mList: List<CrearGrupItemViewModel>) : 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         val ItemsViewModel = mList[position]
-
-        // sets the image to the imageview from our itemHolder class
-        //holder.imageView.setImageResource(ItemsViewModel.image)
 
         // sets the text to the textview from our itemHolder class
         holder.txtCorreu.text = ItemsViewModel.correu
@@ -54,13 +49,6 @@ class CrearGrupCustomAdapter(private val mList: List<CrearGrupItemViewModel>) : 
                 users.remove(holder.txtCorreu.text as String)
             }
         }
-        /*holder.btnCrearGrup.setOnClickListener(){
-            for(i in users){
-                println(i)
-            }
-        }*/
-
-
     }
 
     // return the number of the items in the list
@@ -72,6 +60,5 @@ class CrearGrupCustomAdapter(private val mList: List<CrearGrupItemViewModel>) : 
     inner class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
         val txtCorreu: TextView = itemView.findViewById(R.id.txtCrearGrupDisplayCorreu)
         val txtCheckBox: CheckBox = itemView.findViewById(R.id.select_user)
-
     }
 }

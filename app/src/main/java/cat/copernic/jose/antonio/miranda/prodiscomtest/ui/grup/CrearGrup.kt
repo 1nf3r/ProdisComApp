@@ -56,7 +56,6 @@ class CrearGrup : Fragment() {
             }
         }
 
-
             return binding.root
     }
 
@@ -72,9 +71,6 @@ class CrearGrup : Fragment() {
             groups.document(nameGroup).set(users).addOnSuccessListener {
                 Toast.makeText(activity, "Grup creat correctament", Toast.LENGTH_LONG).show()
             }
-            /*for(i in users){
-            println(i)
-        }*/
         }else {
             Toast.makeText(activity, "El nom del grup ja existeix", Toast.LENGTH_LONG).show()
         }
