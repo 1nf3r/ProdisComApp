@@ -35,7 +35,7 @@ class ContactsCustomAdapter(private val mList: List<ContactsViewModel>) : Recycl
         val itemsViewModel = mList[position]
         holder.txtNom.text = itemsViewModel.Nombre
         holder.itemView.setOnClickListener {
-            it.findNavController().navigate(ContactsDirections
+            it.findNavController().navigate(ChatsDirections
                 .actionContactsToChat(listOfToUsers[position], fromUserData, roomId ))
         }
     }

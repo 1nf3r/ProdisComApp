@@ -25,8 +25,8 @@
             android:id="@+id/action_menu_principal_to_grup"
             app:destination="@id/grup" />
         <action
-            android:id="@+id/action_menu_principal_to_mensajes"
-            app:destination="@id/mensajes" />
+            android:id="@+id/action_menu_principal_to_chats"
+            app:destination="@id/chats" />
     </fragment>
     <fragment
         android:id="@+id/autorizacion"
@@ -138,15 +138,11 @@
         android:id="@+id/mensajes"
         android:name="cat.copernic.jose.antonio.miranda.prodiscomtest.ui.message.MensajesMain"
         android:label="fragment_mensajes"
-        tools:layout="@layout/fragment_mensajes" >
-        <action
-            android:id="@+id/action_mensajes_to_contacts"
-            app:destination="@id/contacts" />
-    </fragment>
+        tools:layout="@layout/fragment_mensajes" />
     <fragment
-        android:id="@+id/contacts"
-        android:name="cat.copernic.jose.antonio.miranda.prodiscomtest.ui.message.Contacts"
-        android:label="Contacts" >
+        android:id="@+id/chats"
+        android:name="cat.copernic.jose.antonio.miranda.prodiscomtest.ui.message.Chats"
+        android:label="Chats" >
         <action
             android:id="@+id/action_contacts_to_chat"
             app:destination="@id/chat" />
@@ -173,5 +169,9 @@
         android:id="@+id/allContacts"
         android:name="cat.copernic.jose.antonio.miranda.prodiscomtest.ui.message.AllContacts"
         android:label="fragment_all_contacts"
-        tools:layout="@layout/fragment_all_contacts" />
+        tools:layout="@layout/fragment_all_contacts" >
+        <action
+            android:id="@+id/action_allContacts_to_chat"
+            app:destination="@id/chat" />
+    </fragment>
 </navigation>

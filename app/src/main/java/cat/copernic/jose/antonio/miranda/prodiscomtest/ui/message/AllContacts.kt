@@ -34,7 +34,7 @@ class AllContacts : Fragment() {
         _binding = FragmentAllContactsBinding.inflate(inflater, container, false)
         binding.btnReturnMensajes.setOnClickListener(
             Navigation.createNavigateOnClickListener(
-                R.id.mensajes,
+                R.id.chats,
                 null
             )
         )

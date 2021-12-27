@@ -25,13 +25,13 @@ class MensajesMain : Fragment() {
         )
         binding.btnToMensajePers.setOnClickListener(
             Navigation.createNavigateOnClickListener(
-                R.id.contacts,
+                R.id.chats,
                 null
             )
         )
         binding.btnToContacts.setOnClickListener(
             Navigation.createNavigateOnClickListener(
-                R.id.contacts,
+                R.id.chats,
                 null
             )
         )

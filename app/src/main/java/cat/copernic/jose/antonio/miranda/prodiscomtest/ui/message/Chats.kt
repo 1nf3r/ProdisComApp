@@ -10,13 +10,13 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import cat.copernic.jose.antonio.miranda.prodiscomtest.R
 import cat.copernic.jose.antonio.miranda.prodiscomtest.data.Users
-import cat.copernic.jose.antonio.miranda.prodiscomtest.databinding.FragmentContactsBinding
+import cat.copernic.jose.antonio.miranda.prodiscomtest.databinding.FragmentChatsBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.auth.User
 
-class Contacts : Fragment() {
-    private var _binding: FragmentContactsBinding? = null
+class Chats : Fragment() {
+    private var _binding: FragmentChatsBinding? = null
     private val binding get() = _binding!!
     private var firebaseAuth: FirebaseAuth? = null
     private var authStateListener: FirebaseAuth.AuthStateListener? = null
@@ -31,10 +31,10 @@ class Contacts : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentContactsBinding.inflate(inflater, container, false)
+        _binding = FragmentChatsBinding.inflate(inflater, container, false)
         binding.btnReturnMensajes.setOnClickListener(
             Navigation.createNavigateOnClickListener(
-                R.id.mensajes,
+                R.id.menu_principal,
                 null
             )
         )

@@ -22,6 +22,7 @@ class AllContactsCustomAdapter(private val mList: List<AllContactsViewModel>) :
     private var listOfToUsers = ArrayList<Users>()
     private val rootRef = FirebaseFirestore.getInstance()
     private var fromUserData: Users? = null
+    private var roomId = "noRoomId"
     
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -36,10 +37,8 @@ class AllContactsCustomAdapter(private val mList: List<AllContactsViewModel>) :
         val itemsViewModel = mList[position]
         holder.txtNom.text = itemsViewModel.Nombre
         holder.itemView.setOnClickListener {
-            Navigation.createNavigateOnClickListener(
-                R.id.contacts,
-                null
-            )
+            it.findNavController().navigate(AllContactsDirections
+                .actionAllContactsToChat(listOfToUsers[position], fromUserData, roomId ))
             addContacts(listOfToUsers[position])
         }
     }

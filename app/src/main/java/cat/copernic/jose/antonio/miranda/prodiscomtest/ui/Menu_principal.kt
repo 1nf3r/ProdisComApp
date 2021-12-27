@@ -44,7 +44,7 @@ class Menu_principal : Fragment() {
         )
         binding.btnToMensajes.setOnClickListener(
             Navigation.createNavigateOnClickListener(
-                cat.copernic.jose.antonio.miranda.prodiscomtest.R.id.contacts,
+                cat.copernic.jose.antonio.miranda.prodiscomtest.R.id.chats,
                 null
             )
         )
