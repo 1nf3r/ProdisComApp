@@ -62,7 +62,7 @@ class valUser : Fragment() {
                 var contador = 0
                 for (document in documents) {
                     data.add(ValItemsViewModel(
-                        document.get("Nombre") as String,
+                        document.get("nombre") as String,
                         document.get("email") as String,
                         document.get("DNI") as String,
                         document.get("Fecha") as String))

@@ -160,5 +160,4 @@ class Chat : Fragment() {
 //TODO Arreglar Perfil.kt Realizar Observer
 //TODO Mejorar los temas de la app
 //TODO Que el user normal vaya a contactos directamente
-//TODO Idiomas
 //TODO Modo Horizontal

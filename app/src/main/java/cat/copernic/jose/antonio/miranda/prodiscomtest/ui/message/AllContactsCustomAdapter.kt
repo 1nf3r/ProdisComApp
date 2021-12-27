@@ -21,13 +21,8 @@ class AllContactsCustomAdapter(private val mList: List<AllContactsViewModel>) :
     private var firebaseAuth: FirebaseAuth? = null
     private var listOfToUsers = ArrayList<Users>()
     private val rootRef = FirebaseFirestore.getInstance()
-
-    /*    private var listOfToUserNames = ArrayList<String?>()
-        private var listOfRooms = ArrayList<String>()*/
     private var fromUserData: Users? = null
-
-    private var roomId = "noRoomId"
-
+    
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.fragment_all_contacts_recycler, parent, false)
@@ -72,18 +67,10 @@ class AllContactsCustomAdapter(private val mList: List<AllContactsViewModel>) :
                             document.get("rooms") as MutableMap<String, Any>
                         )
                     )
-                 /*   selectContacts(
-                        Users(
-                            document.get("email") as String,
-                            document.get("nombre") as String,
-                            document.get("rooms") as MutableMap<String, Any>
-                        )
-                    )*/
                 }
             }
         }
     }
-
 
 
     private fun addContacts(userToAdd: Users) {

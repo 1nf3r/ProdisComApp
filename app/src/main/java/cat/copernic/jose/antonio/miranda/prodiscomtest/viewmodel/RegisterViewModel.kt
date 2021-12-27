@@ -45,5 +45,3 @@ class RegisterViewModel : ViewModel() {
         rooms.document(email).collection("userRooms").document("room1").set(roomInfo)
     }
 }
-
-//TODO Copiar los tres ficheros de contacts i cambiar el nombre por AllContacts, i como referencia utilizar los users con la clase Users
