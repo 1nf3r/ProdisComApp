@@ -7,6 +7,6 @@ import cat.copernic.jose.antonio.miranda.prodiscomtest.R
 class MainActivityUser : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main_user)
+        setContentView(R.layout.fragment_contacts)
     }
 }

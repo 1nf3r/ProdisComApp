@@ -34,8 +34,8 @@ class PerfilViewModel : ViewModel() {
     private val _correo = MutableLiveData<String>()
     val correo: LiveData<String>
         get() = _correo
-    private val _telefono = MutableLiveData<Int>()
-    val telefono: LiveData<Int>
+    private val _telefono = MutableLiveData<String>()
+    val telefono: LiveData<String>
         get() = _telefono
     private val _nacimiento = MutableLiveData<String>()
     val nacimiento: LiveData<String>
@@ -50,22 +50,6 @@ class PerfilViewModel : ViewModel() {
         //_nacimiento.value = nacimiento
     }
 
-/*     fun getInfo(){
-        val getUserInfo = db.collection("users").document(currentUser?.email!!)
-            getUserInfo.get()
-                .addOnSuccessListener { document ->
-                    if (document != null) {
-                        _nombre.value = document.get("Nombre") as String
-                        _correo.value = document.get("email") as String
-                    } else {
-                        Log.d("TAG", "No such document")
-                    }
-                }
-                .addOnFailureListener { exception ->
-                    Log.w("TAG", "Error getting documents: ", exception)
-                }//.await()
-        }*/
-
     fun getInfo(activity: FragmentActivity?): Boolean {
         found = false
         getUserInfo = db.collection("users").document(currentUser?.email!!)
@@ -74,8 +58,10 @@ class PerfilViewModel : ViewModel() {
                 if (document.exists()) {
                     printInfo(
                         document.get("email") as String,
-                        document.get("Nombre") as String,
+                        document.get("nombre") as String,
                         document.get("DNI") as String,
+                        document.get("Telefono") as String,
+                        document.get("Fecha") as String
                     )
                     found = true
                 } else {
@@ -86,11 +72,13 @@ class PerfilViewModel : ViewModel() {
     }
 
 
-    private fun printInfo(mail: String, nom: String, dni: String) {
+    private fun printInfo(mail: String, nom: String, dni: String, telf: String, birth: String) {
 
         _correo.value = mail
         _nombre.value = nom
         _dni.value = dni
+        _telefono.value = telf
+        _nacimiento.value = birth
 
     }
 

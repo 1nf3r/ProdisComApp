@@ -21,6 +21,7 @@ class ContactsCustomAdapter(private val mList: List<ContactsViewModel>) : Recycl
     private var listOfToUserNames = ArrayList<String?>()
     private var listOfRooms = ArrayList<String>()
     private var fromUserData: Users? = null
+    private var roomId = "noRoomId"
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -35,7 +36,7 @@ class ContactsCustomAdapter(private val mList: List<ContactsViewModel>) : Recycl
         holder.txtNom.text = itemsViewModel.Nombre
         holder.itemView.setOnClickListener {
             it.findNavController().navigate(ContactsDirections
-                .actionContactsToChat(listOfToUsers[position], fromUserData))
+                .actionContactsToChat(listOfToUsers[position], fromUserData, roomId ))
         }
     }
 
@@ -60,7 +61,7 @@ class ContactsCustomAdapter(private val mList: List<ContactsViewModel>) : Recycl
                 if (task.isSuccessful) {
                     val document = task.result
                     if (document!!.exists()) {
-                        val fromUser = document.toObject(Users::class.java) //TENGO QUE PASAR COMO ARGUMENTO TAMBIEN
+                        val fromUser = document.toObject(Users::class.java)
                         fromUserData = fromUser
                         Log.i("ahorasi", fromUser.toString())
                         val userContactsRef = fromUid?.let {
@@ -72,11 +73,10 @@ class ContactsCustomAdapter(private val mList: List<ContactsViewModel>) : Recycl
                                 var listOfToUsers2 = ArrayList<Users>()
                                 for (d in t.result!!) {
                                     val toUser = d.toObject(Users::class.java)
-                                    listOfToUserNames.add(toUser.Nombre)
+                                    listOfToUserNames.add(toUser.nombre)
                                     listOfToUsers2.add(toUser)
                                     listOfRooms.add(d.id)
                                 }
-//                                Log.i( "pasar1", listOfToUsers2.toString())
                                 setListOfToUsers(listOfToUsers2)
                             }
                         }

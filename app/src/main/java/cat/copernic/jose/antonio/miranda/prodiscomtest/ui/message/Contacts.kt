@@ -45,6 +45,10 @@ class Contacts : Fragment() {
             )
         )
 
+        binding.addContacts.setOnClickListener(
+            Navigation.createNavigateOnClickListener(R.id.allContacts, null)
+        )
+
 
         binding.recyclerView.layoutManager = LinearLayoutManager(activity)
         val data = ArrayList<ContactsViewModel>()
@@ -73,7 +77,7 @@ class Contacts : Fragment() {
                             if (t.isSuccessful) {
                                 for (d in t.result!!) {
                                     val toUser = d.toObject(Users::class.java)
-                                    data.add(ContactsViewModel(toUser.Nombre!!))
+                                    data.add(ContactsViewModel(toUser.nombre!!))
                                     adapter.notifyDataSetChanged()
                                 }
                             }

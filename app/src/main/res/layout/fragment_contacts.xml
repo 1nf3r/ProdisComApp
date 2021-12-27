@@ -46,7 +46,6 @@ tools:context=".ui.user.valUser">
             tools:layout_editor_absoluteY="66dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -60,9 +59,19 @@ tools:context=".ui.user.valUser">
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/addContacts"
+                    android:layout_width="114dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="12dp"
+                    android:layout_marginBottom="12dp"
+                    android:layout_marginStart="335dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:src="@drawable/ic_baseline_add_24" />
         </LinearLayout>
     </ScrollView>
-
 </LinearLayout>
-
 </FrameLayout>

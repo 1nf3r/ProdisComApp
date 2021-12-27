@@ -16,9 +16,19 @@ import com.google.firebase.firestore.ktx.getField
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.*
 import android.R.bool
+import android.annotation.SuppressLint
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
+import android.content.Context
 import android.content.res.Resources
+import android.graphics.BitmapFactory
+import android.os.Build
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 import androidx.core.text.isDigitsOnly
 import cat.copernic.jose.antonio.miranda.prodiscomtest.R
+import cat.copernic.jose.antonio.miranda.prodiscomtest.ui.MainActivity
 import kotlinx.coroutines.tasks.await
 
 
@@ -27,12 +37,16 @@ class Register : AppCompatActivity() {
     private val viewModel: RegisterViewModel by viewModels()
     private val db = FirebaseFirestore.getInstance()
     private val auth: FirebaseAuth = Firebase.auth
+    private val CHANNEL_ID = "channel_id_example_01"
+    private val notificacioId = 101
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //viewModel = ViewModelProvider(this)[RegisterViewModel::class.java]
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        creacioCanalNotificacio()
 
         //Al clicar en necesitas ayuda saldra un pop up.
         val builder = AlertDialog.Builder(this)
@@ -60,8 +74,9 @@ class Register : AppCompatActivity() {
         var checkDni2 = false
         var checkMail: Boolean
         var checkName: Boolean
+        var checkLastName: Boolean
         var checkPasswd: Boolean
-        var improvePassw = "Prodis"
+        var improvePassw = "prodis"
 
 
         //Accedim al botó de registrar-se i escoltem l'esdevniment
@@ -72,13 +87,14 @@ class Register : AppCompatActivity() {
                 checkDni2 = checkDni2(binding.etxtRegDni.text.toString())
                 checkMail = checkMail(binding.etxtRegMail.text.toString())
                 checkName = checkName(binding.etxtRegNom.text.toString())
+                checkLastName = checkLastName(binding.etxtRegCognom.text.toString())
                 checkPasswd = checkPass(
                     binding.etxtRegCont.text.toString(),
                     binding.etxtRegConfPass.text.toString()
                 )
 
                 //Creem el registre amb email i contrasenya...
-                if (checkMail && checkName && checkPasswd && checkDni && checkDni2) {
+                if (checkMail && checkName && checkLastName && checkPasswd && checkDni && checkDni2) {
                     //Registrem a l'usuari i amb el mètode addOnCompleteListener,
                     // ens notificarà si el registre a estat un èxit o no.
                     improvePassw += binding.etxtRegCont.text.toString()
@@ -97,8 +113,21 @@ class Register : AppCompatActivity() {
                         }
                     }.await()
 
-                } else
+                } else if (!checkMail){
+                    showError(R.string.accept)
+                } else if (!checkName) {
+                    showError(R.string.accept)
+                } else if (!checkLastName){
+                    showError(R.string.accept)
+                } else if (!checkPasswd) {
+                    showError(R.string.accept)
+                } else if (!checkDni) {
+                    showError(R.string.accept)
+                } else if (!checkDni2){
+                    showError(R.string.accept)
+                } else {
                     showAlert()
+                }
             }
         }
     }
@@ -107,9 +136,9 @@ class Register : AppCompatActivity() {
     //Funció que crea l'alert de tipus AlertDialog que es mostrarà si el registre no ha estat un èxit
     private fun showAlert() {
         val builder = AlertDialog.Builder(this)
-        builder.setTitle(Resources.getSystem().getString(R.string.error))
-        builder.setMessage(Resources.getSystem().getString(R.string.signup_failed))
-        builder.setPositiveButton(Resources.getSystem().getString(R.string.accept), null)
+        builder.setTitle(R.string.error)
+        builder.setMessage(R.string.signup_failed)
+        builder.setPositiveButton(R.string.accept, null)
         builder.show()
     }
 
@@ -131,11 +160,22 @@ class Register : AppCompatActivity() {
         viewModel.saveDB(
             binding.etxtRegNom.text.toString(),
             binding.etxtRegDni.text.toString(),
-            binding.etxtRegMail.text.toString()
-            //binding.etxtRegTel.text.toString() as Int
+            binding.etxtRegMail.text.toString(),
+            binding.etxtRegCognom.text.toString(),
+            binding.etxtRegTel.text.toString()
         )
         startActivity(homeIntent)
 
+        enviarNotificacio()
+
+    }
+
+    //Funcion para comprobar el apellido
+    private fun checkLastName(name: String): Boolean {
+        val checkLastName = "^[\\p{L}\\s.’\\-,]+\$".toRegex()
+        var checker = false
+        if (checkLastName.matches(name)) checker = true
+        return checker
     }
 
     //Funcion para comprobar el nombre
@@ -194,51 +234,64 @@ class Register : AppCompatActivity() {
             .await().isEmpty
     }
 
-    /*private fun checkDni3(dni: String): Boolean {
-        var checker = true
-        db.collection("users").whereEqualTo("DNI", dni)
-            .get()
-            .addOnSuccessListener { documents ->
-                if (documents.isEmpty) {
-                    return@addOnSuccessListener
-                } else {
-                    for (document in documents) {
-                        return@addOnSuccessListener
-                    }
-                }
-
-            }
-        return checker
-    }*/
-    /*private fun checkDni4(dni: String): Boolean {
-
-        var checker = false
-        Log.i("TAG", checker.toString()+" dni1")
-        if(db.collection("users")
-                .whereEqualTo("DNI", dni)
-                .get().isSuccessful() == false){
-            checker = true
-        }else if(db.collection("users").whereEqualTo("DNI", dni)
-                .get().isSuccessful){
-            checker = false
-        }
-        Log.i("TAG", checker.toString()+" dni2")
-        return checker
-    }*/
-
-
-
     private fun test(){
         if (!checkDni(binding.etxtRegDni.text.toString())){
             binding.etxtRegDni.error = R.string.invalid_dni.toString()
         }
     }
 
-    private fun showError() {
+    private fun showError(error: Int) {
         val errorDis = AlertDialog.Builder(this)
         errorDis.setTitle(R.string.login_failed)
-        errorDis.setMessage(R.string.invalid_auth)
+        errorDis.setMessage(error)
         errorDis.setPositiveButton(R.string.accept, null)
         errorDis.show()
     }
+
+    private fun creacioCanalNotificacio() {
+        if(Build.VERSION.SDK_INT>= Build.VERSION_CODES.O) { //>=26 version Oreo i superiors
+            val nom = "Titol de la notificació"
+            val descripcio = "Descripció notificació."
+            val importancia = NotificationManager.IMPORTANCE_DEFAULT
+            val canal = NotificationChannel(CHANNEL_ID, nom, importancia)
+            canal.description = descripcio
+            val notificationManager: NotificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannel(canal)
+        }
+    }
+
+    @SuppressLint("UnspecifiedImmutableFlag")
+    private fun enviarNotificacio(){
+
+        //Activity que es mostrarà al fer click a la notificació
+        val resultIntent : Intent = Intent(this,MainActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        }
+
+        val resultPendingIntent = PendingIntent.getActivity(
+            this,0,resultIntent,0)
+
+        val bitmapGran = BitmapFactory.decodeResource(applicationContext.resources, R.drawable.notificacio)
+
+        val textMessage = getString(R.string.new_message)
+        val regSuccess = getString(R.string.register_success)
+        val contMessage = getString(R.string.register_complete)
+
+        //Construim la notificació
+        val mBuilder = NotificationCompat.Builder(this,CHANNEL_ID)
+            .setSmallIcon(android.R.drawable.ic_notification_overlay)
+            .setContentTitle(regSuccess)
+            .setContentText(textMessage)
+            .setLargeIcon(bitmapGran)
+            .setStyle(NotificationCompat.BigTextStyle().bigText(contMessage))
+            .setContentIntent(resultPendingIntent)
+            .setDefaults(NotificationCompat.DEFAULT_ALL)
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+
+
+        val notificationManager = NotificationManagerCompat.from(this)
+        notificationManager.notify(notificacioId, mBuilder.build())
+
+    }
+
 }

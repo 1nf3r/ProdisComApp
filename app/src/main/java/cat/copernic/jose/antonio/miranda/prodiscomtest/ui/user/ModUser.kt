@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.annotation.IntegerRes
 import androidx.navigation.Navigation
 import cat.copernic.jose.antonio.miranda.prodiscomtest.R
@@ -49,13 +50,14 @@ class modUser : Fragment() {
         }
 
         binding.btnModUs.setOnClickListener {
-            confirmUpdate()
+            if (!found){
+                Toast.makeText(requireContext(), R.string.user_not_found,Toast.LENGTH_LONG).show()
+            } else {
+                confirmUpdate()
+            }
         }
         return binding.root
     }
-
-    //TODO USAR LA FUNCION DE COMPROBACION PARA DNI Y MAIL PARA BUSCAR POR LOS DOS CAMPOS
-    //TODO PASAR A MVVM
 
     private fun getInfo(mailUser: String): Boolean {
         found = false
@@ -65,7 +67,7 @@ class modUser : Fragment() {
                 if (document.exists()) {
                     printInfo(
                         document.get("email") as String,
-                        document.get("Nombre") as String,
+                        document.get("nombre") as String,
                         document.get("DNI") as String,
 //                        document.get("Tel") as String
                     )
@@ -102,7 +104,7 @@ class modUser : Fragment() {
 //            binding.txResultMail.text.toString(),
             "DNI",
             binding.txResultDni.text.toString(),
-            "Nombre", binding.txResultNom.text.toString()
+            "nombre", binding.txResultNom.text.toString()
         )
     }
 

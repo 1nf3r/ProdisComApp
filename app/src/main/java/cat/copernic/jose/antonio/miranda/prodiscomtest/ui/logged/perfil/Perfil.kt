@@ -9,9 +9,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import cat.copernic.jose.antonio.miranda.prodiscomtest.R
 import cat.copernic.jose.antonio.miranda.prodiscomtest.databinding.FragmentPerfilBinding
 import cat.copernic.jose.antonio.miranda.prodiscomtest.viewmodel.PerfilViewModel
 import com.bumptech.glide.Glide
@@ -30,13 +32,17 @@ private lateinit var viewModel: PerfilViewModel
 class Perfil : Fragment() {
     private var _binding: FragmentPerfilBinding? = null
     private val binding get() = _binding!!
-    private val db = FirebaseFirestore.getInstance()
-    private val auth: FirebaseAuth = Firebase.auth
     lateinit var storageRef: StorageReference
+    private var currentUser = Firebase.auth.currentUser
+    private val currentMail = Firebase.auth.currentUser?.email
+    private var currentUserMail: String = currentMail!!
     private var filename = "perfilImg-" + Firebase.auth.currentUser?.email
     private var dataLocal: Uri? = null
     private lateinit var getUserInfo: DocumentReference
-    private var found = false
+    private var name = ""
+    private var mail = ""
+    private var telf = ""
+    private var birth = ""
 
 
     override fun onCreateView(
@@ -45,12 +51,6 @@ class Perfil : Fragment() {
     ): View {
         viewModel = ViewModelProvider(this).get(PerfilViewModel::class.java)
         _binding = FragmentPerfilBinding.inflate(inflater, container, false)
-//        binding.btnToEditPerfil.setOnClickListener(
-//            Navigation.createNavigateOnClickListener(
-//                cat.copernic.jose.antonio.miranda.prodiscomtest.R.id.editPerfil,
-//                null
-//            )
-//        )
         binding.btnReturnPerfil.setOnClickListener(
             Navigation.createNavigateOnClickListener(
                 cat.copernic.jose.antonio.miranda.prodiscomtest.R.id.menu_principal,
@@ -67,6 +67,7 @@ class Perfil : Fragment() {
             .addOnSuccessListener { url ->
                 Glide.with(this)
                     .load(url.toString())
+                    .circleCrop()
                     .into(binding.imgDisplayFoto)
 
             }.addOnFailureListener {
@@ -90,13 +91,15 @@ class Perfil : Fragment() {
         GlobalScope.async(Dispatchers.Main) {
             delay(500)
             binding.txtDisplayNombre.setText(viewModel.nombre.value)
+            name = viewModel.nombre.value.toString()
             binding.txtDisplayCorreo.setText(viewModel.correo.value)
+            mail = viewModel.correo.value.toString()
+            binding.txtDisplayTelefono.setText(viewModel.telefono.value)
+            telf = viewModel.telefono.value.toString()
             binding.txtDisplayNacimiento.setText(viewModel.nacimiento.value)
-
-
+            birth = viewModel.nacimiento.value.toString()
         }
     }
-
 
     private val startForActivityGallery = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
@@ -117,15 +120,59 @@ class Perfil : Fragment() {
     }
 
     private fun guardarInfo() {
+        var changedName = false
+        var changedMail = false
+        var changedTelf = false
+        var changedBirth = false
+        var changedImage: Boolean
         if (dataLocal != null) {
+            changedImage = true
             storageRef = FirebaseStorage.getInstance().getReference("user_images/$filename")
             storageRef.putFile(dataLocal!!)
                 .addOnSuccessListener {
                     binding.imgDisplayFoto.setImageURI(dataLocal)
                 }.addOnFailureListener {
                 }
+        } else {
+            changedImage = false
+        }
+        if (name != binding.txtDisplayNombre.text.toString()) {
+            changedName = true
+        }
+        if (mail != binding.txtDisplayCorreo.text.toString()) {
+            changedMail = true
+        }
+        if (telf != binding.txtDisplayTelefono.text.toString()) {
+            changedTelf = true
+        }
+        if (birth != binding.txtDisplayNacimiento.text.toString()) {
+            changedBirth = true
+        }
+        if (changedMail) {
+            if (changedName || changedTelf || changedBirth || changedImage) {
+                currentUser?.updateEmail(viewModel.correo.value.toString())
+                changeFields()
+                Toast.makeText(requireContext(), R.string.changes_applied, Toast.LENGTH_LONG).show()
+            } else {
+                currentUser?.updateEmail(viewModel.correo.value.toString())
+                Toast.makeText(requireContext(), R.string.mail_changed, Toast.LENGTH_LONG).show()
+            }
+        } else if (changedName || changedTelf || changedBirth || changedImage) {
+            changeFields()
+            Toast.makeText(requireContext(), R.string.changes_applied, Toast.LENGTH_LONG).show()
+        } else {
+            Toast.makeText(requireContext(), R.string.any_change, Toast.LENGTH_LONG).show()
         }
     }
 
+    private fun changeFields() {
+        //Se tiene que hacer un observer
+        getUserInfo = FirebaseFirestore.getInstance().collection("users")
+            .document(currentUserMail)
+        getUserInfo.update("nombre",viewModel.nombre.value.toString(),
+            "Telefono", viewModel.telefono.value.toString(),
+            "Fecha", viewModel.nacimiento.value.toString()
+        )
+    }
 
 }

@@ -34,6 +34,7 @@
                     android:drawableStart="@drawable/custom_perfil_icon"
                     android:drawablePadding="12dp"
                     android:hint="@string/prompt_email"
+                    android:maxLength="9"
                     android:inputType="textEmailAddress"
                     android:minHeight="48dp"
                     android:paddingStart="12dp"
