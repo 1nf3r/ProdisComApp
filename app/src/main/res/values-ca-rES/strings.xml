@@ -74,7 +74,7 @@
     <string name="missatges">Missatges</string>
     <string name="login_help">Hauras d\'introduir el DNI i la contrasenya de 4 digits, si no tens un usuari clica en el text Registrar-se.</string>
     <string name="buscar_usuari">Introdueix un email d\'usuari</string>
-    <string name="contactes">Contactes</string>
+    <string name="chats">Missatges</string>
     <string name="crear_grup">Crear Grup</string>
     <string name="nom_del_grup">Nom del grup</string>
     <string name="seleccionar_participants">Seleccionar participants</string>
@@ -108,7 +108,7 @@
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="afegir_contacte">Afegir Contacte</string>
+    <string name="txtNouChat">Nou Chat</string>
     <string name="administrador">Administrador</string>
 
 </resources>

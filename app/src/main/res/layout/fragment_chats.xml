@@ -6,72 +6,80 @@ android:layout_width="match_parent"
 android:layout_height="match_parent"
 tools:context=".ui.message.Chats">
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/titleBGContactos"
-            style="@style/backgroundTitulos"
-            android:background="@color/mensajesBG"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/txtTitleContactos"
-            style="@style/titulos"
-            android:text="@string/contactes"
-            tools:layout_editor_absoluteX="103dp"
-            tools:layout_editor_absoluteY="32dp" />
-
-        <ImageView
-            android:id="@+id/btnReturnMensajes"
-            style="@style/btn_return"
-            android:src="@drawable/ic_baseline_salir"
-            tools:layout_editor_absoluteX="28dp"
-            tools:layout_editor_absoluteY="66dp" />
-
-        <ImageView
-            android:id="@+id/btnMensajesToHome"
-            style="@style/btn_home"
-            android:src="@drawable/ic_baseline_inicio"
-            tools:layout_editor_absoluteX="411dp"
-            tools:layout_editor_absoluteY="66dp" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:layout_height="100dp">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView"
+            <TextView
+                android:id="@+id/titleBGContactos"
+                style="@style/backgroundTitulos"
+                android:background="@color/mensajesBG"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/txtTitleContactos"
+                style="@style/titulos"
+                android:text="@string/chats"
+                tools:layout_editor_absoluteX="103dp"
+                tools:layout_editor_absoluteY="32dp" />
+
+            <ImageView
+                android:id="@+id/btnReturnMensajes"
+                style="@style/btn_return"
+                android:src="@drawable/ic_baseline_salir"
+                tools:layout_editor_absoluteX="28dp"
+                tools:layout_editor_absoluteY="66dp" />
+
+            <ImageView
+                android:id="@+id/btnMensajesToHome"
+                style="@style/btn_home"
+                android:src="@drawable/ic_baseline_inicio"
+                tools:layout_editor_absoluteX="411dp"
+                tools:layout_editor_absoluteY="66dp" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ScrollView
+                android:id="@+id/scrollView2"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent">
 
-                <com.google.android.material.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/addContacts"
-                    android:layout_width="114dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginEnd="12dp"
-                    android:layout_marginBottom="12dp"
-                    android:layout_marginStart="335dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:src="@drawable/ic_baseline_add_24" />
-        </LinearLayout>
-    </ScrollView>
-</LinearLayout>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                </androidx.recyclerview.widget.RecyclerView>
+            </ScrollView>
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/addContacts"
+                android:layout_width="114dp"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:focusable="true"
+                android:src="@drawable/ic_baseline_add_24"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.90"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/scrollView2"
+                app:layout_constraintVertical_bias="0.90"
+                tools:ignore="SpeakableTextPresentCheck" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+
 </FrameLayout>

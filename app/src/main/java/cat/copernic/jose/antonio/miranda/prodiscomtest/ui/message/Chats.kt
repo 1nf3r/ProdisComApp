@@ -25,7 +25,7 @@ class Chats : Fragment() {
     private val rootRef = FirebaseFirestore.getInstance()
     private val uidRef =
         fromUid?.let { rootRef.collection("users").document(it) }
-    private lateinit var adapter: ContactsCustomAdapter
+    private lateinit var adapter: ChatsCustomAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -53,7 +53,7 @@ class Chats : Fragment() {
         binding.recyclerView.layoutManager = LinearLayoutManager(activity)
         val data = ArrayList<ContactsViewModel>()
         getContacts(data)
-        adapter = ContactsCustomAdapter(data)
+        adapter = ChatsCustomAdapter(data)
         binding.recyclerView.adapter = adapter
 
         authStateListener = FirebaseAuth.AuthStateListener { }
