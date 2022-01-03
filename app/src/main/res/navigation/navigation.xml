@@ -168,8 +168,8 @@
     <fragment
         android:id="@+id/allContacts"
         android:name="cat.copernic.jose.antonio.miranda.prodiscomtest.ui.message.AllContacts"
-        android:label="fragment_all_contacts"
-        tools:layout="@layout/fragment_all_contacts" >
+        android:label="AllContacts"
+        tools:layout="@layout/fragment_all_contacts">
         <action
             android:id="@+id/action_allContacts_to_chat"
             app:destination="@id/chat" />
