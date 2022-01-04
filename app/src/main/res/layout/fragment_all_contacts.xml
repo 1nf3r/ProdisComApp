@@ -24,7 +24,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/txtTitleChatUser"
+                android:id="@+id/txtTitleChat"
                 style="@style/titulos"
                 android:text="@string/txtNouChat"
                 tools:layout_editor_absoluteX="103dp"

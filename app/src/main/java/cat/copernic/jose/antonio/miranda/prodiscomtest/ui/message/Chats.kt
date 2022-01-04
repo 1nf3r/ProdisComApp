@@ -38,12 +38,6 @@ class Chats : Fragment() {
                 null
             )
         )
-        binding.btnMensajesToHome.setOnClickListener(
-            Navigation.createNavigateOnClickListener(
-                R.id.menu_principal,
-                null
-            )
-        )
 
         binding.addContacts.setOnClickListener(
             Navigation.createNavigateOnClickListener(R.id.allContacts, null)

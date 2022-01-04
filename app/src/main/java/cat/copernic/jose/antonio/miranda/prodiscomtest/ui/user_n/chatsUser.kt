@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isGone
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -42,13 +43,7 @@ class UserChats : Fragment() {
             activity?.finish()
             activity?.startActivity(Intent(this.activity, LoginActivity::class.java))
         }
-
-        binding.btnMensajesToHome.setOnClickListener(
-            Navigation.createNavigateOnClickListener(
-                R.id.menu_principal,
-                null
-            )
-        )
+        binding.btnReturnMensajes.setImageResource(R.drawable.ic_baseline_cerrar)
 
         binding.addContacts.setOnClickListener(
             Navigation.createNavigateOnClickListener(R.id.allContacts2, null)

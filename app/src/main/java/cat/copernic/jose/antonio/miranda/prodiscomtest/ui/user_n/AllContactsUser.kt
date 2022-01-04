@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isGone
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -36,12 +37,7 @@ class AllContactsUser : Fragment() {
                 null
             )
         )
-        binding.btnMensajesToHome.setOnClickListener(
-            Navigation.createNavigateOnClickListener(
-                R.id.menu_principal,
-                null
-            )
-        )
+        binding.btnMensajesToHome.isGone = true
 
         binding.recyclerView.layoutManager = LinearLayoutManager(activity)
         val data = ArrayList<AllContactsViewModel>()

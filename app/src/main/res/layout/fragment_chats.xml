@@ -35,15 +35,8 @@ tools:context=".ui.message.Chats">
                 android:id="@+id/btnReturnMensajes"
                 style="@style/btn_return"
                 android:src="@drawable/ic_baseline_salir"
-                tools:layout_editor_absoluteX="28dp"
-                tools:layout_editor_absoluteY="66dp" />
-
-            <ImageView
-                android:id="@+id/btnMensajesToHome"
-                style="@style/btn_home"
-                android:src="@drawable/ic_baseline_inicio"
-                tools:layout_editor_absoluteX="411dp"
-                tools:layout_editor_absoluteY="66dp" />
+                tools:layout_editor_absoluteX="180dp"
+                tools:layout_editor_absoluteY="32dp" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

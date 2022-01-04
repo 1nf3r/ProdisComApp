@@ -164,6 +164,9 @@
         <argument
             android:name="roomId"
             app:argType="string" />
+        <argument
+            android:name="user"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/allContacts"
@@ -172,6 +175,7 @@
         tools:layout="@layout/fragment_all_contacts">
         <action
             android:id="@+id/action_allContacts_to_chat"
-            app:destination="@id/chatUser" />
+            app:destination="@id/chatUser"
+            app:popUpTo="@id/chats" />
     </fragment>
 </navigation>
