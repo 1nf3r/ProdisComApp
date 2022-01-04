@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import cat.copernic.jose.antonio.miranda.prodiscomtest.R
 import cat.copernic.jose.antonio.miranda.prodiscomtest.databinding.ActivityLoginBinding
 import cat.copernic.jose.antonio.miranda.prodiscomtest.ui.register.Register
+import cat.copernic.jose.antonio.miranda.prodiscomtest.ui.user_n.MainActivityUser
 import cat.copernic.jose.antonio.miranda.prodiscomtest.viewmodel.LoginViewModel
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -106,50 +107,59 @@ class LoginActivity : AppCompatActivity() {
                     }
                 }
         }*/
+        CoroutineScope(Dispatchers.Main).launch {
 
-        if (currentUser != null /*&& validate*/) {
-            darkMode()
-            intent = Intent(applicationContext, MainActivity::class.java)
-            startActivity(intent)
-            finish()
-/*            if (checkAdmin) {
-                intent = Intent(applicationContext, MainActivity::class.java)
-                startActivity(intent)
-                finish()
+            if (currentUser != null) {
+                darkMode()
+                checkAdmin()
+                if(checkAdmin) {
+                    intent = Intent(applicationContext, MainActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                    /*            if (checkAdmin) {
+                        intent = Intent(applicationContext, MainActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    } else {
+                        intent = Intent(applicationContext, MainActivityUser::class.java)
+                        startActivity(intent)
+                        finish()
+                    }*/
+                }else {
+                    intent = Intent(applicationContext, MainActivityUser::class.java)
+                    startActivity(intent)
+                    finish()
+                }
             } else {
-                intent = Intent(applicationContext, MainActivityUser::class.java)
-                startActivity(intent)
-                finish()
-            }*/
-        } else {
-            login.setOnClickListener {
-                login.isEnabled = false
-                login.isClickable = false
-                CoroutineScope(Dispatchers.Main).launch {
-                    if (binding.username.text.toString().isNotEmpty()
-                        && binding.password.text.toString().isNotEmpty()
-                    ) {
-                        db.collection("users")
-                            .whereEqualTo(
-                                "DNI",
-                                binding.username.text.toString().uppercase()
-                            )
-                            .get()
-                            .addOnSuccessListener { documents ->
-                                if (documents.isEmpty) {
-                                    showLoginError()
-                                } else {
-                                    for (document in documents) {
-                                        CoroutineScope(Dispatchers.Main).launch {
-                                            loginWithEmail(document.get("email") as String)
+                login.setOnClickListener {
+                    login.isEnabled = false
+                    login.isClickable = false
+                    CoroutineScope(Dispatchers.Main).launch {
+                        if (binding.username.text.toString().isNotEmpty()
+                            && binding.password.text.toString().isNotEmpty()
+                        ) {
+                            db.collection("users")
+                                .whereEqualTo(
+                                    "DNI",
+                                    binding.username.text.toString().uppercase()
+                                )
+                                .get()
+                                .addOnSuccessListener { documents ->
+                                    if (documents.isEmpty) {
+                                        showLoginError()
+                                    } else {
+                                        for (document in documents) {
+                                            CoroutineScope(Dispatchers.Main).launch {
+                                                loginWithEmail(document.get("email") as String)
 
+                                            }
                                         }
                                     }
-                                }
 
-                            }.await()
-                    } else {
-                        showLoginError()
+                                }.await()
+                        } else {
+                            showLoginError()
+                        }
                     }
                 }
             }
@@ -231,6 +241,14 @@ class LoginActivity : AppCompatActivity() {
             Toast.makeText(this, R.string.error_check_user, Toast.LENGTH_LONG).show()
         }
         return check
+    }
+
+    private suspend fun checkAdmin(){
+        db.collection("users").document(currentUser?.email!!)
+            .get()
+            .addOnSuccessListener { document ->
+                checkAdmin = document.get("zAdmin") as Boolean
+            }.await()
     }
 
     private fun enableButtons() {

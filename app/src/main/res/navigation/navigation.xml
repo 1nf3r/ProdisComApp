@@ -145,13 +145,13 @@
         android:label="Chats" >
         <action
             android:id="@+id/action_contacts_to_chat"
-            app:destination="@id/chat" />
+            app:destination="@id/chatUser" />
         <action
             android:id="@+id/action_contacts_to_allContacts"
             app:destination="@id/allContacts" />
     </fragment>
     <fragment
-        android:id="@+id/chat"
+        android:id="@+id/chatUser"
         android:name="cat.copernic.jose.antonio.miranda.prodiscomtest.ui.message.Chat"
         android:label="Chat" >
         <argument
@@ -172,6 +172,6 @@
         tools:layout="@layout/fragment_all_contacts">
         <action
             android:id="@+id/action_allContacts_to_chat"
-            app:destination="@id/chat" />
+            app:destination="@id/chatUser" />
     </fragment>
 </navigation>

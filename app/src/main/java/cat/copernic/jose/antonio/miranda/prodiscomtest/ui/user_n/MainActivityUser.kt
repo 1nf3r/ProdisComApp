@@ -1,4 +1,4 @@
-package cat.copernic.jose.antonio.miranda.prodiscomtest.ui
+package cat.copernic.jose.antonio.miranda.prodiscomtest.ui.user_n
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

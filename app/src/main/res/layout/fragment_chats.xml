@@ -25,7 +25,7 @@ tools:context=".ui.message.Chats">
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/txtTitleContactos"
+                android:id="@+id/txtTitleChats"
                 style="@style/titulos"
                 android:text="@string/chats"
                 tools:layout_editor_absoluteX="103dp"

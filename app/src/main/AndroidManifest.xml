@@ -20,7 +20,7 @@
             android:name=".ui.RestorePassword"
             android:exported="false" />
         <activity
-            android:name=".ui.MainActivityUser"
+            android:name=".ui.user_n.MainActivityUser"
             android:exported="true" />
         <activity
             android:name=".ui.register.ConRegistro"
