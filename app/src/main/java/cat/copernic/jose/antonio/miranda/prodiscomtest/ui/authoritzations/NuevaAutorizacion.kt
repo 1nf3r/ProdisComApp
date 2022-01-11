@@ -9,6 +9,9 @@ import androidx.navigation.Navigation
 import cat.copernic.jose.antonio.miranda.prodiscomtest.R
 import cat.copernic.jose.antonio.miranda.prodiscomtest.databinding.FragmentNuevaAutorizacionBinding
 
+
+//    AQUEST DOCUMENT NO ESTA IMPLEMENTAT EN L'APLICACIO, S'UTILITZARA EN VERSIONS POSTERIORS DE L'APP
+
 class NuevaAutorizacion : Fragment() {
     private var _binding: FragmentNuevaAutorizacionBinding? = null
     private val binding get() = _binding!!

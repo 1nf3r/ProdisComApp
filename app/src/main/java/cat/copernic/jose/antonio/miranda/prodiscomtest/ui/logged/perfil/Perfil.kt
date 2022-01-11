@@ -57,11 +57,12 @@ class Perfil : Fragment() {
                 null
             )
         )
-
+        2
+        //Recuperem les dades del usuari i les mostrem per pantalla
         viewModel.getInfo(activity)
-
         displayInfo()
 
+        //Carreguem l'imatge desde el firebase, si no hi ha cap image es carregara una per defecte.
         storageRef = FirebaseStorage.getInstance().getReference()
         storageRef.child("user_images/$filename").downloadUrl
             .addOnSuccessListener { url ->
@@ -166,7 +167,6 @@ class Perfil : Fragment() {
     }
 
     private fun changeFields() {
-        //Se tiene que hacer un observer
         getUserInfo = FirebaseFirestore.getInstance().collection("users")
             .document(currentUserMail)
         getUserInfo.update("nombre",viewModel.nombre.value.toString(),

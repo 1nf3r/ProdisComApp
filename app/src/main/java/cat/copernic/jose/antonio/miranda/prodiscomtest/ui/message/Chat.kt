@@ -34,6 +34,7 @@ class Chat : Fragment() {
         _binding = FragmentChatBinding.inflate(inflater, container, false)
 
         rootRef = FirebaseFirestore.getInstance()
+        //Agafem els arguments del fragment Contacts
         val fromUser = ChatArgs.fromBundle(requireArguments()).localUser
         val fromUidNull = fromUser?.email
         fromUid = fromUidNull!!
@@ -44,6 +45,7 @@ class Chat : Fragment() {
         var toRooms = toUser.rooms
         var roomId = ChatArgs.fromBundle(requireArguments()).roomId
 
+        //Establim el id de la room que esta en firebase al usuari actual
         if (roomId == "noRoomId") {
             roomId = rootRef!!.collection("messages").document().id
             if (fromRooms != null) {
@@ -56,6 +58,7 @@ class Chat : Fragment() {
                 }
             }
         }
+
         binding.btnSentMessage.setOnClickListener {
             if (fromRooms == null) {
                 fromRooms = mutableMapOf()
@@ -68,6 +71,7 @@ class Chat : Fragment() {
             rootRef!!.collection("rooms").document(toUid).collection("userRooms").document(roomId)
                 .set(fromUser, SetOptions.merge())
 
+            //Actualitzem la informació de les col·leccions de users contactes i rooms amb els uid dels usuaris corresponents
             if (toRooms == null) {
                 toRooms = mutableMapOf()
             }
@@ -79,7 +83,7 @@ class Chat : Fragment() {
             rootRef!!.collection("rooms").document(fromUid).collection("userRooms").document(roomId)
                 .set(toUser, SetOptions.merge())
 
-
+            //Generació del missatge el room seleccionat
             val messageText = binding.txWriteMessage.text.toString()
             val message = Message(messageText, fromUid)
             rootRef!!.collection("missatges").document(roomId).collection("roomMessages")
@@ -87,6 +91,7 @@ class Chat : Fragment() {
             binding.txWriteMessage.text.clear()
         }
 
+        //Obtenim els missatges de la base de dades i els ordenem per l'hora que han sigut enviats
         val query = rootRef!!.collection("missatges").document(roomId).collection("roomMessages")
             .orderBy("sentAt", Query.Direction.ASCENDING)
         val options =
@@ -99,6 +104,7 @@ class Chat : Fragment() {
         return binding.root
     }
 
+    //Carreguem el missatge en el textView
     inner class MessageViewHolder internal constructor(private val view: View) :
         RecyclerView.ViewHolder(view) {
         internal fun setMessage(message: Message) {
@@ -107,6 +113,7 @@ class Chat : Fragment() {
         }
     }
 
+    //Definim en que costat es pintara el missatge depenent de l'usuari que l'ha escrit
     inner class MessageAdapter internal constructor(options: FirestoreRecyclerOptions<Message>) :
         FirestoreRecyclerAdapter<Message, MessageViewHolder>(options) {
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MessageViewHolder {
@@ -155,9 +162,3 @@ class Chat : Fragment() {
 
 
 }
-
-//TODO Grupos : Chat
-//TODO Arreglar Perfil.kt Realizar Observer
-//TODO Mejorar los temas de la app
-//TODO Que el user normal vaya a contactos directamente
-//TODO Modo Horizontal

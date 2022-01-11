@@ -8,11 +8,9 @@ import android.text.InputType
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import cat.copernic.jose.antonio.miranda.prodiscomtest.R
 import cat.copernic.jose.antonio.miranda.prodiscomtest.databinding.ActivityLoginBinding
 import cat.copernic.jose.antonio.miranda.prodiscomtest.ui.register.Register
-import cat.copernic.jose.antonio.miranda.prodiscomtest.viewmodel.LoginViewModel
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
@@ -26,10 +24,8 @@ import java.util.*
 class LoginActivity : AppCompatActivity() {
     private val db = FirebaseFirestore.getInstance()
     private lateinit var binding: ActivityLoginBinding
-    private lateinit var viewModel: LoginViewModel
     private var currentUser = Firebase.auth.currentUser
     var checkAdmin = false
-    private var validate: Boolean = false
     override fun onCreate(savedInstanceState: Bundle?) {
         Thread.sleep(1000)
         setTheme(R.style.Theme_ProdisComTest)
@@ -37,9 +33,6 @@ class LoginActivity : AppCompatActivity() {
 
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        //viewModel = ViewModelProviders
-        viewModel = ViewModelProvider(this)[LoginViewModel::class.java]
         val login = binding.login
         val btnshow = binding.btnShow
 
@@ -91,36 +84,11 @@ class LoginActivity : AppCompatActivity() {
             config.locale = localizacion
             baseContext.resources.updateConfiguration(config, baseContext.resources.displayMetrics)
         }
-
-/*        CoroutineScope(Dispatchers.Main).launch {
-            db.collection("users").whereEqualTo("email", currentUser?.email.toString()).get()
-                .addOnSuccessListener { documents ->
-                    if (documents.isEmpty) {
-                        returnFalse()
-                    } else {
-                        for (document in documents) {
-                            CoroutineScope(Dispatchers.Main).launch {
-                                returnZvalidate(document.get("zValidado") as Boolean)
-                            }
-                        }
-                    }
-                }
-        }*/
-
         if (currentUser != null /*&& validate*/) {
             darkMode()
             intent = Intent(applicationContext, MainActivity::class.java)
             startActivity(intent)
             finish()
-/*            if (checkAdmin) {
-                intent = Intent(applicationContext, MainActivity::class.java)
-                startActivity(intent)
-                finish()
-            } else {
-                intent = Intent(applicationContext, MainActivityUser::class.java)
-                startActivity(intent)
-                finish()
-            }*/
         } else {
             login.setOnClickListener {
                 login.isEnabled = false
@@ -252,13 +220,4 @@ class LoginActivity : AppCompatActivity() {
             }
         }
     }
-
-/*   private fun returnFalse(): Boolean {
-        this.validate = false
-        return validate
-    }
-    private fun returnZvalidate(zvalidate: Boolean): Boolean{
-        this.validate = zvalidate
-        return validate
-    }*/
 }

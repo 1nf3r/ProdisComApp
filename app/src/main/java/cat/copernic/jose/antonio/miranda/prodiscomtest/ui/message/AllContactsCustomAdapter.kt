@@ -44,17 +44,17 @@ class AllContactsCustomAdapter(private val mList: List<AllContactsViewModel>) :
         }
     }
 
-    // return the number of the items in the list
+    // retorna el numero de items en la llista
     override fun getItemCount(): Int {
         return mList.size
     }
 
-    // Holds the views for adding it to image and text
+    // Soste les vistes per afegir-la a imatge i text
     inner class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
         val txtNom: TextView = itemView.findViewById(R.id.textView5)
     }
 
-
+//Retorna tots els contactes registrats en l'aplicació
     private fun getAllContacts() {
         firebaseAuth = FirebaseAuth.getInstance()
         if (firebaseUser != null) {
@@ -72,9 +72,8 @@ class AllContactsCustomAdapter(private val mList: List<AllContactsViewModel>) :
         }
     }
 
-
+    //Afegeix el contacte seleccionat a la llista de rooms per enviar un missatge
     private fun addContacts(userToAdd: Users) {
-
         val userContactsAddInfo = hashMapOf(
             "rooms" to userToAdd.rooms,
             "email" to userToAdd.email,
