@@ -23,7 +23,6 @@ class NuevaAutorizacion : Fragment() {
 
         binding.btnEnviarNuevaAutorizacion.setOnClickListener(Navigation.createNavigateOnClickListener(
             R.id.autorizacion, null))
-        //TODO Selecionar participantes
 
         binding.btnReturnNuevaAutorizacion.setOnClickListener(Navigation.createNavigateOnClickListener(
             R.id.autorizacion, null))

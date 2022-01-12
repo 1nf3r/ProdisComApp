@@ -9,4 +9,7 @@ class MainActivityUser : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.fragment_contacts)
     }
+
+    //TODO Hacer que el main user pueda tener la configuracion de usuario y quitar flecha
+
 }
