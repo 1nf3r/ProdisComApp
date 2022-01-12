@@ -75,6 +75,9 @@ class LoginActivity : AppCompatActivity() {
             val config = Configuration()
             config.locale = localizacion
             baseContext.resources.updateConfiguration(config, baseContext.resources.displayMetrics)
+            intent = Intent(applicationContext, LoginActivity::class.java)
+            startActivity(intent)
+            finish()
         }
 
         binding.btnEsp?.setOnClickListener {
@@ -83,6 +86,9 @@ class LoginActivity : AppCompatActivity() {
             val config = Configuration()
             config.locale = localizacion
             baseContext.resources.updateConfiguration(config, baseContext.resources.displayMetrics)
+            intent = Intent(applicationContext, LoginActivity::class.java)
+            startActivity(intent)
+            finish()
         }
         if (currentUser != null /*&& validate*/) {
             darkMode()

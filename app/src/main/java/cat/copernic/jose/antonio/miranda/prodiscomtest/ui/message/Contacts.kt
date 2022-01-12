@@ -34,12 +34,6 @@ class Contacts : Fragment() {
         _binding = FragmentContactsBinding.inflate(inflater, container, false)
         binding.btnReturnMensajes.setOnClickListener(
             Navigation.createNavigateOnClickListener(
-                R.id.mensajes,
-                null
-            )
-        )
-        binding.btnMensajesToHome.setOnClickListener(
-            Navigation.createNavigateOnClickListener(
                 R.id.menu_principal,
                 null
             )

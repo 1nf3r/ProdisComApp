@@ -25,12 +25,12 @@ class GrupMain : Fragment() {
             )
         )
 
-        binding.btnToCrearGrup.setOnClickListener(
+       /* binding.btnToCrearGrup.setOnClickListener(
             Navigation.createNavigateOnClickListener(
                 R.id.CrearGrup,
                 null
             )
-        )
+        )*/
 
         return binding.root
     }
