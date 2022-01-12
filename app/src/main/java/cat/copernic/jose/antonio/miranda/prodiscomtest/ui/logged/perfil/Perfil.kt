@@ -53,7 +53,7 @@ class Perfil : Fragment() {
         _binding = FragmentPerfilBinding.inflate(inflater, container, false)
         binding.btnReturnPerfil.setOnClickListener(
             Navigation.createNavigateOnClickListener(
-                cat.copernic.jose.antonio.miranda.prodiscomtest.R.id.menu_principal,
+                R.id.menu_principal,
                 null
             )
         )
@@ -72,7 +72,7 @@ class Perfil : Fragment() {
                     .into(binding.imgDisplayFoto)
 
             }.addOnFailureListener {
-                binding.imgDisplayFoto.setImageResource(cat.copernic.jose.antonio.miranda.prodiscomtest.R.drawable.no_user)
+                binding.imgDisplayFoto.setImageResource(R.drawable.no_user)
             }
 
         binding.imgDisplayFoto.setOnClickListener {

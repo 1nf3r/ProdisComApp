@@ -30,12 +30,6 @@ class Menu_principal : Fragment() {
                 cat.copernic.jose.antonio.miranda.prodiscomtest.R.id.action_menu_principal_to_perfil)
         )
 
-        binding.btnToAjustes.setOnClickListener(
-            Navigation.createNavigateOnClickListener(
-                cat.copernic.jose.antonio.miranda.prodiscomtest.R.id.ajustes,
-                null
-            )
-        )
         binding.btnToUsuarios.setOnClickListener(
             Navigation.createNavigateOnClickListener(
                 cat.copernic.jose.antonio.miranda.prodiscomtest.R.id.usuarios,
@@ -48,12 +42,7 @@ class Menu_principal : Fragment() {
                 null
             )
         )
-        binding.btnToGrup.setOnClickListener(
-            Navigation.createNavigateOnClickListener(
-                cat.copernic.jose.antonio.miranda.prodiscomtest.R.id.grup,
-                null
-            )
-        )
+
         binding.btnToSalir.setOnClickListener() {//Si clickem el boto tancar sessió...
             //Tanquem sessió
             getInstance().signOut()
