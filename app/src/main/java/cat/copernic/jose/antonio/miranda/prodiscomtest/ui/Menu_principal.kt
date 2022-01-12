@@ -53,4 +53,6 @@ class Menu_principal : Fragment() {
 
         return binding.root
     }
+
+    //TODO Poner un nuevo boton para gestionar al usuario desde el boton i no desde el logo de arriba
 }

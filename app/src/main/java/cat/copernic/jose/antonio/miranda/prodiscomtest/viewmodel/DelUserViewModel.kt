@@ -33,19 +33,8 @@ class ModDelUserViewModel: ViewModel() {
     val correo: LiveData<String>
         get() = _correo
 
-    /*private val _telefono = MutableLiveData<Int>()
-    val telefono: LiveData<Int>
-        get() = _telefono
-    private val _nacimiento = MutableLiveData<String>()
-    val nacimiento: LiveData<String>
-        get() = _nacimiento*/
-
     init {
-        //getInfo()
-
-        Log.d("TAG", "GameViewModel created!")
     }
-//TODO USAR LA FUNCION DE COMPROBACION PARA DNI Y MAIL PARA BUSCAR POR LOS DOS CAMPOS
 
     suspend fun getInfo(mailUser: String, activityL : Activity): Boolean {
         activity = activityL
