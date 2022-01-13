@@ -48,12 +48,7 @@ class Menu_principal : Fragment() {
                 null
             )
         )
-        binding.btnToGrup.setOnClickListener(
-            Navigation.createNavigateOnClickListener(
-                cat.copernic.jose.antonio.miranda.prodiscomtest.R.id.grup,
-                null
-            )
-        )
+
         binding.btnToSalir.setOnClickListener() {//Si clickem el boto tancar sessió...
             //Tanquem sessió
             getInstance().signOut()
