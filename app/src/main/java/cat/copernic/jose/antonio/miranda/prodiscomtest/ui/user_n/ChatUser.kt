@@ -45,7 +45,7 @@ class ChatUser : Fragment() {
         val toUid: String = toUidNull!!
         var toRooms = toUser.rooms
         var roomId = ChatUserArgs.fromBundle(requireArguments()).roomId
-        binding.txtTitleChatUser.text = ChatUserArgs.fromBundle(requireArguments()).user
+        binding.txtTitleChat.text = ChatUserArgs.fromBundle(requireArguments()).user
 
         if (roomId == "noRoomId") {
             roomId = rootRef!!.collection("messages").document().id

@@ -40,13 +40,6 @@
                 tools:layout_editor_absoluteX="28dp"
                 tools:layout_editor_absoluteY="66dp" />
 
-            <ImageView
-                android:id="@+id/btnMensajesToHome"
-                style="@style/btn_home"
-                android:src="@drawable/ic_baseline_inicio"
-                tools:layout_editor_absoluteX="411dp"
-                tools:layout_editor_absoluteY="66dp" />
-
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.recyclerview.widget.RecyclerView
