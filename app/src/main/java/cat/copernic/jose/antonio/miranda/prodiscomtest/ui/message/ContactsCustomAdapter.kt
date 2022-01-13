@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import cat.copernic.jose.antonio.miranda.prodiscomtest.R
@@ -12,6 +13,7 @@ import cat.copernic.jose.antonio.miranda.prodiscomtest.data.Users
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.auth.User
+import kotlinx.coroutines.tasks.await
 
 class ContactsCustomAdapter(private val mList: List<ContactsViewModel>) : RecyclerView.Adapter<ContactsCustomAdapter.ViewHolder>() {
 
@@ -21,6 +23,7 @@ class ContactsCustomAdapter(private val mList: List<ContactsViewModel>) : Recycl
     private var listOfToUserNames = ArrayList<String?>()
     private var listOfRooms = ArrayList<String>()
     private var fromUserData: Users? = null
+    private val db = FirebaseFirestore.getInstance()
     private var roomId = "noRoomId"
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -30,13 +33,19 @@ class ContactsCustomAdapter(private val mList: List<ContactsViewModel>) : Recycl
         return ViewHolder(view)
     }
 
+    val mail = firebaseUser?.email
+    val mailString = mail.toString()
+
+    val isAdmin = checkBooleans(mailString)
+
+
     // binds the list items to a view
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val itemsViewModel = mList[position]
         holder.txtNom.text = itemsViewModel.Nombre
         holder.itemView.setOnClickListener {
             it.findNavController().navigate(ContactsDirections
-                .actionContactsToChat(listOfToUsers[position], fromUserData, roomId )) 
+                .actionContactsToChat(listOfToUsers[position], fromUserData, roomId ))
         }
     }
 
@@ -88,5 +97,15 @@ class ContactsCustomAdapter(private val mList: List<ContactsViewModel>) : Recycl
 
     fun setListOfToUsers(user: ArrayList<Users>){
         this.listOfToUsers = user
+    }
+
+    private suspend fun checkBooleans(email: String): Boolean {
+        var checkAdmin = false
+        db.collection("users").document(email)
+            .get()
+            .addOnSuccessListener { document ->
+                checkAdmin = document.get("zAdmin") as Boolean
+            }.await()
+        return checkAdmin
     }
 }
