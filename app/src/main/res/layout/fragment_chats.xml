@@ -13,12 +13,12 @@ tools:context=".ui.message.Chats">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="100dp">
+            android:layout_height="70dp">
 
             <TextView
                 android:id="@+id/titleBGContactos"
-                style="@style/backgroundTitulos"
-                android:background="@color/mensajesBG"
+                style="@style/backgroundTitulos_chat"
+                android:background="@drawable/bakcground_rounded"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -26,15 +26,22 @@ tools:context=".ui.message.Chats">
 
             <TextView
                 android:id="@+id/txtTitleChats"
-                style="@style/titulos"
+                style="@style/titulos_chat"
                 android:text="@string/chats"
                 tools:layout_editor_absoluteX="103dp"
                 tools:layout_editor_absoluteY="32dp" />
 
             <ImageView
                 android:id="@+id/btnReturnMensajes"
-                style="@style/btn_return"
+                style="@style/btn_return_chat"
                 android:src="@drawable/ic_baseline_salir"
+                tools:layout_editor_absoluteX="180dp"
+                tools:layout_editor_absoluteY="32dp" />
+
+            <ImageView
+                android:id="@+id/btnAjustes"
+                style="@style/btn_home_contacts"
+                android:src="@drawable/ic_baseline_ajustes"
                 tools:layout_editor_absoluteX="180dp"
                 tools:layout_editor_absoluteY="32dp" />
 

@@ -37,13 +37,19 @@ class UserChats : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentChatsBinding.inflate(inflater, container, false)
-        binding.btnReturnMensajes.setOnClickListener{
+        binding.btnReturnMensajes.setOnClickListener {
             FirebaseAuth.getInstance().signOut()
             //Tornem a la pantalla login i acabem la main activity
             activity?.finish()
             activity?.startActivity(Intent(this.activity, LoginActivity::class.java))
         }
-        binding.btnReturnMensajes.setImageResource(R.drawable.ic_baseline_cerrar)
+
+        binding.btnAjustes.setOnClickListener(
+            Navigation.createNavigateOnClickListener(
+                R.id.perfilUser,
+                null
+            )
+        )
 
         binding.addContacts.setOnClickListener(
             Navigation.createNavigateOnClickListener(R.id.allContacts2, null)

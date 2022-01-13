@@ -12,12 +12,12 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="100dp">
+            android:layout_height="70dp">
 
             <TextView
                 android:id="@+id/titleBGContactos"
-                style="@style/backgroundTitulos"
-                android:background="@color/mensajesBG"
+                style="@style/backgroundTitulos_chat"
+                android:background="@drawable/bakcground_rounded"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -25,21 +25,21 @@
 
             <TextView
                 android:id="@+id/txtTitleChat"
-                style="@style/titulos"
+                style="@style/titulos_chat"
                 android:text="@string/txtNouChat"
                 tools:layout_editor_absoluteX="103dp"
                 tools:layout_editor_absoluteY="32dp" />
 
             <ImageView
                 android:id="@+id/btnReturnMensajes"
-                style="@style/btn_return"
+                style="@style/btn_return_chat"
                 android:src="@drawable/ic_baseline_salir"
                 tools:layout_editor_absoluteX="28dp"
                 tools:layout_editor_absoluteY="66dp" />
 
             <ImageView
                 android:id="@+id/btnMensajesToHome"
-                style="@style/btn_home"
+                style="@style/btn_home_contacts"
                 android:src="@drawable/ic_baseline_inicio"
                 tools:layout_editor_absoluteX="411dp"
                 tools:layout_editor_absoluteY="66dp" />
