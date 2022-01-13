@@ -27,6 +27,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private var currentUser = Firebase.auth.currentUser
     var checkAdmin = false
+    private var validate: Boolean = false
     override fun onCreate(savedInstanceState: Bundle?) {
         Thread.sleep(1000)
         setTheme(R.style.Theme_ProdisComTest)
@@ -34,6 +35,8 @@ class LoginActivity : AppCompatActivity() {
 
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        //viewModel = ViewModelProviders
         val login = binding.login
         val btnshow = binding.btnShow
 
@@ -76,9 +79,6 @@ class LoginActivity : AppCompatActivity() {
             val config = Configuration()
             config.locale = localizacion
             baseContext.resources.updateConfiguration(config, baseContext.resources.displayMetrics)
-            intent = Intent(applicationContext, LoginActivity::class.java)
-            startActivity(intent)
-            finish()
         }
 
         binding.btnEsp?.setOnClickListener {
@@ -87,44 +87,51 @@ class LoginActivity : AppCompatActivity() {
             val config = Configuration()
             config.locale = localizacion
             baseContext.resources.updateConfiguration(config, baseContext.resources.displayMetrics)
-            intent = Intent(applicationContext, LoginActivity::class.java)
-            startActivity(intent)
-            finish()
         }
-        if (currentUser != null /*&& validate*/) {
-            darkMode()
-            intent = Intent(applicationContext, MainActivity::class.java)
-            startActivity(intent)
-            finish()
-        } else {
-            login.setOnClickListener {
-                login.isEnabled = false
-                login.isClickable = false
-                CoroutineScope(Dispatchers.Main).launch {
-                    if (binding.username.text.toString().isNotEmpty()
-                        && binding.password.text.toString().isNotEmpty()
-                    ) {
-                        db.collection("users")
-                            .whereEqualTo(
-                                "DNI",
-                                binding.username.text.toString().uppercase()
-                            )
-                            .get()
-                            .addOnSuccessListener { documents ->
-                                if (documents.isEmpty) {
-                                    showLoginError()
-                                } else {
-                                    for (document in documents) {
-                                        CoroutineScope(Dispatchers.Main).launch {
-                                            loginWithEmail(document.get("email") as String)
+        CoroutineScope(Dispatchers.Main).launch {
 
+            if (currentUser != null) {
+                darkMode()
+                checkAdmin()
+                if(checkAdmin) {
+                    intent = Intent(applicationContext, MainActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                }else {
+                    intent = Intent(applicationContext, MainActivityUser::class.java)
+                    startActivity(intent)
+                    finish()
+                }
+            } else {
+                login.setOnClickListener {
+                    login.isEnabled = false
+                    login.isClickable = false
+                    CoroutineScope(Dispatchers.Main).launch {
+                        if (binding.username.text.toString().isNotEmpty()
+                            && binding.password.text.toString().isNotEmpty()
+                        ) {
+                            db.collection("users")
+                                .whereEqualTo(
+                                    "DNI",
+                                    binding.username.text.toString().uppercase()
+                                )
+                                .get()
+                                .addOnSuccessListener { documents ->
+                                    if (documents.isEmpty) {
+                                        showLoginError()
+                                    } else {
+                                        for (document in documents) {
+                                            CoroutineScope(Dispatchers.Main).launch {
+                                                loginWithEmail(document.get("email") as String)
+
+                                            }
                                         }
                                     }
-                                }
 
-                            }.await()
-                    } else {
-                        showLoginError()
+                                }.await()
+                        } else {
+                            showLoginError()
+                        }
                     }
                 }
             }
@@ -206,6 +213,14 @@ class LoginActivity : AppCompatActivity() {
             Toast.makeText(this, R.string.error_check_user, Toast.LENGTH_LONG).show()
         }
         return check
+    }
+
+    private suspend fun checkAdmin(){
+        db.collection("users").document(currentUser?.email!!)
+            .get()
+            .addOnSuccessListener { document ->
+                checkAdmin = document.get("zAdmin") as Boolean
+            }.await()
     }
 
     private fun enableButtons() {
