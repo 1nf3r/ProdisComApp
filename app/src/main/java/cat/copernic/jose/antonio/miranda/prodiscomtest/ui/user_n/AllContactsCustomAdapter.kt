@@ -1,4 +1,5 @@
-package cat.copernic.jose.antonio.miranda.prodiscomtest.ui.message
+package cat.copernic.jose.antonio.miranda.prodiscomtest.ui.user_n
+
 
 import android.view.LayoutInflater
 import android.view.View
@@ -9,11 +10,13 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import cat.copernic.jose.antonio.miranda.prodiscomtest.R
 import cat.copernic.jose.antonio.miranda.prodiscomtest.data.Users
+import cat.copernic.jose.antonio.miranda.prodiscomtest.ui.message.AllContactsDirections
+import cat.copernic.jose.antonio.miranda.prodiscomtest.ui.message.AllContactsViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
-class AllContactsCustomAdapter(private val mList: List<AllContactsViewModel>) :
-    RecyclerView.Adapter<AllContactsCustomAdapter.ViewHolder>() {
+class AllContactsUserCustomAdapter(private val mList: List<AllContactsViewModel>) :
+    RecyclerView.Adapter<AllContactsUserCustomAdapter.ViewHolder>() {
 
     private val firebaseUser = FirebaseAuth.getInstance().currentUser
     val fromUid = firebaseUser?.email
@@ -23,7 +26,7 @@ class AllContactsCustomAdapter(private val mList: List<AllContactsViewModel>) :
     private val rootRef = FirebaseFirestore.getInstance()
     private var fromUserData: Users? = null
     private var roomId = "noRoomId"
-    
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.fragment_all_contacts_recycler, parent, false)
@@ -37,23 +40,24 @@ class AllContactsCustomAdapter(private val mList: List<AllContactsViewModel>) :
         val itemsViewModel = mList[position]
         holder.txtNom.text = itemsViewModel.Nombre
         holder.itemView.setOnClickListener {
-            it.findNavController().navigate(AllContactsDirections
-                .actionAllContactsToChat(listOfToUsers[position], fromUserData, roomId, holder.txtNom.text.toString() ))
+            it.findNavController().navigate(
+                AllContactsUserDirections
+                .actionAllContacts2ToChat(listOfToUsers[position], fromUserData, roomId, holder.txtNom.text.toString() ))
             addContacts(listOfToUsers[position])
         }
     }
 
-    // retorna el numero de items en la llista
+    // return the number of the items in the list
     override fun getItemCount(): Int {
         return mList.size
     }
 
-    // Soste les vistes per afegir-la a imatge i text
+    // Holds the views for adding it to image and text
     inner class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
         val txtNom: TextView = itemView.findViewById(R.id.textView5)
     }
 
-//Retorna tots els contactes registrats en l'aplicació
+
     private fun getAllContacts() {
         firebaseAuth = FirebaseAuth.getInstance()
         if (firebaseUser != null) {
@@ -71,8 +75,9 @@ class AllContactsCustomAdapter(private val mList: List<AllContactsViewModel>) :
         }
     }
 
-    //Afegeix el contacte seleccionat a la llista de rooms per enviar un missatge
+
     private fun addContacts(userToAdd: Users) {
+
         val userContactsAddInfo = hashMapOf(
             "rooms" to userToAdd.rooms,
             "email" to userToAdd.email,

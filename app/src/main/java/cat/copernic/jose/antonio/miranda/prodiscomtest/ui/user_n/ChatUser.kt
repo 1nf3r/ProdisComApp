@@ -1,4 +1,5 @@
-package cat.copernic.jose.antonio.miranda.prodiscomtest.ui.message
+package cat.copernic.jose.antonio.miranda.prodiscomtest.ui.user_n
+
 
 import android.os.Bundle
 import android.util.Log
@@ -7,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.view.isGone
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,14 +17,14 @@ import cat.copernic.jose.antonio.miranda.prodiscomtest.R
 import cat.copernic.jose.antonio.miranda.prodiscomtest.data.Message
 import cat.copernic.jose.antonio.miranda.prodiscomtest.data.Users
 import cat.copernic.jose.antonio.miranda.prodiscomtest.databinding.FragmentChatBinding
-import cat.copernic.jose.antonio.miranda.prodiscomtest.ui.user_n.ChatUserArgs
+import cat.copernic.jose.antonio.miranda.prodiscomtest.ui.message.ChatArgs
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.SetOptions
 
-class Chat : Fragment() {
+class ChatUser : Fragment() {
     private var _binding: FragmentChatBinding? = null
     private val binding get() = _binding!!
     private var rootRef: FirebaseFirestore? = null
@@ -36,20 +38,22 @@ class Chat : Fragment() {
         _binding = FragmentChatBinding.inflate(inflater, container, false)
 
         rootRef = FirebaseFirestore.getInstance()
-        val fromUser = ChatArgs.fromBundle(requireArguments()).localUser
+        val fromUser = ChatUserArgs.fromBundle(requireArguments()).localUser
         val fromUidNull = fromUser?.email
         fromUid = fromUidNull!!
-        val toUser = ChatArgs.fromBundle(requireArguments()).main
+        val toUser = ChatUserArgs.fromBundle(requireArguments()).main
         var fromRooms = fromUser.rooms
         val toUidNull = toUser.email
         val toUid: String = toUidNull!!
         var toRooms = toUser.rooms
-        var roomId = ChatArgs.fromBundle(requireArguments()).roomId
+        var roomId = ChatUserArgs.fromBundle(requireArguments()).roomId
         binding.txtTitleChat.text = ChatUserArgs.fromBundle(requireArguments()).user
+        binding.btnMensajesToHome.isGone = true
 
         binding.btnReturnMensajes.setOnClickListener(
-            Navigation.createNavigateOnClickListener(R.id.chats, null)
+            Navigation.createNavigateOnClickListener(R.id.chatsUser, null)
         )
+
         if (roomId == "noRoomId") {
             roomId = rootRef!!.collection("messages").document().id
             if (fromRooms != null) {
@@ -116,7 +120,7 @@ class Chat : Fragment() {
     inner class MessageAdapter internal constructor(options: FirestoreRecyclerOptions<Message>) :
         FirestoreRecyclerAdapter<Message, MessageViewHolder>(options) {
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MessageViewHolder {
-          return if (viewType == R.layout.fragment_chat_remoto) {
+            return if (viewType == R.layout.fragment_chat_remoto) {
                 val view = LayoutInflater.from(parent.context)
                     .inflate(R.layout.fragment_chat_remoto, parent, false)
                 MessageViewHolder(view)
@@ -161,9 +165,3 @@ class Chat : Fragment() {
 
 
 }
-
-//TODO Grupos : Chat
-//TODO Arreglar Perfil.kt Realizar Observer
-//TODO Mejorar los temas de la app
-//TODO Que el user normal vaya a contactos directamente
-//TODO Modo Horizontal

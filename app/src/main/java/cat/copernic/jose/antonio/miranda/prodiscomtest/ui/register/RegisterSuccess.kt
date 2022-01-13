@@ -28,7 +28,7 @@ class ConRegistro : AppCompatActivity() {
         val dni: String? = bundle?.getString("dni")
 
         setup(email ?: "", proveidor ?: "", dni?: "") //Si no existeixen es mostrarà buit
-
+        FirebaseAuth.getInstance().signOut()
         binding.btnToInici.setOnClickListener {
             finish()
         }

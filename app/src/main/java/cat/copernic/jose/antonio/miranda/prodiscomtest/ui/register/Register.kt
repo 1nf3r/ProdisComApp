@@ -107,6 +107,7 @@ class Register : AppCompatActivity() {
                                 tipusProveidor.BASIC,
                                 binding.etxtRegDni.text.toString()
                             )
+
                             finish()
                         } else { //Si el registre no ha estat un èxit...
                             showAlert()

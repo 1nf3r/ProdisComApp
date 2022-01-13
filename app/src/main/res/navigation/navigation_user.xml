@@ -3,26 +3,48 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_user"
-    app:startDestination="@id/contacts2">
+    app:startDestination="@id/chatsUser">
 
     <fragment
-        android:id="@+id/allContacts2"
-        android:name="cat.copernic.jose.antonio.miranda.prodiscomtest.ui.message.AllContacts"
-        android:label="fragment_all_contacts"
-        tools:layout="@layout/fragment_all_contacts" />
-    <fragment
-        android:id="@+id/chat2"
-        android:name="cat.copernic.jose.antonio.miranda.prodiscomtest.ui.message.Chat"
-        android:label="Chat" />
-    <fragment
-        android:id="@+id/contacts2"
-        android:name="cat.copernic.jose.antonio.miranda.prodiscomtest.ui.message.Contacts"
-        android:label="Contacts" >
+        android:id="@+id/chatUser"
+        android:name="cat.copernic.jose.antonio.miranda.prodiscomtest.ui.user_n.ChatUser"
+        android:label="Chat">
+        <argument
+            android:name="main"
+            app:argType="cat.copernic.jose.antonio.miranda.prodiscomtest.data.Users" />
+        <argument
+            android:name="localUser"
+            app:argType="cat.copernic.jose.antonio.miranda.prodiscomtest.data.Users"
+            app:nullable="true" />
+        <argument
+            android:name="roomId"
+            app:argType="string" />
+        <argument
+            android:name="user"
+            app:argType="string" />
         <action
-            android:id="@+id/action_contacts2_to_chat2"
-            app:destination="@id/chat2" />
+            android:id="@+id/action_chatUser_to_chatsUser"
+            app:destination="@id/chatsUser" />
+    </fragment>
+    <fragment
+        android:id="@+id/chatsUser"
+        android:name="cat.copernic.jose.antonio.miranda.prodiscomtest.ui.user_n.UserChats"
+        android:label="fragment_chats_user"
+        tools:layout="@layout/fragment_chats_user" >
         <action
-            android:id="@+id/action_contacts2_to_allContacts2"
+            android:id="@+id/action_chatsUser_to_allContacts2"
             app:destination="@id/allContacts2" />
+        <action
+            android:id="@+id/action_chatsUser_to_chat"
+            app:destination="@id/chatUser" />
+    </fragment>
+    <fragment
+        android:id="@+id/allContacts2"
+        android:name="cat.copernic.jose.antonio.miranda.prodiscomtest.ui.user_n.AllContactsUser"
+        android:label="fragment_all_contacts" >
+        <action
+            android:id="@+id/action_allContacts2_to_chat"
+            app:destination="@id/chatUser"
+            app:popUpTo="@id/chatsUser" />
     </fragment>
 </navigation>

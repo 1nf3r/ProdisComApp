@@ -41,7 +41,7 @@ class RegisterViewModel : ViewModel() {
         )
 
         users.document(email).set(userInfo)
-        contactes.document(email).collection("userContacts").document(email).set(contactInfo)
+        //contactes.document(email).collection("userContacts").document(email).set(contactInfo)
         rooms.document(email).collection("userRooms").document("room1").set(roomInfo)
     }
 }

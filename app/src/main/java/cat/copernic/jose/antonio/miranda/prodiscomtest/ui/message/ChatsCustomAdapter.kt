@@ -15,7 +15,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.auth.User
 import kotlinx.coroutines.tasks.await
 
-class ContactsCustomAdapter(private val mList: List<ContactsViewModel>) : RecyclerView.Adapter<ContactsCustomAdapter.ViewHolder>() {
+class ChatsCustomAdapter(private val mList: List<ContactsViewModel>) : RecyclerView.Adapter<ChatsCustomAdapter.ViewHolder>() {
 
     private val firebaseUser = FirebaseAuth.getInstance().currentUser
     private var firebaseAuth: FirebaseAuth? = null
@@ -44,8 +44,8 @@ class ContactsCustomAdapter(private val mList: List<ContactsViewModel>) : Recycl
         val itemsViewModel = mList[position]
         holder.txtNom.text = itemsViewModel.Nombre
         holder.itemView.setOnClickListener {
-            it.findNavController().navigate(ContactsDirections
-                .actionContactsToChat(listOfToUsers[position], fromUserData, roomId ))
+            it.findNavController().navigate(ChatsDirections
+                .actionContactsToChat(listOfToUsers[position], fromUserData, roomId, holder.txtNom.text.toString() ))
         }
     }
 

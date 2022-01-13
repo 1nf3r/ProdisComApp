@@ -24,9 +24,9 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/txtTitleContactos"
+                android:id="@+id/txtTitleChat"
                 style="@style/titulos"
-                android:text="@string/afegir_contacte"
+                android:text="@string/txtNouChat"
                 tools:layout_editor_absoluteX="103dp"
                 tools:layout_editor_absoluteY="32dp" />
 
