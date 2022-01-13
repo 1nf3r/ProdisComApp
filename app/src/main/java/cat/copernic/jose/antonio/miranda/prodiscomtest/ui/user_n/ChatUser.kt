@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -46,6 +47,10 @@ class ChatUser : Fragment() {
         var toRooms = toUser.rooms
         var roomId = ChatUserArgs.fromBundle(requireArguments()).roomId
         binding.txtTitleChat.text = ChatUserArgs.fromBundle(requireArguments()).user
+
+        binding.btnReturnMensajes.setOnClickListener(
+            Navigation.createNavigateOnClickListener(R.id.chatsUser, null)
+        )
 
         if (roomId == "noRoomId") {
             roomId = rootRef!!.collection("messages").document().id

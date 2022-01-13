@@ -36,12 +36,6 @@ class AllContactsUser : Fragment() {
                 null
             )
         )
-        binding.btnMensajesToHome.setOnClickListener(
-            Navigation.createNavigateOnClickListener(
-                R.id.menu_principal,
-                null
-            )
-        )
 
         binding.recyclerView.layoutManager = LinearLayoutManager(activity)
         val data = ArrayList<AllContactsViewModel>()
