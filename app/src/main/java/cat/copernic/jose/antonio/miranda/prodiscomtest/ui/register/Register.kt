@@ -265,7 +265,7 @@ class Register : AppCompatActivity() {
     private fun enviarNotificacio(){
 
         //Activity que es mostrarà al fer click a la notificació
-        val resultIntent : Intent = Intent(this,MainActivity::class.java).apply {
+        val resultIntent : Intent = Intent(this,ConRegistro::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
 

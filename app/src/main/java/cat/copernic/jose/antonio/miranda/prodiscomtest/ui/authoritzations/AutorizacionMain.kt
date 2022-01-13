@@ -11,6 +11,7 @@ import cat.copernic.jose.antonio.miranda.prodiscomtest.databinding.FragmentAutor
 
 class AutorizacionMain : Fragment() {
 
+//    AQUEST DOCUMENT NO ESTA IMPLEMENTAT EN L'APLICACIO, S'UTILITZARA EN VERSIONS POSTERIORS DE L'APP
     private lateinit var binding: FragmentAutorizacionBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
