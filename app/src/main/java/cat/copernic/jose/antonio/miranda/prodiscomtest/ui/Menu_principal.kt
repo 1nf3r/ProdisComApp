@@ -25,7 +25,7 @@ class Menu_principal : Fragment() {
         viewModel = ViewModelProvider(this)[PerfilViewModel::class.java]
         _binding = FragmentMenuPrincipalBinding.inflate(inflater, container, false)
 
-        binding.btnToPerfil.setOnClickListener(
+        binding.btnToAjustes.setOnClickListener(
             Navigation.createNavigateOnClickListener(
                 cat.copernic.jose.antonio.miranda.prodiscomtest.R.id.action_menu_principal_to_perfil)
         )

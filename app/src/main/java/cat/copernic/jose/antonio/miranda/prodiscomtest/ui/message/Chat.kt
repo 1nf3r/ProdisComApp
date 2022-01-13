@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -32,6 +33,13 @@ class Chat : Fragment() {
     ): View {
 
         _binding = FragmentChatBinding.inflate(inflater, container, false)
+
+        binding.btnReturnMensajes.setOnClickListener(
+            Navigation.createNavigateOnClickListener(
+                R.id.contacts
+            )
+        )
+
 
         rootRef = FirebaseFirestore.getInstance()
         //Agafem els arguments del fragment Contacts
@@ -117,7 +125,7 @@ class Chat : Fragment() {
     inner class MessageAdapter internal constructor(options: FirestoreRecyclerOptions<Message>) :
         FirestoreRecyclerAdapter<Message, MessageViewHolder>(options) {
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MessageViewHolder {
-          return if (viewType == R.layout.fragment_chat_remoto) {
+            return if (viewType == R.layout.fragment_chat_remoto) {
                 val view = LayoutInflater.from(parent.context)
                     .inflate(R.layout.fragment_chat_remoto, parent, false)
                 MessageViewHolder(view)

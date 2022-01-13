@@ -16,6 +16,32 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+                <TextView
+                    android:id="@+id/titleBGContactos"
+                    style="@style/backgroundTitulos"
+                    android:background="@color/mensajesBG"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/txtTitleContactos"
+                    style="@style/titulos_chat"
+                    android:text="@string/sortir" />
+
+                <ImageView
+                    android:id="@+id/btnReturnMensajes"
+                    style="@style/btn_return_chat"
+                    android:src="@drawable/ic_baseline_salir"
+                    tools:layout_editor_absoluteX="0dp"
+                    tools:layout_editor_absoluteY="0dp" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
@@ -37,6 +63,7 @@
             android:layout_weight="1"
             android:id="@+id/txWriteMessage"
             android:hint="@string/escriu_un_missatge"
+
             android:paddingStart="8dp"
             android:inputType="text"/>
 
