@@ -53,16 +53,15 @@ class Perfil : Fragment() {
         _binding = FragmentPerfilBinding.inflate(inflater, container, false)
         binding.btnReturnPerfil.setOnClickListener(
             Navigation.createNavigateOnClickListener(
-                R.id.menu_principal,
+                cat.copernic.jose.antonio.miranda.prodiscomtest.R.id.menu_principal,
                 null
             )
         )
-        2
-        //Recuperem les dades del usuari i les mostrem per pantalla
+
         viewModel.getInfo(activity)
+
         displayInfo()
 
-        //Carreguem l'imatge desde el firebase, si no hi ha cap image es carregara una per defecte.
         storageRef = FirebaseStorage.getInstance().getReference()
         storageRef.child("user_images/$filename").downloadUrl
             .addOnSuccessListener { url ->
@@ -72,7 +71,7 @@ class Perfil : Fragment() {
                     .into(binding.imgDisplayFoto)
 
             }.addOnFailureListener {
-                binding.imgDisplayFoto.setImageResource(R.drawable.no_user)
+                binding.imgDisplayFoto.setImageResource(cat.copernic.jose.antonio.miranda.prodiscomtest.R.drawable.no_user)
             }
 
         binding.imgDisplayFoto.setOnClickListener {
@@ -167,6 +166,7 @@ class Perfil : Fragment() {
     }
 
     private fun changeFields() {
+        //Se tiene que hacer un observer
         getUserInfo = FirebaseFirestore.getInstance().collection("users")
             .document(currentUserMail)
         getUserInfo.update("nombre",viewModel.nombre.value.toString(),

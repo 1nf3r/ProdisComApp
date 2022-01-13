@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.user.addUser">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/titleBGAddUser"
+            style="@style/backgroundTitulos"
+            android:background="@color/usuariosBG" />
+
+        <TextView
+            android:id="@+id/txtAddUser"
+            style="@style/titulos"
+            android:text="@string/afegir_usuari"
+            tools:layout_editor_absoluteX="115dp"
+            tools:layout_editor_absoluteY="32dp" />
+
+        <ImageView
+            android:id="@+id/btnReturnAddUser"
+            style="@style/btn_return"
+            android:src="@drawable/ic_baseline_salir" />
+
+        <ImageView
+            android:id="@+id/btnAddUserToHome"
+            style="@style/btn_home"
+            android:src="@drawable/ic_baseline_inicio"
+            tools:layout_editor_absoluteX="411dp" />
+
+        <Button
+            android:id="@+id/btnAddUsuari"
+            style="@style/btnAccion"
+            android:backgroundTint="@color/usuariosBG"
+            android:text="Crear"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword"
+            tools:layout_editor_absoluteX="291dp" />
+
+        <TextView
+            android:id="@+id/txtNomAddUser"
+            android:text="Nom"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.05"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titleBGAddUser"
+            app:layout_constraintVertical_bias="0.05"
+            style="@style/textViewUsuarios" />
+
+        <EditText
+            android:id="@+id/etxtNomAddUser"
+            style="@style/editTextUsuarios"
+            android:layout_height="wrap_content"
+            android:hint="Nom de l'usuari"
+            app:layout_constraintEnd_toEndOf="@+id/txtNomAddUser"
+            app:layout_constraintStart_toStartOf="@+id/txtNomAddUser"
+            app:layout_constraintTop_toBottomOf="@+id/txtNomAddUser" />
+
+        <EditText
+            android:id="@+id/etxtUsuariAddUser"
+            style="@style/editTextUsuarios"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="&quot;No c&quot; de l'usuari"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="@+id/txtUsuariAddUser"
+            app:layout_constraintStart_toStartOf="@+id/txtUsuariAddUser"
+            app:layout_constraintTop_toBottomOf="@+id/txtUsuariAddUser" />
+
+        <TextView
+            android:id="@+id/txtUsuariAddUser"
+            style="@style/textViewUsuarios"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Usuari"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etxtNomAddUser" />
+
+        <TextView
+            android:id="@+id/etxtContrasenyaAddUser"
+            style="@style/textViewUsuarios"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/contrasenya"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etxtUsuariAddUser" />
+
+        <EditText
+            android:id="@+id/editTextTextPassword"
+            style="@style/editTextUsuarios"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Contrasenya d l'usuari"
+            android:inputType="textPassword"
+            app:layout_constraintEnd_toEndOf="@+id/etxtContrasenyaAddUser"
+            app:layout_constraintStart_toStartOf="@+id/etxtContrasenyaAddUser"
+            app:layout_constraintTop_toBottomOf="@+id/etxtContrasenyaAddUser" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>
