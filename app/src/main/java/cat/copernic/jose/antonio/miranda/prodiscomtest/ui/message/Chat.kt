@@ -8,12 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.navigation.Navigation
-import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import cat.copernic.jose.antonio.miranda.prodiscomtest.R
 import cat.copernic.jose.antonio.miranda.prodiscomtest.data.Message
-import cat.copernic.jose.antonio.miranda.prodiscomtest.data.Users
 import cat.copernic.jose.antonio.miranda.prodiscomtest.databinding.FragmentChatBinding
 import cat.copernic.jose.antonio.miranda.prodiscomtest.ui.user_n.ChatUserArgs
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
