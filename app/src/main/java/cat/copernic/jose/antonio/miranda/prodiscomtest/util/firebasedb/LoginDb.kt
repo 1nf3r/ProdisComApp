@@ -2,15 +2,12 @@ package cat.copernic.jose.antonio.miranda.prodiscomtest.util.firebasedb
 
 
 import android.util.Log
-import cat.copernic.jose.antonio.miranda.prodiscomtest.data.UserFormData
-import cat.copernic.jose.antonio.miranda.prodiscomtest.util.ErrorLogs
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 
 class LoginDb {
 
-    private val currentUser: UserFormData = UserFormData()
     private val db = FirebaseFirestore.getInstance()
     private var mail: String = ""
     private var showError = false
