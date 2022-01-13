@@ -33,10 +33,6 @@ class ChatsCustomAdapter(private val mList: List<ContactsViewModel>) : RecyclerV
         return ViewHolder(view)
     }
 
-    val mail = firebaseUser?.email
-    val mailString = mail.toString()
-
-    val isAdmin = checkBooleans(mailString)
 
 
     // binds the list items to a view
@@ -97,15 +93,5 @@ class ChatsCustomAdapter(private val mList: List<ContactsViewModel>) : RecyclerV
 
     fun setListOfToUsers(user: ArrayList<Users>){
         this.listOfToUsers = user
-    }
-
-    private suspend fun checkBooleans(email: String): Boolean {
-        var checkAdmin = false
-        db.collection("users").document(email)
-            .get()
-            .addOnSuccessListener { document ->
-                checkAdmin = document.get("zAdmin") as Boolean
-            }.await()
-        return checkAdmin
     }
 }

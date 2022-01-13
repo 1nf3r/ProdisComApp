@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import cat.copernic.jose.antonio.miranda.prodiscomtest.R
 import cat.copernic.jose.antonio.miranda.prodiscomtest.databinding.ActivityLoginBinding
 import cat.copernic.jose.antonio.miranda.prodiscomtest.ui.register.Register
+import cat.copernic.jose.antonio.miranda.prodiscomtest.ui.user_n.MainActivityUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
