@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_user"
+    app:startDestination="@id/contacts2">
+
+    <fragment
+        android:id="@+id/allContacts2"
+        android:name="cat.copernic.jose.antonio.miranda.prodiscomtest.ui.message.AllContacts"
+        android:label="fragment_all_contacts"
+        tools:layout="@layout/fragment_all_contacts" />
+    <fragment
+        android:id="@+id/chat2"
+        android:name="cat.copernic.jose.antonio.miranda.prodiscomtest.ui.message.Chat"
+        android:label="Chat" />
+    <fragment
+        android:id="@+id/contacts2"
+        android:name="cat.copernic.jose.antonio.miranda.prodiscomtest.ui.message.Contacts"
+        android:label="Contacts" >
+        <action
+            android:id="@+id/action_contacts2_to_chat2"
+            app:destination="@id/chat2" />
+        <action
+            android:id="@+id/action_contacts2_to_allContacts2"
+            app:destination="@id/allContacts2" />
+    </fragment>
+</navigation>
