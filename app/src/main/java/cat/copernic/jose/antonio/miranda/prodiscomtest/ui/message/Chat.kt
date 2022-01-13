@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -15,7 +14,6 @@ import cat.copernic.jose.antonio.miranda.prodiscomtest.R
 import cat.copernic.jose.antonio.miranda.prodiscomtest.data.Message
 import cat.copernic.jose.antonio.miranda.prodiscomtest.data.Users
 import cat.copernic.jose.antonio.miranda.prodiscomtest.databinding.FragmentChatBinding
-import cat.copernic.jose.antonio.miranda.prodiscomtest.ui.user_n.ChatUserArgs
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.firestore.FirebaseFirestore
@@ -45,11 +43,7 @@ class Chat : Fragment() {
         val toUid: String = toUidNull!!
         var toRooms = toUser.rooms
         var roomId = ChatArgs.fromBundle(requireArguments()).roomId
-        binding.txtTitleChat.text = ChatUserArgs.fromBundle(requireArguments()).user
 
-        binding.btnReturnMensajes.setOnClickListener(
-            Navigation.createNavigateOnClickListener(R.id.chats, null)
-        )
         if (roomId == "noRoomId") {
             roomId = rootRef!!.collection("messages").document().id
             if (fromRooms != null) {

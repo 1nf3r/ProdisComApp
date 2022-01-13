@@ -8,8 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.core.view.isGone
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -47,12 +45,7 @@ class ChatUser : Fragment() {
         val toUid: String = toUidNull!!
         var toRooms = toUser.rooms
         var roomId = ChatUserArgs.fromBundle(requireArguments()).roomId
-        binding.txtTitleChat.text = ChatUserArgs.fromBundle(requireArguments()).user
-        binding.btnMensajesToHome.isGone = true
-
-        binding.btnReturnMensajes.setOnClickListener(
-            Navigation.createNavigateOnClickListener(R.id.chatsUser, null)
-        )
+        binding.txtTitleChatUser.text = ChatUserArgs.fromBundle(requireArguments()).user
 
         if (roomId == "noRoomId") {
             roomId = rootRef!!.collection("messages").document().id

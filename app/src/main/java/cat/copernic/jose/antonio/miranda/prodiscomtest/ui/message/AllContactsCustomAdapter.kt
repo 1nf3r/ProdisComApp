@@ -38,7 +38,7 @@ class AllContactsCustomAdapter(private val mList: List<AllContactsViewModel>) :
         holder.txtNom.text = itemsViewModel.Nombre
         holder.itemView.setOnClickListener {
             it.findNavController().navigate(AllContactsDirections
-                .actionAllContactsToChat(listOfToUsers[position], fromUserData, roomId, holder.txtNom.text.toString() ))
+                .actionAllContactsToChat(listOfToUsers[position], fromUserData, roomId ))
             addContacts(listOfToUsers[position])
         }
     }

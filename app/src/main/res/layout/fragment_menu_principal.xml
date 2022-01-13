@@ -81,7 +81,7 @@
             style="@style/botonesMP"
             android:layout_width="0dp"
             android:text="@string/cerrar_sesion"
-            app:icon="@drawable/ic_baseline_cerrar"
+            app:icon="@drawable/ic_baseline_salir"
             app:iconTint="#000000"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
