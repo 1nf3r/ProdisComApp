@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import cat.copernic.jose.antonio.miranda.prodiscomtest.R
 import cat.copernic.jose.antonio.miranda.prodiscomtest.databinding.ActivityLoginBinding
 import cat.copernic.jose.antonio.miranda.prodiscomtest.ui.register.Register
+import cat.copernic.jose.antonio.miranda.prodiscomtest.ui.user_n.MainActivityUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
@@ -26,6 +27,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private var currentUser = Firebase.auth.currentUser
     var checkAdmin = false
+    private var validate: Boolean = false
     override fun onCreate(savedInstanceState: Bundle?) {
         Thread.sleep(1000)
         setTheme(R.style.Theme_ProdisComTest)
@@ -33,6 +35,8 @@ class LoginActivity : AppCompatActivity() {
 
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        //viewModel = ViewModelProviders
         val login = binding.login
         val btnshow = binding.btnShow
 
@@ -75,9 +79,6 @@ class LoginActivity : AppCompatActivity() {
             val config = Configuration()
             config.locale = localizacion
             baseContext.resources.updateConfiguration(config, baseContext.resources.displayMetrics)
-            intent = Intent(applicationContext, LoginActivity::class.java)
-            startActivity(intent)
-            finish()
         }
 
         binding.btnEsp?.setOnClickListener {
@@ -86,26 +87,7 @@ class LoginActivity : AppCompatActivity() {
             val config = Configuration()
             config.locale = localizacion
             baseContext.resources.updateConfiguration(config, baseContext.resources.displayMetrics)
-            intent = Intent(applicationContext, LoginActivity::class.java)
-            startActivity(intent)
-            finish()
         }
-<<<<<<< HEAD
-
-/*        CoroutineScope(Dispatchers.Main).launch {
-            db.collection("users").whereEqualTo("email", currentUser?.email.toString()).get()
-                .addOnSuccessListener { documents ->
-                    if (documents.isEmpty) {
-                        returnFalse()
-                    } else {
-                        for (document in documents) {
-                            CoroutineScope(Dispatchers.Main).launch {
-                                returnZvalidate(document.get("zValidado") as Boolean)
-                            }
-                        }
-                    }
-                }
-        }*/
         CoroutineScope(Dispatchers.Main).launch {
 
             if (currentUser != null) {
@@ -115,15 +97,6 @@ class LoginActivity : AppCompatActivity() {
                     intent = Intent(applicationContext, MainActivity::class.java)
                     startActivity(intent)
                     finish()
-                    /*            if (checkAdmin) {
-                        intent = Intent(applicationContext, MainActivity::class.java)
-                        startActivity(intent)
-                        finish()
-                    } else {
-                        intent = Intent(applicationContext, MainActivityUser::class.java)
-                        startActivity(intent)
-                        finish()
-                    }*/
                 }else {
                     intent = Intent(applicationContext, MainActivityUser::class.java)
                     startActivity(intent)
@@ -150,34 +123,6 @@ class LoginActivity : AppCompatActivity() {
                                         for (document in documents) {
                                             CoroutineScope(Dispatchers.Main).launch {
                                                 loginWithEmail(document.get("email") as String)
-=======
-        if (currentUser != null /*&& validate*/) {
-            darkMode()
-            intent = Intent(applicationContext, MainActivity::class.java)
-            startActivity(intent)
-            finish()
-        } else {
-            login.setOnClickListener {
-                login.isEnabled = false
-                login.isClickable = false
-                CoroutineScope(Dispatchers.Main).launch {
-                    if (binding.username.text.toString().isNotEmpty()
-                        && binding.password.text.toString().isNotEmpty()
-                    ) {
-                        db.collection("users")
-                            .whereEqualTo(
-                                "DNI",
-                                binding.username.text.toString().uppercase()
-                            )
-                            .get()
-                            .addOnSuccessListener { documents ->
-                                if (documents.isEmpty) {
-                                    showLoginError()
-                                } else {
-                                    for (document in documents) {
-                                        CoroutineScope(Dispatchers.Main).launch {
-                                            loginWithEmail(document.get("email") as String)
->>>>>>> Jose-N
 
                                             }
                                         }

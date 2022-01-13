@@ -84,5 +84,4 @@ class RestorePassword : AppCompatActivity() {
             }
         }
     }
-//TODO para merge
 }

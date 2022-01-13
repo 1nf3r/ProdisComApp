@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import cat.copernic.jose.antonio.miranda.prodiscomtest.R
@@ -12,6 +13,7 @@ import cat.copernic.jose.antonio.miranda.prodiscomtest.data.Users
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.auth.User
+import kotlinx.coroutines.tasks.await
 
 class ChatsCustomAdapter(private val mList: List<ContactsViewModel>) : RecyclerView.Adapter<ChatsCustomAdapter.ViewHolder>() {
 
@@ -21,6 +23,7 @@ class ChatsCustomAdapter(private val mList: List<ContactsViewModel>) : RecyclerV
     private var listOfToUserNames = ArrayList<String?>()
     private var listOfRooms = ArrayList<String>()
     private var fromUserData: Users? = null
+    private val db = FirebaseFirestore.getInstance()
     private var roomId = "noRoomId"
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -29,6 +32,8 @@ class ChatsCustomAdapter(private val mList: List<ContactsViewModel>) : RecyclerV
             getContacts()
         return ViewHolder(view)
     }
+
+
 
     // binds the list items to a view
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
