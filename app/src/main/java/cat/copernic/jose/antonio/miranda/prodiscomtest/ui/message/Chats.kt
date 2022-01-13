@@ -38,6 +38,7 @@ class Chats : Fragment() {
                 null
             )
         )
+        binding.btnAjustes.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.perfil, null))
 
         binding.addContacts.setOnClickListener(
             Navigation.createNavigateOnClickListener(R.id.allContacts, null)
