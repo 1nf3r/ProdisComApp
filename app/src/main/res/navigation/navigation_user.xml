@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_chatUser_to_chatsUser"
             app:destination="@id/chatsUser" />
+        <action
+            android:id="@+id/action_chatUser_to_perfilUser"
+            app:destination="@id/perfilUser" />
     </fragment>
     <fragment
         android:id="@+id/chatsUser"
@@ -47,4 +50,8 @@
             app:destination="@id/chatUser"
             app:popUpTo="@id/chatsUser" />
     </fragment>
+    <fragment
+        android:id="@+id/perfilUser"
+        android:name="cat.copernic.jose.antonio.miranda.prodiscomtest.ui.logged.perfil.PerfilUser"
+        android:label="PerfilUser" />
 </navigation>

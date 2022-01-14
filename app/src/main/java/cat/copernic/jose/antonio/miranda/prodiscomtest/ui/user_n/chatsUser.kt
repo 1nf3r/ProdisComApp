@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isGone
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -36,16 +37,16 @@ class UserChats : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentChatsBinding.inflate(inflater, container, false)
-        binding.btnReturnMensajes.setOnClickListener{
+        binding.btnReturnMensajes.setOnClickListener {
             FirebaseAuth.getInstance().signOut()
             //Tornem a la pantalla login i acabem la main activity
             activity?.finish()
             activity?.startActivity(Intent(this.activity, LoginActivity::class.java))
         }
 
-        binding.btnMensajesToHome.setOnClickListener(
+        binding.btnAjustes.setOnClickListener(
             Navigation.createNavigateOnClickListener(
-                R.id.menu_principal,
+                R.id.perfilUser,
                 null
             )
         )
