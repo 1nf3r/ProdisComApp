@@ -30,7 +30,7 @@
         <ImageView
             android:id="@+id/btnReturnDelUser"
             style="@style/btn_return"
-            android:src="@drawable/ic_baseline_salir"
+            android:src="@drawable/ic_baseline_salir_blanco"
             tools:ignore="MissingConstraints" />
 
         <ImageView

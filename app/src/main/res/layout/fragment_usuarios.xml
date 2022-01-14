@@ -28,7 +28,7 @@
         <ImageView
             android:id="@+id/btnReturnUser"
             style="@style/btn_return"
-            android:src="@drawable/ic_baseline_salir" />
+            android:src="@drawable/ic_baseline_salir_blancoarrow_back_24" />
 
         <Button
             android:id="@+id/btnBloqUser"

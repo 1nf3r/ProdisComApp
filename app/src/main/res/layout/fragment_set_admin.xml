@@ -28,7 +28,7 @@
         <ImageView
             android:id="@+id/btnReturnModUser"
             style="@style/btn_return"
-            android:src="@drawable/ic_baseline_salir" />
+            android:src="@drawable/ic_baseline_salir_blanco" />
 
         <ImageView
             android:id="@+id/btnModUserToHome"
