@@ -32,7 +32,7 @@
             <ImageView
                 android:id="@+id/btnReturnValUser"
                 style="@style/btn_return"
-                android:src="@drawable/ic_baseline_salir"
+                android:src="@drawable/ic_baseline_salir_blanco"
                 tools:layout_editor_absoluteX="28dp"
                 tools:layout_editor_absoluteY="66dp" />
 
