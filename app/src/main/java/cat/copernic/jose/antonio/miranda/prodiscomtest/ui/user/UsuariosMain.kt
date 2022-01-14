@@ -23,6 +23,7 @@ class UsuariosMain : Fragment() {
         binding.btnValUser.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.valUser, null))
         binding.btnBloqUser.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.bloqUser, null))
         binding.btnReturnUser.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.menu_principal, null))
+        binding.btnAdmin.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.setAdmin, null))
 
         return binding.root
     }
