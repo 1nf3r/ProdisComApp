@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.user.delUser">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/textView5"
+            style="@style/backgroundTitulos"
+            android:background="@color/usuariosBG"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtDelUser"
+            style="@style/titulos"
+            android:text="@string/eliminar_usuari"
+            tools:layout_editor_absoluteX="113dp"
+            tools:layout_editor_absoluteY="32dp"
+            tools:ignore="MissingConstraints" />
+
+        <ImageView
+            android:id="@+id/btnReturnDelUser"
+            style="@style/btn_return"
+            android:src="@drawable/ic_baseline_salir"
+            tools:ignore="MissingConstraints" />
+
+        <ImageView
+            android:id="@+id/btnDelUserToHome"
+            style="@style/btn_home"
+            android:src="@drawable/ic_baseline_inicio"
+            tools:layout_editor_absoluteX="411dp"
+            tools:ignore="MissingConstraints" />
+
+        <EditText
+            android:id="@+id/eTxtSearch"
+            android:layout_width="288dp"
+            android:layout_height="46dp"
+            android:layout_marginStart="220dp"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/rounded_edittext"
+            android:ems="10"
+            android:hint="@string/buscar_usuari"
+            android:inputType="textPersonName"
+            android:paddingStart="12dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView5"
+            tools:ignore="MissingConstraints" />
+
+        <ImageView
+            android:id="@+id/iVBuscar"
+            android:layout_width="42dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="10dp"
+            android:src="@drawable/ic_baseline_search"
+            app:layout_constraintStart_toEndOf="@+id/eTxtSearch"
+            app:layout_constraintTop_toTopOf="@+id/eTxtSearch" />
+
+        <TextView
+            android:id="@+id/txtVInfo"
+            style="@style/textViewUsuarios"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/informaci_de_l_usuari"
+            app:layout_constraintTop_toBottomOf="@+id/eTxtSearch"
+            tools:layout_editor_absoluteX="250dp" />
+
+        <TextView
+            android:id="@+id/txtVNom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="124dp"
+            android:layout_marginTop="20dp"
+            android:text="Nom:"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtVInfo" />
+
+        <TextView
+            android:id="@+id/txtVDni"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="DNI:"
+            app:layout_constraintStart_toStartOf="@+id/txtVNom"
+            app:layout_constraintTop_toBottomOf="@+id/txtVNom" />
+
+        <TextView
+            android:id="@+id/txtVMail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Correu Electronic:"
+            app:layout_constraintStart_toStartOf="@+id/txtVDni"
+            app:layout_constraintTop_toBottomOf="@+id/txtVDni" />
+
+        <TextView
+            android:id="@+id/txtVTelf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Telèfon:"
+            app:layout_constraintStart_toStartOf="@+id/txtVMail"
+            app:layout_constraintTop_toBottomOf="@+id/txtVMail" />
+
+        <Button
+            android:id="@+id/btnDelUs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="132dp"
+            android:text="@string/eliminar_usuari"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtVInfo"
+            app:layout_constraintVertical_bias="0.853" />
+
+        <TextView
+            android:id="@+id/txResultNom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="152dp"
+            android:layout_marginTop="20dp"
+            android:text="-"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.575"
+            app:layout_constraintStart_toEndOf="@+id/txtVNom"
+            app:layout_constraintTop_toBottomOf="@+id/txtVInfo" />
+
+        <TextView
+            android:id="@+id/txResultDni"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="-"
+            app:layout_constraintEnd_toEndOf="@+id/txResultNom"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/txResultNom"
+            app:layout_constraintTop_toBottomOf="@+id/txResultNom" />
+
+        <TextView
+            android:id="@+id/txResultMail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="-"
+            app:layout_constraintEnd_toEndOf="@+id/txResultDni"
+            app:layout_constraintHorizontal_bias="0.555"
+            app:layout_constraintStart_toStartOf="@+id/txResultDni"
+            app:layout_constraintTop_toBottomOf="@+id/txResultDni" />
+
+        <TextView
+            android:id="@+id/txResultTel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="-"
+            app:layout_constraintEnd_toEndOf="@+id/txResultMail"
+            app:layout_constraintStart_toStartOf="@+id/txResultMail"
+            app:layout_constraintTop_toBottomOf="@+id/txResultMail" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

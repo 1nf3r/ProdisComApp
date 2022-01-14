@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.user.valUser">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp">
+
+            <TextView
+                android:id="@+id/titleBGValidarUsuario"
+                style="@style/backgroundTitulos"
+                android:background="@color/usuariosBG"
+                tools:layout_editor_absoluteX="126dp"
+                tools:layout_editor_absoluteY="205dp" />
+
+            <TextView
+                android:id="@+id/txtValUser"
+                style="@style/titulos"
+                android:text="@string/validar_usuari"
+                tools:layout_editor_absoluteX="68dp"
+                tools:layout_editor_absoluteY="32dp" />
+
+            <ImageView
+                android:id="@+id/btnReturnValUser"
+                style="@style/btn_return"
+                android:src="@drawable/ic_baseline_salir"
+                tools:layout_editor_absoluteX="28dp"
+                tools:layout_editor_absoluteY="66dp" />
+
+            <ImageView
+                android:id="@+id/btnValUserToHome"
+                style="@style/btn_home"
+                android:src="@drawable/ic_baseline_inicio"
+                tools:layout_editor_absoluteX="411dp"
+                tools:layout_editor_absoluteY="66dp" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+        </ScrollView>
+
+    </LinearLayout>
+
+</FrameLayout>
