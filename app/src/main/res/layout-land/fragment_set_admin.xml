@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.user.modUser">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/titleBGModUser"
+            style="@style/backgroundTitulos"
+            android:background="@color/usuariosBG"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtModUser"
+            style="@style/titulos"
+            android:text="Administrar"
+            tools:layout_editor_absoluteX="91dp"
+            tools:layout_editor_absoluteY="32dp" />
+
+        <ImageView
+            android:id="@+id/btnReturnModUser"
+            style="@style/btn_return"
+            android:src="@drawable/ic_baseline_salir" />
+
+        <ImageView
+            android:id="@+id/btnModUserToHome"
+            style="@style/btn_home"
+            android:src="@drawable/ic_baseline_inicio" />
+
+        <EditText
+            android:id="@+id/eTxtSearch"
+            android:layout_width="288dp"
+            android:layout_height="46dp"
+            android:layout_marginStart="220dp"
+            android:background="@drawable/rounded_edittext"
+            android:ems="10"
+            android:hint="@string/buscar_usuari"
+            android:inputType="textPersonName"
+            android:paddingStart="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titleBGModUser"
+            app:layout_constraintVertical_bias="0.052"
+            tools:ignore="MissingConstraints" />
+
+        <ImageView
+            android:id="@+id/iVBuscar"
+            android:layout_width="42dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="10dp"
+            android:src="@drawable/ic_baseline_search"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.037"
+            app:layout_constraintStart_toEndOf="@+id/eTxtSearch"
+            app:layout_constraintTop_toTopOf="@+id/eTxtSearch" />
+
+        <TextView
+            android:id="@+id/txtVInfo"
+            style="@style/textViewUsuarios"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Informació de l'usuari"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.475"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/eTxtSearch" />
+
+
+        <Button
+            android:id="@+id/btnModUs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/canviar_rol"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.509"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titleBGModUser"
+            app:layout_constraintVertical_bias="0.936" />
+
+        <TextView
+            android:id="@+id/tVisAdmin"
+            style="@style/textoLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="32dp"
+            android:text="@string/es_administrador"
+            app:layout_constraintStart_toStartOf="@+id/eTxtSearch"
+            app:layout_constraintTop_toBottomOf="@+id/txtVInfo" />
+
+        <TextView
+            android:id="@+id/tVMail"
+            style="@style/textoLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="80dp"
+            android:text="@string/email"
+            app:layout_constraintStart_toStartOf="@+id/eTxtSearch"
+            app:layout_constraintTop_toBottomOf="@+id/txtVInfo" />
+
+        <TextView
+            android:id="@+id/tVAdmin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="-"
+            style="@style/textoLogin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.4"
+            app:layout_constraintStart_toEndOf="@+id/tVisAdmin"
+            app:layout_constraintTop_toTopOf="@+id/tVisAdmin" />
+
+        <TextView
+            android:id="@+id/tVMailResult"
+            style="@style/textoLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="-"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.4"
+            app:layout_constraintStart_toEndOf="@+id/tVisAdmin"
+            app:layout_constraintTop_toTopOf="@+id/tVMail" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

@@ -60,6 +60,9 @@
         <action
             android:id="@+id/action_usuarios_to_bloqUser"
             app:destination="@id/bloqUser" />
+        <action
+            android:id="@+id/action_usuarios_to_setAdmin"
+            app:destination="@id/setAdmin" />
     </fragment>
     <fragment
         android:id="@+id/perfil"
@@ -164,4 +167,9 @@
             app:destination="@id/chatUser"
             app:popUpTo="@id/chats" />
     </fragment>
+    <fragment
+        android:id="@+id/setAdmin"
+        android:name="cat.copernic.jose.antonio.miranda.prodiscomtest.ui.user.SetAdmin"
+        android:label="fragment_set_admin"
+        tools:layout="@layout/fragment_set_admin" />
 </navigation>

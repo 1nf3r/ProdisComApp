@@ -21,6 +21,7 @@ class UsuariosMain : Fragment() {
         binding.btnModUser.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.modUser, null))
         binding.btnValUser.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.valUser, null))
         binding.btnReturnUser.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.menu_principal, null))
+        binding.btnAdmin.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.setAdmin, null))
 
         return binding.root
     }

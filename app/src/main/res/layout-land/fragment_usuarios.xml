@@ -33,40 +33,52 @@
         <Button
             android:id="@+id/btnDelUser"
             style="@style/botonesUsuarios"
-            android:layout_marginTop="64dp"
+            android:layout_width="328dp"
+            android:layout_height="62dp"
+            android:layout_marginTop="12dp"
             android:text="@string/eliminar_usuari"
             app:icon="@drawable/ic_baseline_deluser"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.491"
+            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/titleBGUsuarios" />
 
         <Button
             android:id="@+id/btnValUser"
             style="@style/botonesUsuarios"
+            android:layout_width="328dp"
+            android:layout_height="62dp"
+            android:layout_marginTop="12dp"
             android:text="@string/validar_usuari"
             app:icon="@drawable/ic_baseline_validaruser"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnModUser" />
 
         <Button
             android:id="@+id/btnAdmin"
             style="@style/botonesUsuarios"
-            android:layout_marginTop="132dp"
+            android:layout_width="328dp"
+            android:layout_height="62dp"
+            android:layout_marginTop="12dp"
             android:text="@string/administrador"
             app:icon="@drawable/ic_baseline_admin"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.491"
+            app:layout_constraintHorizontal_bias="0.503"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnModUser" />
+            app:layout_constraintTop_toBottomOf="@+id/btnValUser" />
 
         <Button
             android:id="@+id/btnModUser"
             style="@style/botonesUsuarios"
+            android:layout_width="328dp"
+            android:layout_height="62dp"
+            android:layout_marginTop="12dp"
             android:text="@string/modificar_usuari"
             app:icon="@drawable/ic_baseline_editaruser"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.503"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnDelUser" />
 
