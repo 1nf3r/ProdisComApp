@@ -25,7 +25,7 @@ class RegisterViewModel : ViewModel() {
                 .format(Date()),
             "Telefono" to telefono,
             "rooms" to map,
-            "zValidado" to false,
+            "zValidado" to true, //Sistema de validacion desactivado
             "zBloqueado" to false,
             "zEliminado" to false,
             "zAdmin" to false
