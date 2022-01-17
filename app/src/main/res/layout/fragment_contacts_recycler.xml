@@ -15,6 +15,7 @@
             android:layout_width="match_parent"
             style="@style/titulos_contacts"
             android:layout_height="50dp"
+            android:layout_gravity="center"
             android:text="TextView" />
 
         <View
