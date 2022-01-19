@@ -12,8 +12,8 @@ android {
         applicationId "cat.copernic.jose.antonio.miranda.prodiscomtest"
         minSdk 21
         targetSdk 31
-        versionCode 1
-        versionName "1.0"
+        versionCode 3
+        versionName "1.2"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
