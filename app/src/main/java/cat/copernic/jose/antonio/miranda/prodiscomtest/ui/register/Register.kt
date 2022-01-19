@@ -102,11 +102,13 @@ class Register : AppCompatActivity() {
                         binding.etxtRegMail.text.toString(), improvePassw
                     ).addOnCompleteListener {
                         if (it.isSuccessful) { //Si el registre ha estat un èxit...
-                            showSucces(
-                                it.result?.user?.email ?: "",
-                                tipusProveidor.BASIC,
-                                binding.etxtRegDni.text.toString()
-                            )
+                            CoroutineScope(Dispatchers.Main).launch {
+                                showSucces(
+                                    it.result?.user?.email ?: "",
+                                    tipusProveidor.BASIC,
+                                    binding.etxtRegDni.text.toString()
+                                )
+                            }
 
                             finish()
                         } else { //Si el registre no ha estat un èxit...
@@ -114,17 +116,17 @@ class Register : AppCompatActivity() {
                         }
                     }.await()
 
-                } else if (!checkMail){
+                } else if (!checkMail) {
                     showError(R.string.accept)
                 } else if (!checkName) {
                     showError(R.string.accept)
-                } else if (!checkLastName){
+                } else if (!checkLastName) {
                     showError(R.string.accept)
                 } else if (!checkPasswd) {
                     showError(R.string.accept)
                 } else if (!checkDni) {
                     showError(R.string.accept)
-                } else if (!checkDni2){
+                } else if (!checkDni2) {
                     showError(R.string.accept)
                 } else {
                     showAlert()
@@ -145,7 +147,7 @@ class Register : AppCompatActivity() {
 
 
     //Funcio que mostra el resultat del registre si ha tingut exit, mitjançant la pantalla Home
-    private fun showSucces(email: String, proveidor: tipusProveidor, dni: String) {
+    private suspend fun showSucces(email: String, proveidor: tipusProveidor, dni: String) {
         //Creem un objecte Intent passant-li com a paràmetre el context de l'Activitat acual i
         // el nom de la pantalla a la que volem navegar, és a dir, HomeActivity
         val homeIntent: Intent = Intent(this, ConRegistro::class.java).apply {
@@ -219,8 +221,8 @@ class Register : AppCompatActivity() {
     private fun checkDni(dni: String): Boolean {
 
         var comprobacion: Boolean = false
-        val dniNum = dni.substring(0, dni.length -1)
-        if (dni.length < 9 || !dniNum.isDigitsOnly()){
+        val dniNum = dni.substring(0, dni.length - 1)
+        if (dni.length < 9 || !dniNum.isDigitsOnly()) {
             return comprobacion
         }
         val dniLletra = dni.substring(dni.length - 1).uppercase()
@@ -235,8 +237,8 @@ class Register : AppCompatActivity() {
             .await().isEmpty
     }
 
-    private fun test(){
-        if (!checkDni(binding.etxtRegDni.text.toString())){
+    private fun test() {
+        if (!checkDni(binding.etxtRegDni.text.toString())) {
             binding.etxtRegDni.error = R.string.invalid_dni.toString()
         }
     }
@@ -250,36 +252,39 @@ class Register : AppCompatActivity() {
     }
 
     private fun creacioCanalNotificacio() {
-        if(Build.VERSION.SDK_INT>= Build.VERSION_CODES.O) { //>=26 version Oreo i superiors
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) { //>=26 version Oreo i superiors
             val nom = "Titol de la notificació"
             val descripcio = "Descripció notificació."
             val importancia = NotificationManager.IMPORTANCE_DEFAULT
             val canal = NotificationChannel(CHANNEL_ID, nom, importancia)
             canal.description = descripcio
-            val notificationManager: NotificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            val notificationManager: NotificationManager =
+                getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             notificationManager.createNotificationChannel(canal)
         }
     }
 
     @SuppressLint("UnspecifiedImmutableFlag")
-    private fun enviarNotificacio(){
+    private fun enviarNotificacio() {
 
         //Activity que es mostrarà al fer click a la notificació
-        val resultIntent : Intent = Intent(this,ConRegistro::class.java).apply {
+        val resultIntent: Intent = Intent(this, ConRegistro::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
 
         val resultPendingIntent = PendingIntent.getActivity(
-            this,0,resultIntent,0)
+            this, 0, resultIntent, 0
+        )
 
-        val bitmapGran = BitmapFactory.decodeResource(applicationContext.resources, R.drawable.notificacio)
+        val bitmapGran =
+            BitmapFactory.decodeResource(applicationContext.resources, R.drawable.notificacio)
 
         val textMessage = getString(R.string.new_message)
         val regSuccess = getString(R.string.register_success)
         val contMessage = getString(R.string.register_complete)
 
         //Construim la notificació
-        val mBuilder = NotificationCompat.Builder(this,CHANNEL_ID)
+        val mBuilder = NotificationCompat.Builder(this, CHANNEL_ID)
             .setSmallIcon(android.R.drawable.ic_notification_overlay)
             .setContentTitle(regSuccess)
             .setContentText(textMessage)
