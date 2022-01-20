@@ -169,10 +169,10 @@
                     android:textColor="@color/lila_prodis"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.519"
+                    app:layout_constraintHorizontal_bias="0.871"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/login"
-                    app:layout_constraintVertical_bias="0.131" />
+                    app:layout_constraintVertical_bias="0.508" />
 
                 <TextView
                     android:id="@+id/txtVOlCont"
@@ -183,24 +183,23 @@
                     android:textSize="@dimen/dimens_login_bot"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.177"
+                    app:layout_constraintHorizontal_bias="0.239"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/txtVAjuda"
-                    app:layout_constraintVertical_bias="0.177" />
+                    app:layout_constraintTop_toBottomOf="@+id/login" />
 
-                <TextView
+                <Button
                     android:id="@+id/txtVRegister"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/registrar_se"
-                    android:textColor="@color/lila_prodis"
-                    android:textSize="@dimen/dimens_login_bot"
+                    android:textSize="@dimen/text_register"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.838"
+                    app:layout_constraintHorizontal_bias="0.497"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/txtVAjuda"
-                    app:layout_constraintVertical_bias="0.234" />
+                    app:layout_constraintTop_toBottomOf="@+id/login"
+                    app:layout_constraintVertical_bias="0.112"
+                    app:strokeWidth="1dp" />
 
                 <ImageView
                     android:id="@+id/btnShow"
@@ -218,26 +217,24 @@
                     android:id="@+id/btnCat"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:layout_marginTop="32dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.424"
+                    app:layout_constraintHorizontal_bias="0.418"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/txtVRegister"
-                    app:layout_constraintVertical_bias="0.0"
+                    app:layout_constraintTop_toBottomOf="@+id/txtVAjuda"
+                    app:layout_constraintVertical_bias="0.551"
                     app:srcCompat="@drawable/cat_flag" />
 
                 <ImageView
                     android:id="@+id/btnEsp"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:layout_marginTop="32dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.584"
+                    app:layout_constraintHorizontal_bias="0.595"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/txtVRegister"
-                    app:layout_constraintVertical_bias="0.0"
+                    app:layout_constraintTop_toBottomOf="@+id/txtVAjuda"
+                    app:layout_constraintVertical_bias="0.551"
                     app:srcCompat="@drawable/esp_flag" />
 
 
