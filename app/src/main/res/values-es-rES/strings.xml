@@ -110,4 +110,9 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="txtNouChat">Nuevo Chat</string>
     <string name="administrador">Administrador</string>
+    <string name="informaci_de_l_usuari">Informacin del usuario</string>
+    <string name="es_administrador">Es Administrador?</string>
+    <string name="canviar_rol">Cambiar Rol</string>
+    <string name="naixement">Nacimiento:</string>
+    <string name="tel_fon">Teléfono:</string>
 </resources>

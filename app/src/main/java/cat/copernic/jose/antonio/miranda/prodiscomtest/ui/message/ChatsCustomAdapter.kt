@@ -1,5 +1,9 @@
 package cat.copernic.jose.antonio.miranda.prodiscomtest.ui.message
 
+import android.app.Activity
+import android.content.Context
+import android.content.res.Configuration
+import android.graphics.Color
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -25,9 +29,9 @@ class ChatsCustomAdapter(private val mList: List<ContactsViewModel>) : RecyclerV
     private var fromUserData: Users? = null
     private val db = FirebaseFirestore.getInstance()
     private var roomId = "noRoomId"
-
+    private lateinit var view: View
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context)
+         view = LayoutInflater.from(parent.context)
             .inflate(R.layout.fragment_contacts_recycler, parent, false)
             getContacts()
         return ViewHolder(view)
@@ -39,9 +43,14 @@ class ChatsCustomAdapter(private val mList: List<ContactsViewModel>) : RecyclerV
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val itemsViewModel = mList[position]
         holder.txtNom.text = itemsViewModel.Nombre
+        when (view.resources?.configuration?.uiMode?.and(Configuration.UI_MODE_NIGHT_MASK)) {
+            Configuration.UI_MODE_NIGHT_YES -> holder.txtNom.setTextColor(Color.parseColor("#FFFFFF"))
+            Configuration.UI_MODE_NIGHT_NO -> holder.txtNom.setTextColor(Color.parseColor("#000000"))
+            Configuration.UI_MODE_NIGHT_UNDEFINED -> holder.txtNom.setTextColor(Color.parseColor("#FFFFFF"))
+        }
         holder.itemView.setOnClickListener {
             it.findNavController().navigate(ChatsDirections
-                .actionContactsToChat(listOfToUsers[position], fromUserData, roomId, holder.txtNom.text.toString() ))
+                .actionContactsToChat(listOfToUsers[position], fromUserData, roomId, holder.txtNom.text.toString()))
         }
     }
 

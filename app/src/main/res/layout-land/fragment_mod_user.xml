@@ -101,7 +101,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/txtVNom"
                 app:layout_constraintTop_toBottomOf="@+id/txtVInfo"
-                app:layout_constraintVertical_bias="0.189" />
+                app:layout_constraintVertical_bias="0.091" />
 
             <TextView
                 android:id="@+id/txtVTelf"
@@ -111,7 +111,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/txtVDni"
                 app:layout_constraintTop_toBottomOf="@+id/txtVDni"
-                app:layout_constraintVertical_bias="0.336" />
+                app:layout_constraintVertical_bias="0.209" />
 
             <Button
                 android:id="@+id/btnModUs"
@@ -133,6 +133,7 @@
                 android:layout_marginStart="152dp"
                 android:layout_marginTop="20dp"
                 android:text="-"
+                android:background="@android:color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/txtVNom"
@@ -142,10 +143,11 @@
                 android:id="@+id/txResultDni"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="28dp"
+                android:background="@android:color/white"
                 android:text="-"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.769"
+                app:layout_constraintHorizontal_bias="0.775"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtVInfo" />
 
@@ -157,6 +159,7 @@
                 android:text="-"
                 app:layout_constraintEnd_toEndOf="@+id/txResultDni"
                 app:layout_constraintHorizontal_bias="0.0"
+                android:background="@android:color/white"
                 app:layout_constraintStart_toStartOf="@+id/txResultDni"
                 app:layout_constraintTop_toBottomOf="@+id/txResultDni" />
 
@@ -175,6 +178,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
+                android:background="@android:color/white"
                 android:text="-"
                 app:layout_constraintEnd_toEndOf="@+id/txResultNom"
                 app:layout_constraintHorizontal_bias="0.0"

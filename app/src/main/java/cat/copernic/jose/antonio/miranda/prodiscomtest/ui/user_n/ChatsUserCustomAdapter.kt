@@ -1,6 +1,8 @@
 package cat.copernic.jose.antonio.miranda.prodiscomtest.ui.user_n
 
 
+import android.content.res.Configuration
+import android.graphics.Color
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -26,9 +28,10 @@ class ChatsUserCustomAdapter(private val mList: List<ContactsViewModel>) : Recyc
     private var listOfRooms = ArrayList<String>()
     private var fromUserData: Users? = null
     private var roomId = "noRoomId"
+    private lateinit var view: View
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context)
+        view = LayoutInflater.from(parent.context)
             .inflate(R.layout.fragment_contacts_recycler, parent, false)
         getContacts()
         return ViewHolder(view)
@@ -38,6 +41,11 @@ class ChatsUserCustomAdapter(private val mList: List<ContactsViewModel>) : Recyc
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val itemsViewModel = mList[position]
         holder.txtNom.text = itemsViewModel.Nombre
+        when (view.resources?.configuration?.uiMode?.and(Configuration.UI_MODE_NIGHT_MASK)) {
+            Configuration.UI_MODE_NIGHT_YES -> holder.txtNom.setTextColor(Color.parseColor("#FFFFFF"))
+            Configuration.UI_MODE_NIGHT_NO -> holder.txtNom.setTextColor(Color.parseColor("#000000"))
+            Configuration.UI_MODE_NIGHT_UNDEFINED -> holder.txtNom.setTextColor(Color.parseColor("#FFFFFF"))
+        }
         holder.itemView.setOnClickListener {
             it.findNavController().navigate(
                 UserChatsDirections

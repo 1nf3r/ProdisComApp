@@ -34,6 +34,7 @@ class RegisterViewModel : ViewModel() {
         val roomInfo = hashMapOf(
             "rooms" to map
         )
+      
 
         val contactInfo = hashMapOf(
             "email" to email,
