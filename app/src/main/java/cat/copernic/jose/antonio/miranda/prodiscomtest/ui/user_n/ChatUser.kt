@@ -1,6 +1,8 @@
 package cat.copernic.jose.antonio.miranda.prodiscomtest.ui.user_n
 
 
+import android.content.res.Configuration
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -114,6 +116,11 @@ class ChatUser : Fragment() {
         internal fun setMessage(message: Message) {
             val textView: TextView = view.findViewById(R.id.text_view)
             textView.text = message.messageText
+            when (view.resources?.configuration?.uiMode?.and(Configuration.UI_MODE_NIGHT_MASK)) {
+                Configuration.UI_MODE_NIGHT_YES -> textView.setTextColor(Color.parseColor("#FFFFFF"))
+                Configuration.UI_MODE_NIGHT_NO -> textView.setTextColor(Color.parseColor("#000000"))
+                Configuration.UI_MODE_NIGHT_UNDEFINED -> textView.setTextColor(Color.parseColor("#FFFFFF"))
+            }
         }
     }
 
@@ -123,10 +130,22 @@ class ChatUser : Fragment() {
             return if (viewType == R.layout.fragment_chat_remoto) {
                 val view = LayoutInflater.from(parent.context)
                     .inflate(R.layout.fragment_chat_remoto, parent, false)
+                val textView: TextView = view.findViewById(R.id.text_view)
+                when (view?.resources?.configuration?.uiMode?.and(Configuration.UI_MODE_NIGHT_MASK)) {
+                    Configuration.UI_MODE_NIGHT_YES -> textView.background = view.resources.getDrawable(R.drawable.mensaje_remoto_dark)
+                    Configuration.UI_MODE_NIGHT_NO -> textView.background = view.resources.getDrawable(R.drawable.mensaje_remoto)
+                    Configuration.UI_MODE_NIGHT_UNDEFINED -> textView.background = view.resources.getDrawable(R.drawable.mensaje_remoto)
+                }
                 MessageViewHolder(view)
             } else {
                 val view = LayoutInflater.from(parent.context)
                     .inflate(R.layout.fragment_chat_local, parent, false)
+                val textView: TextView = view.findViewById(R.id.text_view)
+                when (view?.resources?.configuration?.uiMode?.and(Configuration.UI_MODE_NIGHT_MASK)) {
+                    Configuration.UI_MODE_NIGHT_YES -> textView.background = view.resources.getDrawable(R.drawable.mensaje_local_dark)
+                    Configuration.UI_MODE_NIGHT_NO -> textView.background = view.resources.getDrawable(R.drawable.mensaje_local)
+                    Configuration.UI_MODE_NIGHT_UNDEFINED -> textView.background = view.resources.getDrawable(R.drawable.mensaje_local)
+                }
                 MessageViewHolder(view)
             }
         }
