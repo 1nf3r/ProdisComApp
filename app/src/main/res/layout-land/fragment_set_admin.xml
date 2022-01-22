@@ -26,6 +26,7 @@
                 android:id="@+id/txtModUser"
                 style="@style/titulos"
                 android:text="Administrar"
+                android:background="@android:color/transparent"
                 tools:layout_editor_absoluteX="91dp"
                 tools:layout_editor_absoluteY="32dp" />
 
